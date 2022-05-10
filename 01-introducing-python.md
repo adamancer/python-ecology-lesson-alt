@@ -1,0 +1,629 @@
+---
+title: Introducing Python
+---
+
+::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   What is Python?
+-   How do we assign variables in Python?
+-   How does Python handle different types of data?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   Introduce some Python terminology
+-   Learn how to assign values to variables
+-   Learn how to call functions and methods
+-   Introduce the built-in Python data types and functions
+-   Introduce the Python Standard Library
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Using Python
+
+Python is a high-level, general purpose language. In practical terms,
+that means it dispenses with many of the complexities of writing code.
+
+A core philosophical tenet of Python is that code is read more often
+than it is written. Best practices for coding in Python therefore
+emphasize writing well-documented, consistently formatted code that
+follows language-wide standards. **In a Pythonic world, everyone's code
+would look the same.**
+
+## Terms
+
+Everything in Python is an *object*. Each object has a *type*, which
+controls what the kind of things the object can do. For example, you can
+add integers together or append a string to a list. An object can be
+*assigned* to a *variable*, and a *function* performs an action.
+
+Python is an *object-oriented language*. This means that each object
+includes built-in variables and functions that can be used from the
+object itself. When working from an object, we use different terms to
+refer to these concepts:
+
+-   an *attribute* stores a piece of data
+-   a *method* performs an action
+
+Let's look at one of the main built-in types, `str`, to see how this
+works in practice. In Python, `str`, short for string, is used to store
+and manipulate text. To get started, we'll assign the string "hello
+world" to the variable **text**. In Python, we use a single equal sign
+for assignment and use quotes to define the string.
+
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Either single or double quotes can be used to create strings, but be
+careful to use them consistently! We will use double quotes in the
+examples here.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+```python
+text = "hello world"
+```
+
+Now we can access that string by referring to that variable:
+
+
+```python
+text
+```
+
+```{.output}
+'hello world'
+```
+
+We can check the type of the variable using the `type()` function:
+
+
+```python
+type(text)
+```
+
+```{.output}
+<class 'str'>
+```
+
+We can modify the text by calling one of the built-in methods. We call
+methods by appending a period and the name of the method to the object.
+For example, to display the string as upper case, use `upper()`:
+
+
+```python
+text.upper()
+```
+
+```{.output}
+'HELLO WORLD'
+```
+
+Each object may contain many attributes and methods. Use the `help()`
+function on an object, including functions or methods, to print a
+description of the object and lists the available methods.
+
+
+```python
+help(str)
+```
+
+```{.output}
+Help on class str in module builtins:
+
+class str(object)
+ |  str(object='') -> str
+ |  str(bytes_or_buffer[, encoding[, errors]]) -> str
+ |  
+ |  Create a new string object from the given object. If encoding or
+ |  errors is specified, then the object must expose a data buffer
+ |  that will be decoded using the given encoding and error handler.
+ |  Otherwise, returns the result of object.__str__() (if defined)
+ |  or repr(object).
+ |  encoding defaults to sys.getdefaultencoding().
+ |  errors defaults to 'strict'.
+ |  
+ |  Methods defined here:
+ |  
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |  
+ |  __contains__(self, key, /)
+ |      Return key in self.
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __format__(self, format_spec, /)
+ |      Return a formatted version of the string as described by format_spec.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self>=value.
+ |  
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |  
+ |  __getitem__(self, key, /)
+ |      Return self[key].
+ |  
+ |  __getnewargs__(...)
+ |  
+ |  __gt__(self, value, /)
+ |      Return self>value.
+ |  
+ |  __hash__(self, /)
+ |      Return hash(self).
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __le__(self, value, /)
+ |      Return self<=value.
+ |  
+ |  __len__(self, /)
+ |      Return len(self).
+ |  
+ |  __lt__(self, value, /)
+ |      Return self<value.
+ |  
+ |  __mod__(self, value, /)
+ |      Return self%value.
+ |  
+ |  __mul__(self, value, /)
+ |      Return self*value.
+ |  
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |  
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |  
+ |  __rmod__(self, value, /)
+ |      Return value%self.
+ |  
+ |  __rmul__(self, value, /)
+ |      Return value*self.
+ |  
+ |  __sizeof__(self, /)
+ |      Return the size of the string in memory, in bytes.
+ |  
+ |  __str__(self, /)
+ |      Return str(self).
+ |  
+ |  capitalize(self, /)
+ |      Return a capitalized version of the string.
+ |      
+ |      More specifically, make the first character have upper case and the rest lower
+ |      case.
+ |  
+ |  casefold(self, /)
+ |      Return a version of the string suitable for caseless comparisons.
+ |  
+ |  center(self, width, fillchar=' ', /)
+ |      Return a centered string of length width.
+ |      
+ |      Padding is done using the specified fill character (default is a space).
+ |  
+ |  count(...)
+ |      S.count(sub[, start[, end]]) -> int
+ |      
+ |      Return the number of non-overlapping occurrences of substring sub in
+ |      string S[start:end].  Optional arguments start and end are
+ |      interpreted as in slice notation.
+ |  
+ |  encode(self, /, encoding='utf-8', errors='strict')
+ |      Encode the string using the codec registered for encoding.
+ |      
+ |      encoding
+ |        The encoding in which to encode the string.
+ |      errors
+ |        The error handling scheme to use for encoding errors.
+ |        The default is 'strict' meaning that encoding errors raise a
+ |        UnicodeEncodeError.  Other possible values are 'ignore', 'replace' and
+ |        'xmlcharrefreplace' as well as any other name registered with
+ |        codecs.register_error that can handle UnicodeEncodeErrors.
+ |  
+ |  endswith(...)
+ |      S.endswith(suffix[, start[, end]]) -> bool
+ |      
+ |      Return True if S ends with the specified suffix, False otherwise.
+ |      With optional start, test S beginning at that position.
+ |      With optional end, stop comparing S at that position.
+ |      suffix can also be a tuple of strings to try.
+ |  
+ |  expandtabs(self, /, tabsize=8)
+ |      Return a copy where all tab characters are expanded using spaces.
+ |      
+ |      If tabsize is not given, a tab size of 8 characters is assumed.
+ |  
+ |  find(...)
+ |      S.find(sub[, start[, end]]) -> int
+ |      
+ |      Return the lowest index in S where substring sub is found,
+ |      such that sub is contained within S[start:end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Return -1 on failure.
+ |  
+ |  format(...)
+ |      S.format(*args, **kwargs) -> str
+ |      
+ |      Return a formatted version of S, using substitutions from args and kwargs.
+ |      The substitutions are identified by braces ('{' and '}').
+ |  
+ |  format_map(...)
+ |      S.format_map(mapping) -> str
+ |      
+ |      Return a formatted version of S, using substitutions from mapping.
+ |      The substitutions are identified by braces ('{' and '}').
+ |  
+ |  index(...)
+ |      S.index(sub[, start[, end]]) -> int
+ |      
+ |      Return the lowest index in S where substring sub is found,
+ |      such that sub is contained within S[start:end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Raises ValueError when the substring is not found.
+ |  
+ |  isalnum(self, /)
+ |      Return True if the string is an alpha-numeric string, False otherwise.
+ |      
+ |      A string is alpha-numeric if all characters in the string are alpha-numeric and
+ |      there is at least one character in the string.
+ |  
+ |  isalpha(self, /)
+ |      Return True if the string is an alphabetic string, False otherwise.
+ |      
+ |      A string is alphabetic if all characters in the string are alphabetic and there
+ |      is at least one character in the string.
+ |  
+ |  isascii(self, /)
+ |      Return True if all characters in the string are ASCII, False otherwise.
+ |      
+ |      ASCII characters have code points in the range U+0000-U+007F.
+ |      Empty string is ASCII too.
+ |  
+ |  isdecimal(self, /)
+ |      Return True if the string is a decimal string, False otherwise.
+ |      
+ |      A string is a decimal string if all characters in the string are decimal and
+ |      there is at least one character in the string.
+ |  
+ |  isdigit(self, /)
+ |      Return True if the string is a digit string, False otherwise.
+ |      
+ |      A string is a digit string if all characters in the string are digits and there
+ |      is at least one character in the string.
+ |  
+ |  isidentifier(self, /)
+ |      Return True if the string is a valid Python identifier, False otherwise.
+ |      
+ |      Call keyword.iskeyword(s) to test whether string s is a reserved identifier,
+ |      such as "def" or "class".
+ |  
+ |  islower(self, /)
+ |      Return True if the string is a lowercase string, False otherwise.
+ |      
+ |      A string is lowercase if all cased characters in the string are lowercase and
+ |      there is at least one cased character in the string.
+ |  
+ |  isnumeric(self, /)
+ |      Return True if the string is a numeric string, False otherwise.
+ |      
+ |      A string is numeric if all characters in the string are numeric and there is at
+ |      least one character in the string.
+ |  
+ |  isprintable(self, /)
+ |      Return True if the string is printable, False otherwise.
+ |      
+ |      A string is printable if all of its characters are considered printable in
+ |      repr() or if it is empty.
+ |  
+ |  isspace(self, /)
+ |      Return True if the string is a whitespace string, False otherwise.
+ |      
+ |      A string is whitespace if all characters in the string are whitespace and there
+ |      is at least one character in the string.
+ |  
+ |  istitle(self, /)
+ |      Return True if the string is a title-cased string, False otherwise.
+ |      
+ |      In a title-cased string, upper- and title-case characters may only
+ |      follow uncased characters and lowercase characters only cased ones.
+ |  
+ |  isupper(self, /)
+ |      Return True if the string is an uppercase string, False otherwise.
+ |      
+ |      A string is uppercase if all cased characters in the string are uppercase and
+ |      there is at least one cased character in the string.
+ |  
+ |  join(self, iterable, /)
+ |      Concatenate any number of strings.
+ |      
+ |      The string whose method is called is inserted in between each given string.
+ |      The result is returned as a new string.
+ |      
+ |      Example: '.'.join(['ab', 'pq', 'rs']) -> 'ab.pq.rs'
+ |  
+ |  ljust(self, width, fillchar=' ', /)
+ |      Return a left-justified string of length width.
+ |      
+ |      Padding is done using the specified fill character (default is a space).
+ |  
+ |  lower(self, /)
+ |      Return a copy of the string converted to lowercase.
+ |  
+ |  lstrip(self, chars=None, /)
+ |      Return a copy of the string with leading whitespace removed.
+ |      
+ |      If chars is given and not None, remove characters in chars instead.
+ |  
+ |  partition(self, sep, /)
+ |      Partition the string into three parts using the given separator.
+ |      
+ |      This will search for the separator in the string.  If the separator is found,
+ |      returns a 3-tuple containing the part before the separator, the separator
+ |      itself, and the part after it.
+ |      
+ |      If the separator is not found, returns a 3-tuple containing the original string
+ |      and two empty strings.
+ |  
+ |  removeprefix(self, prefix, /)
+ |      Return a str with the given prefix string removed if present.
+ |      
+ |      If the string starts with the prefix string, return string[len(prefix):].
+ |      Otherwise, return a copy of the original string.
+ |  
+ |  removesuffix(self, suffix, /)
+ |      Return a str with the given suffix string removed if present.
+ |      
+ |      If the string ends with the suffix string and that suffix is not empty,
+ |      return string[:-len(suffix)]. Otherwise, return a copy of the original
+ |      string.
+ |  
+ |  replace(self, old, new, count=-1, /)
+ |      Return a copy with all occurrences of substring old replaced by new.
+ |      
+ |        count
+ |          Maximum number of occurrences to replace.
+ |          -1 (the default value) means replace all occurrences.
+ |      
+ |      If the optional argument count is given, only the first count occurrences are
+ |      replaced.
+ |  
+ |  rfind(...)
+ |      S.rfind(sub[, start[, end]]) -> int
+ |      
+ |      Return the highest index in S where substring sub is found,
+ |      such that sub is contained within S[start:end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Return -1 on failure.
+ |  
+ |  rindex(...)
+ |      S.rindex(sub[, start[, end]]) -> int
+ |      
+ |      Return the highest index in S where substring sub is found,
+ |      such that sub is contained within S[start:end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Raises ValueError when the substring is not found.
+ |  
+ |  rjust(self, width, fillchar=' ', /)
+ |      Return a right-justified string of length width.
+ |      
+ |      Padding is done using the specified fill character (default is a space).
+ |  
+ |  rpartition(self, sep, /)
+ |      Partition the string into three parts using the given separator.
+ |      
+ |      This will search for the separator in the string, starting at the end. If
+ |      the separator is found, returns a 3-tuple containing the part before the
+ |      separator, the separator itself, and the part after it.
+ |      
+ |      If the separator is not found, returns a 3-tuple containing two empty strings
+ |      and the original string.
+ |  
+ |  rsplit(self, /, sep=None, maxsplit=-1)
+ |      Return a list of the words in the string, using sep as the delimiter string.
+ |      
+ |        sep
+ |          The delimiter according which to split the string.
+ |          None (the default value) means split according to any whitespace,
+ |          and discard empty strings from the result.
+ |        maxsplit
+ |          Maximum number of splits to do.
+ |          -1 (the default value) means no limit.
+ |      
+ |      Splits are done starting at the end of the string and working to the front.
+ |  
+ |  rstrip(self, chars=None, /)
+ |      Return a copy of the string with trailing whitespace removed.
+ |      
+ |      If chars is given and not None, remove characters in chars instead.
+ |  
+ |  split(self, /, sep=None, maxsplit=-1)
+ |      Return a list of the words in the string, using sep as the delimiter string.
+ |      
+ |      sep
+ |        The delimiter according which to split the string.
+ |        None (the default value) means split according to any whitespace,
+ |        and discard empty strings from the result.
+ |      maxsplit
+ |        Maximum number of splits to do.
+ |        -1 (the default value) means no limit.
+ |  
+ |  splitlines(self, /, keepends=False)
+ |      Return a list of the lines in the string, breaking at line boundaries.
+ |      
+ |      Line breaks are not included in the resulting list unless keepends is given and
+ |      true.
+ |  
+ |  startswith(...)
+ |      S.startswith(prefix[, start[, end]]) -> bool
+ |      
+ |      Return True if S starts with the specified prefix, False otherwise.
+ |      With optional start, test S beginning at that position.
+ |      With optional end, stop comparing S at that position.
+ |      prefix can also be a tuple of strings to try.
+ |  
+ |  strip(self, chars=None, /)
+ |      Return a copy of the string with leading and trailing whitespace removed.
+ |      
+ |      If chars is given and not None, remove characters in chars instead.
+ |  
+ |  swapcase(self, /)
+ |      Convert uppercase characters to lowercase and lowercase characters to uppercase.
+ |  
+ |  title(self, /)
+ |      Return a version of the string where each word is titlecased.
+ |      
+ |      More specifically, words start with uppercased characters and all remaining
+ |      cased characters have lower case.
+ |  
+ |  translate(self, table, /)
+ |      Replace each character in the string using the given translation table.
+ |      
+ |        table
+ |          Translation table, which must be a mapping of Unicode ordinals to
+ |          Unicode ordinals, strings, or None.
+ |      
+ |      The table must implement lookup/indexing via __getitem__, for instance a
+ |      dictionary or list.  If this operation raises LookupError, the character is
+ |      left untouched.  Characters mapped to None are deleted.
+ |  
+ |  upper(self, /)
+ |      Return a copy of the string converted to uppercase.
+ |  
+ |  zfill(self, width, /)
+ |      Pad a numeric string with zeros on the left, to fill a field of the given width.
+ |      
+ |      The string is never truncated.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  maketrans(...)
+ |      Return a translation table usable for str.translate().
+ |      
+ |      If there is only one argument, it must be a dictionary mapping Unicode
+ |      ordinals (integers) or characters to Unicode ordinals, strings or None.
+ |      Character keys will be then converted to ordinals.
+ |      If there are two arguments, they must be strings of equal length, and
+ |      in the resulting dictionary, each character in x will be mapped to the
+ |      character at the same position in y. If there is a third argument, it
+ |      must be a string, whose characters will be mapped to None in the result.
+```
+
+### Data types
+
+Python defines data types for representing other types of data,
+including numbers or collections of data. The core Python data types are
+introduced in the table below. We'll talk more about some of these as we
+encounter them in the lesson:
+
+|Type|Definition|Example|
+|-|-|-|
+|[str](https://docs.python.org/3/library/string.html)|Character string|`"hello world"`|
+|[int](https://docs.python.org/3/library/functions.html#int)|Integer numerical|`42`|
+|[float](https://docs.python.org/3/library/functions.html#float)|Approximate numerical|`0.406`|
+|[bool](https://docs.python.org/3/library/functions.html#bool)|Stores True or False values|`True` or `False`|
+|[list](https://docs.python.org/3/library/stdtypes.html#lists)|Sequence that can be modified|`["a", "b", "c"]`|
+|[tuple](https://docs.python.org/3/library/stdtypes.html#tuples)|Sequence that cannot be modified|`("a", "b", "c")`|
+|[dict](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)|Mapping of keys to values|`{"DC": "District of Columbia"}`|
+|[set](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)|Collection of unique values|`{"1", "2", 1}`|
+
+## Libraries
+
+Python includes a number of [built-in
+functions](https://docs.python.org/3/library/functions.html) that are
+available wherever Python is installed. See the table below for some
+examples.
+
+### Examples of built-in functions
+
+|Name|Description|Example|
+|-|-|-|
+|[`abs()`](https://docs.python.org/3/library/functions.html#abs)|Gets the absolute value of a number|`abs(-1.5) # returns 1.5`|
+|[`max()`](https://docs.python.org/3/library/functions.html#max)|Gets the highest value in a sequence|`min([1, 2, 3]) # returns 3`|
+|[`min()`](https://docs.python.org/3/library/functions.html#min)|Gets the lowest value in a sequence|`min([1, 2, 3]) # returns 1`|
+|[`round()`](https://docs.python.org/3/library/functions.html#round)|Rounds a number to the nearest integer|`round(5.4) # returns 5`|
+
+Python also includes a number of built-in libraries. A *library* bundles
+functions and other code related to a single task or data type. They are
+used to simplify the performance of common tasks. By using a common code
+base, a library allows coders to work more quickly and with fewer
+errors.
+
+The libraries built into Python are referred to as the [Python Standard
+Library](https://docs.python.org/3/library/index.html). They can be
+accessed through a typical Python installation and do not require any
+additional downloads. A few examples are included in the table below,
+but as with the table of built-in functions, there are more where those
+came from.
+
+### Examples from the Python Standard Library
+
+|Library|Description|
+|-|-|
+|[datetime](https://docs.python.org/3/library/datetime.html)|Reads, writes, and analyzes dates and times|
+|[os](https://docs.python.org/3/library/os.html)|Create, manipulate, and get information about files and paths|
+|[random](https://docs.python.org/3/library/random.html)|Generate pseudo-random numbers|
+
+Unlike the built-in functions, we must import a library before we can
+use it:
+
+
+```python
+import datetime
+```
+
+We must use the name of the library to access the functions it includes.
+For example, to create a `datetime.date` object (that is, a `date`
+object defined by the `datetime` library), we include both the library
+and method name:
+
+
+```python
+date = datetime.date(1970, 1, 1)
+```
+
+As with the built-in types, the `datetime.date` object includes its own
+suite of attributes and methods. We can, for example, use the year
+attribute to get the year:
+
+
+```python
+date.year
+```
+
+```{.output}
+1970
+```
+
+Or format the date in a specific way using [date format
+codes](https://docs.python.org/3/library/datetime.html#strftime-and-
+strptime-format-codes). Here, %Y corresponds to YYYY, %m to MM, and %d
+to DD.
+
+
+```python
+date.strftime("%Y-%m-%d")
+```
+
+```{.output}
+'1970-01-01'
+```
+
+Like Python itself, the Python Standard Library is maintained by the
+Python Software Foundation. The built-in libraries are limited to a
+relatively small set of operations expected to be useful to a broad
+population of users. However, Python allows users to create their own
+libraries to perform actions that are beyond the scope of core Python.
+The rest of this lesson will focus on an external library called
+`pandas`.
