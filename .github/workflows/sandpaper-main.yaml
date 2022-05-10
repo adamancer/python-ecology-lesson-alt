@@ -40,9 +40,9 @@ jobs:
           environment-file: environment.yml
 
       - name: "Set RETICULATE_PYTHON env var"
-        shell: bash -l {0}
         run: |
           echo "RETICULATE_PYTHON=$(which python)" >> $GITHUB_ENV
+        shell: bash -l {0}
 
       - name: "Set up R"
         uses: r-lib/actions/setup-r@v2
