@@ -1,0 +1,197 @@
+---
+title: Combining Dataframes
+---
+
+::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   How do we combine data from multiple sources using pandas?
+-   How do we add data to an existing dataframe?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   Use merge to add species info to the survey dataset
+-   Use concat to add additional rows the dataset
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Dataframes are used to organize and group data by common characteristics
+or principles. Often, we need to combine elements from separate tables
+into a single tables or queries for analysis and visualization. A join
+allows use to combine two dataframes using values common to each.
+
+The survey dataframe we've been using throughout this lesson has a
+column called species_id. We used this column in the previous lesson to
+calculate summary statistics about observations of each species. But the
+species_id is just a two-letter code--what does each code stand for? To
+find out, we'll now load both the survey dataset and a second dataset
+containing more detailed information about the various species observed:
+
+```{python, error=TRUE}
+import pandas as pd
+
+surveys = pd.read_csv("data/surveys.csv")
+species = pd.read_csv("data/species.csv")
+
+species
+```
+
+We can see that the species dataframe includes a genus, species, and
+taxon for each species_id. This is much more useful than the species_id
+included in the original dataframe--how can we add that data to our
+surveys dataframe? Adding it by hand would be tedious and error prone.
+Fortunately, `pandas` provides the `merge()` method to join two
+dataframes.
+
+To merge the surveys and species dataframes, use:
+
+```{python, error=TRUE}
+merged = surveys.merge(species)
+merged
+```
+
+Following the merge, the genus, species, and taxa columns have all been
+added to the survey dataframe. We can now use those columns to filter
+and summarize our data.
+
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+The `pd.merge()` method is equivalent to the JOIN operation in SQL
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Filter the merged dataframe to show the genus, the species name, and the
+weight for every individual captured at the site
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```{python, error=TRUE}
+merged[["genus", "species", "weight"]]
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In the example above, we didn't provide any information about how we
+wanted to merge the dataframes together, so pandas made an educated
+guess. It looked at the columns in each of the dataframes, then merged
+them based on the columns that appear in both. Here, the only shared
+name is species_id. If we want to control what columns are used to
+merge, we can use the *on* keyword argument:
+
+```{python, error=TRUE}
+surveys.merge(species, on="species_id")
+```
+
+::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Compare the number of rows in the original and merged survey dataframes.
+How do they differ? Why do you think that might be?
+
+**Hint:** Use `pd.unique()` method to look at the species_id column in
+each dataframe.
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```{python, error=TRUE}
+# Some columns in survey are missing species_id
+set(surveys["species_id"]) - set(species["species_id"])
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In practice, the values in the columns used to join two dataframes may
+not align exactly. Above, the surveys dataframe contains a few hundred
+rows where species_id is NaN. These are the rows that were dropped when
+the dataframes were merged.
+
+By default, `merge()` performs an **inner join**. This means that a row
+will only appear if the value in the shared column appears in both of
+the datasets being merged. In this case, that means that survey
+observations that don't have a species_id or have a species_id that does
+not appear in the species dataframe will be dropped.
+
+This is not always desirable behavior. Fortunately, `pandas` allows us
+to control how the merge is done.
+
+-   **Inner:** Includes all rows with common values in the join
+    column
+-   **Left:** Include all rows from the left dataframe. Columns from
+    the right dataframe are populated if a common value exists and
+    set to NaN if not.
+-   **Right:** Include all rows from the right dataframe. Columns
+    from the left dataframe are populated if a common value exists
+    and set to NaN if not.
+-   **Outer:** Includes all rows from both dataframes
+
+We want to keep all of our observations, so let's do a left join
+instead. To specify the type of merge, we use the *how* keyword
+argument:
+
+```{python, error=TRUE}
+surveys.merge(species, how="left")
+```
+
+Now all 35,549 rows appear in the merged dataframe.
+
+## Appending rows to a dataframe
+
+Merges address the case where information about the same set of
+observations is spread across multiple files. What about when the
+observations themselves are split into more than one file? For a survey
+like the one we've been looking at in this lesson, we might get a new
+file once a year with the same columns that represent a completely new
+set of observations. How can we add those new observations to our
+dataframe?
+
+We'll simulate this kind of thing by splitting two years worth of data
+into separate dataframes. We can do this using conditionals, as we saw
+in lesson 3:
+
+```{python, error=TRUE}
+surveys_2001 = surveys[surveys["year"] == 2001].copy()
+surveys_2001
+```
+
+```{python, error=TRUE}
+surveys_2002 = surveys[surveys["year"] == 2002].copy()
+surveys_2002
+```
+
+We now have two different dataframes with the same columns but different
+data, one with 1,610 rows, the other with 2,229 rows. We can combine
+them using `pd.concat()`, which stacks the dataframes horizontally (that
+is, it appends the 2002 dataset to the 2001 dataset):
+
+```{python, error=TRUE}
+surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
+surveys_2001_2002
+```
+
+The combined dataframe includes all rows from both dataframes.
+
+In some cases, the exact columns may change from year to year even
+within the same project. For example, researchers may decide to add an
+additional column to track a new piece of data or to provide a quality
+check. If a column is present in only one dataset, you can still
+concatenate the datasets. Any column that does not appear in one of the
+datasets will be set to NaN for those rows in the combined dataframe.
+
+To illustrate this, we'll add a validated column to the 2002 survey,
+then re-run `pd.concat()`:
+
+```{python, error=TRUE}
+surveys_2002["validated"] = True
+
+surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
+surveys_2001_2002
+```
+
+As expected, validated has a value of NaN for the 2001 data in the
+combined dataframe.

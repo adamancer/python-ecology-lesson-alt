@@ -49,3 +49,6 @@ docs/
 # translation temp files
 po/*~
 
+# omit python files
+.ipynb_checkpoints
+_preflight.py

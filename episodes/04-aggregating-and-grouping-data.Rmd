@@ -1,0 +1,216 @@
+---
+title: Aggregating and Grouping Data
+---
+
+::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   How do we calculate statistics using pandas?
+-   How do we group data using pandas?
+-   How do null values affect calculations using pandas?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   Introduce aggregation calculations in pandas
+-   Introduce grouping in pandas
+-   Learn about how pandas handles null values
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+As always, we'll begin by importing pandas and reading our CSV:
+
+```{python, error=TRUE}
+import pandas as pd
+
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+## Aggregating data
+
+Aggregation allows us to combine results by grouping records based on
+value. It is also useful for calculating combined values in groups.
+
+Let’s go to the surveys table and find out how many observations are
+in our dataset. We've already seen that we can use the `info()` method
+to get high-level about the dataset, including the number of entries.
+What if just wanted the number of rows? In that case, we can use the
+built-in function `len()`, which is used to calculate the number of
+items in an object (for example, the number of characters in a string or
+the number of items in a list). When used on a dataframe, `len()`
+returns the number of rows:
+
+```{python, error=TRUE}
+len(surveys)
+```
+
+`pandas` also provides a suite of aggregation methods. For example, we
+can find out the total weight of all the individuals in grams using
+`sum()`:
+
+```{python, error=TRUE}
+surveys["weight"].sum()
+```
+
+Other aggregation methods supported by pandas include `min()`, `max()`,
+and `mean()`.
+
+::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Calculate the total weight, average weight, minimum and maximum weights
+for all animals caught over the duration of the survey. Can you modify
+your code so that it outputs these values only for weights between 5 and
+10 grams?
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```{python, error=TRUE}
+# Create a subset of only the animals between 5 and 10 grams
+weights = surveys[(surveys["weight"] > 5) & (surveys["weight"] < 10)]["weight"]
+
+# Display aggregation calculations using a dict
+{
+    "sum": weights.sum(),
+    "mean": weights.mean(),
+    "min": weights.min(),
+    "max": weights.max(),
+}
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+To quickly generate summary statistics, we can use the `describe()`
+method. When you use this method on a dataframe, it calculates stats for
+all columns with numeric data:
+
+```{python, error=TRUE}
+surveys.describe()
+```
+
+You can see that `describe()` isn't picky: It includes both ID and date
+columns in its results. Notice also that the counts differ in between
+columns. This is because `count()` only counts non-NaN rows.
+
+If you prefer, you can also describe a single column at a time:
+
+```{python, error=TRUE}
+surveys["weight"].describe()
+```
+
+If you need more control over the output (for example, if you want to
+calculate the total weight of all animals, as in the challenge above),
+pandas provides the `agg()` method:
+
+```{python, error=TRUE}
+surveys.agg({"weight": ["sum", "mean", "min", "max"]})
+```
+
+## Grouping data
+
+Now, let’s see how many individuals were counted in each species. We
+do this using `groupby()`, which creates an object similar to a
+dataframe where rows are grouped by the data in one or more columns:
+
+```{python, error=TRUE}
+grouped = surveys.groupby("species_id")
+```
+
+When we aggregate the grouped data, `pandas` provides separate
+calculations for each member of the group. In the example below, we'll
+calculate the number of times each species appears in the dataset:
+
+```{python, error=TRUE}
+grouped["species_id"].count()
+```
+
+::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Write statements that return:
+
+1.  How many individuals were counted in each year in total
+2.  How many were counted each year, for each different species
+3.  The average weights of each species in each year
+4.  How many individuals were counted for each species that was
+    observed more than 10 times
+
+Can you get the answer to both 2 and 3 in a single query?
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Show me the solution to challenge 1
+
+```{python, error=TRUE}
+# Individual counts per year
+surveys.groupby("year")["record_id"].count()
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Show me the solution to challenge 2
+
+```{python, error=TRUE}
+# Individual counts by species and year
+surveys.groupby(["year", "species_id"])["record_id"].count()
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Show me the solution to challenge 3
+
+```{python, error=TRUE}
+# Mean weight by species and year
+surveys.groupby(["year", "species_id"])["weight"].mean()
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Show me the solution to challenge 4
+
+```{python, error=TRUE}
+# Counts by species that appear more than 10 times
+species = surveys.groupby("species_id")["record_id"].count()
+species[species > 10]
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Show me the solution to challenges 2 and 3 combined
+
+```{python, error=TRUE}
+# Counts and mean weight by species and year
+surveys.groupby(["year", "species_id"]).agg({"record_id": "count", "weight": "mean"})
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Handling missing data
+
+You may have noticed that some columns in the surveys dataframe have the
+value NaN instead of text or numbers. NaN, short for "not a number," is
+a special type of float used by pandas to represent missing data. When
+reading from a CSV, as we have done throughout this lesson, pandas
+interprets certains values as NaN (see *na_values* in the [pd.read_csv()
+documentation](https://pandas.pydata.org/pandas-
+docs/stable/reference/api/pandas.read_csv.html) for the default list).
+NaNs are excluded from most aggregation calculations in `pandas`,
+including counts.
+
+It is crucial to understand how missing data is represented in your
+dataset. Failing to do so may introduce errors into your analysis. The
+ecology dataset used in this lesson uses empty cells to represent
+missing data, but other disciplines have different conventions. For
+example, some geographic datasets use -9999 to represent null values.
+Failure to convert that value to NaN would produce significant errors in
+any calculations performed on that dataset.

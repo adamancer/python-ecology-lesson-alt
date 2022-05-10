@@ -1,0 +1,189 @@
+---
+title: Introducing Python
+---
+
+::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   What is Python?
+-   How do we assign variables in Python?
+-   How does Python handle different types of data?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   Introduce some Python terminology
+-   Learn how to assign values to variables
+-   Learn how to call functions and methods
+-   Introduce the built-in Python data types and functions
+-   Introduce the Python Standard Library
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Using Python
+
+Python is a high-level, general purpose language. In practical terms,
+that means it dispenses with many of the complexities of writing code.
+
+A core philosophical tenet of Python is that code is read more often
+than it is written. Best practices for coding in Python therefore
+emphasize writing well-documented, consistently formatted code that
+follows language-wide standards. **In a Pythonic world, everyone's code
+would look the same.**
+
+## Terms
+
+Everything in Python is an *object*. Each object has a *type*, which
+controls what the kind of things the object can do. For example, you can
+add integers together or append a string to a list. An object can be
+*assigned* to a *variable*, and a *function* performs an action.
+
+Python is an *object-oriented language*. This means that each object
+includes built-in variables and functions that can be used from the
+object itself. When working from an object, we use different terms to
+refer to these concepts:
+
+-   an *attribute* stores a piece of data
+-   a *method* performs an action
+
+Let's look at one of the main built-in types, `str`, to see how this
+works in practice. In Python, `str`, short for string, is used to store
+and manipulate text. To get started, we'll assign the string "hello
+world" to the variable **text**. In Python, we use a single equal sign
+for assignment and use quotes to define the string.
+
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Either single or double quotes can be used to create strings, but be
+careful to use them consistently! We will use double quotes in the
+examples here.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+```{python, error=TRUE}
+text = "hello world"
+```
+
+Now we can access that string by referring to that variable:
+
+```{python, error=TRUE}
+text
+```
+
+We can check the type of the variable using the `type()` function:
+
+```{python, error=TRUE}
+type(text)
+```
+
+We can modify the text by calling one of the built-in methods. We call
+methods by appending a period and the name of the method to the object.
+For example, to display the string as upper case, use `upper()`:
+
+```{python, error=TRUE}
+text.upper()
+```
+
+Each object may contain many attributes and methods. Use the `help()`
+function on an object, including functions or methods, to print a
+description of the object and lists the available methods.
+
+```{python, error=TRUE}
+help(str)
+```
+
+### Data types
+
+Python defines data types for representing other types of data,
+including numbers or collections of data. The core Python data types are
+introduced in the table below. We'll talk more about some of these as we
+encounter them in the lesson:
+
+|Type|Definition|Example|
+|-|-|-|
+|[str](https://docs.python.org/3/library/string.html)|Character string|`"hello world"`|
+|[int](https://docs.python.org/3/library/functions.html#int)|Integer numerical|`42`|
+|[float](https://docs.python.org/3/library/functions.html#float)|Approximate numerical|`0.406`|
+|[bool](https://docs.python.org/3/library/functions.html#bool)|Stores True or False values|`True` or `False`|
+|[list](https://docs.python.org/3/library/stdtypes.html#lists)|Sequence that can be modified|`["a", "b", "c"]`|
+|[tuple](https://docs.python.org/3/library/stdtypes.html#tuples)|Sequence that cannot be modified|`("a", "b", "c")`|
+|[dict](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)|Mapping of keys to values|`{"DC": "District of Columbia"}`|
+|[set](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)|Collection of unique values|`{"1", "2", 1}`|
+
+## Libraries
+
+Python includes a number of [built-in
+functions](https://docs.python.org/3/library/functions.html) that are
+available wherever Python is installed. See the table below for some
+examples.
+
+### Examples of built-in functions
+
+|Name|Description|Example|
+|-|-|-|
+|[`abs()`](https://docs.python.org/3/library/functions.html#abs)|Gets the absolute value of a number|`abs(-1.5) # returns 1.5`|
+|[`max()`](https://docs.python.org/3/library/functions.html#max)|Gets the highest value in a sequence|`min([1, 2, 3]) # returns 3`|
+|[`min()`](https://docs.python.org/3/library/functions.html#min)|Gets the lowest value in a sequence|`min([1, 2, 3]) # returns 1`|
+|[`round()`](https://docs.python.org/3/library/functions.html#round)|Rounds a number to the nearest integer|`round(5.4) # returns 5`|
+
+Python also includes a number of built-in libraries. A *library* bundles
+functions and other code related to a single task or data type. They are
+used to simplify the performance of common tasks. By using a common code
+base, a library allows coders to work more quickly and with fewer
+errors.
+
+The libraries built into Python are referred to as the [Python Standard
+Library](https://docs.python.org/3/library/index.html). They can be
+accessed through a typical Python installation and do not require any
+additional downloads. A few examples are included in the table below,
+but as with the table of built-in functions, there are more where those
+came from.
+
+### Examples from the Python Standard Library
+
+|Library|Description|
+|-|-|
+|[datetime](https://docs.python.org/3/library/datetime.html)|Reads, writes, and analyzes dates and times|
+|[os](https://docs.python.org/3/library/os.html)|Create, manipulate, and get information about files and paths|
+|[random](https://docs.python.org/3/library/random.html)|Generate pseudo-random numbers|
+
+Unlike the built-in functions, we must import a library before we can
+use it:
+
+```{python, error=TRUE}
+import datetime
+```
+
+We must use the name of the library to access the functions it includes.
+For example, to create a `datetime.date` object (that is, a `date`
+object defined by the `datetime` library), we include both the library
+and method name:
+
+```{python, error=TRUE}
+date = datetime.date(1970, 1, 1)
+```
+
+As with the built-in types, the `datetime.date` object includes its own
+suite of attributes and methods. We can, for example, use the year
+attribute to get the year:
+
+```{python, error=TRUE}
+date.year
+```
+
+Or format the date in a specific way using [date format
+codes](https://docs.python.org/3/library/datetime.html#strftime-and-
+strptime-format-codes). Here, %Y corresponds to YYYY, %m to MM, and %d
+to DD.
+
+```{python, error=TRUE}
+date.strftime("%Y-%m-%d")
+```
+
+Like Python itself, the Python Standard Library is maintained by the
+Python Software Foundation. The built-in libraries are limited to a
+relatively small set of operations expected to be useful to a broad
+population of users. However, Python allows users to create their own
+libraries to perform actions that are beyond the scope of core Python.
+The rest of this lesson will focus on an external library called
+`pandas`.
