@@ -21,7 +21,6 @@ title: Accessing Data in a Dataframe
 We'll begin by importing pandas and reading our CSV, as we did in the
 previous lesson:
 
-
 ```python
 import pandas as pd
 
@@ -34,27 +33,168 @@ To view a dataframe in a Jupyter Notebook, type the variable name as the
 last line of the cell. By default, this will display the first and last
 five rows of the dataframe:
 
-
 ```python
 surveys
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-0              1      7   16  1977  ...          NL    M            32.0     NaN
-1              2      7   16  1977  ...          NL    M            33.0     NaN
-2              3      7   16  1977  ...          DM    F            37.0     NaN
-3              4      7   16  1977  ...          DM    M            36.0     NaN
-4              5      7   16  1977  ...          DM    M            35.0     NaN
-...          ...    ...  ...   ...  ...         ...  ...             ...     ...
-35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN
-35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN
-35546      35547     12   31  2002  ...          RM    F            15.0    14.0
-35547      35548     12   31  2002  ...          DO    M            36.0    51.0
-35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 9 columns</p>
 
 We will now look at how to access rows and columns in the dataframe.
 
@@ -63,7 +203,6 @@ We will now look at how to access rows and columns in the dataframe.
 You can get the values from a single column using square brackets at the
 end of the dataframe object. For example, to look at the year column,
 use:
-
 
 ```python
 surveys["year"]
@@ -105,7 +244,6 @@ docs](https://docs.python.org/3/library/stdtypes.html#list).
 Create a list using square brackets. Let's create a list of the three
 columns in our dataframe that are related to the date:
 
-
 ```python
 cols = ["year", "month", "day"]
 ```
@@ -113,99 +251,557 @@ cols = ["year", "month", "day"]
 When we pass this list to the square brackets, as we did above, we
 retrieve a copy of the dataframe containing just those columns:
 
-
 ```python
 surveys[cols]
 ```
 
-```{.output}
-       year  month  day
-0      1977      7   16
-1      1977      7   16
-2      1977      7   16
-3      1977      7   16
-4      1977      7   16
-...     ...    ...  ...
-35544  2002     12   31
-35545  2002     12   31
-35546  2002     12   31
-35547  2002     12   31
-35548  2002     12   31
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 3 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 3 columns</p>
 
 ## Rows
 
 You can get the rows at the beginning of the table using the head
 method:
 
-
 ```python
 surveys.head()
 ```
 
-```{.output}
-   record_id  month  day  year  plot_id species_id sex  hindfoot_length  weight
-0          1      7   16  1977        2         NL   M             32.0     NaN
-1          2      7   16  1977        3         NL   M             33.0     NaN
-2          3      7   16  1977        2         DM   F             37.0     NaN
-3          4      7   16  1977        7         DM   M             36.0     NaN
-4          5      7   16  1977        3         DM   M             35.0     NaN
-```
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 
 Provide a number inside the parentheses if you want a specific number of
 rows:
-
 
 ```python
 surveys.head(20)
 ```
 
-```{.output}
-    record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-0           1      7   16  1977  ...          NL    M            32.0     NaN
-1           2      7   16  1977  ...          NL    M            33.0     NaN
-2           3      7   16  1977  ...          DM    F            37.0     NaN
-3           4      7   16  1977  ...          DM    M            36.0     NaN
-4           5      7   16  1977  ...          DM    M            35.0     NaN
-5           6      7   16  1977  ...          PF    M            14.0     NaN
-6           7      7   16  1977  ...          PE    F             NaN     NaN
-7           8      7   16  1977  ...          DM    M            37.0     NaN
-8           9      7   16  1977  ...          DM    F            34.0     NaN
-9          10      7   16  1977  ...          PF    F            20.0     NaN
-10         11      7   16  1977  ...          DS    F            53.0     NaN
-11         12      7   16  1977  ...          DM    M            38.0     NaN
-12         13      7   16  1977  ...          DM    M            35.0     NaN
-13         14      7   16  1977  ...          DM  NaN             NaN     NaN
-14         15      7   16  1977  ...          DM    F            36.0     NaN
-15         16      7   16  1977  ...          DM    F            36.0     NaN
-16         17      7   16  1977  ...          DS    F            48.0     NaN
-17         18      7   16  1977  ...          PP    M            22.0     NaN
-18         19      7   16  1977  ...          PF  NaN             NaN     NaN
-19         20      7   17  1977  ...          DS    F            48.0     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[20 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>PF</td>
+      <td>M</td>
+      <td>14.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>PE</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>34.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>6</td>
+      <td>PF</td>
+      <td>F</td>
+      <td>20.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>5</td>
+      <td>DS</td>
+      <td>F</td>
+      <td>53.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>8</td>
+      <td>DM</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>6</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>4</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DS</td>
+      <td>F</td>
+      <td>48.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>PP</td>
+      <td>M</td>
+      <td>22.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>4</td>
+      <td>PF</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>7</td>
+      <td>17</td>
+      <td>1977</td>
+      <td>11</td>
+      <td>DS</td>
+      <td>F</td>
+      <td>48.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 
 The `tail()` method is similar, except it returns rows from the end of
 the table:
-
 
 ```python
 surveys.tail()
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN
-35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN
-35546      35547     12   31  2002  ...          RM    F            15.0    14.0
-35547      35548     12   31  2002  ...          DO    M            36.0    51.0
-35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[5 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 
 The `head()` and `tail()` methods are useful for getting a feel for how
 our data is structured, but we'll also want to  be able to look at
@@ -214,17 +810,71 @@ brackets to extract *slices* from the dataframe. This time, however, we
 pass two numbers separated by a colon representing the starting and
 ending indexes:
 
-
 ```python
 surveys[2:5]
 ```
 
-```{.output}
-   record_id  month  day  year  plot_id species_id sex  hindfoot_length  weight
-2          3      7   16  1977        2         DM   F             37.0     NaN
-3          4      7   16  1977        7         DM   M             36.0     NaN
-4          5      7   16  1977        3         DM   M             35.0     NaN
-```
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 
 There are three things to be aware of when slicing a dataframe:
 
@@ -244,7 +894,6 @@ Recall that you can use square brackets to return a single column from a
 dataframe. You can get the list of unique values within that column
 using the `unique()` method:
 
-
 ```python
 surveys["species_id"].unique()
 ```
@@ -262,28 +911,85 @@ distinct values across multiple columns. However, we can use the
 `drop_duplicates()` method on a copy of the dataframe containing only
 the columns we're interested in to get the expected result:
 
-
 ```python
 subset = surveys[["plot_id", "species_id"]]
 subset.drop_duplicates()
 ```
 
-```{.output}
-       plot_id species_id
-0            2         NL
-1            3         NL
-2            2         DM
-3            7         DM
-4            3         DM
-...        ...        ...
-35474       22         SF
-35511       11         US
-35519        9         SF
-35527       13         US
-35543       15         US
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[612 rows x 2 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>plot_id</th>
+      <th>species_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>NL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>NL</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>DM</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>DM</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>DM</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35474</th>
+      <td>22</td>
+      <td>SF</td>
+    </tr>
+    <tr>
+      <th>35511</th>
+      <td>11</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>35519</th>
+      <td>9</td>
+      <td>SF</td>
+    </tr>
+    <tr>
+      <th>35527</th>
+      <td>13</td>
+      <td>US</td>
+    </tr>
+    <tr>
+      <th>35543</th>
+      <td>15</td>
+      <td>US</td>
+    </tr>
+  </tbody>
+</table>
+<p>612 rows × 2 columns</p>
 
 ## Calculated values
 
@@ -300,7 +1006,6 @@ do so using Python's built-in mathematical operators, including:
 
 For example, to convert all values in the weight column from grams to
 milligrams, we can multiply the column by 1000:
-
 
 ```python
 surveys["weight"] * 1000
@@ -322,7 +1027,6 @@ Name: weight, Length: 35549, dtype: float64
 ```
 
 To convert it to kilograms, we can divide by 1000:
-
 
 ```python
 surveys["weight"] / 1000
@@ -346,7 +1050,6 @@ Name: weight, Length: 35549, dtype: float64
 Note that this calculation does not modify the original dataset. If we
 want to retain the result, we have to assign it to a new column:
 
-
 ```python
 surveys["weight_mg"] = surveys["weight"] * 1000
 
@@ -354,27 +1057,180 @@ surveys["weight_mg"] = surveys["weight"] * 1000
 surveys
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length weight  weight_mg
-0              1      7   16  1977  ...    M            32.0    NaN        NaN
-1              2      7   16  1977  ...    M            33.0    NaN        NaN
-2              3      7   16  1977  ...    F            37.0    NaN        NaN
-3              4      7   16  1977  ...    M            36.0    NaN        NaN
-4              5      7   16  1977  ...    M            35.0    NaN        NaN
-...          ...    ...  ...   ...  ...  ...             ...    ...        ...
-35544      35545     12   31  2002  ...  NaN             NaN    NaN        NaN
-35545      35546     12   31  2002  ...  NaN             NaN    NaN        NaN
-35546      35547     12   31  2002  ...    F            15.0   14.0    14000.0
-35547      35548     12   31  2002  ...    M            36.0   51.0    51000.0
-35548      35549     12   31  2002  ...  NaN             NaN    NaN        NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>14000.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>51000.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 10 columns</p>
 
 You can also add, subtract, multiply, and divide columns, as in the
 following (admittedly nonsensical) calculation, which adds together the
 hindfoot_length and weight columns:
-
 
 ```python
 surveys["hindfoot_length"] + surveys["weight"]
@@ -407,7 +1263,6 @@ old and new column names. The `dict` data type is built in to Python--
 you don't need to import anything to use it. They consist of keys and
 values. You can create a `dict` using curly braces:
 
-
 ```python
 dct = {"key1": "val1", "key2": "val2"}
 dct
@@ -429,7 +1284,6 @@ the original variable--by default, `rename()` returns a copy of the
 original dataframe instead of modifying the original dataframe. Most
 dataframe operations work this way.
 
-
 ```python
 # Create a dict that maps from the old to the new column name
 cols = {
@@ -444,22 +1298,176 @@ surveys = surveys.rename(columns=cols)
 surveys
 ```
 
-```{.output}
-       record_id  month  day  ...  hindfoot_length_mm  weight_g weight_mg
-0              1      7   16  ...                32.0       NaN       NaN
-1              2      7   16  ...                33.0       NaN       NaN
-2              3      7   16  ...                37.0       NaN       NaN
-3              4      7   16  ...                36.0       NaN       NaN
-4              5      7   16  ...                35.0       NaN       NaN
-...          ...    ...  ...  ...                 ...       ...       ...
-35544      35545     12   31  ...                 NaN       NaN       NaN
-35545      35546     12   31  ...                 NaN       NaN       NaN
-35546      35547     12   31  ...                15.0      14.0   14000.0
-35547      35548     12   31  ...                36.0      51.0   51000.0
-35548      35549     12   31  ...                 NaN       NaN       NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>14000.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>51000.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 10 columns</p>
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -467,7 +1475,6 @@ Create a dataframe that returns the year, month, day, species_id and
 weight in mg.
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ```python
 # Assign the weight in milligrams to the weight_mg column
@@ -480,22 +1487,104 @@ subset = surveys[["year", "month", "day", "weight_mg"]]
 subset
 ```
 
-```{.output}
-       year  month  day  weight_mg
-0      1977      7   16        NaN
-1      1977      7   16        NaN
-2      1977      7   16        NaN
-3      1977      7   16        NaN
-4      1977      7   16        NaN
-...     ...    ...  ...        ...
-35544  2002     12   31        NaN
-35545  2002     12   31        NaN
-35546  2002     12   31    14000.0
-35547  2002     12   31    51000.0
-35548  2002     12   31        NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 4 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1977</td>
+      <td>7</td>
+      <td>16</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+      <td>14000.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+      <td>51000.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>2002</td>
+      <td>12</td>
+      <td>31</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 4 columns</p>
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -537,51 +1626,357 @@ for example, when we created a new column in the dataframe.
 To limit the dataframe to rows matching the species "DM", include the
 conditional `surveys["species_id"] == "DM"` inside the square brackets:
 
-
 ```python
 surveys[surveys["species_id"] == "DM"]
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length_mm weight_g  weight_mg
-2              3      7   16  1977  ...    F               37.0      NaN        NaN
-3              4      7   16  1977  ...    M               36.0      NaN        NaN
-4              5      7   16  1977  ...    M               35.0      NaN        NaN
-7              8      7   16  1977  ...    M               37.0      NaN        NaN
-8              9      7   16  1977  ...    F               34.0      NaN        NaN
-...          ...    ...  ...   ...  ...  ...                ...      ...        ...
-35532      35533     12   31  2002  ...    F               36.0     48.0    48000.0
-35533      35534     12   31  2002  ...    M               37.0     56.0    56000.0
-35534      35535     12   31  2002  ...    M               37.0     53.0    53000.0
-35535      35536     12   31  2002  ...    F               35.0     42.0    42000.0
-35536      35537     12   31  2002  ...    F               36.0     46.0    46000.0
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[10596 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>34.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35532</th>
+      <td>35533</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>48.0</td>
+      <td>48000.0</td>
+    </tr>
+    <tr>
+      <th>35533</th>
+      <td>35534</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>56.0</td>
+      <td>56000.0</td>
+    </tr>
+    <tr>
+      <th>35534</th>
+      <td>35535</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>53.0</td>
+      <td>53000.0</td>
+    </tr>
+    <tr>
+      <th>35535</th>
+      <td>35536</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>42.0</td>
+      <td>42000.0</td>
+    </tr>
+    <tr>
+      <th>35536</th>
+      <td>35537</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>46.0</td>
+      <td>46000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>10596 rows × 10 columns</p>
 
 To limit our results to observations made in or after 2000, use:
-
 
 ```python
 surveys[surveys["year"] >= 2000]
 ```
 
-```{.output}
-       record_id  month  day  ...  hindfoot_length_mm  weight_g weight_mg
-30158      30159      1    8  ...                22.0      17.0   17000.0
-30159      30160      1    8  ...                35.0      53.0   53000.0
-30160      30161      1    8  ...                21.0      17.0   17000.0
-30161      30162      1    8  ...                36.0      50.0   50000.0
-30162      30163      1    8  ...                20.0      16.0   16000.0
-...          ...    ...  ...  ...                 ...       ...       ...
-35544      35545     12   31  ...                 NaN       NaN       NaN
-35545      35546     12   31  ...                 NaN       NaN       NaN
-35546      35547     12   31  ...                15.0      14.0   14000.0
-35547      35548     12   31  ...                36.0      51.0   51000.0
-35548      35549     12   31  ...                 NaN       NaN       NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[5391 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30158</th>
+      <td>30159</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>PP</td>
+      <td>F</td>
+      <td>22.0</td>
+      <td>17.0</td>
+      <td>17000.0</td>
+    </tr>
+    <tr>
+      <th>30159</th>
+      <td>30160</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>53.0</td>
+      <td>53000.0</td>
+    </tr>
+    <tr>
+      <th>30160</th>
+      <td>30161</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>PP</td>
+      <td>F</td>
+      <td>21.0</td>
+      <td>17.0</td>
+      <td>17000.0</td>
+    </tr>
+    <tr>
+      <th>30161</th>
+      <td>30162</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>50.0</td>
+      <td>50000.0</td>
+    </tr>
+    <tr>
+      <th>30162</th>
+      <td>30163</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>PP</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>16.0</td>
+      <td>16000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>14000.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>51000.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5391 rows × 10 columns</p>
 
 As with `rename()` above, each filtering operation returns a copy of the
 dataframe. We will look at how to make changes to the original dataframe
@@ -600,27 +1995,180 @@ conditionals using `&` or `|`, you should wrap each condition in
 parentheses. If you omit the parentheses, `pandas` will not perform the
 comparisons in the expected order.
 
-
 ```python
 surveys[(surveys["species_id"] == "DM") & (surveys["year"] >= 2000)]
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length_mm weight_g  weight_mg
-30161      30162      1    8  2000  ...    M               36.0     50.0    50000.0
-30178      30179      1    8  2000  ...    M               36.0     60.0    60000.0
-30195      30196      1    8  2000  ...    M               37.0     52.0    52000.0
-30196      30197      1    8  2000  ...    F               34.0     43.0    43000.0
-30209      30210      1    8  2000  ...    M               38.0     56.0    56000.0
-...          ...    ...  ...   ...  ...  ...                ...      ...        ...
-35532      35533     12   31  2002  ...    F               36.0     48.0    48000.0
-35533      35534     12   31  2002  ...    M               37.0     56.0    56000.0
-35534      35535     12   31  2002  ...    M               37.0     53.0    53000.0
-35535      35536     12   31  2002  ...    F               35.0     42.0    42000.0
-35536      35537     12   31  2002  ...    F               36.0     46.0    46000.0
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[847 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30161</th>
+      <td>30162</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>50.0</td>
+      <td>50000.0</td>
+    </tr>
+    <tr>
+      <th>30178</th>
+      <td>30179</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>12</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>60.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>30195</th>
+      <td>30196</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>17</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>52.0</td>
+      <td>52000.0</td>
+    </tr>
+    <tr>
+      <th>30196</th>
+      <td>30197</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>17</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>34.0</td>
+      <td>43.0</td>
+      <td>43000.0</td>
+    </tr>
+    <tr>
+      <th>30209</th>
+      <td>30210</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>22</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>56.0</td>
+      <td>56000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35532</th>
+      <td>35533</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>48.0</td>
+      <td>48000.0</td>
+    </tr>
+    <tr>
+      <th>35533</th>
+      <td>35534</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>56.0</td>
+      <td>56000.0</td>
+    </tr>
+    <tr>
+      <th>35534</th>
+      <td>35535</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>53.0</td>
+      <td>53000.0</td>
+    </tr>
+    <tr>
+      <th>35535</th>
+      <td>35536</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>42.0</td>
+      <td>42000.0</td>
+    </tr>
+    <tr>
+      <th>35536</th>
+      <td>35537</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>46.0</td>
+      <td>46000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>847 rows × 10 columns</p>
 
 `pandas` also provides methods that can be used for filtering. One
 example is `isin()`, which is used to match a list of values. This
@@ -628,34 +2176,186 @@ method can be combined with other conditionals as above. The example
 below returns rows from 2000 or later with either "DM", "DO", or "DS" in
 the species_id column:
 
-
 ```python
 surveys[surveys["species_id"].isin(["DM", "DO", "DS"]) & (surveys["year"] >= 2000)]
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length_mm weight_g  weight_mg
-30159      30160      1    8  2000  ...    M               35.0     53.0    53000.0
-30161      30162      1    8  2000  ...    M               36.0     50.0    50000.0
-30166      30167      1    8  2000  ...    M               35.0     41.0    41000.0
-30170      30171      1    8  2000  ...    M               36.0     52.0    52000.0
-30172      30173      1    8  2000  ...    F               35.0     54.0    54000.0
-...          ...    ...  ...   ...  ...  ...                ...      ...        ...
-35533      35534     12   31  2002  ...    M               37.0     56.0    56000.0
-35534      35535     12   31  2002  ...    M               37.0     53.0    53000.0
-35535      35536     12   31  2002  ...    F               35.0     42.0    42000.0
-35536      35537     12   31  2002  ...    F               36.0     46.0    46000.0
-35547      35548     12   31  2002  ...    M               36.0     51.0    51000.0
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[1268 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30159</th>
+      <td>30160</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>53.0</td>
+      <td>53000.0</td>
+    </tr>
+    <tr>
+      <th>30161</th>
+      <td>30162</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>50.0</td>
+      <td>50000.0</td>
+    </tr>
+    <tr>
+      <th>30166</th>
+      <td>30167</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>41.0</td>
+      <td>41000.0</td>
+    </tr>
+    <tr>
+      <th>30170</th>
+      <td>30171</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>2</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>52.0</td>
+      <td>52000.0</td>
+    </tr>
+    <tr>
+      <th>30172</th>
+      <td>30173</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>2</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>54.0</td>
+      <td>54000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35533</th>
+      <td>35534</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>56.0</td>
+      <td>56000.0</td>
+    </tr>
+    <tr>
+      <th>35534</th>
+      <td>35535</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>53.0</td>
+      <td>53000.0</td>
+    </tr>
+    <tr>
+      <th>35535</th>
+      <td>35536</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>42.0</td>
+      <td>42000.0</td>
+    </tr>
+    <tr>
+      <th>35536</th>
+      <td>35537</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>46.0</td>
+      <td>46000.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>51000.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1268 rows × 10 columns</p>
 
 ## Sorting
 
 You can sort a dataframe using the `sort_values()` method. For this
 example, we'll work from the subset defined above. First we need to
 assign that query to a variable:
-
 
 ```python
 results = surveys[
@@ -667,78 +2367,537 @@ Now we'll sort results by `weight_g`. To do so, pass that column name as
 an argument (that is, inside the trailing parentheses) to the
 `sort_values()` method:
 
-
 ```python
 results.sort_values("weight_g")
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length_mm weight_g  weight_mg
-30614      30615      4   30  2000  ...    M               34.0     18.0    18000.0
-34790      34791     10    5  2002  ...    M               34.0     20.0    20000.0
-32782      32783      9   23  2001  ...    M               34.0     21.0    21000.0
-32650      32651      9   22  2001  ...    F               33.0     21.0    21000.0
-34345      34346      6   16  2002  ...    M               34.0     22.0    22000.0
-...          ...    ...  ...   ...  ...  ...                ...      ...        ...
-34724      34725      9   10  2002  ...    M               38.0      NaN        NaN
-34950      34951     10    6  2002  ...    F               36.0      NaN        NaN
-35088      35089     11   10  2002  ...    F               35.0      NaN        NaN
-35387      35388     12   29  2002  ...    M               35.0      NaN        NaN
-35485      35486     12   29  2002  ...    M               37.0      NaN        NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[1268 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>30614</th>
+      <td>30615</td>
+      <td>4</td>
+      <td>30</td>
+      <td>2000</td>
+      <td>12</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>18.0</td>
+      <td>18000.0</td>
+    </tr>
+    <tr>
+      <th>34790</th>
+      <td>34791</td>
+      <td>10</td>
+      <td>5</td>
+      <td>2002</td>
+      <td>17</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>20.0</td>
+      <td>20000.0</td>
+    </tr>
+    <tr>
+      <th>32782</th>
+      <td>32783</td>
+      <td>9</td>
+      <td>23</td>
+      <td>2001</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>21.0</td>
+      <td>21000.0</td>
+    </tr>
+    <tr>
+      <th>32650</th>
+      <td>32651</td>
+      <td>9</td>
+      <td>22</td>
+      <td>2001</td>
+      <td>17</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>33.0</td>
+      <td>21.0</td>
+      <td>21000.0</td>
+    </tr>
+    <tr>
+      <th>34345</th>
+      <td>34346</td>
+      <td>6</td>
+      <td>16</td>
+      <td>2002</td>
+      <td>9</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>22.0</td>
+      <td>22000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34724</th>
+      <td>34725</td>
+      <td>9</td>
+      <td>10</td>
+      <td>2002</td>
+      <td>9</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34950</th>
+      <td>34951</td>
+      <td>10</td>
+      <td>6</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35088</th>
+      <td>35089</td>
+      <td>11</td>
+      <td>10</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35387</th>
+      <td>35388</td>
+      <td>12</td>
+      <td>29</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35485</th>
+      <td>35486</td>
+      <td>12</td>
+      <td>29</td>
+      <td>2002</td>
+      <td>16</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1268 rows × 10 columns</p>
 
 By default, rows are sorted in *ascending* order (smallest to largest).
 You can modify this behavior using the ascending keyword argument:
-
 
 ```python
 results.sort_values("weight_g", ascending=False)
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length_mm weight_g  weight_mg
-31955      31956      4   21  2001  ...    F               36.0     76.0    76000.0
-31942      31943      4   21  2001  ...    F               37.0     68.0    68000.0
-32041      32042      5   26  2001  ...    F               37.0     68.0    68000.0
-30441      30442      3    4  2000  ...    F                NaN     66.0    66000.0
-35159      35160     11   10  2002  ...    F               36.0     65.0    65000.0
-...          ...    ...  ...   ...  ...  ...                ...      ...        ...
-34724      34725      9   10  2002  ...    M               38.0      NaN        NaN
-34950      34951     10    6  2002  ...    F               36.0      NaN        NaN
-35088      35089     11   10  2002  ...    F               35.0      NaN        NaN
-35387      35388     12   29  2002  ...    M               35.0      NaN        NaN
-35485      35486     12   29  2002  ...    M               37.0      NaN        NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[1268 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31955</th>
+      <td>31956</td>
+      <td>4</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>24</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>76.0</td>
+      <td>76000.0</td>
+    </tr>
+    <tr>
+      <th>31942</th>
+      <td>31943</td>
+      <td>4</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>68.0</td>
+      <td>68000.0</td>
+    </tr>
+    <tr>
+      <th>32041</th>
+      <td>32042</td>
+      <td>5</td>
+      <td>26</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>68.0</td>
+      <td>68000.0</td>
+    </tr>
+    <tr>
+      <th>30441</th>
+      <td>30442</td>
+      <td>3</td>
+      <td>4</td>
+      <td>2000</td>
+      <td>2</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>NaN</td>
+      <td>66.0</td>
+      <td>66000.0</td>
+    </tr>
+    <tr>
+      <th>35159</th>
+      <td>35160</td>
+      <td>11</td>
+      <td>10</td>
+      <td>2002</td>
+      <td>13</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>65.0</td>
+      <td>65000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34724</th>
+      <td>34725</td>
+      <td>9</td>
+      <td>10</td>
+      <td>2002</td>
+      <td>9</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34950</th>
+      <td>34951</td>
+      <td>10</td>
+      <td>6</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35088</th>
+      <td>35089</td>
+      <td>11</td>
+      <td>10</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35387</th>
+      <td>35388</td>
+      <td>12</td>
+      <td>29</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35485</th>
+      <td>35486</td>
+      <td>12</td>
+      <td>29</td>
+      <td>2002</td>
+      <td>16</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1268 rows × 10 columns</p>
 
 You can sort on multiple fields at once by passing a list of column
 names. You can control how each column sorts by passing a list of the
 same length to the ascending keyword:
 
-
 ```python
 results.sort_values(["species_id", "weight_g"], ascending=[True, False])
 ```
 
-```{.output}
-       record_id  month  day  ...  hindfoot_length_mm  weight_g weight_mg
-34126      34127      5   16  ...                35.0      64.0   64000.0
-30178      30179      1    8  ...                36.0      60.0   60000.0
-31858      31859      3   24  ...                36.0      60.0   60000.0
-32909      32910     10   14  ...                37.0      60.0   60000.0
-34604      34605      7   14  ...                36.0      60.0   60000.0
-...          ...    ...  ...  ...                 ...       ...       ...
-33960      33961      5   15  ...                36.0       NaN       NaN
-34072      34073      5   16  ...                34.0       NaN       NaN
-34437      34438      7   13  ...                 NaN       NaN       NaN
-35387      35388     12   29  ...                35.0       NaN       NaN
-35485      35486     12   29  ...                37.0       NaN       NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[1268 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>34126</th>
+      <td>34127</td>
+      <td>5</td>
+      <td>16</td>
+      <td>2002</td>
+      <td>9</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>64.0</td>
+      <td>64000.0</td>
+    </tr>
+    <tr>
+      <th>30178</th>
+      <td>30179</td>
+      <td>1</td>
+      <td>8</td>
+      <td>2000</td>
+      <td>12</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>60.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>31858</th>
+      <td>31859</td>
+      <td>3</td>
+      <td>24</td>
+      <td>2001</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>60.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>32909</th>
+      <td>32910</td>
+      <td>10</td>
+      <td>14</td>
+      <td>2001</td>
+      <td>4</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>60.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>34604</th>
+      <td>34605</td>
+      <td>7</td>
+      <td>14</td>
+      <td>2002</td>
+      <td>9</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>60.0</td>
+      <td>60000.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33960</th>
+      <td>33961</td>
+      <td>5</td>
+      <td>15</td>
+      <td>2002</td>
+      <td>2</td>
+      <td>DO</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34072</th>
+      <td>34073</td>
+      <td>5</td>
+      <td>16</td>
+      <td>2002</td>
+      <td>4</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34437</th>
+      <td>34438</td>
+      <td>7</td>
+      <td>13</td>
+      <td>2002</td>
+      <td>12</td>
+      <td>DO</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35387</th>
+      <td>35388</td>
+      <td>12</td>
+      <td>29</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35485</th>
+      <td>35486</td>
+      <td>12</td>
+      <td>29</td>
+      <td>2002</td>
+      <td>16</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1268 rows × 10 columns</p>
 
 As with the dataframe methods above, `sort_values()` returns a copy of
 the original dataframe and leaves the original untouched.
@@ -749,7 +2908,6 @@ Write a query that returns year, species_id, and weight in kg from the
 surveys table, sorted with the largest weights at the top.
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ```python
 # Create a new column with weight in kg
@@ -764,22 +2922,92 @@ subset = subset.sort_values("weight_kg", ascending=False)
 subset
 ```
 
-```{.output}
-       year species_id  weight_kg
-33048  2001         NL      0.280
-12870  1987         NL      0.278
-15458  1989         NL      0.275
-2132   1979         NL      0.274
-12728  1987         NL      0.270
-...     ...        ...        ...
-35530  2002         PB        NaN
-35543  2002         US        NaN
-35544  2002         AH        NaN
-35545  2002         AH        NaN
-35548  2002        NaN        NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 3 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>species_id</th>
+      <th>weight_kg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>33048</th>
+      <td>2001</td>
+      <td>NL</td>
+      <td>0.280</td>
+    </tr>
+    <tr>
+      <th>12870</th>
+      <td>1987</td>
+      <td>NL</td>
+      <td>0.278</td>
+    </tr>
+    <tr>
+      <th>15458</th>
+      <td>1989</td>
+      <td>NL</td>
+      <td>0.275</td>
+    </tr>
+    <tr>
+      <th>2132</th>
+      <td>1979</td>
+      <td>NL</td>
+      <td>0.274</td>
+    </tr>
+    <tr>
+      <th>12728</th>
+      <td>1987</td>
+      <td>NL</td>
+      <td>0.270</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35530</th>
+      <td>2002</td>
+      <td>PB</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35543</th>
+      <td>2002</td>
+      <td>US</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>2002</td>
+      <td>AH</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>2002</td>
+      <td>AH</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>2002</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 3 columns</p>
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -793,7 +3021,6 @@ seen, this can be a little tricky in `pandas` because most of its
 methods return a copy of the original dataframe. For example, you can
 easily look at subsets of a dataframe using square brackets. The cell
 below returns the species_id column for rows 2 through 5:
-
 
 ```python
 surveys[2:6]["species_id"]
@@ -811,17 +3038,8 @@ But trying to set new values using this syntax may not work as expected.
 Say we want to set the species_id column to a new value, "CAT". Try
 running the code in the cell below:
 
-
 ```python
 surveys[2:6]["species_id"] = "CAT"
-```
-
-```{.output}
-<string>:1: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
 ```
 
 You should have received a `SettingWithCopyWarning` warning after
@@ -832,20 +3050,93 @@ not the original. We can verify that the original dataframe has not been
 changed by displaying the rows that would have been affected by this
 changed:
 
-
 ```python
 surveys[2:6]
 ```
 
-```{.output}
-   record_id  month  day  ...  weight_g  weight_mg weight_kg
-2          3      7   16  ...       NaN        NaN       NaN
-3          4      7   16  ...       NaN        NaN       NaN
-4          5      7   16  ...       NaN        NaN       NaN
-5          6      7   16  ...       NaN        NaN       NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[4 rows x 11 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length_mm</th>
+      <th>weight_g</th>
+      <th>weight_mg</th>
+      <th>weight_kg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>PF</td>
+      <td>M</td>
+      <td>14.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Using loc to modify existing cells
 
@@ -899,13 +3190,11 @@ row *index*.
 We'll be making some changes to our data, so let's work from a copy
 instead of modifying the original:
 
-
 ```python
 surveys_copy = surveys.copy()
 ```
 
 To select a subset of rows and columns using `loc`, use:
-
 
 ```python
 surveys_copy.loc[
@@ -925,14 +3214,12 @@ Unlike the methods earlier in the lesson, this is a view, not a copy, of
 the data in the surveys_copy dataframe. We can now assign a new value to
 the species_id column in the matching rows of the original dataframe:
 
-
 ```python
 surveys_copy.loc[2:5, "species_id"] = "CAT"
 ```
 
 We can see that these changes are reflected in the original surveys_copy
 object:
-
 
 ```python
 surveys_copy.loc[1:6, "species_id"]

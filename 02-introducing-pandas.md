@@ -92,7 +92,6 @@ Once it has been installed, however, it can be accessed using the same
 pandas is imported using the alias "pd". We can assign the alias using
 the `as` keyword:
 
-
 ```python
 import pandas as pd
 ```
@@ -123,27 +122,168 @@ arguments* (collectively called *parameters*) inside the parentheses
 when calling the function. In this case, we will pass a single argument,
 which is a string defining the path to the surveys.csv file:
 
-
 ```python
 pd.read_csv("data/surveys.csv")
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-0              1      7   16  1977  ...          NL    M            32.0     NaN
-1              2      7   16  1977  ...          NL    M            33.0     NaN
-2              3      7   16  1977  ...          DM    F            37.0     NaN
-3              4      7   16  1977  ...          DM    M            36.0     NaN
-4              5      7   16  1977  ...          DM    M            35.0     NaN
-...          ...    ...  ...   ...  ...         ...  ...             ...     ...
-35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN
-35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN
-35546      35547     12   31  2002  ...          RM    F            15.0    14.0
-35547      35548     12   31  2002  ...          DO    M            36.0    51.0
-35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 9 columns</p>
 
 A few things to observe about this table:
 
@@ -163,28 +303,167 @@ that you can use to control the behavior of a function. For example, to
 force `pd.read_csv()` to use the existing record_id column as the row
 label, use the `index_col` keyword argument:
 
-
 ```python
 pd.read_csv("data/surveys.csv", index_col="record_id")
 ```
 
-```{.output}
-           month  day  year  plot_id species_id  sex  hindfoot_length  weight
-record_id                                                                    
-1              7   16  1977        2         NL    M             32.0     NaN
-2              7   16  1977        3         NL    M             33.0     NaN
-3              7   16  1977        2         DM    F             37.0     NaN
-4              7   16  1977        7         DM    M             36.0     NaN
-5              7   16  1977        3         DM    M             35.0     NaN
-...          ...  ...   ...      ...        ...  ...              ...     ...
-35545         12   31  2002       15         AH  NaN              NaN     NaN
-35546         12   31  2002       15         AH  NaN              NaN     NaN
-35547         12   31  2002       10         RM    F             15.0    14.0
-35548         12   31  2002        7         DO    M             36.0    51.0
-35549         12   31  2002        5        NaN  NaN              NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 8 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+    <tr>
+      <th>record_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35549</th>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 8 columns</p>
 
 Now record_id appears on the far left, indicating that `pandas` is using
 that column as the row label.
@@ -244,28 +523,169 @@ an object to a variable. The variable name should be short and
 descriptive. By convention, variables in Python use snake_case (that is,
 lower case with individual words separated by underscores).
 
-
 ```python
 surveys = pd.read_csv("data/surveys.csv")
 surveys
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-0              1      7   16  1977  ...          NL    M            32.0     NaN
-1              2      7   16  1977  ...          NL    M            33.0     NaN
-2              3      7   16  1977  ...          DM    F            37.0     NaN
-3              4      7   16  1977  ...          DM    M            36.0     NaN
-4              5      7   16  1977  ...          DM    M            35.0     NaN
-...          ...    ...  ...   ...  ...         ...  ...             ...     ...
-35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN
-35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN
-35546      35547     12   31  2002  ...          RM    F            15.0    14.0
-35547      35548     12   31  2002  ...          DO    M            36.0    51.0
-35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 9 columns</p>
 
 ## Understanding data types in pandas
 
@@ -275,28 +695,8 @@ type of each column and provides some information about the dataset as a
 whole (for example, memory usage, which is helpful to know when working
 with large datasets):
 
-
 ```python
 surveys.info()
-```
-
-```{.output}
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 35549 entries, 0 to 35548
-Data columns (total 9 columns):
- #   Column           Non-Null Count  Dtype  
----  ------           --------------  -----  
- 0   record_id        35549 non-null  int64  
- 1   month            35549 non-null  int64  
- 2   day              35549 non-null  int64  
- 3   year             35549 non-null  int64  
- 4   plot_id          35549 non-null  int64  
- 5   species_id       34786 non-null  object 
- 6   sex              33038 non-null  object 
- 7   hindfoot_length  31438 non-null  float64
- 8   weight           32283 non-null  float64
-dtypes: float64(2), int64(5), object(2)
-memory usage: 2.4+ MB
 ```
 
 Note that the data types used by pandas look a little different than the
@@ -317,7 +717,6 @@ equivalents.
 
 When analyzing a dataset, we'll often want to save our work to a file.
 The `to_csv()` method can be used to write a dataframe to a CSV:
-
 
 ```python
 surveys.to_csv("data/surveys_mod.csv", index=False)

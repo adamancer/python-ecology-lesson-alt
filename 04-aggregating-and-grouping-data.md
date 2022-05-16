@@ -20,7 +20,6 @@ title: Aggregating and Grouping Data
 
 As always, we'll begin by importing pandas and reading our CSV:
 
-
 ```python
 import pandas as pd
 
@@ -41,7 +40,6 @@ items in an object (for example, the number of characters in a string or
 the number of items in a list). When used on a dataframe, `len()`
 returns the number of rows:
 
-
 ```python
 len(surveys)
 ```
@@ -53,7 +51,6 @@ len(surveys)
 `pandas` also provides a suite of aggregation methods. For example, we
 can find out the total weight of all the individuals in grams using
 `sum()`:
-
 
 ```python
 surveys["weight"].sum()
@@ -74,7 +71,6 @@ your code so that it outputs these values only for weights between 5 and
 10 grams?
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ```python
 # Create a subset of only the animals between 5 and 10 grams
@@ -101,31 +97,119 @@ To quickly generate summary statistics, we can use the `describe()`
 method. When you use this method on a dataframe, it calculates stats for
 all columns with numeric data:
 
-
 ```python
 surveys.describe()
 ```
 
-```{.output}
-          record_id         month  ...  hindfoot_length        weight
-count  35549.000000  35549.000000  ...     31438.000000  32283.000000
-mean   17775.000000      6.477847  ...        29.287932     42.672428
-std    10262.256696      3.396925  ...         9.564759     36.631259
-min        1.000000      1.000000  ...         2.000000      4.000000
-25%     8888.000000      4.000000  ...        21.000000     20.000000
-50%    17775.000000      6.000000  ...        32.000000     37.000000
-75%    26662.000000     10.000000  ...        36.000000     48.000000
-max    35549.000000     12.000000  ...        70.000000    280.000000
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[8 rows x 7 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>35549.000000</td>
+      <td>35549.000000</td>
+      <td>35549.000000</td>
+      <td>35549.000000</td>
+      <td>35549.000000</td>
+      <td>31438.000000</td>
+      <td>32283.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>17775.000000</td>
+      <td>6.477847</td>
+      <td>15.991195</td>
+      <td>1990.475231</td>
+      <td>11.397001</td>
+      <td>29.287932</td>
+      <td>42.672428</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>10262.256696</td>
+      <td>3.396925</td>
+      <td>8.257366</td>
+      <td>7.493355</td>
+      <td>6.799406</td>
+      <td>9.564759</td>
+      <td>36.631259</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1977.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>8888.000000</td>
+      <td>4.000000</td>
+      <td>9.000000</td>
+      <td>1984.000000</td>
+      <td>5.000000</td>
+      <td>21.000000</td>
+      <td>20.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>17775.000000</td>
+      <td>6.000000</td>
+      <td>16.000000</td>
+      <td>1990.000000</td>
+      <td>11.000000</td>
+      <td>32.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>26662.000000</td>
+      <td>10.000000</td>
+      <td>23.000000</td>
+      <td>1997.000000</td>
+      <td>17.000000</td>
+      <td>36.000000</td>
+      <td>48.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>35549.000000</td>
+      <td>12.000000</td>
+      <td>31.000000</td>
+      <td>2002.000000</td>
+      <td>24.000000</td>
+      <td>70.000000</td>
+      <td>280.000000</td>
+    </tr>
+  </tbody>
+</table>
 
 You can see that `describe()` isn't picky: It includes both ID and date
 columns in its results. Notice also that the counts differ in between
 columns. This is because `count()` only counts non-NaN rows.
 
 If you prefer, you can also describe a single column at a time:
-
 
 ```python
 surveys["weight"].describe()
@@ -147,25 +231,49 @@ If you need more control over the output (for example, if you want to
 calculate the total weight of all animals, as in the challenge above),
 pandas provides the `agg()` method:
 
-
 ```python
 surveys.agg({"weight": ["sum", "mean", "min", "max"]})
 ```
 
-```{.output}
-            weight
-sum   1.377594e+06
-mean  4.267243e+01
-min   4.000000e+00
-max   2.800000e+02
-```
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sum</th>
+      <td>1.377594e+06</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>4.267243e+01</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>4.000000e+00</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>2.800000e+02</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Grouping data
 
 Now, let’s see how many individuals were counted in each species. We
 do this using `groupby()`, which creates an object similar to a
 dataframe where rows are grouped by the data in one or more columns:
-
 
 ```python
 grouped = surveys.groupby("species_id")
@@ -174,7 +282,6 @@ grouped = surveys.groupby("species_id")
 When we aggregate the grouped data, `pandas` provides separate
 calculations for each member of the group. In the example below, we'll
 calculate the number of times each species appears in the dataset:
-
 
 ```python
 grouped["species_id"].count()
@@ -249,7 +356,6 @@ Can you get the answer to both 2 and 3 in a single query?
 
 ### Show me the solution to challenge 1
 
-
 ```python
 # Individual counts per year
 surveys.groupby("year")["record_id"].count()
@@ -292,7 +398,6 @@ Name: record_id, dtype: int64
 
 ### Show me the solution to challenge 2
 
-
 ```python
 # Individual counts by species and year
 surveys.groupby(["year", "species_id"])["record_id"].count()
@@ -320,7 +425,6 @@ Name: record_id, Length: 509, dtype: int64
 
 ### Show me the solution to challenge 3
 
-
 ```python
 # Mean weight by species and year
 surveys.groupby(["year", "species_id"])["weight"].mean()
@@ -347,7 +451,6 @@ Name: weight, Length: 509, dtype: float64
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Show me the solution to challenge 4
-
 
 ```python
 # Counts by species that appear more than 10 times
@@ -395,29 +498,95 @@ Name: record_id, dtype: int64
 
 ### Show me the solution to challenges 2 and 3 combined
 
-
 ```python
 # Counts and mean weight by species and year
 surveys.groupby(["year", "species_id"]).agg({"record_id": "count", "weight": "mean"})
 ```
 
-```{.output}
-                 record_id      weight
-year species_id                       
-1977 DM                264   41.141304
-     DO                 12   42.666667
-     DS                 98  121.437500
-     NL                 31         NaN
-     OL                 10   21.666667
-...                    ...         ...
-2002 SF                  7   62.166667
-     SH                 11   64.666667
-     SS                  9         NaN
-     UR                  1         NaN
-     US                  4         NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[509 rows x 2 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>record_id</th>
+      <th>weight</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th>species_id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">1977</th>
+      <th>DM</th>
+      <td>264</td>
+      <td>41.141304</td>
+    </tr>
+    <tr>
+      <th>DO</th>
+      <td>12</td>
+      <td>42.666667</td>
+    </tr>
+    <tr>
+      <th>DS</th>
+      <td>98</td>
+      <td>121.437500</td>
+    </tr>
+    <tr>
+      <th>NL</th>
+      <td>31</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>OL</th>
+      <td>10</td>
+      <td>21.666667</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2002</th>
+      <th>SF</th>
+      <td>7</td>
+      <td>62.166667</td>
+    </tr>
+    <tr>
+      <th>SH</th>
+      <td>11</td>
+      <td>64.666667</td>
+    </tr>
+    <tr>
+      <th>SS</th>
+      <td>9</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>UR</th>
+      <td>1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>US</th>
+      <td>4</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>509 rows × 2 columns</p>
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

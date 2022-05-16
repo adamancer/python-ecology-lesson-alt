@@ -28,7 +28,6 @@ species_id is just a two-letter code--what does each code stand for? To
 find out, we'll now load both the survey dataset and a second dataset
 containing more detailed information about the various species observed:
 
-
 ```python
 import pandas as pd
 
@@ -38,63 +37,404 @@ species = pd.read_csv("data/species.csv")
 species
 ```
 
-```{.output}
-   species_id             genus          species     taxa
-0          AB        Amphispiza        bilineata     Bird
-1          AH  Ammospermophilus          harrisi   Rodent
-2          AS        Ammodramus       savannarum     Bird
-3          BA           Baiomys          taylori   Rodent
-4          CB   Campylorhynchus  brunneicapillus     Bird
-5          CM       Calamospiza      melanocorys     Bird
-6          CQ        Callipepla         squamata     Bird
-7          CS          Crotalus       scutalatus  Reptile
-8          CT     Cnemidophorus           tigris  Reptile
-9          CU     Cnemidophorus        uniparens  Reptile
-10         CV          Crotalus          viridis  Reptile
-11         DM         Dipodomys         merriami   Rodent
-12         DO         Dipodomys            ordii   Rodent
-13         DS         Dipodomys      spectabilis   Rodent
-14         DX         Dipodomys              sp.   Rodent
-15         EO           Eumeces        obsoletus  Reptile
-16         GS          Gambelia            silus  Reptile
-17         NL           Neotoma         albigula   Rodent
-18         NX           Neotoma              sp.   Rodent
-19         OL         Onychomys      leucogaster   Rodent
-20         OT         Onychomys         torridus   Rodent
-21         OX         Onychomys              sp.   Rodent
-22         PB       Chaetodipus          baileyi   Rodent
-23         PC            Pipilo        chlorurus     Bird
-24         PE        Peromyscus         eremicus   Rodent
-25         PF       Perognathus           flavus   Rodent
-26         PG         Pooecetes        gramineus     Bird
-27         PH       Perognathus         hispidus   Rodent
-28         PI       Chaetodipus      intermedius   Rodent
-29         PL        Peromyscus         leucopus   Rodent
-30         PM        Peromyscus      maniculatus   Rodent
-31         PP       Chaetodipus     penicillatus   Rodent
-32         PU            Pipilo           fuscus     Bird
-33         PX       Chaetodipus              sp.   Rodent
-34         RF   Reithrodontomys       fulvescens   Rodent
-35         RM   Reithrodontomys        megalotis   Rodent
-36         RO   Reithrodontomys         montanus   Rodent
-37         RX   Reithrodontomys              sp.   Rodent
-38         SA        Sylvilagus        audubonii   Rabbit
-39         SB          Spizella          breweri     Bird
-40         SC        Sceloporus           clarki  Reptile
-41         SF          Sigmodon      fulviventer   Rodent
-42         SH          Sigmodon         hispidus   Rodent
-43         SO          Sigmodon     ochrognathus   Rodent
-44         SS      Spermophilus        spilosoma   Rodent
-45         ST      Spermophilus     tereticaudus   Rodent
-46         SU        Sceloporus        undulatus  Reptile
-47         SX          Sigmodon              sp.   Rodent
-48         UL            Lizard              sp.  Reptile
-49         UP            Pipilo              sp.     Bird
-50         UR            Rodent              sp.   Rodent
-51         US           Sparrow              sp.     Bird
-52         ZL       Zonotrichia       leucophrys     Bird
-53         ZM           Zenaida         macroura     Bird
-```
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species_id</th>
+      <th>genus</th>
+      <th>species</th>
+      <th>taxa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AB</td>
+      <td>Amphispiza</td>
+      <td>bilineata</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AH</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AS</td>
+      <td>Ammodramus</td>
+      <td>savannarum</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BA</td>
+      <td>Baiomys</td>
+      <td>taylori</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CB</td>
+      <td>Campylorhynchus</td>
+      <td>brunneicapillus</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>CM</td>
+      <td>Calamospiza</td>
+      <td>melanocorys</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>CQ</td>
+      <td>Callipepla</td>
+      <td>squamata</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>CS</td>
+      <td>Crotalus</td>
+      <td>scutalatus</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>CT</td>
+      <td>Cnemidophorus</td>
+      <td>tigris</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CU</td>
+      <td>Cnemidophorus</td>
+      <td>uniparens</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>CV</td>
+      <td>Crotalus</td>
+      <td>viridis</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>DM</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>DO</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>DS</td>
+      <td>Dipodomys</td>
+      <td>spectabilis</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>DX</td>
+      <td>Dipodomys</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>EO</td>
+      <td>Eumeces</td>
+      <td>obsoletus</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>GS</td>
+      <td>Gambelia</td>
+      <td>silus</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>NL</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>NX</td>
+      <td>Neotoma</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>OL</td>
+      <td>Onychomys</td>
+      <td>leucogaster</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>OT</td>
+      <td>Onychomys</td>
+      <td>torridus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>OX</td>
+      <td>Onychomys</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>PB</td>
+      <td>Chaetodipus</td>
+      <td>baileyi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>PC</td>
+      <td>Pipilo</td>
+      <td>chlorurus</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>PE</td>
+      <td>Peromyscus</td>
+      <td>eremicus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>PF</td>
+      <td>Perognathus</td>
+      <td>flavus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>PG</td>
+      <td>Pooecetes</td>
+      <td>gramineus</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>PH</td>
+      <td>Perognathus</td>
+      <td>hispidus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>PI</td>
+      <td>Chaetodipus</td>
+      <td>intermedius</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>PL</td>
+      <td>Peromyscus</td>
+      <td>leucopus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>PM</td>
+      <td>Peromyscus</td>
+      <td>maniculatus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>PP</td>
+      <td>Chaetodipus</td>
+      <td>penicillatus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>PU</td>
+      <td>Pipilo</td>
+      <td>fuscus</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>PX</td>
+      <td>Chaetodipus</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>RF</td>
+      <td>Reithrodontomys</td>
+      <td>fulvescens</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>RM</td>
+      <td>Reithrodontomys</td>
+      <td>megalotis</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>RO</td>
+      <td>Reithrodontomys</td>
+      <td>montanus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>RX</td>
+      <td>Reithrodontomys</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>SA</td>
+      <td>Sylvilagus</td>
+      <td>audubonii</td>
+      <td>Rabbit</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>SB</td>
+      <td>Spizella</td>
+      <td>breweri</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>SC</td>
+      <td>Sceloporus</td>
+      <td>clarki</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>SF</td>
+      <td>Sigmodon</td>
+      <td>fulviventer</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>SH</td>
+      <td>Sigmodon</td>
+      <td>hispidus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>SO</td>
+      <td>Sigmodon</td>
+      <td>ochrognathus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>SS</td>
+      <td>Spermophilus</td>
+      <td>spilosoma</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>ST</td>
+      <td>Spermophilus</td>
+      <td>tereticaudus</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>SU</td>
+      <td>Sceloporus</td>
+      <td>undulatus</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>SX</td>
+      <td>Sigmodon</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>UL</td>
+      <td>Lizard</td>
+      <td>sp.</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>UP</td>
+      <td>Pipilo</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>UR</td>
+      <td>Rodent</td>
+      <td>sp.</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>US</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>ZL</td>
+      <td>Zonotrichia</td>
+      <td>leucophrys</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>ZM</td>
+      <td>Zenaida</td>
+      <td>macroura</td>
+      <td>Bird</td>
+    </tr>
+  </tbody>
+</table>
 
 We can see that the species dataframe includes a genus, species, and
 taxon for each species_id. This is much more useful than the species_id
@@ -105,28 +445,205 @@ dataframes.
 
 To merge the surveys and species dataframes, use:
 
-
 ```python
 merged = surveys.merge(species)
 merged
 ```
 
-```{.output}
-       record_id  month  day  year  ...  weight          genus   species     taxa
-0              1      7   16  1977  ...     NaN        Neotoma  albigula   Rodent
-1              2      7   16  1977  ...     NaN        Neotoma  albigula   Rodent
-2             22      7   17  1977  ...     NaN        Neotoma  albigula   Rodent
-3             38      7   17  1977  ...     NaN        Neotoma  albigula   Rodent
-4             72      8   19  1977  ...     NaN        Neotoma  albigula   Rodent
-...          ...    ...  ...   ...  ...     ...            ...       ...      ...
-34781      28988     12   23  1998  ...     NaN  Cnemidophorus    tigris  Reptile
-34782      35512     12   31  2002  ...     NaN        Sparrow       sp.     Bird
-34783      35513     12   31  2002  ...     NaN        Sparrow       sp.     Bird
-34784      35528     12   31  2002  ...     NaN        Sparrow       sp.     Bird
-34785      35544     12   31  2002  ...     NaN        Sparrow       sp.     Bird
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[34786 rows x 12 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+      <th>genus</th>
+      <th>species</th>
+      <th>taxa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22</td>
+      <td>7</td>
+      <td>17</td>
+      <td>1977</td>
+      <td>15</td>
+      <td>NL</td>
+      <td>F</td>
+      <td>31.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>38</td>
+      <td>7</td>
+      <td>17</td>
+      <td>1977</td>
+      <td>17</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>72</td>
+      <td>8</td>
+      <td>19</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>31.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34781</th>
+      <td>28988</td>
+      <td>12</td>
+      <td>23</td>
+      <td>1998</td>
+      <td>6</td>
+      <td>CT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Cnemidophorus</td>
+      <td>tigris</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>34782</th>
+      <td>35512</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34783</th>
+      <td>35513</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34784</th>
+      <td>35528</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>13</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34785</th>
+      <td>35544</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+  </tbody>
+</table>
+<p>34786 rows × 12 columns</p>
 
 Following the merge, the genus, species, and taxa columns have all been
 added to the survey dataframe. We can now use those columns to filter
@@ -145,27 +662,96 @@ weight for every individual captured at the site
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 ```python
 merged[["genus", "species", "weight"]]
 ```
 
-```{.output}
-               genus   species  weight
-0            Neotoma  albigula     NaN
-1            Neotoma  albigula     NaN
-2            Neotoma  albigula     NaN
-3            Neotoma  albigula     NaN
-4            Neotoma  albigula     NaN
-...              ...       ...     ...
-34781  Cnemidophorus    tigris     NaN
-34782        Sparrow       sp.     NaN
-34783        Sparrow       sp.     NaN
-34784        Sparrow       sp.     NaN
-34785        Sparrow       sp.     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[34786 rows x 3 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>genus</th>
+      <th>species</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34781</th>
+      <td>Cnemidophorus</td>
+      <td>tigris</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34782</th>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34783</th>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34784</th>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34785</th>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>34786 rows × 3 columns</p>
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -178,27 +764,204 @@ them based on the columns that appear in both. Here, the only shared
 name is species_id. If we want to control what columns are used to
 merge, we can use the *on* keyword argument:
 
-
 ```python
 surveys.merge(species, on="species_id")
 ```
 
-```{.output}
-       record_id  month  day  year  ...  weight          genus   species     taxa
-0              1      7   16  1977  ...     NaN        Neotoma  albigula   Rodent
-1              2      7   16  1977  ...     NaN        Neotoma  albigula   Rodent
-2             22      7   17  1977  ...     NaN        Neotoma  albigula   Rodent
-3             38      7   17  1977  ...     NaN        Neotoma  albigula   Rodent
-4             72      8   19  1977  ...     NaN        Neotoma  albigula   Rodent
-...          ...    ...  ...   ...  ...     ...            ...       ...      ...
-34781      28988     12   23  1998  ...     NaN  Cnemidophorus    tigris  Reptile
-34782      35512     12   31  2002  ...     NaN        Sparrow       sp.     Bird
-34783      35513     12   31  2002  ...     NaN        Sparrow       sp.     Bird
-34784      35528     12   31  2002  ...     NaN        Sparrow       sp.     Bird
-34785      35544     12   31  2002  ...     NaN        Sparrow       sp.     Bird
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[34786 rows x 12 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+      <th>genus</th>
+      <th>species</th>
+      <th>taxa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22</td>
+      <td>7</td>
+      <td>17</td>
+      <td>1977</td>
+      <td>15</td>
+      <td>NL</td>
+      <td>F</td>
+      <td>31.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>38</td>
+      <td>7</td>
+      <td>17</td>
+      <td>1977</td>
+      <td>17</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>72</td>
+      <td>8</td>
+      <td>19</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>31.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34781</th>
+      <td>28988</td>
+      <td>12</td>
+      <td>23</td>
+      <td>1998</td>
+      <td>6</td>
+      <td>CT</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Cnemidophorus</td>
+      <td>tigris</td>
+      <td>Reptile</td>
+    </tr>
+    <tr>
+      <th>34782</th>
+      <td>35512</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34783</th>
+      <td>35513</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34784</th>
+      <td>35528</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>13</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34785</th>
+      <td>35544</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
+      <td>Bird</td>
+    </tr>
+  </tbody>
+</table>
+<p>34786 rows × 12 columns</p>
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -209,7 +972,6 @@ How do they differ? Why do you think that might be?
 each dataframe.
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ```python
 # Some columns in survey are missing species_id
@@ -252,27 +1014,204 @@ We want to keep all of our observations, so let's do a left join
 instead. To specify the type of merge, we use the *how* keyword
 argument:
 
-
 ```python
 surveys.merge(species, how="left")
 ```
 
-```{.output}
-       record_id  month  day  year  ...  weight             genus    species    taxa
-0              1      7   16  1977  ...     NaN           Neotoma   albigula  Rodent
-1              2      7   16  1977  ...     NaN           Neotoma   albigula  Rodent
-2              3      7   16  1977  ...     NaN         Dipodomys   merriami  Rodent
-3              4      7   16  1977  ...     NaN         Dipodomys   merriami  Rodent
-4              5      7   16  1977  ...     NaN         Dipodomys   merriami  Rodent
-...          ...    ...  ...   ...  ...     ...               ...        ...     ...
-35544      35545     12   31  2002  ...     NaN  Ammospermophilus    harrisi  Rodent
-35545      35546     12   31  2002  ...     NaN  Ammospermophilus    harrisi  Rodent
-35546      35547     12   31  2002  ...    14.0   Reithrodontomys  megalotis  Rodent
-35547      35548     12   31  2002  ...    51.0         Dipodomys      ordii  Rodent
-35548      35549     12   31  2002  ...     NaN               NaN        NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[35549 rows x 12 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+      <th>genus</th>
+      <th>species</th>
+      <th>taxa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>Reithrodontomys</td>
+      <td>megalotis</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>35549 rows × 12 columns</p>
 
 Now all 35,549 rows appear in the merged dataframe.
 
@@ -290,79 +1229,502 @@ We'll simulate this kind of thing by splitting two years worth of data
 into separate dataframes. We can do this using conditionals, as we saw
 in lesson 3:
 
-
 ```python
 surveys_2001 = surveys[surveys["year"] == 2001].copy()
 surveys_2001
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-31710      31711      1   21  2001  ...          PB    F            26.0    25.0
-31711      31712      1   21  2001  ...          DM    M            37.0    43.0
-31712      31713      1   21  2001  ...          PB    M            29.0    44.0
-31713      31714      1   21  2001  ...          DO    M            34.0    53.0
-31714      31715      1   21  2001  ...          OT    M            20.0    27.0
-...          ...    ...  ...   ...  ...         ...  ...             ...     ...
-33315      33316     12   16  2001  ...         NaN  NaN             NaN     NaN
-33316      33317     12   16  2001  ...         NaN  NaN             NaN     NaN
-33317      33318     12   16  2001  ...         NaN  NaN             NaN     NaN
-33318      33319     12   16  2001  ...         NaN  NaN             NaN     NaN
-33319      33320     12   16  2001  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[1610 rows x 9 columns]
-```
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31710</th>
+      <td>31711</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>F</td>
+      <td>26.0</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>31711</th>
+      <td>31712</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>43.0</td>
+    </tr>
+    <tr>
+      <th>31712</th>
+      <td>31713</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>29.0</td>
+      <td>44.0</td>
+    </tr>
+    <tr>
+      <th>31713</th>
+      <td>31714</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>53.0</td>
+    </tr>
+    <tr>
+      <th>31714</th>
+      <td>31715</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>2</td>
+      <td>OT</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>27.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33315</th>
+      <td>33316</td>
+      <td>12</td>
+      <td>16</td>
+      <td>2001</td>
+      <td>11</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>33316</th>
+      <td>33317</td>
+      <td>12</td>
+      <td>16</td>
+      <td>2001</td>
+      <td>13</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>33317</th>
+      <td>33318</td>
+      <td>12</td>
+      <td>16</td>
+      <td>2001</td>
+      <td>14</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>33318</th>
+      <td>33319</td>
+      <td>12</td>
+      <td>16</td>
+      <td>2001</td>
+      <td>15</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>33319</th>
+      <td>33320</td>
+      <td>12</td>
+      <td>16</td>
+      <td>2001</td>
+      <td>16</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>1610 rows × 9 columns</p>
 
 ```python
 surveys_2002 = surveys[surveys["year"] == 2002].copy()
 surveys_2002
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-33320      33321      1   12  2002  ...          DM    M            38.0    44.0
-33321      33322      1   12  2002  ...          DO    M            37.0    58.0
-33322      33323      1   12  2002  ...          PB    M            28.0    45.0
-33323      33324      1   12  2002  ...          AB  NaN             NaN     NaN
-33324      33325      1   12  2002  ...          DO    M            35.0    29.0
-...          ...    ...  ...   ...  ...         ...  ...             ...     ...
-35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN
-35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN
-35546      35547     12   31  2002  ...          RM    F            15.0    14.0
-35547      35548     12   31  2002  ...          DO    M            36.0    51.0
-35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[2229 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>33320</th>
+      <td>33321</td>
+      <td>1</td>
+      <td>12</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>44.0</td>
+    </tr>
+    <tr>
+      <th>33321</th>
+      <td>33322</td>
+      <td>1</td>
+      <td>12</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>58.0</td>
+    </tr>
+    <tr>
+      <th>33322</th>
+      <td>33323</td>
+      <td>1</td>
+      <td>12</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>28.0</td>
+      <td>45.0</td>
+    </tr>
+    <tr>
+      <th>33323</th>
+      <td>33324</td>
+      <td>1</td>
+      <td>12</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>AB</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>33324</th>
+      <td>33325</td>
+      <td>1</td>
+      <td>12</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>29.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>2229 rows × 9 columns</p>
 
 We now have two different dataframes with the same columns but different
 data, one with 1,610 rows, the other with 2,229 rows. We can combine
 them using `pd.concat()`, which stacks the dataframes horizontally (that
 is, it appends the 2002 dataset to the 2001 dataset):
 
-
 ```python
 surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
 surveys_2001_2002
 ```
 
-```{.output}
-       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight
-31710      31711      1   21  2001  ...          PB    F            26.0    25.0
-31711      31712      1   21  2001  ...          DM    M            37.0    43.0
-31712      31713      1   21  2001  ...          PB    M            29.0    44.0
-31713      31714      1   21  2001  ...          DO    M            34.0    53.0
-31714      31715      1   21  2001  ...          OT    M            20.0    27.0
-...          ...    ...  ...   ...  ...         ...  ...             ...     ...
-35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN
-35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN
-35546      35547     12   31  2002  ...          RM    F            15.0    14.0
-35547      35548     12   31  2002  ...          DO    M            36.0    51.0
-35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[3839 rows x 9 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31710</th>
+      <td>31711</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>F</td>
+      <td>26.0</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>31711</th>
+      <td>31712</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>43.0</td>
+    </tr>
+    <tr>
+      <th>31712</th>
+      <td>31713</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>29.0</td>
+      <td>44.0</td>
+    </tr>
+    <tr>
+      <th>31713</th>
+      <td>31714</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>53.0</td>
+    </tr>
+    <tr>
+      <th>31714</th>
+      <td>31715</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>2</td>
+      <td>OT</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>27.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>3839 rows × 9 columns</p>
 
 The combined dataframe includes all rows from both dataframes.
 
@@ -376,7 +1738,6 @@ datasets will be set to NaN for those rows in the combined dataframe.
 To illustrate this, we'll add a validated column to the 2002 survey,
 then re-run `pd.concat()`:
 
-
 ```python
 surveys_2002["validated"] = True
 
@@ -384,22 +1745,176 @@ surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
 surveys_2001_2002
 ```
 
-```{.output}
-       record_id  month  day  year  ...  sex hindfoot_length weight  validated
-31710      31711      1   21  2001  ...    F            26.0   25.0        NaN
-31711      31712      1   21  2001  ...    M            37.0   43.0        NaN
-31712      31713      1   21  2001  ...    M            29.0   44.0        NaN
-31713      31714      1   21  2001  ...    M            34.0   53.0        NaN
-31714      31715      1   21  2001  ...    M            20.0   27.0        NaN
-...          ...    ...  ...   ...  ...  ...             ...    ...        ...
-35544      35545     12   31  2002  ...  NaN             NaN    NaN       True
-35545      35546     12   31  2002  ...  NaN             NaN    NaN       True
-35546      35547     12   31  2002  ...    F            15.0   14.0       True
-35547      35548     12   31  2002  ...    M            36.0   51.0       True
-35548      35549     12   31  2002  ...  NaN             NaN    NaN       True
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
 
-[3839 rows x 10 columns]
-```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+      <th>validated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>31710</th>
+      <td>31711</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>F</td>
+      <td>26.0</td>
+      <td>25.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31711</th>
+      <td>31712</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>43.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31712</th>
+      <td>31713</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>29.0</td>
+      <td>44.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31713</th>
+      <td>31714</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>1</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>34.0</td>
+      <td>53.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31714</th>
+      <td>31715</td>
+      <td>1</td>
+      <td>21</td>
+      <td>2001</td>
+      <td>2</td>
+      <td>OT</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>27.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+<p>3839 rows × 10 columns</p>
 
 As expected, validated has a value of NaN for the 2001 data in the
 combined dataframe.
