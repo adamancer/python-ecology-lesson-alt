@@ -60,35 +60,47 @@ examples here.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-```{python, error=TRUE}
+```python
 text = "hello world"
 ```
 
 Now we can access that string by referring to that variable:
 
-```{python, error=TRUE}
+```python
 text
+```
+
+```{.output}
+'hello world'
 ```
 
 We can check the type of the variable using the `type()` function:
 
-```{python, error=TRUE}
+```python
 type(text)
+```
+
+```{.output}
+str
 ```
 
 We can modify the text by calling one of the built-in methods. We call
 methods by appending a period and the name of the method to the object.
 For example, to display the string as upper case, use `upper()`:
 
-```{python, error=TRUE}
+```python
 text.upper()
+```
+
+```{.output}
+'HELLO WORLD'
 ```
 
 Each object may contain many attributes and methods. Use the `help()`
 function on an object, including functions or methods, to print a
 description of the object and lists the available methods.
 
-```{python, error=TRUE}
+```python
 help(str)
 ```
 
@@ -150,7 +162,7 @@ came from.
 Unlike the built-in functions, we must import a library before we can
 use it:
 
-```{python, error=TRUE}
+```python
 import datetime
 ```
 
@@ -159,7 +171,7 @@ For example, to create a `datetime.date` object (that is, a `date`
 object defined by the `datetime` library), we include both the library
 and method name:
 
-```{python, error=TRUE}
+```python
 date = datetime.date(1970, 1, 1)
 ```
 
@@ -167,8 +179,12 @@ As with the built-in types, the `datetime.date` object includes its own
 suite of attributes and methods. We can, for example, use the year
 attribute to get the year:
 
-```{python, error=TRUE}
+```python
 date.year
+```
+
+```{.output}
+1970
 ```
 
 Or format the date in a specific way using [date format
@@ -176,8 +192,12 @@ codes](https://docs.python.org/3/library/datetime.html#strftime-and-
 strptime-format-codes). Here, %Y corresponds to YYYY, %m to MM, and %d
 to DD.
 
-```{python, error=TRUE}
+```python
 date.strftime("%Y-%m-%d")
+```
+
+```{.output}
+'1970-01-01'
 ```
 
 Like Python itself, the Python Standard Library is maintained by the

@@ -29,12 +29,23 @@ formatted more or less normally with a mix of markdown and code blocks.
 Code cells will appear in the lesson website as input plus output, while
 markdown cells are interpreted as normal text or fences.
 
-Use
-[create_markdown_from_notebooks.ipynb](https://github.com/adamancer/python-ecology-lesson-alt/blob/main/create_markdown_from_notebooks.ipynb)
-to generate markdown files for each notebook. Markdown files are saved
-to the episodes folder, unless there is a notebook named
-**setup.ipynb**, which creates the index page for the lesson and is
-saved to the learners folder.
+To generate markdown from the notebooks directory, run the following
+from the scripts directory:
+
+    python build_episodes.py ..
+
+By default, this command creates markdown files with the code output
+fields already populated. If you’d prefer to create RMarkdown files and
+use reticulate to generate the output instead, use:
+
+    python build_episodes.py .. --to rmd
+
+Markdown files are saved to the episodes folder except for the
+following:
+
+-   setup.ipynb creates the index page to the lesson under learners
+-   reference.ipynb creates a reference page (including glossary) for
+    the lesson under learners
 
 ### Notebook structure
 
