@@ -31,14 +31,14 @@ surveys = pd.read_csv("data/surveys.csv")
 Aggregation allows us to combine results by grouping records based on
 value. It is also useful for calculating combined values in groups.
 
-Let’s go to the surveys table and find out how many observations are
-in our dataset. We've already seen that we can use the `info()` method
-to get high-level about the dataset, including the number of entries.
-What if just wanted the number of rows? In that case, we can use the
-built-in function `len()`, which is used to calculate the number of
-items in an object (for example, the number of characters in a string or
-the number of items in a list). When used on a dataframe, `len()`
-returns the number of rows:
+Let's go to the surveys table and find out how many observations are in
+our dataset. We've already seen that we can use the `info()` method to
+get high-level about the dataset, including the number of entries. What
+if just wanted the number of rows? In that case, we can use the built-in
+function `len()`, which is used to calculate the number of items in an
+object (for example, the number of characters in a string or the number
+of items in a list). When used on a dataframe, `len()` returns the
+number of rows:
 
 ```python
 len(surveys)
@@ -271,9 +271,9 @@ surveys.agg({"weight": ["sum", "mean", "min", "max"]})
 
 ## Grouping data
 
-Now, let’s see how many individuals were counted in each species. We
-do this using `groupby()`, which creates an object similar to a
-dataframe where rows are grouped by the data in one or more columns:
+Now, let's see how many individuals were counted in each species. We do
+this using `groupby()`, which creates an object similar to a dataframe
+where rows are grouped by the data in one or more columns:
 
 ```python
 grouped = surveys.groupby("species_id")

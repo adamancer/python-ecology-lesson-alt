@@ -1,9 +1,9 @@
 ---
-title: Reference
+title: References
 ---
 
-Based on Data Management with SQL for Ecologists
+References and further reading
 
 ## Glossary
 
-Behold! A glossary.
+A glossary of key terms

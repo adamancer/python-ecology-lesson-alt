@@ -28,22 +28,21 @@ different experimental manipulations controlling which rodents are
 allowed to access which plots.
 
 This is a real dataset that has been used in over 100 publications.
-We’ve simplified it for the workshop, but you can download the full
-dataset and work with it using exactly the same tools we’ll learn
-about today.
+We've simplified it for the workshop, but you can download the full
+dataset and work with it using exactly the same tools we'll learn about
+today.
 
 Questions
 
-Let’s look at some of the cleaned spreadsheets you downloaded during
-Setup to complete this challenge. You’ll need the following three
-files:
+Let's look at some of the cleaned spreadsheets you downloaded during
+Setup to complete this challenge. You'll need the following three files:
 
 -   surveys.csv
 -   species.csv
 
 ### Answering questions using data
 
-In order to answer the questions described above, we’ll need to do the
+In order to answer the questions described above, we'll need to do the
 following basic data operations:
 
 -   select subsets of the data (rows and columns)
@@ -51,12 +50,11 @@ following basic data operations:
 -   do math and other calculations
 -   combine data across spreadsheets
 
-In addition, we don’t want to do this manually! Instead of searching
-for the right pieces of data ourselves, or clicking between
-spreadsheets, or manually sorting columns, we want to make the computer
-do the work.
+In addition, we don't want to do this manually! Instead of searching for
+the right pieces of data ourselves, or clicking between spreadsheets, or
+manually sorting columns, we want to make the computer do the work.
 
-In particular, we want to use a tool where it’s easy to repeat our
+In particular, we want to use a tool where it's easy to repeat our
 analysis in case our data changes. We also want to do all this searching
 without actually modifying our source data.
 
