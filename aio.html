@@ -343,7 +343,7 @@
 </h3>
 <pre class="output" tabindex="0"><code><span class="st">'hello world'</span></code></pre>
 </div>
-<p>We can check the type of the variable using the <code><a href="https://rdrr.io/r/base/typeof.html" class="external-link">type()</a></code> function:</p>
+<p>We can check the type of the variable using the <code>type()</code> function:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1452,7 +1452,7 @@ NaN
   Show me the solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>na_values</p>
 </div>
@@ -1466,7 +1466,7 @@ NaN
   Show me the solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ul>
 <li>""</li>
@@ -3526,7 +3526,7 @@ NaN
 </tr>
 </tbody>
 </table>
-<p>The <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail()</a></code> method is similar, except it returns rows from the end of the table:</p>
+<p>The <code>tail()</code> method is similar, except it returns rows from the end of the table:</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3733,7 +3733,7 @@ NaN
 </tr>
 </tbody>
 </table>
-<p>The <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">head()</a></code> and <code><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail()</a></code> methods are useful for getting a feel for how our data is structured, but we’ll also want to be able to look at specific rows. As when we selected columns above, we can use square brackets to extract <em>slices</em> from the dataframe. This time, however, we pass two numbers separated by a colon representing the starting and ending indexes:</p>
+<p>The <code>head()</code> and <code>tail()</code> methods are useful for getting a feel for how our data is structured, but we’ll also want to be able to look at specific rows. As when we selected columns above, we can use square brackets to extract <em>slices</em> from the dataframe. This time, however, we pass two numbers separated by a colon representing the starting and ending indexes:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3885,7 +3885,7 @@ NaN
 <p>Core Python types like <code>list</code> and <code>tuple</code> use the same conventions, as do most libraries that deal with sequences.</p>
 </section><section id="unique-values"><h2 class="section-heading">Unique values</h2>
 <hr class="half-width">
-<p>Recall that you can use square brackets to return a single column from a dataframe. You can get the list of unique values within that column using the <code><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique()</a></code> method:</p>
+<p>Recall that you can use square brackets to return a single column from a dataframe. You can get the list of unique values within that column using the <code>unique()</code> method:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -9031,7 +9031,7 @@ any links that you are not going to use.
 </h3>
 <pre class="output" tabindex="0"><code><span class="fl">35549</span></code></pre>
 </div>
-<p><code>pandas</code> also provides a suite of aggregation methods. For example, we can find out the total weight of all the individuals in grams using <code><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum()</a></code>:</p>
+<p><code>pandas</code> also provides a suite of aggregation methods. For example, we can find out the total weight of all the individuals in grams using <code>sum()</code>:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -9042,7 +9042,7 @@ any links that you are not going to use.
 </h3>
 <pre class="output" tabindex="0"><code><span class="fl">1377594.0</span></code></pre>
 </div>
-<p>Other aggregation methods supported by pandas include <code><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min()</a></code>, <code><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max()</a></code>, and <code><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean()</a></code>.</p>
+<p>Other aggregation methods supported by pandas include <code>min()</code>, <code>max()</code>, and <code>mean()</code>.</p>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -9061,7 +9061,7 @@ any links that you are not going to use.
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9502,7 +9502,7 @@ Name: species_id, dtype: int64</code></pre>
   Show me the solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9553,7 +9553,7 @@ Name: record_id, dtype: int64</code></pre>
   Show me the solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9589,7 +9589,7 @@ Name: record_id, Length: 509, dtype: int64</code></pre>
   Show me the solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9625,7 +9625,7 @@ Name: weight, Length: 509, dtype: float64</code></pre>
   Show me the solution to challenge 4
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9680,7 +9680,7 @@ Name: record_id, dtype: int64</code></pre>
   Show me the solution to challenges 2 and 3 combined
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -10858,7 +10858,7 @@ Bird
 </tr>
 </tbody>
 </table>
-<p>We can see that the species dataframe includes a genus, species, and taxon for each species_id. This is much more useful than the species_id included in the original dataframe–how can we add that data to our surveys dataframe? Adding it by hand would be tedious and error prone. Fortunately, <code>pandas</code> provides the <code><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge()</a></code> method to join two dataframes.</p>
+<p>We can see that the species dataframe includes a genus, species, and taxon for each species_id. This is much more useful than the species_id included in the original dataframe–how can we add that data to our surveys dataframe? Adding it by hand would be tedious and error prone. Fortunately, <code>pandas</code> provides the <code>merge()</code> method to join two dataframes.</p>
 <p>To merge the surveys and species dataframes, use:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -11400,7 +11400,7 @@ Bird
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -12120,7 +12120,7 @@ Bird
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -12138,7 +12138,7 @@ Bird
 </div>
 </div>
 <p>In practice, the values in the columns used to join two dataframes may not align exactly. Above, the surveys dataframe contains a few hundred rows where species_id is NaN. These are the rows that were dropped when the dataframes were merged.</p>
-<p>By default, <code><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge()</a></code> performs an <strong>inner join</strong>. This means that a row will only appear if the value in the shared column appears in both of the datasets being merged. In this case, that means that survey observations that don’t have a species_id or have a species_id that does not appear in the species dataframe will be dropped.</p>
+<p>By default, <code>merge()</code> performs an <strong>inner join</strong>. This means that a row will only appear if the value in the shared column appears in both of the datasets being merged. In this case, that means that survey observations that don’t have a species_id or have a species_id that does not appear in the species dataframe will be dropped.</p>
 <p>This is not always desirable behavior. Fortunately, <code>pandas</code> allows us to control how the merge is done.</p>
 <ul>
 <li>
@@ -14339,7 +14339,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.5.1" class="external-link">sandpaper (0.5.1)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.5.2" class="external-link">sandpaper (0.5.2)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.2.6" class="external-link">pegboard (0.2.6)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.1.12" class="external-link">varnish (0.1.12)</a>.</p>
 			</div>
@@ -14363,8 +14363,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/aio.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/aio.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-05-16",
-  "datePublished": "2022-05-16"
+  "dateModified": "2022-05-17",
+  "datePublished": "2022-05-17"
 }
 
   </script><script>
