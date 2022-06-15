@@ -248,7 +248,7 @@ any links that you are not going to use.
  1. <a href="01-introducing-python.html">Introducing Python</a>
 </td>
 <td>
-What is Python?<br>How do we assign variables in Python?<br>How does Python handle different types of data?
+What is Python?<br>How do we assign variables in Python?<br>How do we perform actions in Python?<br>How does Python handle different types of data?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00:00
@@ -257,7 +257,7 @@ What is Python?<br>How do we assign variables in Python?<br>How does Python hand
  2. <a href="02-introducing-pandas.html">Introducing pandas</a>
 </td>
 <td>
-What is pandas?<br>Why use pandas for data analysis?
+What data will we be working with in this lesson?<br>What is pandas?<br>Why use pandas for data analysis?<br>How do we read and write data using pandas?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00:00
@@ -266,7 +266,7 @@ What is pandas?<br>Why use pandas for data analysis?
  3. <a href="03-accessing-data-in-a-dataframe.html">Accessing Data in a Dataframe</a>
 </td>
 <td>
-How can we look at individual rows and columns?<br>How can we perform calculations on the data?<br>How can we modify data?
+How can we look at individual rows and columns in a dataframe?<br>How can we perform calculations?<br>How can we modify the table and data?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00:00
@@ -275,7 +275,7 @@ How can we look at individual rows and columns?<br>How can we perform calculatio
  4. <a href="04-aggregating-and-grouping-data.html">Aggregating and Grouping Data</a>
 </td>
 <td>
-How do we calculate statistics using pandas?<br>How do we group data using pandas?<br>How do null values affect calculations using pandas?
+How do we calculate summary statistics?<br>How do we group data?<br>How do null values affect calculations?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00:00
@@ -284,7 +284,7 @@ How do we calculate statistics using pandas?<br>How do we group data using panda
  5. <a href="05-combining-data-with-joins.html">Combining Dataframes</a>
 </td>
 <td>
-How do we combine data from multiple sources using pandas?<br>How do we add data to an existing dataframe?
+How do we combine data from multiple sources using pandas?<br>How do we add data to an existing dataframe?<br>How do we split and combine data columns?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00:00
@@ -303,34 +303,46 @@ any links that you are not going to use.
       </section><section id="setup"><p>This lesson uses JupyterLab and pandas to analyze and visualize data from an ecology dataset. It was adapted (and currently includes huge chunks of text lifted directly from) <a href="https://datacarpentry.org/sql-ecology-lesson/" class="external-link">Data Management with SQL for Ecologists</a> and covers similar material to <a href="https://datacarpentry.org/python-ecology-lesson/" class="external-link">Data Analysis and Visualization in Python for Ecologists</a>. The idea was to create parallel lessons for SQL and Python for use by the Smithsonian Carpentries.</p>
 <p>This lesson is designed to use JupyterLab, an interactive development environment widely used for doing data science with Python. <strong>The rest of this page provides instructions for setting up the software and data needed to complete this lesson. Please complete the setup prior to your scheduled lesson.</strong></p>
 <section id="setup"><h2 class="section-heading">Setup</h2>
-<hr class="half-width"><p>We will use a program called Miniconda to set up JupyterLab, so first we need to download and install <a href="https://docs.conda.io/en/latest/miniconda.html" class="external-link">Miniconda (64 bit)</a>.</p>
-<div class="section level3">
-<h3 id="using-the-command-prompt">Using the command prompt<a class="anchor" aria-label="anchor" href="#using-the-command-prompt"></a></h3>
-<p>Once Miniconda is intalled, we can use the command prompt to install and run JupyterLab. Each operating system has one or more command prompts available. We recommend using the following applications for this lesson:</p>
-<ul><li><p><strong>Windows:</strong> Use the Anaconda Prompt, which was installed as part of Miniconda. You can find it by searching for Anaconda Prompt in the search box on the Windows toolbar.</p></li>
-<li><p><strong>macOS:</strong> Use the Terminal. You can find it by searching for Terminal using Spotlight.</p></li>
-</ul><p>The commands given below may not work if a different command prompt application is used, so we’d strongly encourage you to use the recommended applications.</p>
-</div>
-<div class="section level3">
-<h3 id="installing-jupyterlab">Installing JupyterLab<a class="anchor" aria-label="anchor" href="#installing-jupyterlab"></a></h3>
-<p>Once the command prompt is open, run the following command to install the software needed for this course:</p>
-<pre><code>conda create -c conda-forge --yes --name py-ecology altair jupyterlab
-pandas</code></pre>
+<hr class="half-width"><p>We will use a program called Miniconda to set up JupyterLab, so first we need to download and install <a href="https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-%20installer-links" class="external-link">Miniconda (64 bit)</a>. We recommend using the following installers:</p>
+<ul><li>
+<strong>Windows</strong>: Miniconda3 Windows 64-bit</li>
+<li>
+<strong>macOS</strong>:
+<ul><li>
+<strong>Apple M1:</strong> Miniconda3 macOS Apple M1 64-bit pkg</li>
+<li>
+<strong>Intel:</strong> Miniconda3 macOS Intel x86 64-bit pkg</li>
+</ul></li>
+</ul><div class="section level3">
+<h3 id="using-the-command-line-interface">Using the command-line interface<a class="anchor" aria-label="anchor" href="#using-the-command-line-interface"></a></h3>
+<p>A command-line interface, or CLI, is an application that can run commands supplied as text. Examples of command-line interfaces include the Windows command prompt and Unix shells, including bash. We’ll be using the CLI to install and run JupyterLab.</p>
+<p>Each operating system has one or more command-line interfaces available. We recommend using the following applications for this lesson:</p>
+<ul><li>
+<strong>Windows:</strong> Use the Anaconda Prompt, which was installed as part of Miniconda. You can find it by searching for Anaconda Prompt in the search box on the Windows toolbar.</li>
+<li>
+<strong>macOS:</strong> Use the Terminal. You can find it in the Applications/Utilities folder or by searching for Terminal using Spotlight.</li>
+</ul><p>The commands given below may not work if a different application is used, so we’d strongly encourage you to use the recommended ones.</p>
 <div id="callout1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
+<div id="running-commands" class="callout-inner">
+<h3 class="callout-title">Running commands</h3>
 <div class="callout-content">
-<p>To run any of the commands presented here, copy-paste them into the command prompt, then press enter to run the command.</p>
+<p>To run any of the commands presented here, copy-paste them into the CLI, then press enter to run the command.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="section level3">
+<h3 id="installing-jupyterlab">Installing JupyterLab<a class="anchor" aria-label="anchor" href="#installing-jupyterlab"></a></h3>
+<p>Once the command-line interface is open, run the following command to install the software needed for this course:</p>
+<pre><code>conda create -c conda-forge --yes --name python-ecology-lesson altair
+jupyterlab pandas</code></pre>
+</div>
+<div class="section level3">
 <h3 id="downloading-data-to-the-lesson-folder">Downloading data to the lesson folder<a class="anchor" aria-label="anchor" href="#downloading-data-to-the-lesson-folder"></a></h3>
-<p>Create the lesson folder and download the necessary data as follows:</p>
+<p>Next we’ll create the lesson folder and download the data needed for the lesson:</p>
 <ol style="list-style-type: decimal"><li>Create a folder called <strong>python-ecology-lesson</strong> on your desktop</li>
 <li>Create a folder called <strong>data</strong> inside the folder created in step 1</li>
 <li>Download the following files into the data folder:
@@ -347,7 +359,7 @@ wget -O surveys.csv https://figshare.com/ndownloader/files/10717177
 wget -O species.csv https://figshare.com/ndownloader/files/3299483</code></pre>
 </div>
 </section><section id="running-jupyterlab"><h2 class="section-heading">Running JupyterLab</h2>
-<hr class="half-width"><p>Once JupyterLab has been installed, we can run it by opening the command prompt and running the following commands:</p>
+<hr class="half-width"><p>Once JupyterLab has been installed, we can run it by opening the command-line interface and running the following commands:</p>
 <pre><code>conda activate python-ecology-lesson
 cd ~/Desktop/python-ecology-lesson
 jupyter-lab</code></pre>
@@ -356,8 +368,8 @@ jupyter-lab</code></pre>
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout</h3>
+<div id="test-your-installation" class="callout-inner">
+<h3 class="callout-title">Test your installation</h3>
 <div class="callout-content">
 <p>Try running this command before the scheduled lesson – does JupyterLab appear as expected?</p>
 </div>
@@ -411,8 +423,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/index.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/index.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-06-14",
-  "datePublished": "2022-06-14"
+  "dateModified": "2022-06-15",
+  "datePublished": "2022-06-15"
 }
 
   </script><script>

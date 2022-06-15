@@ -283,11 +283,54 @@
         
         
 <section id="01-introducing-python"><h2 class="section-heading"><a href="01-introducing-python.html">Introducing Python</a></h2>
-<hr class="half-width"></section><section id="02-introducing-pandas"><h2 class="section-heading"><a href="02-introducing-pandas.html">Introducing pandas</a></h2>
-<hr class="half-width"></section><section id="03-accessing-data-in-a-dataframe"><h2 class="section-heading"><a href="03-accessing-data-in-a-dataframe.html">Accessing Data in a Dataframe</a></h2>
-<hr class="half-width"></section><section id="04-aggregating-and-grouping-data"><h2 class="section-heading"><a href="04-aggregating-and-grouping-data.html">Aggregating and Grouping Data</a></h2>
-<hr class="half-width"></section><section id="05-combining-data-with-joins"><h2 class="section-heading"><a href="05-combining-data-with-joins.html">Combining Dataframes</a></h2>
-<hr class="half-width"></section>
+<hr class="half-width">
+<ul>
+<li>Python is a widely used language that can be used for a variety of tasks, including analyzing data</li>
+<li>Python uses different data types to handle text, numbers, collections, and other kinds of data</li>
+<li>Assign values to variables using the <code>=</code> operator</li>
+<li>Use functions and methods to perform specific actions</li>
+<li>Python’s functionality can be extended using libraries, including libraries written by members of the community that address discipline-specific needs</li>
+<li>Use the <code>help()</code> function and developer documentation to learn more about Python and Python libraries</li>
+</ul></section><section id="02-introducing-pandas"><h2 class="section-heading"><a href="02-introducing-pandas.html">Introducing pandas</a></h2>
+<hr class="half-width">
+<ul>
+<li>This lesson uses real data from a decades-long survey of rodents in Arizona</li>
+<li>pandas is a data analysis library that allows users to read, manipulate, and view tabular data using Python</li>
+<li>pandas represents data as a dataframe consisting of rows (records) and columns (fields or variables)</li>
+<li>Read a dataframe from CSV using the <code>pd.read_csv()</code> function</li>
+<li>Write a dataframe to CSV using the <code>to_csv()</code> method</li>
+<li>The behavior of a function can be modified by including arguments and keyword arguments when the function is called</li>
+<li>pandas uses its own classes to represent text, numbers, booleans, and datetimes</li>
+</ul></section><section id="03-accessing-data-in-a-dataframe"><h2 class="section-heading"><a href="03-accessing-data-in-a-dataframe.html">Accessing Data in a Dataframe</a></h2>
+<hr class="half-width">
+<ul>
+<li>Use square brackets to access rows, columns, and specific cells</li>
+<li>Use operators like <code>+</code>, <code>-</code>, and <code>/</code> to perform arithmetic on rows and columns</li>
+<li>Store the results of calculations in a dataframe by adding a new column or overwriting an existing column</li>
+<li>Sort data, rename columns, and get unique values in a dataframe using methods provided by pandas</li>
+<li>By default, most dataframe operations return a copy of the original data</li>
+</ul></section><section id="04-aggregating-and-grouping-data"><h2 class="section-heading"><a href="04-aggregating-and-grouping-data.html">Aggregating and Grouping Data</a></h2>
+<hr class="half-width">
+<ul>
+<li>Calculate individual summary statistics using dataframe methods like <code>mean()</code>, <code>max()</code>, and <code>min()</code>
+</li>
+<li>Calculate multiple summary statistics at once using the dataframe methods <code>describe()</code> and <code>agg()</code>
+</li>
+<li>Group data by one or more columns using the <code>groupby()</code> method</li>
+<li>pandas uses NaN to represent missing data in a dataframe</li>
+<li>Failing to consider how missing data is interpreted in a dataset can introduce errors into calculations</li>
+</ul></section><section id="05-combining-data-with-joins"><h2 class="section-heading"><a href="05-combining-data-with-joins.html">Combining Dataframes</a></h2>
+<hr class="half-width">
+<ul>
+<li>Combine two dataframes on one or more common values using <code>pd.merge()</code>
+</li>
+<li>Append rows from one dataframe to another using <code>pd.concat()</code>
+</li>
+<li>Combine multiple text columns into one using the <code>+</code> operator</li>
+<li>Use the <code>str</code> accessor to use string methods like <code>split()</code> and <code>zfill()</code> on text columns</li>
+<li>Convert date strings to datetime objects using <code>pd.to_datetime()</code>
+</li>
+</ul></section>
 </div>
     </main>
 </div>
@@ -330,8 +373,8 @@
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/key-points.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/key-points.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-06-14",
-  "datePublished": "2022-06-14"
+  "dateModified": "2022-06-15",
+  "datePublished": "2022-06-15"
 }
 
   </script><script>
