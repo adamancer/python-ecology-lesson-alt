@@ -21,47 +21,57 @@ scheduled lesson.**
 
 We will use a program called Miniconda to set up JupyterLab, so first we
 need to download and install [Miniconda (64
-bit)](https://docs.conda.io/en/latest/miniconda.html).
+bit)](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-
+installer-links). We recommend using the following installers:
 
-### Using the command prompt
+-   **Windows**: Miniconda3 Windows 64-bit
+-   **macOS**:
+    -   **Apple M1:** Miniconda3 macOS Apple M1 64-bit pkg
+    -   **Intel:** Miniconda3 macOS Intel x86 64-bit pkg
 
-Once Miniconda is intalled, we can use the command prompt to install and
-run JupyterLab. Each operating system has one or more command prompts
-available. We recommend using the following applications for this
-lesson:
+### Using the command-line interface
+
+A command-line interface, or CLI, is an application that can run
+commands supplied as text. Examples of command-line interfaces include
+the Windows command prompt and Unix shells, including bash. We'll be
+using the CLI to install and run JupyterLab.
+
+Each operating system has one or more command-line interfaces available.
+We recommend using the following applications for this lesson:
 
 -   **Windows:** Use the Anaconda Prompt, which was installed as
-    part of Miniconda. You can
-  find it by searching for Anaconda Prompt in the search box on the
-Windows toolbar.
+    part of Miniconda. You can find it by searching for Anaconda
+    Prompt in the search box on the Windows toolbar.
+-   **macOS:** Use the Terminal. You can find it in the
+    Applications/Utilities folder or by searching for Terminal using
+    Spotlight.
 
--   **macOS:** Use the Terminal. You can find it by searching for
-    Terminal using Spotlight.
-
-The commands given below may not work if a different command prompt
-application is used, so we'd strongly encourage you to use the
-recommended applications.
-
-### Installing JupyterLab
-
-Once the command prompt is open, run the following command to install
-the software needed for this course:
-
-```
-conda create -c conda-forge --yes --name py-ecology altair jupyterlab
-pandas
-```
+The commands given below may not work if a different application is
+used, so we'd strongly encourage you to use the recommended ones.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To run any of the commands presented here, copy-paste them into the
-command prompt, then press enter to run the command.
+#### Running commands
+
+To run any of the commands presented here, copy-paste them into the CLI,
+then press enter to run the command.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+### Installing JupyterLab
+
+Once the command-line interface is open, run the following command to
+install the software needed for this course:
+
+```
+conda create -c conda-forge --yes --name python-ecology-lesson altair
+jupyterlab pandas
+```
+
 ### Downloading data to the lesson folder
 
-Create the lesson folder and download the necessary data as follows:
+Next we'll create the lesson folder and download the data needed for the
+lesson:
 
 1.  Create a folder called **python-ecology-lesson** on your desktop
 2.  Create a folder called **data** inside the folder created in
@@ -85,8 +95,8 @@ wget -O species.csv https://figshare.com/ndownloader/files/3299483
 
 ## Running JupyterLab
 
-Once JupyterLab has been installed, we can run it by opening the command
-prompt and running the following commands:
+Once JupyterLab has been installed, we can run it by opening the
+command-line interface and running the following commands:
 
 ```
 conda activate python-ecology-lesson
@@ -97,6 +107,8 @@ jupyter-lab
 JupyterLab should now open in a new browser window.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Test your installation
 
 Try running this command before the scheduled lesson -- does JupyterLab
 appear as expected?

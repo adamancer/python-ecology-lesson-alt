@@ -4,21 +4,27 @@ title: Introducing pandas
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+-   What data will we be working with in this lesson?
 -   What is pandas?
 -   Why use pandas for data analysis?
+-   How do we read and write data using pandas?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 -   Learn about the dataset we'll be working with
--   Import and display data from a CSV
+-   Look at the benefits of using pandas to analyze data
+-   Import data from a CSV into a pandas dataframe
 -   Learn how pandas handles different types of data
--   Characterize data using info()
+-   Write a dataframe to a CSV
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Dataset description
+
+*The dataset description was taken from [Data Management with SQL for
+Ecologists](https://datacarpentry.org/sql-ecology-lesson/) (CC-BY-4.0)*
 
 The data we will be using is a time-series for a small mammal community
 in southern Arizona. This is part of a project studying the effects of
@@ -32,15 +38,36 @@ We've simplified it for the workshop, but you can download the full
 dataset and work with it using exactly the same tools we'll learn about
 today.
 
-Questions
+## Answering questions using data
 
-Let's look at some of the cleaned spreadsheets you downloaded during
-Setup to complete this challenge. You'll need the following three files:
+Let's look at some of the cleaned spreadsheets we downloaded during
+Setup to complete this challenge. We'll need the following two files:
 
 -   surveys.csv
 -   species.csv
 
-### Answering questions using data
+::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Open each of these csv files and explore them. What information is
+contained in each file? Specifically, if we had the following research
+questions:
+
+-   How has the hindfoot length and weight of Dipodomys species
+    changed over time?
+-   What is the average weight of each species, per year?
+-   What information can I learn about Dipodomys species in the
+    2000s, over time?
+
+What would we need to answer these questions? Which files have the data
+we need? What operations would we need to perform if we were doing these
+analyses by hand?
+
+**Hint:** We can view CSV files using JupyterLab using the left sidebar.
+Click on the Folder icon in the top left of the sidebar to see the
+files, then go to the data directory to see the CSV we've downloaded for
+this lesson.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 In order to answer the questions described above, we'll need to do the
 following basic data operations:
@@ -61,10 +88,11 @@ without actually modifying our source data.
 ## Why use pandas?
 
 The Python Data Analysis Library, or pandas, is a Python library used to
-work with dataframes. A dataframe is very similar to a spreadsheet,
-consisting of rows and columns of data. It is a very common format for
-representing scientific data and is likely to be very familiar to anyone
-taking this course.
+work with dataframes. A dataframe is a representation of tabular data
+very similar to a spreadsheet, consisting of rows (representing records)
+and columns (representing fields or variables). It is a very common
+format for representing scientific data and is likely to be very
+familiar to anyone taking this course.
 
 pandas offers the same advantages as any well-written library: It
 creates a common codebase for working on a single task, in this case,
@@ -96,29 +124,38 @@ import pandas as pd
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+### Using aliases
+
 Why use an alias? We will refer to pandas many, many times when writing
 a script, so it's useful to abbreviate the name and save some
 keystrokes. But it's also a matter of consistency with the larger
 community. Many of the core scientific Python libraries, including
-pandas, recommend a specific alias, so most code you find online will
-use those aliases as well.
+pandas, recommend a specific alias, so most code shared online will use
+those aliases as well.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Now the pandas has been imported, we can access the function we need to
-load data from a CSV, `pd.read_csv()`. The *call* has three parts:
+Now that pandas has been imported, we can access the function we need to
+load data from a CSV, `pd.read_csv()`. The function call has three
+parts:
 
 -   The name (or in this case, alias) of the object that defines the
-    function. This can be a library, alias, or any other object. It
-    can also be omitted in some cases (for example, when using a
-    function built into Python).
+    function. This can be a library or any other object. It can also
+    be omitted in some cases (for example, when using a function
+    built into Python).
 -   The name of the method we'd like to use
 -   A set of parentheses that tells the function to run.
 
-Many functions allow you to include both *arguments* and *keyword
-arguments* (collectively called *parameters*) inside the parentheses
-when calling the function. In this case, we will pass a single argument,
-which is a string defining the path to the surveys.csv file:
+Many functions define *parameters* that allow the user to modify the
+behavior of the function. Parameters may be positional or named. In
+Python, data passed to positional parameters are called *arguments*
+(often abbreviated as args), and data passed to named parameters are
+called *keyword arguments* (often abbreviated as kwargs). In either
+case, the arguments are included inside the parentheses used to call the
+function.
+
+Below, we will pass a single argument to `pd.read_csv()`: A string that
+tells the function where to find the surveys.csv file.
 
 ```python
 pd.read_csv("data/surveys.csv")
@@ -283,23 +320,26 @@ pd.read_csv("data/surveys.csv")
 </table>
 <p>35549 rows × 9 columns</p>
 
-A few things to observe about this table:
+Here are a few things to observe about how the dataframe is structured:
 
--   The unlabeled column on the far left is the row label
--   `pandas` has done a lot of work behind the scenes when reading
-    the data, including:
-    -   Assigning the row index as the row label
+-   By default, JupyterLab displays the first and last five rows of
+    the dataframe
+-   Each row represents a record
+-   Each column represents a field
+-   The unlabeled column on the far left is called the *row label*
+-   pandas has done a lot of work behind the scenes when reading the
+    data, including:
+    -   Assigning the *row index* as the row label
     -   Assigning each column a data type based on its contents
     -   Assigning certain cells the value NaN, which stands for
         "not a number" and is used to designate null values in
         the dataset. Here, those cells represent blank cells in
         the spreadsheet.
 
-Most of this behavior can be controlled when the spreadsheet is first
-read by using keyword arguments. A keyword argument is a named parameter
-that you can use to control the behavior of a function. For example, to
-force `pd.read_csv()` to use the existing record_id column as the row
-label, use the `index_col` keyword argument:
+Much of this behavior can be controlled when the spreadsheet is first
+read by using keyword arguments. For example, to force `pd.read_csv()`
+to use the existing record_id column as the row label, use the
+*index_col* keyword argument:
 
 ```python
 pd.read_csv("data/surveys.csv", index_col="record_id")
@@ -463,7 +503,7 @@ pd.read_csv("data/surveys.csv", index_col="record_id")
 </table>
 <p>35549 rows × 8 columns</p>
 
-Now record_id appears on the far left, indicating that `pandas` is using
+Now record_id appears on the far left, indicating that pandas is using
 that column as the row label.
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -490,24 +530,27 @@ na_values
 
 ### Show me the solution to challenge 2
 
--   ""
--   "#N/A"
--   "#N/A N/A"
--   "#NA"
--   "-1.#IND"
--   "-1.#QNAN"
--   "-NaN"
--   "-nan"
--   "1.#IND"
--   "1.#QNAN"
--   "<NA>"
--   "N/A"
--   "NA"
--   "NULL"
--   "NaN"
--   "n/a"
--   "nan"
--   "null"
+In addition to empty cells, the following values are interpreted as NaN,
+or null, by pandas. These strings may look familiar from programs like
+Excel.
+
+-   #N/A
+-   #N/A N/A
+-   #NA
+-   -1.#IND
+-   -1.#QNAN
+-   -NaN
+-   -nan
+-   1.#IND
+-   1.#QNAN
+-   \<NA\>
+-   N/A
+-   NA
+-   NULL
+-   NaN
+-   n/a
+-   nan
+-   null
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -518,8 +561,8 @@ na_values
 We can assign the dataframe to a variable to make it easier to access.
 As we saw in the previous lesson, we use a single equals sign to assign
 an object to a variable. The variable name should be short and
-descriptive. By convention, variables in Python use snake_case (that is,
-lower case with individual words separated by underscores).
+descriptive. By convention, variable names in Python use snake_case
+(that is, lower case with individual words separated by underscores).
 
 ```python
 surveys = pd.read_csv("data/surveys.csv")
@@ -687,14 +730,34 @@ surveys
 
 ## Understanding data types in pandas
 
-We can use the `info()` method to see how `pandas` interpreted each
-column in the dataset. This method gives use the name, count, and data
-type of each column and provides some information about the dataset as a
-whole (for example, memory usage, which is helpful to know when working
-with large datasets):
+We can use the `info()` method to see how pandas interpreted each column
+in the dataset. This method gives use the name, count, and data type of
+each column and provides some information about the dataset as a whole
+(for example, memory usage, which is helpful to know when working with
+large datasets):
 
 ```python
 surveys.info()
+```
+
+```{.output}
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 35549 entries, 0 to 35548
+Data columns (total 9 columns):
+ #   Column           Non-Null Count  Dtype  
+---  ------           --------------  -----  
+ 0   record_id        35549 non-null  int64  
+ 1   month            35549 non-null  int64  
+ 2   day              35549 non-null  int64  
+ 3   year             35549 non-null  int64  
+ 4   plot_id          35549 non-null  int64  
+ 5   species_id       34786 non-null  object 
+ 6   sex              33038 non-null  object 
+ 7   hindfoot_length  31438 non-null  float64
+ 8   weight           32283 non-null  float64
+dtypes: float64(2), int64(5), object(2)
+memory usage: 2.4+ MB
+
 ```
 
 Note that the data types used by pandas look a little different than the
@@ -706,7 +769,7 @@ equivalents.
 |Data Type|Description|Similar To|
 |-|-|-|
 |object|Character string or mixed|str|
-|int64|Integer numerical (no decimal)|int|
+|int64|Integer numerical|int|
 |float64|Approximate numerical|float|
 |bool|Stores True or False values|bool|
 |datetime64|Stores date and time values|datetime.datetime|
@@ -714,11 +777,35 @@ equivalents.
 ## Saving a dataframe
 
 When analyzing a dataset, we'll often want to save our work to a file.
-The `to_csv()` method can be used to write a dataframe to a CSV:
+The `to_csv()` method can be used to write a dataframe to a CSV. As when
+we read a CSV from a file above, we need to provide a path to which to
+save the file. The example below also includes the *index* keyword
+argument. Setting that parameter to False tells pandas not to include
+the row label when writing the CSV.
 
 ```python
 surveys.to_csv("data/surveys_mod.csv", index=False)
 ```
 
-But that is far from the only option -- `pandas` supports a variety of
-file types for both reading and writing.
+This is far from the only option for writing data--pandas supports a
+variety of file types for both reading and writing. Try searching for
+"read_" in the [pandas API
+reference](https://pandas.pydata.org/docs/reference/index.html) to see
+the supported formats.
+
+::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   This lesson uses real data from a decades-long survey of rodents
+    in Arizona
+-   pandas is a data analysis library that allows users to read,
+    manipulate, and view tabular data using Python
+-   pandas represents data as a dataframe consisting of rows
+    (records) and columns (fields or variables)
+-   Read a dataframe from CSV using the `pd.read_csv()` function
+-   Write a dataframe to CSV using the `to_csv()` method
+-   The behavior of a function can be modified by including
+    arguments and keyword arguments when the function is called
+-   pandas uses its own classes to represent text, numbers,
+    booleans, and datetimes
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

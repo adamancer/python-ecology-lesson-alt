@@ -91,6 +91,10 @@ class Cell:
     @property
     def text(self):
         """Gets the text of the cell"""
+
+        if "hide_input" in self.tags:
+            return ""
+
         text = "".join(self.source)
         if self.cell_type == "code":
             return text
@@ -131,7 +135,7 @@ class Cell:
 
             # Wrap all other markdown
             else:
-                lines.extend(wrap(line, num_chars) + [""])
+                lines.extend(wrap(line, num_chars, break_long_words=False) + [""])
 
         text = "\n".join(lines)
 
@@ -153,30 +157,53 @@ class Cell:
 
     @property
     def output(self):
-        keys = ["image/png", "text/plain"]
+
+        if "hide_output" in self.tags or not self.cell["outputs"]:
+            return ""
+
+        keys = ["image/png", "text/plain", "text"]
         if self.html_output:
             keys.insert(1, "text/html")
-        for key in keys:
-            for row in self.cell["outputs"]:
+
+        output = []
+        for row in self.cell["outputs"]:
+
+            # Get the content of the row
+            data = row.get("data", row)
+            for key in keys:
                 try:
-                    output = row["data"][key]
+                    content = data[key]
+                    break
                 except KeyError:
-                    continue
+                    pass
+            else:
+                continue
 
-                # Store image as file and output an image tag
-                if key.startswith("image"):
-                    img_bytes = base64.b64decode(output)
-                    filename = f"fig_output_{hashlib.md5(img_bytes).hexdigest()}.png"
-                    path = os.path.join(self.lesson_root, "episodes", "fig", filename)
-                    try:
-                        open(path)
-                    except FileNotFoundError:
-                        with open(path, "wb") as f:
-                            f.write(img_bytes)
-                    return f'<img src="fig/{filename}" width="672" style="display: block; margin: auto;" />'
+            # Always output streamed text
+            if row["output_type"] == "stream":
+                output.append("".join(content))
 
-                # Output HTML
-                elif key == "text/html":
+            # Store image as file and output an image tag
+            elif key.startswith("image"):
+                img_bytes = base64.b64decode(content)
+                filename = f"fig_output_{hashlib.md5(img_bytes).hexdigest()}.png"
+                path = os.path.join(self.lesson_root, "episodes", "fig", filename)
+                try:
+                    open(path)
+                except FileNotFoundError:
+                    with open(path, "wb") as f:
+                        f.write(img_bytes)
+                output.append(
+                    f'<img src="fig/{filename}" width="672" style="display: block; margin: auto;" />'
+                )
+
+            # Pretty print HTML if possible. This is just for pandas tables so far.
+            elif key == "text/html":
+
+                # Check for pandas tables
+                pattern = r"<div.*?>\s*<style.*?</style>\s*(.*)\s*</div>"
+                if re.match(pattern, "".join(content), flags=re.DOTALL):
+
                     # Approximate the style of a pandas table
                     style = (
                         "<style>\n"
@@ -186,15 +213,32 @@ class Cell:
                         "  table.dataframe td { text-align: right; }\n"
                         "</style>\n\n"
                     )
-                    pattern = r"<div.*?>\s*<style.*?</style>\s*(.*)\s*</div>"
-                    return style + re.search(
-                        pattern, "".join(output), flags=re.DOTALL
-                    ).group(1)
 
-                # Output text inside output fence
+                    output.append(
+                        style
+                        + re.search(pattern, "".join(content), flags=re.DOTALL).group(1)
+                    )
+
                 else:
-                    output = "".join(output)
-                    return f"```{{.output}}\n{output}\n```"
+                    # Output non-table HTML
+                    output.append("".join(content))
+
+            # Output text inside output fence
+            else:
+                output.append("".join(content))
+
+        # Wrap non-HTML output in an output fence
+        if not re.search(r"</[a-z]+>", output[0]):
+            output.insert(0, "```{.output}")
+
+            for i, content in enumerate(output[1:]):
+                if re.search(r"</[a-z]+>", content):
+                    output[i + 1] = "```\n\n" + content
+                    break
+            else:
+                output.append("```")
+
+        return "\n".join(output)
 
     def is_part_of(self, block, always_part=None):
         """Checks if a cell is part of another block
@@ -237,9 +281,11 @@ class Cell:
         str
             the cell formatted in Markdown
         """
-        if str(self):
+        if self.text or self.output:
             if self.cell_type == "code" and self.md_format == "md":
-                text = f"```python\n{str(self)}\n```"
+                text = ""
+                if self.text:
+                    text += f"```python\n{str(self)}\n```"
                 if self.output:
                     text += f"\n\n{self.output}"
             elif self.cell_type == "code" and self.md_format == "Rmd":
@@ -247,8 +293,8 @@ class Cell:
             else:
                 text = str(self)
             if self.fence and include_fence:
-                return fence(text, self.fence)
-            return text.rstrip() + "\n"
+                return fence(text.strip(), self.fence)
+            return text.strip() + "\n"
         return ""
 
 
