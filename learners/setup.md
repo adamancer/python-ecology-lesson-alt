@@ -64,8 +64,7 @@ Once the command-line interface is open, run the following command to
 install the software needed for this course:
 
 ```
-conda create -c conda-forge --yes --name python-ecology-lesson altair
-jupyterlab pandas
+conda create -c conda-forge --yes --name python-ecology-lesson altair jupyterlab pandas
 ```
 
 ### Downloading data to the lesson folder
