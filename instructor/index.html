@@ -18,12 +18,12 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-6">
       <div class="large-logo">
-        <img alt="Data Carpentry" src="../assets/images/data-logo.svg"><abbr class="icon" title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught." style="text-decoration: unset">
+        <img alt="Data Carpentry" src="../assets/images/data-logo.svg"><abbr class="icon" title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team." style="text-decoration: unset">
            
-          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#early-development-pre-alpha-through-alpha" class="external-link alert-link" style="color: #383838">Pre-Alpha
-            <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="color: #FF4955"></i>
+          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#polishing-beta-stage" class="external-link alert-link" style="color: #383838">Beta
+            <i aria-hidden="true" class="icon" data-feather="alert-circle" style="color: #001483"></i>
           </a>
-          <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+          <span class="visually-hidden">This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.</span>
         </abbr>
         
       </div>
@@ -310,7 +310,7 @@ any links that you are not going to use.
       </section><section id="setup"><p>This lesson uses JupyterLab and pandas to analyze and visualize data from an ecology dataset. It was adapted (and currently includes huge chunks of text lifted directly from) <a href="https://datacarpentry.org/sql-ecology-lesson/" class="external-link">Data Management with SQL for Ecologists</a> and covers similar material to <a href="https://datacarpentry.org/python-ecology-lesson/" class="external-link">Data Analysis and Visualization in Python for Ecologists</a>. The idea was to create parallel lessons for SQL and Python for use by the Smithsonian Carpentries.</p>
 <p>This lesson is designed to use JupyterLab, an interactive development environment widely used for doing data science with Python. <strong>The rest of this page provides instructions for setting up the software and data needed to complete this lesson. Please complete the setup prior to your scheduled lesson.</strong></p>
 <section id="setup"><h2 class="section-heading">Setup</h2>
-<hr class="half-width"><p>We will use a program called Miniconda to set up JupyterLab, so first we need to download and install <a href="https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-%20installer-links" class="external-link">Miniconda (64 bit)</a>. We recommend using the following installers:</p>
+<hr class="half-width"><p>We will use a program called Miniconda to set up JupyterLab, so first we need to download and install <a href="https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links" class="external-link">Miniconda (64 bit)</a>. We recommend using the following installers:</p>
 <ul><li>
 <strong>Windows</strong>: Miniconda3 Windows 64-bit</li>
 <li>
@@ -343,8 +343,10 @@ any links that you are not going to use.
 </div>
 <div class="section level3">
 <h3 id="installing-jupyterlab">Installing JupyterLab<a class="anchor" aria-label="anchor" href="#installing-jupyterlab"></a></h3>
-<p>Once the command-line interface is open, run the following command to install the software needed for this course:</p>
+<p>Once the command-line interface is open, run the following commands to install the software needed for this course:</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
 <pre><code>conda create -c conda-forge --yes --name python-ecology-lesson altair jupyterlab pandas</code></pre>
+<p>======= conda create –name python-ecology-lesson conda activate python-ecology-lesson conda install –channel conda-forge –yes altair jupyterlab pandas &gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
 </div>
 <div class="section level3">
 <h3 id="downloading-data-to-the-lesson-folder">Downloading data to the lesson folder<a class="anchor" aria-label="anchor" href="#downloading-data-to-the-lesson-folder"></a></h3>
@@ -358,17 +360,25 @@ any links that you are not going to use.
 </li>
 </ul></li>
 </ol><p>Alternatively, we can run the following commands in the command prompt to create the lesson folders and download the necessary data:</p>
-<pre><code>cd ~/Desktop
-mkdir python-ecology-lesson/data
-cd python-ecology-lesson/data
-wget -O surveys.csv https://figshare.com/ndownloader/files/10717177
-wget -O species.csv https://figshare.com/ndownloader/files/3299483</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> python-ecology-lesson/data</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> python-ecology-lesson/data</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> surveys.csv https://figshare.com/ndownloader/files/10717177</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> species.csv https://figshare.com/ndownloader/files/3299483</span></code></pre>
+</div>
 </div>
 </section><section id="running-jupyterlab"><h2 class="section-heading">Running JupyterLab</h2>
 <hr class="half-width"><p>Once JupyterLab has been installed, we can run it by opening the command-line interface and running the following commands:</p>
-<pre><code>conda activate python-ecology-lesson
-cd ~/Desktop/python-ecology-lesson
-jupyter-lab</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate python-ecology-lesson</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/python-ecology-lesson</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-lab</span></span></code></pre>
+</div>
 <p>JupyterLab should now open in a new browser window.</p>
 <div id="callout2" class="callout callout">
 <div class="callout-square">

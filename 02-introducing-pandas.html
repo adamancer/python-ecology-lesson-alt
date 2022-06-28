@@ -18,12 +18,12 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-6">
       <div class="large-logo">
-        <img alt="Data Carpentry" src="assets/images/data-logo.svg"><abbr class="icon" title="This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught." style="text-decoration: unset">
+        <img alt="Data Carpentry" src="assets/images/data-logo.svg"><abbr class="icon" title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team." style="text-decoration: unset">
            
-          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#early-development-pre-alpha-through-alpha" class="external-link alert-link" style="color: #383838">Pre-Alpha
-            <i aria-hidden="true" class="icon" data-feather="alert-octagon" style="color: #FF4955"></i>
+          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#polishing-beta-stage" class="external-link alert-link" style="color: #383838">Beta
+            <i aria-hidden="true" class="icon" data-feather="alert-circle" style="color: #001483"></i>
           </a>
-          <span class="visually-hidden">This lesson is in the pre-alpha phase, which means that it is in early development, but has not yet been taught.</span>
+          <span class="visually-hidden">This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.</span>
         </abbr>
         
       </div>
@@ -255,7 +255,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introducing pandas</h1>
-        <p> Last updated on 2022-06-15 | <a href="https://github.com/adamancer/python-ecology-lesson-alt/edit/main/episodes/02-introducing-pandas.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <p> Last updated on 2022-06-28 | <a href="https://github.com/adamancer/python-ecology-lesson-alt/edit/main/episodes/02-introducing-pandas.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1105,7 +1105,7 @@ NaN
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<p>Run <code>help()</code> on the <code>pd.read_csv()</code> method (note that you should omit the trailing parentheses). Alternatively, take a look at the <a href="https://pandas.pydata.org/pandas-%20docs/stable/reference/api/pandas.read_csv.html" class="external-link">much prettier documentation</a> provided by the pandas developers. Based on that information, answer the following questions:</p>
+<p>Run <code>help()</code> on the <code>pd.read_csv()</code> method (note that you should omit the trailing parentheses). Alternatively, take a look at the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html" class="external-link">much prettier documentation</a> provided by the pandas developers. Based on that information, answer the following questions:</p>
 <ol style="list-style-type: decimal"><li>What parameter would you use to control how null values are interpreted?</li>
 <li>What values are interpreted as NaN by default?</li>
 </ol></div>
@@ -1118,7 +1118,7 @@ NaN
   Show me the solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>na_values</p>
 </div>
@@ -1132,7 +1132,7 @@ NaN
   Show me the solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>In addition to empty cells, the following values are interpreted as NaN, or null, by pandas. These strings may look familiar from programs like Excel.</p>
 <ul><li>#N/A</li>
@@ -1562,24 +1562,24 @@ memory usage: 2.4+ MB
 <p>Note that the data types used by pandas look a little different than the ones used by Python itself. See the table below for the rough equivalents.</p>
 <div class="section level3">
 <h3 id="data-types-in-pandas">Data types in pandas<a class="anchor" aria-label="anchor" href="#data-types-in-pandas"></a></h3>
-<table class="table"><thead><tr class="header"><th>Data Type</th>
-<th>Description</th>
-<th>Similar To</th>
-</tr></thead><tbody><tr class="odd"><td>object</td>
-<td>Character string or mixed</td>
-<td>str</td>
-</tr><tr class="even"><td>int64</td>
-<td>Integer numerical</td>
-<td>int</td>
-</tr><tr class="odd"><td>float64</td>
-<td>Approximate numerical</td>
-<td>float</td>
-</tr><tr class="even"><td>bool</td>
-<td>Stores True or False values</td>
-<td>bool</td>
-</tr><tr class="odd"><td>datetime64</td>
-<td>Stores date and time values</td>
-<td>datetime.datetime</td>
+<table class="table"><thead><tr class="header"><th align="left">Data Type</th>
+<th align="left">Description</th>
+<th align="left">Similar To</th>
+</tr></thead><tbody><tr class="odd"><td align="left">object</td>
+<td align="left">Character string or mixed</td>
+<td align="left">str</td>
+</tr><tr class="even"><td align="left">int64</td>
+<td align="left">Integer numerical</td>
+<td align="left">int</td>
+</tr><tr class="odd"><td align="left">float64</td>
+<td align="left">Approximate numerical</td>
+<td align="left">float</td>
+</tr><tr class="even"><td align="left">bool</td>
+<td align="left">Stores True or False values</td>
+<td align="left">bool</td>
+</tr><tr class="odd"><td align="left">datetime64</td>
+<td align="left">Stores date and time values</td>
+<td align="left">datetime.datetime</td>
 </tr></tbody></table></div>
 </section><section id="saving-a-dataframe"><h2 class="section-heading">Saving a dataframe</h2>
 <hr class="half-width"><p>When analyzing a dataset, we’ll often want to save our work to a file. The <code>to_csv()</code> method can be used to write a dataframe to a CSV. As when we read a CSV from a file above, we need to provide a path to which to save the file. The example below also includes the <em>index</em> keyword argument. Setting that parameter to False tells pandas not to include the row label when writing the CSV.</p>
@@ -1657,7 +1657,7 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/02-introducing-pandas.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/02-introducing-pandas.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-06-15",
+  "dateModified": "2022-06-28",
   "datePublished": "2022-06-28"
 }
 
