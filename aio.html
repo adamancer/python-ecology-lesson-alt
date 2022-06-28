@@ -93,7 +93,6 @@
             More <i data-feather="chevron-down"></i>
           </button>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-<li><a class="dropdown-item" href="profiles.html">Learner Profiles</a></li>
 <li><a class="dropdown-item" href="reference.html">References</a></li>
           </ul>
 </li>
@@ -252,15 +251,23 @@
                 <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlush12">
                   <div class="accordion-body">
                     <ul>
-<li><a href="profiles.html">Learner Profiles</a></li>
-<li><a href="reference.html">References</a></li>
+<li>
+                        <a href="key-points.html">Key Points</a>
+                      </li>
+                      <li>
+                        <a href="reference.html#glossary">Glossary</a>
+                      </li>
+                      <li>
+                        <a href="profiles.html">Learner Profiles</a>
+                      </li>
+                      <li><a href="reference.html">References</a></li>
                     </ul>
 </div>
                 </div>
               </div>
             </div>
-
-            <a href="aio.html">See all in one page</a>
+            <hr class="half-width resources">
+<a href="aio.html">See all in one page</a>
 
             <hr class="d-none d-sm-block d-md-none">
 <div class="d-grid gap-1">
@@ -360,7 +367,7 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'hello world'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'hello world'</span></span></code></pre>
 </div>
 <p>We can check the type of the variable using the <code>type()</code> function:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -371,7 +378,7 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="va">str</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="va">str</span></span></code></pre>
 </div>
 <p>We can modify the text by calling one of the methods built into the <code>str</code> class. We call methods by appending a period and the name of the method to the object. For example, to display the string in upper case, use <code>upper()</code>:</p>
 <div class="codewrapper sourceCode" id="cb6">
@@ -382,7 +389,7 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'HELLO WORLD'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'HELLO WORLD'</span></span></code></pre>
 </div>
 <p>After running a cell, Jupyter displays a representation of the object that appears in the last line of a cell (but note that some actions, like assigning an object, have no output). Some cells will have more than one line, and it is often useful to display content produced earlier in a cell. This can be accomplished using the built-in <code>print()</code> function. In the cell below, we’ll use <code>print()</code> to show a series of strings:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -399,13 +406,13 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="va">h</span>
-<span class="va">e</span>
-<span class="va">l</span>
-<span class="va">l</span>
-<span class="va">o</span>
-
-<span class="st">'world'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="va">h</span></span>
+<span><span class="va">e</span></span>
+<span><span class="va">l</span></span>
+<span><span class="va">l</span></span>
+<span><span class="va">o</span></span>
+<span></span>
+<span><span class="st">'world'</span></span></code></pre>
 </div>
 <p>Note that the string “hello” at the top of the cell lacks a print statement and does not appear in the output, whereas the text “world” <em>does</em> appear in the output because it is the last line of the cell.</p>
 <p>Each object may contain many attributes and methods. Use the <code>help()</code> function on any object, including functions or methods, to show a description of the object and list the available methods.</p>
@@ -982,7 +989,7 @@ class str(object)
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="fl">1970</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="fl">1970</span></span></code></pre>
 </div>
 <p>Or convert the date to a string using the <a href="https://docs.python.org/3/library/datetime.html#datetime.date.strftime" class="external-link"><code>strftime()</code></a> method and <a href="https://docs.python.org/3/library/datetime.html#strftime-and-%20strptime-format-codes" class="external-link">date format codes</a>. Here, %Y corresponds to YYYY, %m to MM, and %d to DD.</p>
 <div class="codewrapper sourceCode" id="cb16">
@@ -993,7 +1000,7 @@ class str(object)
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'1970-01-01'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'1970-01-01'</span></span></code></pre>
 </div>
 <p>Like Python itself, the Python Standard Library is maintained by the Python Software Foundation. The built-in libraries are limited to a relatively small set of operations expected to be useful to a broad population of users. However, Python allows users to create their own libraries to perform actions that are beyond the scope of core Python. The rest of this lesson will focus on an external library called pandas.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -6005,7 +6012,7 @@ M
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9422,7 +9429,7 @@ F
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -10014,7 +10021,7 @@ any links that you are not going to use.
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="fl">35549</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="fl">35549</span></span></code></pre>
 </div>
 <p>pandas provides a suite of aggregation methods that go beyond this simple case. For example, we can count the number of non-NaN values in each column using <code>count()</code>:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -10045,7 +10052,7 @@ dtype: int64</code></pre>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="fl">1377594.0</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="fl">1377594.0</span></span></code></pre>
 </div>
 <p>Other aggregation methods supported by pandas include <code>min()</code>, <code>max()</code>, and <code>mean()</code>. These methods all ignore NaNs, so missing data does not affect these calculations.</p>
 <div id="challenge1" class="callout challenge">
@@ -10066,7 +10073,7 @@ dtype: int64</code></pre>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -10523,7 +10530,7 @@ Name: record_id, Length: 509, dtype: int64</code></pre>
   Show me the solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>How many individuals were counted in each year in total?</p>
 <div class="codewrapper sourceCode" id="cb19">
@@ -10575,7 +10582,7 @@ Name: record_id, dtype: int64</code></pre>
   Show me the solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>How many individuals were counted each year, for each different species?</p>
 <div class="codewrapper sourceCode" id="cb21">
@@ -11115,7 +11122,7 @@ Name: record_id, dtype: int64
   Show me the solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>What was the average weight of each species in each year?</p>
 <div class="codewrapper sourceCode" id="cb23">
@@ -11655,7 +11662,7 @@ Name: weight, dtype: float64
   Show me the solution to challenge 4
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>How many individuals were counted for each species that was observed more than 10 times?</p>
 <div class="codewrapper sourceCode" id="cb25">
@@ -11711,7 +11718,7 @@ Name: record_id, dtype: int64</code></pre>
   Show me the solution to challenges 2 and 3 combined
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>Calculate the number of individuals observed and the average weight for each species in each year.</p>
 <p>Note that weight contains NaNs, so counts for record_id and weight differ.</p>
@@ -14718,7 +14725,7 @@ Bird
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="op">{</span><span class="va">nan</span><span class="op">}</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="op">{</span><span class="va">nan</span><span class="op">}</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -17012,7 +17019,7 @@ Name: date, Length: 35549, dtype: object</code></pre>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'002'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'002'</span></span></code></pre>
 </div>
 <p>Using the <code>str</code> accessor, we can use that method to zero-pad the data in a <code>Series</code>:</p>
 <div class="codewrapper sourceCode" id="cb22">
@@ -18505,9 +18512,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.6.0" class="external-link">sandpaper (0.6.0)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.6.2" class="external-link">sandpaper (0.6.2)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.3.0" class="external-link">pegboard (0.3.0)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.0" class="external-link">varnish (0.2.0)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.1" class="external-link">varnish (0.2.1)</a>.</p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -18529,8 +18536,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/aio.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/aio.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-06-21",
-  "datePublished": "2022-06-21"
+  "dateModified": "2022-06-28",
+  "datePublished": "2022-06-28"
 }
 
   </script><script>

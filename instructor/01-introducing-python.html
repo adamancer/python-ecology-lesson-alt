@@ -73,8 +73,7 @@
           <button class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             More <i data-feather="chevron-down"></i>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"><li><a class="dropdown-item" href="profiles.html">Learner Profiles</a></li>
-          </ul></li>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul></li>
       </ul></div>
     <form class="d-flex col-md-2 search-form">
       <fieldset disabled><input class="form-control me-2 searchbox" type="search" placeholder="Search" aria-label="Search"><button class="btn btn-outline-success tablet-search-button" type="submit">
@@ -213,13 +212,21 @@
                 </h2>
                 <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlush12">
                   <div class="accordion-body">
-                    <ul><li><a href="profiles.html">Learner Profiles</a></li>
+                    <ul><li>
+                        <a href="../instructor/key-points.html">Key Points</a>
+                      </li>
+                      <li>
+                        <a href="../instructor/instructor-notes.html">Instructor Notes</a>
+                      </li>
+                      <li>
+                        <a href="../instructor/images.html">Extract All Images</a>
+                      </li>
+                      
                     </ul></div>
                 </div>
               </div>
             </div>
-
-            <a href="../instructor/aio.html">See all in one page</a>
+            <hr class="half-width resources"><a href="../instructor/aio.html">See all in one page</a>
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
             
@@ -316,7 +323,7 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'hello world'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'hello world'</span></span></code></pre>
 </div>
 <p>We can check the type of the variable using the <code>type()</code> function:</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -327,7 +334,7 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="va">str</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="va">str</span></span></code></pre>
 </div>
 <p>We can modify the text by calling one of the methods built into the <code>str</code> class. We call methods by appending a period and the name of the method to the object. For example, to display the string in upper case, use <code>upper()</code>:</p>
 <div class="codewrapper sourceCode" id="cb6">
@@ -338,7 +345,7 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'HELLO WORLD'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'HELLO WORLD'</span></span></code></pre>
 </div>
 <p>After running a cell, Jupyter displays a representation of the object that appears in the last line of a cell (but note that some actions, like assigning an object, have no output). Some cells will have more than one line, and it is often useful to display content produced earlier in a cell. This can be accomplished using the built-in <code>print()</code> function. In the cell below, we’ll use <code>print()</code> to show a series of strings:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -355,13 +362,13 @@
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="va">h</span>
-<span class="va">e</span>
-<span class="va">l</span>
-<span class="va">l</span>
-<span class="va">o</span>
-
-<span class="st">'world'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="va">h</span></span>
+<span><span class="va">e</span></span>
+<span><span class="va">l</span></span>
+<span><span class="va">l</span></span>
+<span><span class="va">o</span></span>
+<span></span>
+<span><span class="st">'world'</span></span></code></pre>
 </div>
 <p>Note that the string “hello” at the top of the cell lacks a print statement and does not appear in the output, whereas the text “world” <em>does</em> appear in the output because it is the last line of the cell.</p>
 <p>Each object may contain many attributes and methods. Use the <code>help()</code> function on any object, including functions or methods, to show a description of the object and list the available methods.</p>
@@ -881,7 +888,7 @@ class str(object)
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="fl">1970</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="fl">1970</span></span></code></pre>
 </div>
 <p>Or convert the date to a string using the <a href="https://docs.python.org/3/library/datetime.html#datetime.date.strftime" class="external-link"><code>strftime()</code></a> method and <a href="https://docs.python.org/3/library/datetime.html#strftime-and-%20strptime-format-codes" class="external-link">date format codes</a>. Here, %Y corresponds to YYYY, %m to MM, and %d to DD.</p>
 <div class="codewrapper sourceCode" id="cb16">
@@ -892,7 +899,7 @@ class str(object)
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span class="st">'1970-01-01'</span></code></pre>
+<pre class="output" tabindex="0"><code><span><span class="st">'1970-01-01'</span></span></code></pre>
 </div>
 <p>Like Python itself, the Python Standard Library is maintained by the Python Software Foundation. The built-in libraries are limited to a relatively small set of operations expected to be useful to a broad population of users. However, Python allows users to create their own libraries to perform actions that are beyond the scope of core Python. The rest of this lesson will focus on an external library called pandas.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -940,9 +947,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.6.0" class="external-link">sandpaper (0.6.0)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.6.2" class="external-link">sandpaper (0.6.2)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.3.0" class="external-link">pegboard (0.3.0)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.0" class="external-link">varnish (0.2.0)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.1" class="external-link">varnish (0.2.1)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -964,7 +971,7 @@ any links that you are not going to use.
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/01-introducing-python.html",
   "dateCreated": "2022-05-10",
   "dateModified": "2022-06-15",
-  "datePublished": "2022-06-21"
+  "datePublished": "2022-06-28"
 }
 
   </script><script>
