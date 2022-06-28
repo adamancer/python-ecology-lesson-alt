@@ -52,11 +52,11 @@ Open each of these csv files and explore them. What information is
 contained in each file? Specifically, if we had the following research
 questions:
 
--   How has the hindfoot length and weight of Dipodomys species
-    changed over time?
+-   How has the hindfoot length and weight of Dipodomys species changed
+    over time?
 -   What is the average weight of each species, per year?
--   What information can I learn about Dipodomys species in the
-    2000s, over time?
+-   What information can I learn about Dipodomys species in the 2000s,
+    over time?
 
 What would we need to answer these questions? Which files have the data
 we need? What operations would we need to perform if we were doing these
@@ -98,16 +98,16 @@ pandas offers the same advantages as any well-written library: It
 creates a common codebase for working on a single task, in this case,
 analyzing data. Some benefits of this approach include:
 
--   **Reliability:** Provides flexible, well-tested methods for
-    reading, querying, aggregating, grouping, and plotting data
--   **Repeatability:** Repeat the same analyses when data is added
-    or changed
+-   **Reliability:** Provides flexible, well-tested methods for reading,
+    querying, aggregating, grouping, and plotting data
+-   **Repeatability:** Repeat the same analyses when data is added or
+    changed
 -   **Speed:** Faster in many cases than coding our own functions in
     Python
--   **Reproducibility:** Document and share code in narrative form
-    using tools like Jupyter notebooks
--   **Community:** Access a large, active community for help when we
-    run into problems
+-   **Reproducibility:** Document and share code in narrative form using
+    tools like Jupyter notebooks
+-   **Community:** Access a large, active community for help when we run
+    into problems
 
 ## Importing data using pandas
 
@@ -140,9 +140,9 @@ load data from a CSV, `pd.read_csv()`. The function call has three
 parts:
 
 -   The name (or in this case, alias) of the object that defines the
-    function. This can be a library or any other object. It can also
-    be omitted in some cases (for example, when using a function
-    built into Python).
+    function. This can be a library or any other object. It can also be
+    omitted in some cases (for example, when using a function built into
+    Python).
 -   The name of the method we'd like to use
 -   A set of parentheses that tells the function to run.
 
@@ -322,8 +322,8 @@ pd.read_csv("data/surveys.csv")
 
 Here are a few things to observe about how the dataframe is structured:
 
--   By default, JupyterLab displays the first and last five rows of
-    the dataframe
+-   By default, JupyterLab displays the first and last five rows of the
+    dataframe
 -   Each row represents a record
 -   Each column represents a field
 -   The unlabeled column on the far left is called the *row label*
@@ -331,10 +331,9 @@ Here are a few things to observe about how the dataframe is structured:
     data, including:
     -   Assigning the *row index* as the row label
     -   Assigning each column a data type based on its contents
-    -   Assigning certain cells the value NaN, which stands for
-        "not a number" and is used to designate null values in
-        the dataset. Here, those cells represent blank cells in
-        the spreadsheet.
+    -   Assigning certain cells the value NaN, which stands for "not a
+        number" and is used to designate null values in the dataset.
+        Here, those cells represent blank cells in the spreadsheet.
 
 Much of this behavior can be controlled when the spreadsheet is first
 read by using keyword arguments. For example, to force `pd.read_csv()`
@@ -510,9 +509,10 @@ that column as the row label.
 
 Run `help()` on the `pd.read_csv()` method (note that you should omit
 the trailing parentheses). Alternatively, take a look at the [much
-prettier documentation](https://pandas.pydata.org/pandas-
-docs/stable/reference/api/pandas.read_csv.html) provided by the pandas
-developers. Based on that information, answer the following questions:
+prettier
+documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+provided by the pandas developers. Based on that information, answer the
+following questions:
 
 1.  What parameter would you use to control how null values are
     interpreted?
@@ -766,13 +766,13 @@ equivalents.
 
 ### Data types in pandas
 
-|Data Type|Description|Similar To|
-|-|-|-|
-|object|Character string or mixed|str|
-|int64|Integer numerical|int|
-|float64|Approximate numerical|float|
-|bool|Stores True or False values|bool|
-|datetime64|Stores date and time values|datetime.datetime|
+  Data Type    Description                   Similar To
+  ------------ ----------------------------- -------------------
+  object       Character string or mixed     str
+  int64        Integer numerical             int
+  float64      Approximate numerical         float
+  bool         Stores True or False values   bool
+  datetime64   Stores date and time values   datetime.datetime
 
 ## Saving a dataframe
 
@@ -789,23 +789,23 @@ surveys.to_csv("data/surveys_mod.csv", index=False)
 
 This is far from the only option for writing data--pandas supports a
 variety of file types for both reading and writing. Try searching for
-"read_" in the [pandas API
+"read\_" in the [pandas API
 reference](https://pandas.pydata.org/docs/reference/index.html) to see
 the supported formats.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   This lesson uses real data from a decades-long survey of rodents
-    in Arizona
+-   This lesson uses real data from a decades-long survey of rodents in
+    Arizona
 -   pandas is a data analysis library that allows users to read,
     manipulate, and view tabular data using Python
--   pandas represents data as a dataframe consisting of rows
-    (records) and columns (fields or variables)
+-   pandas represents data as a dataframe consisting of rows (records)
+    and columns (fields or variables)
 -   Read a dataframe from CSV using the `pd.read_csv()` function
 -   Write a dataframe to CSV using the `to_csv()` method
--   The behavior of a function can be modified by including
-    arguments and keyword arguments when the function is called
--   pandas uses its own classes to represent text, numbers,
-    booleans, and datetimes
+-   The behavior of a function can be modified by including arguments
+    and keyword arguments when the function is called
+-   pandas uses its own classes to represent text, numbers, booleans,
+    and datetimes
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

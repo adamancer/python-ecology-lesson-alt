@@ -800,7 +800,7 @@ surveys.tail()
 </table>
 
 The `head()` and `tail()` methods are useful for getting a feel for how
-our data is structured, but we'll also want to  be able to look at
+our data is structured, but we'll also want to be able to look at
 specific rows. As when we selected columns above, we can use square
 brackets to extract *slices* from the dataframe. A slice is a subset of
 the dataframe starting at one row and ending at another. To get a slice,
@@ -875,13 +875,12 @@ surveys[2:5]
 
 There are three things to be aware of when slicing a dataframe:
 
--   Row indexes are zero-based. That is, the first row has an index
-    of 0, not 1.
+-   Row indexes are zero-based. That is, the first row has an index of
+    0, not 1.
 -   When slicing, the slice includes start but not the end index. In
-    this case, that means the slice includes rows 2, 3, and 4 but
-    not 5.
--   The row label can be different from the row index. They happen
-    to be the same here, but don't count on that being true.
+    this case, that means the slice includes rows 2, 3, and 4 but not 5.
+-   The row label can be different from the row index. They happen to be
+    the same here, but don't count on that being true.
 
 Core Python types like `list` and `tuple` use the same conventions, as
 do most libraries that deal with sequences.
@@ -2169,8 +2168,7 @@ at the end of this lesson.
 
 We can combine conditionals using what are called *bitwise operators*:
 
--   `&`: True if conditions on both sides of the operator are True
-    (and)
+-   `&`: True if conditions on both sides of the operator are True (and)
 -   `|`: True if a condition on either side is True (or)
 
 To return all observations of DM in or after 2000, we can combine the
@@ -3231,7 +3229,7 @@ surveys[2:6]["species_id"] = "FD"
 ```
 
 ```{.output}
-C:\...\1234567890.py:1: SettingWithCopyWarning:
+C:\...\1234567890.py:1: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -3332,20 +3330,17 @@ This attribute allows you to extract and modify cells in a DataFrame
 using the following syntax: `df.loc[row_indexer, col_indexer]`.
 
 The *row_indexer* argument is used to select one or more rows. It can
-be:
-
--   A row label (i.e., the bold column on the far left)
-    -   `0` returns the row with label 0
+be: - A row label (i.e., the bold column on the far left) - `0` returns
+the row with label 0
 
 -   A slice including multiple rows:
     -   `:` returns all rows
-    -   `:2` returns all rows from the beginning of the
-        dataframe to the row labeled 2, *inclusive*
-    -   `2:` returns all rows from the row labeled 2 to the end
-        of the dataframe, *inclusive*
+    -   `:2` returns all rows from the beginning of the dataframe to the
+        row labeled 2, *inclusive*
+    -   `2:` returns all rows from the row labeled 2 to the end of the
+        dataframe, *inclusive*
     -   `2:5` returns all rows between those labeled 2 and 5,
         *inclusive*
-
 -   A conditional, as in the examples above.
 
 The *col_indexer* argument is used to select one or more columns. It
@@ -3432,21 +3427,21 @@ Name: species_id, dtype: object
 
 pandas provides another indexer, `iloc`, that allows us to select and
 modify data using row and column indexes instead of labels. Learn more
-in the [pandas documentation](https://pandas.pydata.org/pandas-
-docs/stable/reference/api/pandas.DataFrame.iloc.html).
+in the [pandas
+documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 -   Use square brackets to access rows, columns, and specific cells
--   Use operators like `+`, `-`, and `/` to perform arithmetic on
-    rows and columns
+-   Use operators like `+`, `-`, and `/` to perform arithmetic on rows
+    and columns
 -   Store the results of calculations in a dataframe by adding a new
     column or overwriting an existing column
 -   Sort data, rename columns, and get unique values in a dataframe
     using methods provided by pandas
--   By default, most dataframe operations return a copy of the
-    original data
+-   By default, most dataframe operations return a copy of the original
+    data
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

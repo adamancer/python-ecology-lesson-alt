@@ -21,8 +21,8 @@ scheduled lesson.**
 
 We will use a program called Miniconda to set up JupyterLab, so first we
 need to download and install [Miniconda (64
-bit)](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-
-installer-links). We recommend using the following installers:
+bit)](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
+We recommend using the following installers:
 
 -   **Windows**: Miniconda3 Windows 64-bit
 -   **macOS**:
@@ -39,9 +39,9 @@ using the CLI to install and run JupyterLab.
 Each operating system has one or more command-line interfaces available.
 We recommend using the following applications for this lesson:
 
--   **Windows:** Use the Anaconda Prompt, which was installed as
-    part of Miniconda. You can find it by searching for Anaconda
-    Prompt in the search box on the Windows toolbar.
+-   **Windows:** Use the Anaconda Prompt, which was installed as part of
+    Miniconda. You can find it by searching for Anaconda Prompt in the
+    search box on the Windows toolbar.
 -   **macOS:** Use the Terminal. You can find it in the
     Applications/Utilities folder or by searching for Terminal using
     Spotlight.
@@ -60,12 +60,18 @@ then press enter to run the command.
 
 ### Installing JupyterLab
 
-Once the command-line interface is open, run the following command to
+Once the command-line interface is open, run the following commands to
 install the software needed for this course:
 
+<<<<<<< Updated upstream
 ```
 conda create -c conda-forge --yes --name python-ecology-lesson altair jupyterlab pandas
 ```
+=======
+    conda create --name python-ecology-lesson
+    conda activate python-ecology-lesson
+    conda install --channel conda-forge --yes altair jupyterlab pandas
+>>>>>>> Stashed changes
 
 ### Downloading data to the lesson folder
 
@@ -73,35 +79,28 @@ Next we'll create the lesson folder and download the data needed for the
 lesson:
 
 1.  Create a folder called **python-ecology-lesson** on your desktop
-2.  Create a folder called **data** inside the folder created in
-    step 1
+2.  Create a folder called **data** inside the folder created in step 1
 3.  Download the following files into the data folder:
-    -   surveys.csv:
-        https://figshare.com/ndownloader/files/10717177
-    -   species.csv:
-        https://figshare.com/ndownloader/files/3299483
+    -   surveys.csv: https://figshare.com/ndownloader/files/10717177
+    -   species.csv: https://figshare.com/ndownloader/files/3299483
 
 Alternatively, we can run the following commands in the command prompt
 to create the lesson folders and download the necessary data:
 
-```
-cd ~/Desktop
-mkdir python-ecology-lesson/data
-cd python-ecology-lesson/data
-wget -O surveys.csv https://figshare.com/ndownloader/files/10717177
-wget -O species.csv https://figshare.com/ndownloader/files/3299483
-```
+    cd ~/Desktop
+    mkdir python-ecology-lesson/data
+    cd python-ecology-lesson/data
+    wget -O surveys.csv https://figshare.com/ndownloader/files/10717177
+    wget -O species.csv https://figshare.com/ndownloader/files/3299483
 
 ## Running JupyterLab
 
 Once JupyterLab has been installed, we can run it by opening the
 command-line interface and running the following commands:
 
-```
-conda activate python-ecology-lesson
-cd ~/Desktop/python-ecology-lesson
-jupyter-lab
-```
+    conda activate python-ecology-lesson
+    cd ~/Desktop/python-ecology-lesson
+    jupyter-lab
 
 JupyterLab should now open in a new browser window.
 

@@ -8,7 +8,7 @@ import os
 import re
 import shutil
 import subprocess
-from textwrap import wrap
+import tempfile
 
 import yaml
 
@@ -99,45 +99,18 @@ class Cell:
         if self.cell_type == "code":
             return text
 
-        pattern = r"^( *)(\d+\.|\+|\-|\*) "
-
-        # Wrap markdown
-        num_chars = 72
-        lines = []
-        for line in text.splitlines():
-
-            # Wrap lists
-            match = re.match(pattern, line)
-            if match:
-
-                line = line[len(match.group()) :]
-
-                bullet = match.group(2)
-                if bullet in "+*":
-                    bullet = "-"
-                bullet += " " * (4 - len(bullet))
-
-                init_indent = match.group(1) + bullet
-                sub_indent = match.group(1) + "    "
-
-                lines.extend(
-                    wrap(
-                        line,
-                        num_chars - len(sub_indent),
-                        initial_indent=init_indent,
-                        subsequent_indent=sub_indent,
-                    )
-                )
-
-            # Do not wrap tables
-            elif line.startswith("|"):
-                lines.append(line)
-
-            # Wrap all other markdown
-            else:
-                lines.extend(wrap(line, num_chars, break_long_words=False) + [""])
-
-        text = "\n".join(lines)
+        # Wrap markdown using pandoc
+        with tempfile.NamedTemporaryFile(
+            "w", encoding="utf-8", suffix=".md", delete=False
+        ) as f:
+            f.write(text)
+            path = f.name
+        subprocess.run(
+            ["pandoc", path, "-o", path, "-t", "markdown+yaml_metadata_block", "-s"]
+        )
+        with open(path, encoding="utf-8") as f:
+            text = f.read().replace("``` ", "```").replace("```output", "```{.output}")
+        os.remove(path)
 
         # Single space code blocks
         for code_block in re.findall("```.*?```", text, flags=re.DOTALL):
