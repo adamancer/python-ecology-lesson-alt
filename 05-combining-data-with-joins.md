@@ -14,8 +14,8 @@ title: Combining Dataframes
 
 -   Use `pd.merge()` to add species info to the survey dataset
 -   Use `pd.concat()` to add additional rows the dataset
--   Use string methods to combine, split, and modify text columns
-    using the `str` accessor
+-   Use string methods to combine, split, and modify text columns using
+    the `str` accessor
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -32,7 +32,7 @@ and split data using pandas.
 The survey dataframe we've been using throughout this lesson has a
 column called species_id. We used this column in the previous lesson to
 calculate summary statistics about observations of each species. But the
-species_id is just a two-letter code—what does each code stand for? To
+species_id is just a two-letter code---what does each code stand for? To
 find out, we'll now load both the survey dataset and a second dataset
 containing more detailed information about the various species observed.
 Read the second dataframe from a file called species.csv:
@@ -1060,14 +1060,14 @@ not appear in the species dataframe will be dropped.
 This is not always desirable behavior. Fortunately, pandas supports
 additional types of merges:
 
--   **Inner:** Include all rows with common values in the join
-    column. This is the default behavior.
--   **Left:** Include all rows from the left dataframe. Columns from
-    the right dataframe are populated if a common value exists and
-    set to NaN if not.
--   **Right:** Include all rows from the right dataframe. Columns
-    from the left dataframe are populated if a common value exists
-    and set to NaN if not.
+-   **Inner:** Include all rows with common values in the join column.
+    This is the default behavior.
+-   **Left:** Include all rows from the left dataframe. Columns from the
+    right dataframe are populated if a common value exists and set to
+    NaN if not.
+-   **Right:** Include all rows from the right dataframe. Columns from
+    the left dataframe are populated if a common value exists and set to
+    NaN if not.
 -   **Outer:** Includes all rows from both dataframes
 
 We want to keep all of our observations, so let's do a left join
@@ -2122,8 +2122,8 @@ text.zfill(3)
 '002'
 ```
 
-Using the `str` accessor, we can use that method to zero-pad the data
-in a `Series`:
+Using the `str` accessor, we can use that method to zero-pad the data in
+a `Series`:
 
 ```python
 # Pad month and day to two characters
@@ -2287,16 +2287,15 @@ interpret our results).
 
 Try using pandas to answer the following questions.
 
-1.  How many specimens of each sex are there for each year,
-    including those whose sex is unknown?
+1.  How many specimens of each sex are there for each year, including
+    those whose sex is unknown?
 2.  What is the average weight of each taxa?
-3.  What are the minimum, maximum and average weight for each
-    species of Rodent?
-4.  What is the average hindfoot length for male and female rodent
-    of each species? Is there a male/female difference?
-5.  What is the average weight of each rodent species over the
-    course of the years? Is there any noticeable trend for any of
-    the species?
+3.  What are the minimum, maximum and average weight for each species of
+    Rodent?
+4.  What is the average hindfoot length for male and female rodent of
+    each species? Is there a male/female difference?
+5.  What is the average weight of each rodent species over the course of
+    the years? Is there any noticeable trend for any of the species?
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -3220,7 +3219,6 @@ Name: weight, dtype: float64
 -   Combine multiple text columns into one using the `+` operator
 -   Use the `str` accessor to use string methods like `split()` and
     `zfill()` on text columns
--   Convert date strings to datetime objects using
-    `pd.to_datetime()`
+-   Convert date strings to datetime objects using `pd.to_datetime()`
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

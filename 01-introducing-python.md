@@ -569,16 +569,30 @@ including numbers or collections of data. The core Python data types are
 introduced in the table below. We'll talk more about some of these as we
 encounter them in the lesson:
 
-|Type|Definition|Example|
-|-|-|-|
-|[str](https://docs.python.org/3/library/stdtypes.html#textseq)|Character string|`"hello world"`|
-|[int](https://docs.python.org/3/library/functions.html#int)|Integer numerical|`42`|
-|[float](https://docs.python.org/3/library/functions.html#float)|Approximate numerical|`0.406`|
-|[bool](https://docs.python.org/3/library/functions.html#bool)|Stores True or False values|`True` or `False`|
-|[list](https://docs.python.org/3/library/stdtypes.html#lists)|Sequence that can be modified|`["a", "b", "c"]`|
-|[tuple](https://docs.python.org/3/library/stdtypes.html#tuples)|Sequence that cannot be modified|`("a", "b", "c")`|
-|[dict](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)|Mapping of keys to values|`{"DC": "District of Columbia", "MD": "Maryland", "VA": "Virginia"}`|
-|[set](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)|Collection of unique values|`{"1", "2", 1}`|
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Type                                                                             Definition              Example
+  -------------------------------------------------------------------------------- ----------------------- ----------------------------------------------------------------------
+  [str](https://docs.python.org/3/library/stdtypes.html#textseq)                   Character string        `"hello world"`
+
+  [int](https://docs.python.org/3/library/functions.html#int)                      Integer numerical       `42`
+
+  [float](https://docs.python.org/3/library/functions.html#float)                  Approximate numerical   `0.406`
+
+  [bool](https://docs.python.org/3/library/functions.html#bool)                    Stores True or False    `True` or `False`
+                                                                                   values                  
+
+  [list](https://docs.python.org/3/library/stdtypes.html#lists)                    Sequence that can be    `["a", "b", "c"]`
+                                                                                   modified                
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuples)                  Sequence that cannot be `("a", "b", "c")`
+                                                                                   modified                
+
+  [dict](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict)       Mapping of keys to      `{"DC": "District of Columbia", "MD": "Maryland", "VA": "Virginia"}`
+                                                                                   values                  
+
+  [set](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset)   Collection of unique    `{"1", "2", 1}`
+                                                                                   values                  
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Libraries
 
@@ -589,12 +603,21 @@ examples.
 
 ### Examples of built-in functions
 
-|Name|Description|Example|
-|-|-|-|
-|[`abs()`](https://docs.python.org/3/library/functions.html#abs)|Gets the absolute value of a number|`abs(-1.5) # returns 1.5`|
-|[`max()`](https://docs.python.org/3/library/functions.html#max)|Gets the highest value in a sequence|`min([1, 2, 3]) # returns 3`|
-|[`min()`](https://docs.python.org/3/library/functions.html#min)|Gets the lowest value in a sequence|`min([1, 2, 3]) # returns 1`|
-|[`round()`](https://docs.python.org/3/library/functions.html#round)|Rounds a number to the nearest integer|`round(5.4) # returns 5`|
+  ----------------------------------------------------------------------------------------------------------------------------
+  Name                                                                  Description             Example
+  --------------------------------------------------------------------- ----------------------- ------------------------------
+  [`abs()`](https://docs.python.org/3/library/functions.html#abs)       Gets the absolute value `abs(-1.5) # returns 1.5`
+                                                                        of a number             
+
+  [`max()`](https://docs.python.org/3/library/functions.html#max)       Gets the highest value  `min([1, 2, 3]) # returns 3`
+                                                                        in a sequence           
+
+  [`min()`](https://docs.python.org/3/library/functions.html#min)       Gets the lowest value   `min([1, 2, 3]) # returns 1`
+                                                                        in a sequence           
+
+  [`round()`](https://docs.python.org/3/library/functions.html#round)   Rounds a number to the  `round(5.4) # returns 5`
+                                                                        nearest integer         
+  ----------------------------------------------------------------------------------------------------------------------------
 
 Python also includes a number of built-in libraries. A *library* bundles
 functions and other code related to a single task or data type. They are
@@ -611,11 +634,17 @@ came from.
 
 ### Examples from the Python Standard Library
 
-|Library|Description|
-|-|-|
-|[datetime](https://docs.python.org/3/library/datetime.html)|Reads, writes, and analyzes dates and times|
-|[os](https://docs.python.org/3/library/os.html)|Create, manipulate, and get information about files and paths|
-|[random](https://docs.python.org/3/library/random.html)|Generate pseudo-random numbers|
+  -------------------------------------------------------------------------------------------------
+  Library                                                       Description
+  ------------------------------------------------------------- -----------------------------------
+  [datetime](https://docs.python.org/3/library/datetime.html)   Reads, writes, and analyzes dates
+                                                                and times
+
+  [os](https://docs.python.org/3/library/os.html)               Create, manipulate, and get
+                                                                information about files and paths
+
+  [random](https://docs.python.org/3/library/random.html)       Generate pseudo-random numbers
+  -------------------------------------------------------------------------------------------------
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -660,9 +689,8 @@ date.year
 Or convert the date to a string using the
 [`strftime()`](https://docs.python.org/3/library/datetime.html#datetime.date.strftime)
 method and [date format
-codes](https://docs.python.org/3/library/datetime.html#strftime-and-
-strptime-format-codes). Here, %Y corresponds to YYYY, %m to MM, and %d
-to DD.
+codes](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes).
+Here, %Y corresponds to YYYY, %m to MM, and %d to DD.
 
 ```python
 date.strftime("%Y-%m-%d")
@@ -681,16 +709,16 @@ The rest of this lesson will focus on an external library called pandas.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Python is a widely used language that can be used for a variety
-    of tasks, including analyzing data
+-   Python is a widely used language that can be used for a variety of
+    tasks, including analyzing data
 -   Python uses different data types to handle text, numbers,
     collections, and other kinds of data
 -   Assign values to variables using the `=` operator
 -   Use functions and methods to perform specific actions
--   Python's functionality can be extended using libraries,
-    including libraries written by members of the community that
-    address discipline-specific needs
--   Use the `help()` function and developer documentation to learn
-    more about Python and Python libraries
+-   Python's functionality can be extended using libraries, including
+    libraries written by members of the community that address
+    discipline-specific needs
+-   Use the `help()` function and developer documentation to learn more
+    about Python and Python libraries
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

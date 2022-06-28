@@ -397,8 +397,8 @@ Write statements that return:
 1.  How many individuals were counted in each year in total
 2.  How many were counted each year, for each different species
 3.  The average weights of each species in each year
-4.  How many individuals were counted for each species that was
-    observed more than 10 times
+4.  How many individuals were counted for each species that was observed
+    more than 10 times
 
 Can you get the answer to both 2 and 3 in a single query?
 
@@ -1691,10 +1691,9 @@ NaN instead of text or numbers. NaN, short for "not a number," is a
 special type of float used by pandas to represent missing data. When
 reading from a CSV, as we have done throughout this lesson, pandas
 interprets certains values as NaN (see *na_values* in the [pd.read_csv()
-documentation](https://pandas.pydata.org/pandas-
-docs/stable/reference/api/pandas.read_csv.html) for the default list).
-NaNs are excluded from groups and most aggregation calculations in
-pandas, including counts.
+documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+for the default list). NaNs are excluded from groups and most
+aggregation calculations in pandas, including counts.
 
 It is crucial to understand how missing data is represented in a
 dataset. Failing to do so may introduce errors into our analysis. The
@@ -1915,13 +1914,13 @@ that have valid data in every field.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Calculate individual summary statistics using dataframe methods
-    like `mean()`, `max()`, and `min()`
--   Calculate multiple summary statistics at once using the
-    dataframe methods `describe()` and `agg()`
+-   Calculate individual summary statistics using dataframe methods like
+    `mean()`, `max()`, and `min()`
+-   Calculate multiple summary statistics at once using the dataframe
+    methods `describe()` and `agg()`
 -   Group data by one or more columns using the `groupby()` method
 -   pandas uses NaN to represent missing data in a dataframe
--   Failing to consider how missing data is interpreted in a dataset
-    can introduce errors into calculations
+-   Failing to consider how missing data is interpreted in a dataset can
+    introduce errors into calculations
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
