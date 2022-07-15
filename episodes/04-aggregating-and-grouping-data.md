@@ -1,5 +1,7 @@
 ---
 title: Aggregating and Grouping Data
+teaching: 60
+exercises: 0
 ---
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

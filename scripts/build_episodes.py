@@ -29,6 +29,9 @@ FENCES = {
     "continue",
 }
 
+TAGS = {"metadata", "hide_input", "hide_output"}
+TAGS.update(FENCES)
+
 
 class Cell:
     """Formats a notebook cell for a carpentries lesson"""
@@ -61,7 +64,10 @@ class Cell:
     @property
     def tags(self):
         """Gets the value for metadata.tags from the cell_dict"""
-        return self.cell["metadata"].get("tags", [])
+        tags = self.cell["metadata"].get("tags", [])
+        if set(tags) - TAGS:
+            raise ValueError(f"Unrecognized tags: {set(tags) - TAGS}")
+        return tags
 
     @tags.setter
     def tags(self, tags):
@@ -92,7 +98,7 @@ class Cell:
     def text(self):
         """Gets the text of the cell"""
 
-        if "hide_input" in self.tags:
+        if set(self.tags) & set(("hide_input", "metadata")):
             return ""
 
         text = "".join(self.source)
@@ -131,7 +137,7 @@ class Cell:
     @property
     def output(self):
 
-        if "hide_output" in self.tags or not self.cell["outputs"]:
+        if "hide_output" in self.tags or not self.cell.get("outputs"):
             return ""
 
         keys = ["image/png", "text/plain", "text"]
@@ -322,7 +328,11 @@ class Notebook:
     def __str__(self):
         content = "\n".join([b.to_markdown().rstrip("\n") + "\n" for b in self.blocks])
         content = re.sub("^# .*", "", content).strip()
-        return f"---\n{yaml.dump(self.metadata)}---\n\n" + content.rstrip() + "\n"
+        return (
+            f"---\n{yaml.dump(self.metadata, sort_keys=False)}---\n\n"
+            + content.rstrip()
+            + "\n"
+        )
 
     def __iter__(self):
         return iter(self.blocks)
@@ -335,6 +345,16 @@ class Notebook:
             for cell in block:
                 if cell.cell_type == "markdown" and cell.header_level == 1:
                     metadata["title"] = cell.title
+                elif "metadata" in cell.tags:
+                    for line in cell.source:
+                        try:
+                            key, val = [
+                                s.lstrip("-").strip() for s in line.split(":", 1)
+                            ]
+                            metadata[key.lower()] = int(val)
+                        except ValueError:
+                            pass
+
         return metadata
 
     def to_markdown(self, path=None):

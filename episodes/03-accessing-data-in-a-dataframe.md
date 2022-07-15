@@ -1,5 +1,7 @@
 ---
 title: Accessing Data in a Dataframe
+teaching: 60
+exercises: 0
 ---
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

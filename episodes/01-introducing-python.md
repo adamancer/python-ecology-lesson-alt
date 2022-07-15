@@ -1,5 +1,7 @@
 ---
 title: Introducing Python
+teaching: 60
+exercises: 0
 ---
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
