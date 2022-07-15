@@ -78,8 +78,8 @@ lesson:
     -   surveys.csv: https://figshare.com/ndownloader/files/10717177
     -   species.csv: https://figshare.com/ndownloader/files/3299483
 
-Alternatively, we can run the following commands in the command prompt
-to create the lesson folders and download the necessary data:
+Alternatively, we can run the following commands to create the lesson
+folders and download the necessary data:
 
     cd ~/Desktop
     mkdir python-ecology-lesson/data
@@ -87,13 +87,30 @@ to create the lesson folders and download the necessary data:
     wget -O surveys.csv https://figshare.com/ndownloader/files/10717177
     wget -O species.csv https://figshare.com/ndownloader/files/3299483
 
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+#### Note for Windows users
+
+The commands used here assume that your desktop is in a standard
+location. If you are using a Windows computer with OneDrive enabled,
+your desktop may be in a different place. You can use the following
+command in place of `cd ~/Desktop` in the instructions on this page to
+get to your desktop no matter where it is:
+
+```powershell
+cd $([Environment]::GetFolderPath("Desktop"))
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Running JupyterLab
 
 Once JupyterLab has been installed, we can run it by opening the
 command-line interface and running the following commands:
 
     conda activate python-ecology-lesson
-    cd ~/Desktop/python-ecology-lesson
+    cd ~/Desktop
+    cd python-ecology-lesson
     jupyter-lab
 
 JupyterLab should now open in a new browser window.
