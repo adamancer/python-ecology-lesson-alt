@@ -52,3 +52,7 @@ po/*~
 # omit python files
 .ipynb_checkpoints
 _preflight.py
+
+# omit r files
+.Rprofile
+renv/

@@ -34,12 +34,6 @@ from the scripts directory:
 
     python build_episodes.py ..
 
-By default, this command creates markdown files with the code output
-fields already populated. If you’d prefer to create RMarkdown files and
-use reticulate to generate the output instead, use:
-
-    python build_episodes.py .. --to rmd
-
 Markdown files are saved to the episodes folder except for the
 following:
 
