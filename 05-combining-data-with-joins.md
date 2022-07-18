@@ -1,5 +1,7 @@
 ---
 title: Combining Dataframes
+teaching: 60
+exercises: 0
 ---
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
