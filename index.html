@@ -312,7 +312,7 @@ any links that you are not going to use.
 <li>species.csv: <a href="https://figshare.com/ndownloader/files/3299483" class="external-link uri">https://figshare.com/ndownloader/files/3299483</a>
 </li>
 </ul></li>
-</ol><p>Alternatively, we can run the following commands in the command prompt to create the lesson folders and download the necessary data:</p>
+</ol><p>Alternatively, we can run the following commands to create the lesson folders and download the necessary data:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -322,18 +322,35 @@ any links that you are not going to use.
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> surveys.csv https://figshare.com/ndownloader/files/10717177</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> species.csv https://figshare.com/ndownloader/files/3299483</span></code></pre>
 </div>
+<div id="callout2" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="note-for-windows-users" class="callout-inner">
+<h3 class="callout-title">Note for Windows users</h3>
+<div class="callout-content">
+<p>The commands used here assume that your desktop is in a standard location. If you are using a Windows computer with OneDrive enabled, your desktop may be in a different place. You can use the following command in place of <code>cd ~/Desktop</code> in the instructions on this page to get to your desktop no matter where it is:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cd</span> $([Environment]::GetFolderPath(<span class="st">"Desktop"</span>))</span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section><section id="running-jupyterlab"><h2 class="section-heading">Running JupyterLab</h2>
 <hr class="half-width"><p>Once JupyterLab has been installed, we can run it by opening the command-line interface and running the following commands:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate python-ecology-lesson</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop/python-ecology-lesson</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-lab</span></span></code></pre>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate python-ecology-lesson</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> python-ecology-lesson</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter-lab</span></span></code></pre>
 </div>
 <p>JupyterLab should now open in a new browser window.</p>
-<div id="callout2" class="callout callout">
+<div id="callout3" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -369,9 +386,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper" class="external-link">sandpaper (0.9.0)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.0" class="external-link">sandpaper (0.9.0)</a>,
         <a href="https://github.com/carpentries/pegboard/tree/0.3.0" class="external-link">pegboard (0.3.0)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.1" class="external-link">varnish (0.2.1)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.2" class="external-link">varnish (0.2.2)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -392,8 +409,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/index.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/index.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-07-12",
-  "datePublished": "2022-07-12"
+  "dateModified": "2022-07-18",
+  "datePublished": "2022-07-18"
 }
 
   </script><script>
