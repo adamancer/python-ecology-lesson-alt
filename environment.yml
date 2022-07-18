@@ -10,9 +10,14 @@ dependencies:
 - altair
 - jupyterlab
 - pandas
-- pyyaml
+- pyyaml=5.3.1
+- textdistance=4.2.0
 
 # Dev packages
 - black
 - jupyter_contrib_nbextensions
 - jupyterlab-spellchecker
+
+# pip packages
+- pip:
+  - glosario
