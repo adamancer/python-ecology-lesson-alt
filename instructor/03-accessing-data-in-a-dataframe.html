@@ -671,7 +671,8 @@ NaN
 35549 rows × 9 columns
 </p>
 <p>We will now look at how to access rows and columns in the dataframe.</p>
-<section id="getting-columns"><h2 class="section-heading">Getting columns</h2>
+<section id="getting-columns"><h2 class="section-heading">Getting columns<a class="anchor" aria-label="anchor" href="#getting-columns"></a>
+</h2>
 <hr class="half-width"><p>We can get the values from a single column by passing a string inside square brackets to the dataframe object. For example, to look at the year column, use:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -862,7 +863,8 @@ day
 35549 rows × 3 columns
 </p>
 </div>
-</section><section id="getting-rows"><h2 class="section-heading">Getting rows</h2>
+</section><section id="getting-rows"><h2 class="section-heading">Getting rows<a class="anchor" aria-label="anchor" href="#getting-rows"></a>
+</h2>
 <hr class="half-width"><p>We can get the rows at the beginning of the table using the head method:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2018,7 +2020,8 @@ NaN
 <li>When slicing, the slice includes start but not the end index. In this case, that means the slice includes rows 2, 3, and 4 but not 5.</li>
 <li>The row label can be different from the row index. They happen to be the same here, but don’t count on that being true.</li>
 </ul><p>Core Python types like <code>list</code> and <code>tuple</code> use the same conventions, as do most libraries that deal with sequences.</p>
-</section><section id="getting-unique-values"><h2 class="section-heading">Getting unique values</h2>
+</section><section id="getting-unique-values"><h2 class="section-heading">Getting unique values<a class="anchor" aria-label="anchor" href="#getting-unique-values"></a>
+</h2>
 <hr class="half-width"><p>Recall that we can use square brackets to return a single column from a dataframe. We can get the list of unique values within that column using the <code>unique()</code> method:</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2155,7 +2158,8 @@ US
 </tr></tbody></table><p>
 612 rows × 2 columns
 </p>
-</section><section id="calculating-values"><h2 class="section-heading">Calculating values</h2>
+</section><section id="calculating-values"><h2 class="section-heading">Calculating values<a class="anchor" aria-label="anchor" href="#calculating-values"></a>
+</h2>
 <hr class="half-width"><p>The survey dataset includes two columns, hindfoot_length and weight, that are stored as numbers and represent measurements. We may want to perform calculations using numbers like these in our own data. We can do so using Python’s built-in mathematical operators, including:</p>
 <ul><li>
 <code>x + y</code> for addition</li>
@@ -3019,7 +3023,8 @@ M
 35547    87.0
 Length: 30676, dtype: float64</code></pre>
 </div>
-</section><section id="renaming-columns"><h2 class="section-heading">Renaming columns</h2>
+</section><section id="renaming-columns"><h2 class="section-heading">Renaming columns<a class="anchor" aria-label="anchor" href="#renaming-columns"></a>
+</h2>
 <hr class="half-width"><p>The hindfoot_length and weight columns don’t specify a unit, which may get confusing if we want to perform unit conversions like the one above. Fortunately, dataframes allow us to rename existing columns using the <code>rename()</code> method.</p>
 <p>The <code>rename()</code> method uses a dictionary (or <code>dict</code>) to map between the old and new column names. As with <code>list</code> above, the <code>dict</code> data type is built into Python–we don’t need to import anything to use it. A <code>dict</code> maps keys to values. We can create one using curly braces:</p>
 <div class="codewrapper sourceCode" id="cb21">
@@ -3458,7 +3463,8 @@ M
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>Create a dataframe that returns the year, month, day, species_id and weight in mg.</p>
 </div>
@@ -3709,7 +3715,8 @@ DO
 </div>
 </div>
 </div>
-</section><section id="filtering-data"><h2 class="section-heading">Filtering data</h2>
+</section><section id="filtering-data"><h2 class="section-heading">Filtering data<a class="anchor" aria-label="anchor" href="#filtering-data"></a>
+</h2>
 <hr class="half-width"><p>pandas provides a variety of ways to filter a dataframe. For example, suppose we want to look at a specific species in the surveys_nona dataframe. We can view the rows matching a given species using the same square brackets we used above to select specific columns and rows. Here, however, instead of passing a value or list of values, we will pass a <em>conditional expression</em>.</p>
 <p>A conditional expression is a statement that evaluates as either True or False. They often make use of inequality operators, for example:</p>
 <ul><li>
@@ -3739,7 +3746,8 @@ DO
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="for-assignment-for-equality" class="callout-inner">
-<h3 class="callout-title">= for assignment, == for equality</h3>
+<h3 class="callout-title">= for assignment, == for equality<a class="anchor" aria-label="anchor" href="#for-assignment-for-equality"></a>
+</h3>
 <div class="callout-content">
 <p>Remember that, in Python, a single equal sign is used to assign values to variables. We’ve already used the assignment operator in this lesson, for example, when we created a new column in the dataframe.</p>
 </div>
@@ -4564,7 +4572,8 @@ M
 4947 rows × 10 columns
 </p>
 <p>As with <code>rename()</code> above, each filtering operation returns a copy of the dataframe. We will look at how to make changes to the original dataframe at the end of this lesson.</p>
-</section><section id="building-more-complex-queries"><h2 class="section-heading">Building more complex queries</h2>
+</section><section id="building-more-complex-queries"><h2 class="section-heading">Building more complex queries<a class="anchor" aria-label="anchor" href="#building-more-complex-queries"></a>
+</h2>
 <hr class="half-width"><p>We can combine conditionals using what are called <em>bitwise operators</em>:</p>
 <ul><li>
 <code>&amp;</code>: True if conditions on both sides of the operator are True (and)</li>
@@ -5390,7 +5399,8 @@ M
 </tr></tbody></table><p>
 1229 rows × 10 columns
 </p>
-</section><section id="sorting-data"><h2 class="section-heading">Sorting data</h2>
+</section><section id="sorting-data"><h2 class="section-heading">Sorting data<a class="anchor" aria-label="anchor" href="#sorting-data"></a>
+</h2>
 <hr class="half-width"><p>We can sort a dataframe using the <code>sort_values()</code> method. For this example, we’ll work from the subset defined above. First we need to assign that subset to a variable:</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6632,7 +6642,8 @@ F
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>Write a query that returns year, species_id, and weight in kg from the surveys_nona table, sorted with the largest weights at the top.</p>
 </div>
@@ -6814,7 +6825,8 @@ PF
 </div>
 </div>
 </div>
-</section><section id="modifying-data"><h2 class="section-heading">Modifying data</h2>
+</section><section id="modifying-data"><h2 class="section-heading">Modifying data<a class="anchor" aria-label="anchor" href="#modifying-data"></a>
+</h2>
 <hr class="half-width"><p>We’ve already shown how to modify an existing a dataframe by adding a new column. What if we want to modify existing cells instead? As we’ve seen, this can be a little tricky in pandas because most of its methods return a copy of the original dataframe. For example, we can get subsets of a dataframe using square brackets. The cell below returns the species_id column for rows 2 through 5:</p>
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7032,7 +7044,8 @@ NaN
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="row-labels-and-indexes" class="callout-inner">
-<h3 class="callout-title">Row labels and indexes</h3>
+<h3 class="callout-title">Row labels and indexes<a class="anchor" aria-label="anchor" href="#row-labels-and-indexes"></a>
+</h3>
 <div class="callout-content">
 <p>The row labels in this dataframe happen to be numeric and aligned exactly to the row’s index (so for the first row both the index and the label are 0, for the second row both the index and the label are 1, etc.) This is often <strong>but not always</strong> true in pandas. For example, if we used record_id as the label, the row labels would be one-based and the row indexes would be zero-based.</p>
 </div>
@@ -7043,7 +7056,8 @@ NaN
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="loc-slicing-behavior" class="callout-inner">
-<h3 class="callout-title">loc slicing behavior</h3>
+<h3 class="callout-title">loc slicing behavior<a class="anchor" aria-label="anchor" href="#loc-slicing-behavior"></a>
+</h3>
 <div class="callout-content">
 <p>Slices using <code>loc</code> are inclusive–rows matching both the start and end values are included in the returned slice. This differs from list slices, where the start but not end value is included in the slice. <code>loc</code> works this way because it is looking at the row <em>label</em>, not the row <em>index</em>.</p>
 </div>
@@ -7098,7 +7112,8 @@ Name: species_id, dtype: object</code></pre>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="slicing-with-iloc" class="callout-inner">
-<h3 class="callout-title">Slicing with iloc</h3>
+<h3 class="callout-title">Slicing with iloc<a class="anchor" aria-label="anchor" href="#slicing-with-iloc"></a>
+</h3>
 <div class="callout-content">
 <p>pandas provides another indexer, <code>iloc</code>, that allows us to select and modify data using row and column indexes instead of labels. Learn more in the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html" class="external-link">pandas documentation</a>.</p>
 </div>
@@ -7109,7 +7124,8 @@ Name: species_id, dtype: object</code></pre>
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Keypoints</h3>
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <ul><li>Use square brackets to access rows, columns, and specific cells</li>
 <li>Use operators like <code>+</code>, <code>-</code>, and <code>/</code> to perform arithmetic on rows and columns</li>
@@ -7148,9 +7164,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.0" class="external-link">sandpaper (0.9.0)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.3.0" class="external-link">pegboard (0.3.0)</a>,
-      and <a href="https://github.com/carpentries/varnish" class="external-link">varnish (0.2.3)</a>.</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.3" class="external-link">sandpaper (0.9.3)</a>,
+        <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.3.1)</a>,
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.4" class="external-link">varnish (0.2.4)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -7172,7 +7188,7 @@ any links that you are not going to use.
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/03-accessing-data-in-a-dataframe.html",
   "dateCreated": "2022-05-10",
   "dateModified": "2022-07-18",
-  "datePublished": "2022-08-09"
+  "datePublished": "2022-08-16"
 }
 
   </script><script>

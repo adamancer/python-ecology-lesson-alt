@@ -291,7 +291,8 @@
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>surveys <span class="op">=</span> pd.read_csv(<span class="st">"data/surveys.csv"</span>)</span></code></pre>
 </div>
-<section id="aggregating-data"><h2 class="section-heading">Aggregating data</h2>
+<section id="aggregating-data"><h2 class="section-heading">Aggregating data<a class="anchor" aria-label="anchor" href="#aggregating-data"></a>
+</h2>
 <hr class="half-width"><p>Aggregation allows us to describe the data in our dataframe by calculating totals (like the number of records) and statistics (like the mean value of a column). pandas allows us to run these calculations on dataframes or subsets.</p>
 <p>Suppose we need to know how many records are in our dataset. We’ve already seen that we can use the <code>info()</code> method to get high-level about the dataset, including the number of entries. What if just wanted the number of rows? One approach is to use the built-in function <code>len()</code>, which is used to calculate the number of items in an object (for example, the number of characters in a string or the number of items in a list). When used on a dataframe, <code>len()</code> returns the number of rows:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -341,7 +342,8 @@ dtype: int64</code></pre>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>Calculate the total weight, average weight, minimum and maximum weights for all animals caught over the duration of the survey. Can you modify your code so that it outputs these values only for weights between 5 and 10 grams?</p>
 </div>
@@ -662,7 +664,8 @@ mean
 <td>
 29.287932
 </td>
-</tr></tbody></table></section><section id="grouping-data"><h2 class="section-heading">Grouping data</h2>
+</tr></tbody></table></section><section id="grouping-data"><h2 class="section-heading">Grouping data<a class="anchor" aria-label="anchor" href="#grouping-data"></a>
+</h2>
 <hr class="half-width"><p>Now, let’s find out how many individuals were counted for each species. We do this using <code>groupby()</code>, which creates an object similar to a dataframe where rows are grouped by the data in one or more columns. To group by species_id, use:</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -757,7 +760,8 @@ Name: record_id, Length: 509, dtype: int64</code></pre>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>Write statements that return:</p>
 <ol style="list-style-type: decimal"><li>How many individuals were counted in each year in total</li>
@@ -2163,7 +2167,8 @@ NaN
 </div>
 </div>
 </div>
-</section><section id="handling-missing-data"><h2 class="section-heading">Handling missing data</h2>
+</section><section id="handling-missing-data"><h2 class="section-heading">Handling missing data<a class="anchor" aria-label="anchor" href="#handling-missing-data"></a>
+</h2>
 <hr class="half-width"><p>As we’ve discussed, some columns in the surveys dataframe have the value NaN instead of text or numbers. NaN, short for “not a number,” is a special type of float used by pandas to represent missing data. When reading from a CSV, as we have done throughout this lesson, pandas interprets certains values as NaN (see <em>na_values</em> in the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html" class="external-link">pd.read_csv() documentation</a> for the default list). NaNs are excluded from groups and most aggregation calculations in pandas, including counts.</p>
 <p>It is crucial to understand how missing data is represented in a dataset. Failing to do so may introduce errors into our analysis. The ecology dataset used in this lesson uses empty cells to represent missing data, but other disciplines have different conventions. For example, some geographic datasets use -9999 to represent null values. Failure to convert such values to NaN will result in significant errors on any calculations performed on that dataset.</p>
 <p>In some cases, it can be useful to fill in cells containing NaN with a non-null value. For example, the <code>groupby()</code> method excludes NaN cells. When looking at sex, the following code counts only those cells with either F (female) or M (male):</p>
@@ -2580,7 +2585,8 @@ M
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Keypoints</h3>
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <ul><li>Calculate individual summary statistics using dataframe methods like <code>mean()</code>, <code>max()</code>, and <code>min()</code>
 </li>
@@ -2620,9 +2626,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.0" class="external-link">sandpaper (0.9.0)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.3.0" class="external-link">pegboard (0.3.0)</a>,
-      and <a href="https://github.com/carpentries/varnish" class="external-link">varnish (0.2.3)</a>.</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.3" class="external-link">sandpaper (0.9.3)</a>,
+        <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.3.1)</a>,
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.4" class="external-link">varnish (0.2.4)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -2644,7 +2650,7 @@ any links that you are not going to use.
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/04-aggregating-and-grouping-data.html",
   "dateCreated": "2022-05-10",
   "dateModified": "2022-07-18",
-  "datePublished": "2022-08-09"
+  "datePublished": "2022-08-16"
 }
 
   </script><script>

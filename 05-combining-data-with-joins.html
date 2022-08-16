@@ -284,7 +284,8 @@
 </div>
 </div>
 <p>Dataframes can be used to organize and group data by common characteristics. Often, we need to combine elements from separate dataframes into one for analysis and visualization. A merge (or join) allows use to combine two dataframes using values common to each. Likewise, we may need to append data collected under different circumstances. In this chapter, we will show how to merge, concatenate, and split data using pandas.</p>
-<section id="merging-dataframes"><h2 class="section-heading">Merging dataframes</h2>
+<section id="merging-dataframes"><h2 class="section-heading">Merging dataframes<a class="anchor" aria-label="anchor" href="#merging-dataframes"></a>
+</h2>
 <hr class="half-width"><p>The survey dataframe we’ve been using throughout this lesson has a column called species_id. We used this column in the previous lesson to calculate summary statistics about observations of each species. But the species_id is just a two-letter code—what does each code stand for? To find out, we’ll now load both the survey dataset and a second dataset containing more detailed information about the various species observed. Read the second dataframe from a file called species.csv:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1131,7 +1132,8 @@ Bird
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="managing-repetitive-data" class="callout-inner">
-<h3 class="callout-title">Managing repetitive data</h3>
+<h3 class="callout-title">Managing repetitive data<a class="anchor" aria-label="anchor" href="#managing-repetitive-data"></a>
+</h3>
 <div class="callout-content">
 <p>Why store species data in a separate table in the first place? Species information is repetitive: Every observation of the same species has the same genus, species, and taxa. Storing it in the original survey table would require including that data in every record, increasing the complexity of the table and creating the possibility of errors. Storing that data in a separate table means we only have to enter and validate it once. A tool like pandas then allows us to access that data when we need it.</p>
 </div>
@@ -1625,7 +1627,8 @@ Bird
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="joins" class="callout-inner">
-<h3 class="callout-title">Joins</h3>
+<h3 class="callout-title">Joins<a class="anchor" aria-label="anchor" href="#joins"></a>
+</h3>
 <div class="callout-content">
 <p>The <code>pd.merge()</code> method is equivalent to the JOIN operation in SQL</p>
 </div>
@@ -1636,7 +1639,8 @@ Bird
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>Filter the merged dataframe to show the genus, the species name, and the weight for every individual captured at the site</p>
 </div>
@@ -2297,7 +2301,8 @@ Bird
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>Compare the number of rows in the original and merged survey dataframes. How do they differ? Why do you think that might be?</p>
 <p><strong>Hint:</strong> Use <code>pd.unique()</code> method to look at the species_id column in each dataframe.</p>
@@ -2851,7 +2856,8 @@ NaN
 35549 rows × 12 columns
 </p>
 <p>Now all 35,549 rows appear in the merged dataframe.</p>
-</section><section id="appending-rows-to-a-dataframe"><h2 class="section-heading">Appending rows to a dataframe</h2>
+</section><section id="appending-rows-to-a-dataframe"><h2 class="section-heading">Appending rows to a dataframe<a class="anchor" aria-label="anchor" href="#appending-rows-to-a-dataframe"></a>
+</h2>
 <hr class="half-width"><p>Merges address the case where information about the same set of observations is spread across multiple files. What about when the observations themselves are split into more than one file? For a survey like the one we’ve been looking at in this lesson, we might get a new file once a year with the same columns but a completely new set of observations. How can we add those new observations to our dataframe?</p>
 <p>We’ll simulate this operation by splitting data from two different years, 2001 and 2002, into separate dataframes. We can do this using conditionals, as we saw in lesson 3:</p>
 <div class="codewrapper sourceCode" id="cb12">
@@ -4389,7 +4395,8 @@ True
 3839 rows × 10 columns
 </p>
 <p>As expected, the validated column has a value of NaN for the 2001 data in the combined dataframe.</p>
-</section><section id="joining-and-splitting-columns"><h2 class="section-heading">Joining and splitting columns</h2>
+</section><section id="joining-and-splitting-columns"><h2 class="section-heading">Joining and splitting columns<a class="anchor" aria-label="anchor" href="#joining-and-splitting-columns"></a>
+</h2>
 <hr class="half-width"><p>Sometimes we’d like to combine values from two or more columns into a single column. For example, we might want to refer to the species in each record by both its genus and species names. In Python, we use the <code>+</code> operator to concatenate (or join) strings, and pandas works the same way:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4712,7 +4719,8 @@ Name: date, Length: 35549, dtype: datetime64[ns]</code></pre>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <p>pandas can help us ask specific questions which we want to answer about our data. The real skill is to know how to translate our scientific questions into a sensible approach (and subsequently visualize and interpret our results).</p>
 <p>Try using pandas to answer the following questions.</p>
@@ -5850,7 +5858,8 @@ Name: weight, dtype: float64
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Keypoints</h3>
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#NA"></a>
+</h3>
 <div class="callout-content">
 <ul><li>Combine two dataframes on one or more common values using <code>pd.merge()</code>
 </li>
@@ -5891,9 +5900,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.0" class="external-link">sandpaper (0.9.0)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.3.0" class="external-link">pegboard (0.3.0)</a>,
-      and <a href="https://github.com/carpentries/varnish" class="external-link">varnish (0.2.3)</a>.</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.9.3" class="external-link">sandpaper (0.9.3)</a>,
+        <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.3.1)</a>,
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.4" class="external-link">varnish (0.2.4)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -5915,7 +5924,7 @@ any links that you are not going to use.
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/05-combining-data-with-joins.html",
   "dateCreated": "2022-05-10",
   "dateModified": "2022-07-18",
-  "datePublished": "2022-08-09"
+  "datePublished": "2022-08-16"
 }
 
   </script><script>
