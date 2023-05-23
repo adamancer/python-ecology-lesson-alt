@@ -344,12 +344,12 @@
 <li>a <em>method</em> performs an action</li>
 </ul>
 <p>Let’s look at one of the main built-in types, <code>str</code>, to see how this works in practice. In Python, <code>str</code>, short for string, is used to store and manipulate text. To get started, we’ll assign the string “hello world” to the variable <strong>text</strong>. In Python, we use a single equal sign for assignment and quotes to create a string.</p>
-<div id="callout1" class="callout callout">
+<div id="using-quotes" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="using-quotes" class="callout-inner">
-<h3 class="callout-title">Using quotes<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Using quotes<a class="anchor" aria-label="anchor" href="#using-quotes"></a>
 </h3>
 <div class="callout-content">
 <p>Either single or double quotes can be used to create strings, but try to use them consistently! We will use double quotes in the examples here.</p>
@@ -971,12 +971,12 @@ class str(object)
 </tr>
 </tbody>
 </table>
-<div id="callout2" class="callout callout">
+<div id="documentation" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="documentation" class="callout-inner">
-<h3 class="callout-title">Documentation<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h3>
 <div class="callout-content">
 <p>The documentation for each library can be viewed by clicking the link in the table. Documentation is an invaluable resource. It provides descriptions of what a library does and detailed information about how it can be used, often including examples.</p>
@@ -1150,12 +1150,12 @@ any links that you are not going to use.
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre>
 </div>
-<div id="callout1" class="callout callout">
+<div id="using-aliases" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="using-aliases" class="callout-inner">
-<h3 class="callout-title">Using aliases<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Using aliases<a class="anchor" aria-label="anchor" href="#using-aliases"></a>
 </h3>
 <div class="callout-content">
 <p>Why use an alias? We will refer to pandas many, many times when writing a script, so it’s useful to abbreviate the name and save some keystrokes. But it’s also a matter of consistency with the larger community. Many of the core scientific Python libraries, including pandas, recommend a specific alias, so most code shared online will use those aliases as well.</p>
@@ -1999,7 +1999,7 @@ NaN
   Show me the solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>na_values</p>
 </div>
@@ -2013,7 +2013,7 @@ NaN
   Show me the solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>In addition to empty cells, the following values are interpreted as NaN, or null, by pandas. These strings may look familiar from programs like Excel.</p>
 <ul>
@@ -6351,12 +6351,12 @@ DO
 <li>
 <code>"a" == "A"</code> evaluates False</li>
 </ul>
-<div id="callout1" class="callout callout">
+<div id="for-assignment-for-equality" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="for-assignment-for-equality" class="callout-inner">
-<h3 class="callout-title">= for assignment, == for equality<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">= for assignment, == for equality<a class="anchor" aria-label="anchor" href="#for-assignment-for-equality"></a>
 </h3>
 <div class="callout-content">
 <p>Remember that, in Python, a single equal sign is used to assign values to variables. We’ve already used the assignment operator in this lesson, for example, when we created a new column in the dataframe.</p>
@@ -9906,24 +9906,24 @@ NaN
 <li>A conditional, as in the examples above.</li>
 </ul>
 <p>The <em>col_indexer</em> argument is used to select one or more columns. It will typically be a list of column names and can be omitted, in which case all columns will be returned.</p>
-<div id="callout2" class="callout callout">
+<div id="row-labels-and-indexes" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="row-labels-and-indexes" class="callout-inner">
-<h3 class="callout-title">Row labels and indexes<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Row labels and indexes<a class="anchor" aria-label="anchor" href="#row-labels-and-indexes"></a>
 </h3>
 <div class="callout-content">
 <p>The row labels in this dataframe happen to be numeric and aligned exactly to the row’s index (so for the first row both the index and the label are 0, for the second row both the index and the label are 1, etc.) This is often <strong>but not always</strong> true in pandas. For example, if we used record_id as the label, the row labels would be one-based and the row indexes would be zero-based.</p>
 </div>
 </div>
 </div>
-<div id="callout3" class="callout callout">
+<div id="loc-slicing-behavior" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="loc-slicing-behavior" class="callout-inner">
-<h3 class="callout-title">loc slicing behavior<a class="anchor" aria-label="anchor" href="#callout3"></a>
+<h3 class="callout-title">loc slicing behavior<a class="anchor" aria-label="anchor" href="#loc-slicing-behavior"></a>
 </h3>
 <div class="callout-content">
 <p>Slices using <code>loc</code> are inclusive–rows matching both the start and end values are included in the returned slice. This differs from list slices, where the start but not end value is included in the slice. <code>loc</code> works this way because it is looking at the row <em>label</em>, not the row <em>index</em>.</p>
@@ -9974,12 +9974,12 @@ Name: species_id, dtype: object</code></pre>
 6    PE
 Name: species_id, dtype: object</code></pre>
 </div>
-<div id="callout4" class="callout callout">
+<div id="slicing-with-iloc" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="slicing-with-iloc" class="callout-inner">
-<h3 class="callout-title">Slicing with iloc<a class="anchor" aria-label="anchor" href="#callout4"></a>
+<h3 class="callout-title">Slicing with iloc<a class="anchor" aria-label="anchor" href="#slicing-with-iloc"></a>
 </h3>
 <div class="callout-content">
 <p>pandas provides another indexer, <code>iloc</code>, that allows us to select and modify data using row and column indexes instead of labels. Learn more in the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.iloc.html" class="external-link">pandas documentation</a>.</p>
@@ -10121,7 +10121,7 @@ dtype: int64</code></pre>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -10580,7 +10580,7 @@ Name: record_id, Length: 509, dtype: int64</code></pre>
   Show me the solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>How many individuals were counted in each year in total?</p>
 <div class="codewrapper sourceCode" id="cb19">
@@ -10632,7 +10632,7 @@ Name: record_id, dtype: int64</code></pre>
   Show me the solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>How many individuals were counted each year, for each different species?</p>
 <div class="codewrapper sourceCode" id="cb21">
@@ -11172,7 +11172,7 @@ Name: record_id, dtype: int64
   Show me the solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>What was the average weight of each species in each year?</p>
 <div class="codewrapper sourceCode" id="cb23">
@@ -11712,7 +11712,7 @@ Name: weight, dtype: float64
   Show me the solution to challenge 4
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>How many individuals were counted for each species that was observed more than 10 times?</p>
 <div class="codewrapper sourceCode" id="cb25">
@@ -11768,7 +11768,7 @@ Name: record_id, dtype: int64</code></pre>
   Show me the solution to challenges 2 and 3 combined
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>Calculate the number of individuals observed and the average weight for each species in each year.</p>
 <p>Note that weight contains NaNs, so counts for record_id and weight differ.</p>
@@ -13468,12 +13468,12 @@ Bird
 </tbody>
 </table>
 <p>We can see that the species dataframe includes a genus, species, and taxon for each species_id. This is much more useful than the species_id included in the original dataframe–how can we add that data to our surveys dataframe? Adding it by hand would be tedious and error prone. Fortunately, pandas provides the <code>pd.merge()</code> function to join two dataframes.</p>
-<div id="callout1" class="callout callout">
+<div id="managing-repetitive-data" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="managing-repetitive-data" class="callout-inner">
-<h3 class="callout-title">Managing repetitive data<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Managing repetitive data<a class="anchor" aria-label="anchor" href="#managing-repetitive-data"></a>
 </h3>
 <div class="callout-content">
 <p>Why store species data in a separate table in the first place? Species information is repetitive: Every observation of the same species has the same genus, species, and taxa. Storing it in the original survey table would require including that data in every record, increasing the complexity of the table and creating the possibility of errors. Storing that data in a separate table means we only have to enter and validate it once. A tool like pandas then allows us to access that data when we need it.</p>
@@ -13992,12 +13992,12 @@ Bird
 34786 rows × 12 columns
 </p>
 <p>Following the merge, the genus, species, and taxa columns have all been added to the survey dataframe. We can now use those columns to filter and summarize our data.</p>
-<div id="callout2" class="callout callout">
+<div id="joins" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="joins" class="callout-inner">
-<h3 class="callout-title">Joins<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Joins<a class="anchor" aria-label="anchor" href="#joins"></a>
 </h3>
 <div class="callout-content">
 <p>The <code>pd.merge()</code> method is equivalent to the JOIN operation in SQL</p>
@@ -18582,7 +18582,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.0" class="external-link">sandpaper (0.12.0)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -18606,8 +18606,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/aio.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/aio.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2023-05-16",
-  "datePublished": "2023-05-16"
+  "dateModified": "2023-05-23",
+  "datePublished": "2023-05-23"
 }
 
   </script><script>
