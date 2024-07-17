@@ -9,6 +9,7 @@
 "episodes/03-accessing-data-in-a-dataframe.md" "2a02810f323d4b662ddff1a7eb0ca063" "site/built/03-accessing-data-in-a-dataframe.md" "2022-07-18"
 "episodes/04-aggregating-and-grouping-data.md" "ac02e47a5f8129f366cf6449c6747772" "site/built/04-aggregating-and-grouping-data.md" "2022-07-18"
 "episodes/05-combining-data-with-joins.md" "03aea28f6a847d6ff37ecc7c29d629a2" "site/built/05-combining-data-with-joins.md" "2022-07-18"
+"episodes/06-loops-and-functions.md" "bf8ac051bd73daf6b55574692d3c8e32" "site/built/06-loops-and-functions.md" "2024-07-17"
 "instructors/instructor-notes.md" "60b93493cf1da06dfd63255d73854461" "site/built/instructor-notes.md" "2022-05-10"
 "learners/reference.md" "fefca62528e102361724af3fc0d80d1e" "site/built/reference.md" "2022-06-15"
 "learners/setup.md" "64787f26e4cddd94b1a2816eb0956a97" "site/built/setup.md" "2022-07-18"
