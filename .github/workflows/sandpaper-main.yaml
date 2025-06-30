@@ -42,6 +42,9 @@ jobs:
           python-version: 3.13
           cache: pip
 
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
       - name: "Build episodes from notebooks"
         run: python ./scripts/build-episodes.py . --html_output
 
