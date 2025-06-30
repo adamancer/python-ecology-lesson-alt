@@ -62,7 +62,7 @@ jobs:
           cache: pip
 
       - name: "Build episodes from notebooks"
-        run: python ./scripts/build-site.py --html_output
+        run: python ./scripts/build-site.py . --html_output
 
       - name: "Deploy Site"
         run: |
