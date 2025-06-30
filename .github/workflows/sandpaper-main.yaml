@@ -43,7 +43,7 @@ jobs:
           cache: pip
 
       - name: "Build episodes from notebooks"
-        run: python ./scripts/build-site.py . --html_output
+        run: python ./scripts/build-episodes.py . --html_output
 
       - name: "Set up R"
         uses: r-lib/actions/setup-r@v2
