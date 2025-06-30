@@ -2,124 +2,107 @@
 title: Setup
 ---
 
-This lesson uses JupyterLab and pandas to analyze and visualize data
-from an ecology dataset. It was adapted (and currently includes huge
-chunks of text lifted directly from) [Data Management with SQL for
+This lesson uses Python to analyze and visualize data from an ecology
+dataset. It was adapted (and currently includes huge chunks of text
+lifted directly from) [Data Management with SQL for
 Ecologists](https://datacarpentry.org/sql-ecology-lesson/) and covers
 similar material to [Data Analysis and Visualization in Python for
 Ecologists](https://datacarpentry.org/python-ecology-lesson/). The idea
 was to create parallel lessons for SQL and Python for use by the
 Smithsonian Carpentries.
 
-This lesson is designed to use JupyterLab, an interactive development
-environment widely used for doing data science with Python. **The rest
-of this page provides instructions for setting up the software and data
-needed to complete this lesson. Please complete the setup prior to your
-scheduled lesson.**
+This lesson is designed to use Jupyter notebooks, an interactive
+development environment widely used for doing data science with Python.
+**The rest of this page provides instructions for setting up the
+software and data needed to complete this lesson. Please complete setup
+prior to your scheduled lesson.**
 
 ## Setup
 
-We will use a program called Miniconda to set up JupyterLab, so first we
-need to download and install [Miniconda (64
-bit)](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
-We recommend using the following installers:
+This lesson requires two pieces of software: Visual Studio Code and
+Miniforge.
 
--   **Windows**: Miniconda3 Windows 64-bit
--   **macOS**:
-    -   **Apple M1:** Miniconda3 macOS Apple M1 64-bit pkg
-    -   **Intel:** Miniconda3 macOS Intel x86 64-bit pkg
+### Visual Studio Code
 
-### Using the command-line interface
+Visual Studio Code, also known as VS Code, is a code editor developed by
+Microsoft.
 
-A command-line interface, or CLI, is an application that can run
-commands supplied as text. Examples of command-line interfaces include
-the Windows command prompt and Unix shells, including bash. We'll be
-using the CLI to install and run JupyterLab.
+1.  Download the [VS Code
+    installer](https://code.visualstudio.com/download)
+2.  Run the installer
+
+### Miniforge
+
+Miniforge is a package manager used to manage software related to
+Python. To install:
+
+1.  Download the Miniforge installer for your system from
+    [conda-forge](https://conda-forge.org/download/)
+    - **Windows:** Choose the User Installer version
+2.  Run the installer
+
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+#### Anaconda
+
+You may already be familiar with Anaconda, which includes similar
+package management software as Miniforge and a whole lot more. We
+**strongly recommend** sticking to the installation instructions and
+software presented here for this training. The Anaconda distribution
+includes additional programs that may affect the output of some of the
+code presented in this lesson, which can be confusing for people new to
+Python.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Setting up the Python environment
+
+Once Miniforge is installed, you're ready to set up the Python
+environment. You'll need to use a command-line interface, or CLI, to do
+so. A CLI is an application that runs commands that are provided as
+text. Examples of command-line interfaces include the Windows command
+prompt and Unix shells, including bash. We'll be using the CLI to
+install and run JupyterLab.
 
 Each operating system has one or more command-line interfaces available.
 We recommend using the following applications for this lesson:
 
--   **Windows:** Use the Anaconda Prompt, which was installed as part of
-    Miniconda. You can find it by searching for Anaconda Prompt in the
-    search box on the Windows toolbar.
--   **macOS:** Use the Terminal. You can find it in the
-    Applications/Utilities folder or by searching for Terminal using
-    Spotlight.
+- **Windows:** Use the Miniforge Prompt, which was installed as part of
+  Miniforge. You can find it by searching for Miniforge Prompt in the
+  search box on the Windows toolbar.
+- **macOS:** Use the Terminal. You can find it in the
+  Applications/Utilities folder or by searching for Terminal using
+  Spotlight.
 
-The commands given below may not work if a different application is
-used, so we'd strongly encourage you to use the recommended ones.
+Type or copy the following command into the CLI to set up the
+environment:
 
-::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-#### Running commands
-
-To run any of the commands presented here, copy-paste them into the CLI,
-then press enter to run the command.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-### Installing JupyterLab
-
-Once the command-line interface is open, run the following commands to
-install the software needed for this course:
-
-    conda create --name python-ecology-lesson
-    conda activate python-ecology-lesson
-    conda install --channel conda-forge --yes altair jupyterlab pandas
+mamba create --name python-ecology-lesson ipykernel pandas plotly jupyterlab
 
 ### Downloading data to the lesson folder
 
-Next we'll create the lesson folder and download the data needed for the
-lesson:
+This lesson uses specific data files from the [Portal Project Teaching
+Database](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
+Here, we'll create the lesson folder and download the files we need for
+the lesson.
 
 1.  Create a folder called **python-ecology-lesson** on your desktop
-2.  Create a folder called **data** inside the folder created in step 1
+2.  Create a folder called **data** inside the folder from step 1
 3.  Download the following files into the data folder:
-    -   surveys.csv: https://figshare.com/ndownloader/files/10717177
-    -   species.csv: https://figshare.com/ndownloader/files/3299483
+    - surveys.csv: https://figshare.com/ndownloader/files/10717177
+    - species.csv: https://figshare.com/ndownloader/files/3299483
+    - plots.csv: https://figshare.com/ndownloader/files/3299474
 
-Alternatively, we can run the following commands to create the lesson
-folders and download the necessary data:
+## Using VS Code
 
-    cd ~/Desktop
-    mkdir python-ecology-lesson/data
-    cd python-ecology-lesson/data
-    wget -O surveys.csv https://figshare.com/ndownloader/files/10717177
-    wget -O species.csv https://figshare.com/ndownloader/files/3299483
+Find and open VS Code using the search interface in your operating
+system.
 
-::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+1.  Click File \> Open Folder
+2.  Select the **python-ecology-lesson** folder on your desktop
 
-#### Note for Windows users
+The contents of the folder should now appear in the left sidebar of the
+VS Code window.
 
-The commands used here assume that your desktop is in a standard
-location. If you are using a Windows computer with OneDrive enabled,
-your desktop may be in a different place. You can use the following
-command in place of `cd ~/Desktop` in the instructions on this page to
-get to your desktop no matter where it is:
-
-```powershell
-cd $([Environment]::GetFolderPath("Desktop"))
-```
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Running JupyterLab
-
-Once JupyterLab has been installed, we can run it by opening the
-command-line interface and running the following commands:
-
-    conda activate python-ecology-lesson
-    cd ~/Desktop
-    cd python-ecology-lesson
-    jupyter-lab
-
-JupyterLab should now open in a new browser window.
-
-::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-### Test your installation
-
-Try running this command before the scheduled lesson -- does JupyterLab
-appear as expected?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Your instructor will explain how to work with VS Code as part of the
+lesson.

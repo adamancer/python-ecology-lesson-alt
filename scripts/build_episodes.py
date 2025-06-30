@@ -1,4 +1,5 @@
 """Defines command to create chapter markdown from Jupyter notebooks"""
+
 import argparse
 import base64
 import glob
@@ -9,6 +10,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+from pathlib import Path
 
 import yaml
 
@@ -140,11 +142,12 @@ class Cell:
         if "hide_output" in self.tags or not self.cell.get("outputs"):
             return ""
 
-        keys = ["image/png", "text/plain", "text"]
+        keys = ["application/vnd.plotly.v1+json", "image/png", "text/plain", "text"]
         if self.html_output:
             keys.insert(1, "text/html")
 
         output = []
+        is_html = False
         for row in self.cell["outputs"]:
 
             # Get the content of the row
@@ -165,24 +168,22 @@ class Cell:
             # Store image as file and output an image tag
             elif key.startswith("image"):
                 img_bytes = base64.b64decode(content)
-                filename = f"fig_output_{hashlib.md5(img_bytes).hexdigest()}.png"
-                path = os.path.join(self.lesson_root, "episodes", "fig", filename)
+                filename = f"fig-{hashlib.md5(img_bytes).hexdigest()}.png"
+                path = os.path.join(self.lesson_root, "episodes", "figures", filename)
                 try:
                     open(path)
                 except FileNotFoundError:
                     with open(path, "wb") as f:
                         f.write(img_bytes)
                 output.append(
-                    f'<img src="fig/{filename}" width="672" style="display: block; margin: auto;" />'
+                    f'<img src="figures/{filename}" width="672" style="display: block; margin: auto;" />'
                 )
 
             # Pretty print HTML if possible. This is just for pandas tables so far.
             elif key == "text/html":
-
                 # Check for pandas tables
                 pattern = r"<div.*?>\s*<style.*?</style>\s*(.*)\s*</div>"
                 if re.match(pattern, "".join(content), flags=re.DOTALL):
-
                     # Approximate the style of a pandas table
                     style = (
                         "<style>\n"
@@ -192,30 +193,40 @@ class Cell:
                         "  table.dataframe td { text-align: right; }\n"
                         "</style>\n\n"
                     )
-
                     output.append(
                         style
                         + re.search(pattern, "".join(content), flags=re.DOTALL).group(1)
                     )
-
                 else:
                     # Output non-table HTML
                     output.append("".join(content))
+                is_html = True
+
+            elif key == "application/vnd.plotly.v1+json":
+                with open("scripts/template.html") as f:
+                    template = f.read()
+                data = str(content["data"])
+                data = re.sub(r"\bFalse\b", "false", data)
+                data = re.sub(r"\bTrue\b", "true", data)
+                stem = hashlib.md5(json.dumps(data).encode("utf-8")).hexdigest()
+                with open(f"episodes/files/fig-{stem}.html", "w") as f:
+                    f.write(template.format(data))
+                output.append(
+                    f'<embed src="files/fig-{stem}.html" width=760 height=570>'
+                )
+                is_html = True
 
             # Output text inside output fence
             else:
                 output.append("".join(content))
 
-        # Wrap non-HTML output in an output fence
-        if not re.search(r"</[a-z]+>", output[0]):
-            output.insert(0, "```{.output}")
-
-            for i, content in enumerate(output[1:]):
-                if re.search(r"</[a-z]+>", content):
-                    output[i + 1] = "```\n\n" + content
-                    break
-            else:
-                output.append("```")
+        output.insert(0, "```{.output}")
+        for i, content in enumerate(output[1:]):
+            if re.search(r"</[a-z]+>", content) or re.match(r"<.+>$", content.strip()):
+                output[i + 1] = "```\n\n" + content
+                break
+        else:
+            output.append("```")
 
         return "\n".join(output)
 
@@ -467,6 +478,9 @@ if __name__ == "__main__":
     Cell.md_format = args.to
     Cell.html_output = args.html_output
 
+    # Ensure that required directories exist
+    Path("episodes/files").mkdir(exist_ok=True, parents=True)
+
     # Remove previously generated files
     if args.reset:
         # Remove markdown files
@@ -480,7 +494,12 @@ if __name__ == "__main__":
 
         # Remove images
         for path in glob.iglob(
-            os.path.join(lesson_root, "episodes", "fig", "fig_output_*.png")
+            os.path.join(lesson_root, "episodes", "figures", "fig-*.png")
+        ):
+            os.remove(path)
+
+        for path in glob.iglob(
+            os.path.join(lesson_root, "episodes", "files", "fig-*.html")
         ):
             os.remove(path)
 
@@ -501,6 +520,9 @@ if __name__ == "__main__":
         try:
             if os.path.getmtime(nb_path) > os.path.getmtime(md_path):
                 raise FileNotFoundError
+            with open(md_path) as f:
+                if not f.read():
+                    raise FileNotFoundError
         except FileNotFoundError:
 
             # Write the tagged notebook back to the original path
@@ -522,3 +544,18 @@ if __name__ == "__main__":
             # Write the markdown file
             print(f"Writing {md_path}")
             Notebook(nb_path).to_markdown(md_path)
+
+            # Clear the notebook
+            subprocess.run(
+                [
+                    "jupyter",
+                    "nbconvert",
+                    "--ClearOutputPreprocessor.enabled=True",
+                    "--ClearMetadataPreprocessor.enabled=True",
+                    "--to",
+                    "notebook",
+                    "--clear-output",
+                    "--inplace",
+                    nb_path,
+                ]
+            )
