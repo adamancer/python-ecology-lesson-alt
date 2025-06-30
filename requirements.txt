@@ -1,0 +1,7 @@
+glosario
+ipykernel
+jupyterlab
+pandas
+plotly
+pyyaml=5.3.1
+textdistance=4.2.0
