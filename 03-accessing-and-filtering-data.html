@@ -234,13 +234,15 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#getting-columns">Getting columns</a></li>
-<li><a href="#getting-rows">Getting rows</a></li>
-<li><a href="#getting-unique-values">Getting unique values</a></li>
+        <ul><li><a href="#get-a-column">Get a column</a></li>
+<li><a href="#get-multiple-columns">Get multiple columns</a></li>
+<li><a href="#get-unique-values">Get unique values</a></li>
+<li><a href="#get-one-or-more-rows">Get one or more rows</a></li>
+<li><a href="#slicing-the-dataframe">Slicing the dataframe</a></li>
 <li><a href="#filtering-data">Filtering data</a></li>
 <li><a href="#complex-filters">Complex filters</a></li>
 <li><a href="#sorting-data">Sorting data</a></li>
-<li><a href="#making-a-scatter-plot">Making a scatter plot</a></li>
+<li><a href="#showing-data-on-a-plot">Showing data on a plot</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -268,7 +270,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-visualizing-data.html">6. Visualizing Data in a Dataframe</a>
+        <a href="06-visualizing-data.html">6. Visualizing Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -352,8 +354,7 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul><li>How can we look at individual rows and columns in a dataframe?</li>
-<li>How can we perform calculations?</li>
-<li>How can we modify the table and data?</li>
+<li>How can we look at subsets of the dataset?</li>
 </ul></div>
 </div>
 </div>
@@ -363,11 +364,8 @@
 <h3 class="card-title">Objectives</h3>
 <ul><li>Access individual rows and columns</li>
 <li>Access multiple columns at once using a list</li>
-<li>Perform calculations like addition and subtraction</li>
-<li>Rename columns using a dictionary</li>
-<li>Access rows containing specific data</li>
-<li>Sort the data returned by a query</li>
-<li>Modify data using loc</li>
+<li>Filter the dataframe based on the data it contains</li>
+<li>Sort the dataframe</li>
 </ul></div>
 </div>
 </div>
@@ -381,7 +379,7 @@ previous lesson:</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>surveys <span class="op">=</span> pd.read_csv(<span class="st">"data/surveys.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>surveys</span></code></pre>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>surveys.sample(<span class="dv">3</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -423,344 +421,103 @@ hindfoot_length
 weight
 </th>
 </tr></thead><tbody><tr><th>
-0
+6879
 </th>
 <td>
-1
-</td>
-<td>
-7
-</td>
-<td>
-16
-</td>
-<td>
-1977
-</td>
-<td>
-2
-</td>
-<td>
-NL
-</td>
-<td>
-M
-</td>
-<td>
-32.0
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-1
-</th>
-<td>
-2
-</td>
-<td>
-7
-</td>
-<td>
-16
-</td>
-<td>
-1977
-</td>
-<td>
-3
-</td>
-<td>
-NL
-</td>
-<td>
-M
-</td>
-<td>
-33.0
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-2
-</th>
-<td>
-3
-</td>
-<td>
-7
-</td>
-<td>
-16
-</td>
-<td>
-1977
-</td>
-<td>
-2
-</td>
-<td>
-DM
-</td>
-<td>
-F
-</td>
-<td>
-37.0
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-3
-</th>
-<td>
-4
-</td>
-<td>
-7
-</td>
-<td>
-16
-</td>
-<td>
-1977
-</td>
-<td>
-7
-</td>
-<td>
-DM
-</td>
-<td>
-M
-</td>
-<td>
-36.0
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-4
-</th>
-<td>
-5
-</td>
-<td>
-7
-</td>
-<td>
-16
-</td>
-<td>
-1977
-</td>
-<td>
-3
-</td>
-<td>
-DM
-</td>
-<td>
-M
-</td>
-<td>
-35.0
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-…
-</th>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-<td>
-…
-</td>
-</tr><tr><th>
-35544
-</th>
-<td>
-35545
-</td>
-<td>
-12
-</td>
-<td>
-31
-</td>
-<td>
-2002
-</td>
-<td>
-15
-</td>
-<td>
-AH
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-35545
-</th>
-<td>
-35546
-</td>
-<td>
-12
-</td>
-<td>
-31
-</td>
-<td>
-2002
-</td>
-<td>
-15
-</td>
-<td>
-AH
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-<td>
-NaN
-</td>
-</tr><tr><th>
-35546
-</th>
-<td>
-35547
-</td>
-<td>
-12
-</td>
-<td>
-31
-</td>
-<td>
-2002
+6880
 </td>
 <td>
 10
 </td>
 <td>
-RM
+24
 </td>
 <td>
-F
+1982
 </td>
 <td>
-15.0
+22
 </td>
 <td>
-14.0
-</td>
-</tr><tr><th>
-35547
-</th>
-<td>
-35548
-</td>
-<td>
-12
-</td>
-<td>
-31
-</td>
-<td>
-2002
-</td>
-<td>
-7
-</td>
-<td>
-DO
+DS
 </td>
 <td>
 M
 </td>
 <td>
-36.0
+52.0
 </td>
 <td>
-51.0
+151.0
 </td>
 </tr><tr><th>
-35548
+1955
 </th>
 <td>
-35549
+1956
 </td>
 <td>
-12
+7
 </td>
 <td>
-31
+26
 </td>
 <td>
-2002
+1979
 </td>
 <td>
-5
+9
 </td>
 <td>
-NaN
+DS
 </td>
 <td>
-NaN
+M
 </td>
 <td>
-NaN
+48.0
 </td>
 <td>
-NaN
+94.0
 </td>
-</tr></tbody></table><p>
-35549 rows × 9 columns
-</p>
-<p>We will now look at how to access rows and columns in the
+</tr><tr><th>
+29190
+</th>
+<td>
+29191
+</td>
+<td>
+2
+</td>
+<td>
+20
+</td>
+<td>
+1999
+</td>
+<td>
+19
+</td>
+<td>
+PB
+</td>
+<td>
+F
+</td>
+<td>
+26.0
+</td>
+<td>
+33.0
+</td>
+</tr></tbody></table><p>We will now look at how to access rows and columns in the
 dataframe.</p>
-<section><h2 class="section-heading" id="getting-columns">Getting columns<a class="anchor" aria-label="anchor" href="#getting-columns"></a></h2>
-<hr class="half-width"><p>We can get the values from a single column in the dataframe by
-passing a string inside square brackets to the dataframe object. For
-example, to look at the year column, use:</p>
+<section><h2 class="section-heading" id="get-a-column">Get a column<a class="anchor" aria-label="anchor" href="#get-a-column"></a></h2>
+<hr class="half-width"><p>We can get a single column from the dataframe using square brackets.
+Square brackets are used in Python to access objects inside a container
+like a <code>list</code>, <code>dict</code>, or <code>DataFrame</code>.
+To get a column, we pass the name of the column inside the brackets. For
+example, tp retrieve the year, use:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -787,21 +544,24 @@ the output for this cell is formatted differently than the other cells
 in this lesson. The main difference between a <code>Series</code> and a
 <code>DataFrame</code> is that a <code>DataFrame</code> can have
 multiple columns. The two classes share many but not all attributes and
-methods. Note also that this is a copy of data from the original
-dataframe. Changing values in the series will have no effect on the
-original dataframe.</p>
-<div class="section level3">
-<h3 id="using-lists-to-get-more-than-one-column-at-a-time">Using lists to get more than one column at a time<a class="anchor" aria-label="anchor" href="#using-lists-to-get-more-than-one-column-at-a-time"></a></h3>
-<p>Python uses the built-in <code>list</code> data type to store
-sequences, that is, an ordered list of objects. Any type of Python
-object can be stored in a list: strings, integers, floats, even other
-lists or collections. Once created, a list can be modified by appending,
-inserting, or deleting items. We will not be going into detail about
-these operations here, but as always you can learn more about how to use
-a list using <code>help()</code> or <a href="https://docs.python.org/3/library/stdtypes.html#list" class="external-link">the Python
+methods.</p>
+<p>Note also that this is a copy of data from the original dataframe.
+Changing values in the series will have no effect on the original
+dataframe. <strong>Most operations on a DataFrame or Series return a
+copy of the original object.</strong></p>
+</section><section><h2 class="section-heading" id="get-multiple-columns">Get multiple columns<a class="anchor" aria-label="anchor" href="#get-multiple-columns"></a></h2>
+<hr class="half-width"><p>It is also possible to retrieve more than one column at a time using
+the built-in <code>list</code> data type.</p>
+<p>Python uses <code>list</code>s to store sequences, that is, ordered
+lists of objects. Any type of Python object can be stored in a list:
+strings, integers, floats, even other lists or collections. Once
+created, a list can be modified by appending, inserting, or deleting
+items. We will not be going into detail about these operations here, but
+as always you can learn more about how to use a list using
+<code>help()</code> or <a href="https://docs.python.org/3/library/stdtypes.html#list" class="external-link">the Python
 docs</a>.</p>
-<p>Create a list using square brackets. Let’s create a list of the three
-columns in our dataframe that together give the date of an
+<p>You can create a list using square brackets. Let’s create a list of
+the three columns in our dataframe that together give the date of an
 observation:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -973,14 +733,162 @@ day
 </tr></tbody></table><p>
 35549 rows × 3 columns
 </p>
-</div>
-</section><section><h2 class="section-heading" id="getting-rows">Getting rows<a class="anchor" aria-label="anchor" href="#getting-rows"></a></h2>
-<hr class="half-width"><p>We can get the rows at the beginning of the table using the head
-method:</p>
+</section><section><h2 class="section-heading" id="get-unique-values">Get unique values<a class="anchor" aria-label="anchor" href="#get-unique-values"></a></h2>
+<hr class="half-width"><p>We can get the list of unique values within that column using the
+<code>unique()</code> method:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>surveys.head()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>surveys[<span class="st">"species_id"</span>].unique()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
+       'OL', 'RM', nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ',
+       'RF', 'PC', 'PG', 'PH', 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS',
+       'SC', 'BA', 'SF', 'RO', 'AS', 'SO', 'PI', 'ST', 'CU', 'SU', 'RX',
+       'PB', 'PL', 'PX', 'CT', 'US'], dtype=object)</code></pre>
+</div>
+<p>To do the same across multiple columns, we can use the
+<code>drop_duplicates()</code> method on a copy of the dataframe
+containing only the columns we’re interested in. Like any well-named
+method, <code>drop_duplicates()</code> does exactly what the name
+implies: It returns a copy of the dataframe with all duplicate rows
+removed.</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>surveys[[<span class="st">"plot_id"</span>, <span class="st">"species_id"</span>]].drop_duplicates()</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code></code></pre>
+</div>
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style><table border="1" class="table dataframe"><thead><tr style="text-align: right;"><th>
+</th>
+<th>
+plot_id
+</th>
+<th>
+species_id
+</th>
+</tr></thead><tbody><tr><th>
+0
+</th>
+<td>
+2
+</td>
+<td>
+NL
+</td>
+</tr><tr><th>
+1
+</th>
+<td>
+3
+</td>
+<td>
+NL
+</td>
+</tr><tr><th>
+2
+</th>
+<td>
+2
+</td>
+<td>
+DM
+</td>
+</tr><tr><th>
+3
+</th>
+<td>
+7
+</td>
+<td>
+DM
+</td>
+</tr><tr><th>
+4
+</th>
+<td>
+3
+</td>
+<td>
+DM
+</td>
+</tr><tr><th>
+…
+</th>
+<td>
+…
+</td>
+<td>
+…
+</td>
+</tr><tr><th>
+35474
+</th>
+<td>
+22
+</td>
+<td>
+SF
+</td>
+</tr><tr><th>
+35511
+</th>
+<td>
+11
+</td>
+<td>
+US
+</td>
+</tr><tr><th>
+35519
+</th>
+<td>
+9
+</td>
+<td>
+SF
+</td>
+</tr><tr><th>
+35527
+</th>
+<td>
+13
+</td>
+<td>
+US
+</td>
+</tr><tr><th>
+35543
+</th>
+<td>
+15
+</td>
+<td>
+US
+</td>
+</tr></tbody></table><p>
+612 rows × 2 columns
+</p>
+</section><section><h2 class="section-heading" id="get-one-or-more-rows">Get one or more rows<a class="anchor" aria-label="anchor" href="#get-one-or-more-rows"></a></h2>
+<hr class="half-width"><p>Pandas provides a variety of ways to view rows within a dataframe. We
+can get the rows at the beginning of the dataframe using the
+<code>head</code> method:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>surveys.head()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1174,10 +1082,10 @@ NaN
 </tr></tbody></table><p>By default, this methods returns the first five rows. We can provide
 a number inside the parentheses if we need a specific number of
 rows:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>surveys.head(<span class="dv">10</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys.head(<span class="dv">10</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1520,10 +1428,10 @@ NaN
 </td>
 </tr></tbody></table><p>The <code>tail()</code> method is similar, except it returns rows
 from the end of the table:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>surveys.tail()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>surveys.tail()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1716,10 +1624,10 @@ NaN
 </td>
 </tr></tbody></table><p>Or we can use <code>sample()</code> to return a random row from
 anywhere in the dataframe:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>surveys.sample()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>surveys.sample()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1761,36 +1669,37 @@ hindfoot_length
 weight
 </th>
 </tr></thead><tbody><tr><th>
-25982
+9664
 </th>
 <td>
-25983
+9665
 </td>
 <td>
-6
+10
 </td>
 <td>
-9
+21
 </td>
 <td>
-1997
+1984
 </td>
 <td>
-3
+4
 </td>
 <td>
-PB
+DM
 </td>
 <td>
 F
 </td>
 <td>
-28.0
+35.0
 </td>
 <td>
-36.0
+38.0
 </td>
-</tr></tbody></table><p>The <code>head()</code>, <code>tail()</code>, and
+</tr></tbody></table></section><section><h2 class="section-heading" id="slicing-the-dataframe">Slicing the dataframe<a class="anchor" aria-label="anchor" href="#slicing-the-dataframe"></a></h2>
+<hr class="half-width"><p>The <code>head()</code>, <code>tail()</code>, and
 <code>sample()</code> methods are useful for getting a feel for how our
 data is structured, but we may also want to look at specific rows. As
 when we selected columns above, we can use square brackets to extract
@@ -1798,10 +1707,10 @@ when we selected columns above, we can use square brackets to extract
 starting at one row and ending at another. To get a slice, we pass the
 starting and ending indexes to the square brackets as
 <code>start:end</code>:</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>surveys[<span class="dv">2</span>:<span class="dv">5</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>surveys[<span class="dv">2</span>:<span class="dv">5</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1945,158 +1854,9 @@ the same here, but don’t count on that being true.</li>
 </ul><p>Core Python types like <code>list</code> and <code>tuple</code> use
 the same conventions, as do most Python libraries that deal with
 sequences.</p>
-</section><section><h2 class="section-heading" id="getting-unique-values">Getting unique values<a class="anchor" aria-label="anchor" href="#getting-unique-values"></a></h2>
-<hr class="half-width"><p>Recall that we can use square brackets to return a single column from
-a dataframe. We can get the list of unique values within that column
-using the <code>unique()</code> method:</p>
-<div class="codewrapper sourceCode" id="cb18">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>surveys[<span class="st">"species_id"</span>].unique()</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
-       'OL', 'RM', nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ',
-       'RF', 'PC', 'PG', 'PH', 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS',
-       'SC', 'BA', 'SF', 'RO', 'AS', 'SO', 'PI', 'ST', 'CU', 'SU', 'RX',
-       'PB', 'PL', 'PX', 'CT', 'US'], dtype=object)</code></pre>
-</div>
-<p>To do the same across multiple columns, we can use the
-<code>drop_duplicates()</code> method on a copy of the dataframe
-containing only the columns we’re interested in. Like any well-named
-method, <code>drop_duplicates()</code> does exactly what the name
-implies: It returns a copy of the dataframe with all duplicate rows
-removed.</p>
-<div class="codewrapper sourceCode" id="cb20">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>surveys[[<span class="st">"plot_id"</span>, <span class="st">"species_id"</span>]].drop_duplicates()</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code></code></pre>
-</div>
-<style>
-  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
-  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
-  table.dataframe th { text-align: right; font-weight: bold; }
-  table.dataframe td { text-align: right; }
-</style><table border="1" class="table dataframe"><thead><tr style="text-align: right;"><th>
-</th>
-<th>
-plot_id
-</th>
-<th>
-species_id
-</th>
-</tr></thead><tbody><tr><th>
-0
-</th>
-<td>
-2
-</td>
-<td>
-NL
-</td>
-</tr><tr><th>
-1
-</th>
-<td>
-3
-</td>
-<td>
-NL
-</td>
-</tr><tr><th>
-2
-</th>
-<td>
-2
-</td>
-<td>
-DM
-</td>
-</tr><tr><th>
-3
-</th>
-<td>
-7
-</td>
-<td>
-DM
-</td>
-</tr><tr><th>
-4
-</th>
-<td>
-3
-</td>
-<td>
-DM
-</td>
-</tr><tr><th>
-…
-</th>
-<td>
-…
-</td>
-<td>
-…
-</td>
-</tr><tr><th>
-35474
-</th>
-<td>
-22
-</td>
-<td>
-SF
-</td>
-</tr><tr><th>
-35511
-</th>
-<td>
-11
-</td>
-<td>
-US
-</td>
-</tr><tr><th>
-35519
-</th>
-<td>
-9
-</td>
-<td>
-SF
-</td>
-</tr><tr><th>
-35527
-</th>
-<td>
-13
-</td>
-<td>
-US
-</td>
-</tr><tr><th>
-35543
-</th>
-<td>
-15
-</td>
-<td>
-US
-</td>
-</tr></tbody></table><p>
-612 rows × 2 columns
-</p>
 </section><section><h2 class="section-heading" id="filtering-data">Filtering data<a class="anchor" aria-label="anchor" href="#filtering-data"></a></h2>
-<hr class="half-width"><p>It is often more useful to take subsets from the dataframe based on
-data. pandas provides a variety of ways to filter a dataframe. For
+<hr class="half-width"><p>It is often more useful to subset the dataframe based on data. Pandas
+provides a variety of ways to filter a dataframe in this way. For
 example, suppose we want to look at a specific species in the surveys
 dataframe. We can view the rows matching a given species using the same
 square brackets we used above to select specific columns and rows. Here,
@@ -2140,8 +1900,10 @@ lesson, for example, when we created a new column in the dataframe.</p>
 </div>
 </div>
 </div>
-<p>To limit the dataframe to rows matching the species “DM”, include the
-conditional <code>surveys["species_id"] == "DM"</code> inside the square
+<p>To limit the dataframe to rows matching the species “DM”, we will
+again use square brackets. This time, instead of passing a string or a
+number, we will include the conditional
+<code>surveys["species_id"] == "DM"</code> inside the square
 brackets:</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2520,7 +2282,8 @@ F
 </tr></tbody></table><p>
 10596 rows × 9 columns
 </p>
-<p>To limit our results to observations made in or after 2000, use:</p>
+<p>Other comparisons can be used in the same way. To limit our results
+to observations made in or after 2000, use:</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2898,12 +2661,13 @@ NaN
 </tr></tbody></table><p>
 5391 rows × 9 columns
 </p>
-<p>Each filtering operation returns a copy of the dataframe. We will
-look at how to make changes to the original dataframe at the end of this
-lesson.</p>
+<p>As when we selected columns above, each filtering operation returns a
+copy of the dataframe.</p>
 </section><section><h2 class="section-heading" id="complex-filters">Complex filters<a class="anchor" aria-label="anchor" href="#complex-filters"></a></h2>
-<hr class="half-width"><p>We can combine conditionals using <em>bitwise operators</em>. These
-work like the terms AND and OR in many search interfaces.</p>
+<hr class="half-width"><p>When analyzing data, we will often need to filter on multiple columns
+at one time. We can combine conditionals using <em>bitwise
+operators</em>. These work like the terms AND and OR in many search
+interfaces:</p>
 <ul><li>
 <code>&amp;</code>: True if conditions on both sides of the operator
 are True (and)</li>
@@ -3292,8 +3056,8 @@ F
 847 rows × 9 columns
 </p>
 <p>We can also use methods to filter the dataframe. For example,
-<code>isin()</code> is used to match a list of values. Methods can be
-combined with other conditionals as above. The example below returns
+<code>isin()</code> can be used to match a list of values. Methods can
+be combined with other conditionals as above. The example below returns
 rows from 2000 or later with either “DM”, “DO”, or “DS” in the
 species_id column:</p>
 <div class="codewrapper sourceCode" id="cb28">
@@ -3677,7 +3441,7 @@ M
 </p>
 </section><section><h2 class="section-heading" id="sorting-data">Sorting data<a class="anchor" aria-label="anchor" href="#sorting-data"></a></h2>
 <hr class="half-width"><p>We can sort a dataframe using the <code>sort_values()</code> method.
-For this example, we’ll work from the subset defined above. First we
+For this example, we’ll work from the subset defined above. First, we
 need to assign that subset to a variable:</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3686,9 +3450,8 @@ need to assign that subset to a variable:</p>
 <span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>    surveys[<span class="st">"species_id"</span>].isin([<span class="st">"DM"</span>, <span class="st">"DO"</span>, <span class="st">"DS"</span>]) <span class="op">&amp;</span> (surveys[<span class="st">"year"</span>] <span class="op">&gt;=</span> <span class="dv">2000</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>]</span></code></pre>
 </div>
-<p>Now we’ll sort the results by weight_g. To do so, pass that column
-name as an argument (that is, inside the trailing parentheses) to the
-<code>sort_values()</code> method:</p>
+<p>Now we’ll sort the results by weight by including that column name
+inside the parentheses for the <code>sort_values()</code> method:</p>
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -4067,8 +3830,8 @@ NaN
 1268 rows × 9 columns
 </p>
 <p>By default, rows are sorted in ascending order (smallest to largest).
-We can modify this behavior using the <em>ascending</em> keyword
-argument:</p>
+We can reorder them from largest to smallest using the
+<em>ascending</em> keyword argument:</p>
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -4831,18 +4594,25 @@ NaN
 <p>As with the dataframe methods above, <code>sort_values()</code>
 returns a copy of the original dataframe and leaves the original
 untouched.</p>
-<div id="discussion1" class="callout discussion">
+<div id="challenge1" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<p>Write a query that returns year, species_id, and weight in kg from
-the surveys table, sorted with the largest weights at the top.</p>
+<p>Write a query that returns year, species_id, and weight from the
+surveys table, sorted with the largest weights at the top.</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -5008,25 +4778,38 @@ NaN
 </tr></tbody></table><p>
 35549 rows × 3 columns
 </p>
-</section><section><h2 class="section-heading" id="making-a-scatter-plot">Making a scatter plot<a class="anchor" aria-label="anchor" href="#making-a-scatter-plot"></a></h2>
-<hr class="half-width"><p>We will discuss data visualization in depth in lesson 7 but will
-introduce some fundamental concepts. For this lesson, we will use the
-<code>plotly</code> library, which creates interactive, highly
-customizable plots using our dataframe.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="showing-data-on-a-plot">Showing data on a plot<a class="anchor" aria-label="anchor" href="#showing-data-on-a-plot"></a></h2>
+<hr class="half-width"><p>We will discuss data visualization using plotly in depth in <a href="06-visualizing-data.html">lesson 6</a> but will introduce some
+fundamental concepts as we go along. Like pandas, plotly is an external
+package installed separately from Python itself. It can be used to
+create interactive, highly customizable plots based on pandas dataframes
+using just a few lines of code. For example, to create a scatterplot of
+the weight and hindfoot length, we need only to import plotly:</p>
 <div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(surveys, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" tabindex="-1"></a>fig.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code></pre>
+</div>
+<p>Once plotly is loaded, we can create a scatterplot:</p>
+<div class="codewrapper sourceCode" id="cb40">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>px.scatter(surveys, x<span class="op">=</span><span class="st">"weight"</span>, y<span class="op">=</span><span class="st">"hindfoot_length"</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
-<embed src="files/fig-b6a08e591b0d820b0d32fd9335576843.html" width="760" height="570"><div id="keypoints1" class="callout keypoints">
+<embed src="files/fig-b6a08e591b0d820b0d32fd9335576843.html" width="760" height="570"><p>This simple plot is limited in what it can tell us about the
+observations in the dataset. We will return to this scatterplot in later
+lessons to see how we can improve it to better understand the survey
+data.</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -5034,14 +4817,12 @@ customizable plots using our dataframe.</p>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul><li>Use square brackets to access rows, columns, and specific cells</li>
-<li>Use operators like <code>+</code>, <code>-</code>, and
-<code>/</code> to perform arithmetic on rows and columns</li>
-<li>Store the results of calculations in a dataframe by adding a new
-column or overwriting an existing column</li>
 <li>Sort data, rename columns, and get unique values in a dataframe
 using methods provided by pandas</li>
 <li>By default, most dataframe operations return a copy of the original
 data</li>
+<li>Scatterplots can be used to visualize how two parameters in a
+dataset covary</li>
 </ul></div>
 </div>
 </div>

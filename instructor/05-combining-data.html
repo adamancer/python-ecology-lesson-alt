@@ -265,7 +265,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-visualizing-data.html">6. Visualizing Data in a Dataframe</a>
+        <a href="06-visualizing-data.html">6. Visualizing Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -323,7 +323,7 @@
           Previous: Aggregating and
         </a>
         <a class="chapter-link float-end" href="../instructor/06-visualizing-data.html" rel="next">
-          Next: Visualizing Data in...
+          Next: Visualizing Data...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -381,10 +381,13 @@ and split data using pandas.</p>
 <hr class="half-width"><p>The survey dataframe we’ve been using throughout this lesson has a
 column called species_id. We used this column in the previous lesson to
 calculate summary statistics about observations of each species. But the
-species_id is just a two-letter code—what does each code stand for? To
-find out, we’ll now load both the survey dataset and a second dataset
-containing more detailed information about the various species observed.
-Read the second dataframe from a file called species.csv:</p>
+species_id is just a two-letter code. Without knowing what each code
+represents, we can’t really understand, describe, or even properly label
+the observations. We need a way to go from the code to more detailed
+species information.</p>
+<p>To do so, we’ll begin by loading a second dataset, called
+species.csv, that contains taxonomic information for each species
+code:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1231,10 +1234,10 @@ Bird
 </td>
 </tr></tbody></table><p>We can see that the species dataframe includes a genus, species, and
 taxon for each species_id. This is much more useful than the species_id
-included in the original dataframe–how can we add that data to our
-surveys dataframe? Adding it by hand would be tedious and error prone.
-Fortunately, pandas provides the <code>pd.merge()</code> function to
-join two dataframes.</p>
+included in the original dataframe–how can we integrate that data into
+our surveys dataframe? Adding it by hand would be tedious and error
+prone. Fortunately, pandas provides the <code>pd.merge()</code> function
+to join two dataframes.</p>
 <div id="managing-repetitive-data" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1245,10 +1248,10 @@ join two dataframes.</p>
 <p>Why store species data in a separate table in the first place?
 Species information is repetitive: Every observation of the same species
 has the same genus, species, and taxa. Storing it in the original survey
-table would require including that data in every record, increasing the
-complexity of the table and increasing the likelihood of errors. Storing
-that data in a separate table means we only have to enter and validate
-it once. A tool like pandas then allows us to access that data when we
+table would require including that data in every record, increasing both
+the size of the table and the likelihood of errors. Storing that data in
+a separate table means we only have to enter and validate it once. A
+tool like pandas then allows us to access the authoratative data when we
 need it.</p>
 </div>
 </div>
@@ -1751,23 +1754,30 @@ filter and summarize our data.</p>
 <div id="joins" class="callout-inner">
 <h3 class="callout-title">Joins</h3>
 <div class="callout-content">
-<p>The <code>pd.merge()</code> method is equivalent to the JOIN
-operation in SQL</p>
+<p>The <code>pd.merge()</code> method performs the same function as
+joins in SQL</p>
 </div>
 </div>
 </div>
-<div id="discussion1" class="callout discussion">
+<div id="challenge1" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
 <p>Filter the merged dataframe to show the genus, the species name, and
-the weight for every individual captured at the site</p>
+the weight for every individual observed at the site.</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1929,13 +1939,18 @@ ordii
 </tr></tbody></table><p>
 34786 rows × 3 columns
 </p>
+</div>
+</div>
+</div>
+</div>
 <p>In the example above, we didn’t provide any information about how we
 wanted to merge the dataframes together, so pandas made an educated
 guess by looking at the columns in each of the dataframes and merging
 them on the only column that appeared in both datasets, species_id. For
-more complex tables, we may want to specify the columns are used for
-merging. We can do so by passing one or more column names using the
-<em>on</em> keyword argument:</p>
+more complex tables, we may need more control over the operation, for
+example, by specifiying the exact columns we want to merge on. We can do
+that by passing one or more column names using the <em>on</em> keyword
+argument:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2421,20 +2436,27 @@ Rodent
 </tr></tbody></table><p>
 34786 rows × 12 columns
 </p>
-<div id="discussion2" class="callout discussion">
+<div id="challenge2" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
 <p>Compare the number of rows in the original and merged survey
-dataframes. How do they differ? Why do you think that might be?</p>
+dataframes. How do they differ? Why might that be?</p>
 <p><strong>Hint:</strong> Use <code>pd.unique()</code> method to look at
 the species_id column in each dataframe.</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2449,20 +2471,11 @@ the species_id column in each dataframe.</p>
        'RO', 'RX', 'SA', 'SC', 'SF', 'SH', 'SO', 'SS', 'ST', 'SU', 'UL',
        'UP', 'UR', 'US', 'ZL', nan], dtype=object)</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>pd.unique(species[<span class="st">"species_id"</span>].sort_values())</span></code></pre>
+<p>The merged dataframe omits rows with no value in the species_id
+column.</p>
 </div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>array(['AB', 'AH', 'AS', 'BA', 'CB', 'CM', 'CQ', 'CS', 'CT', 'CU', 'CV',
-       'DM', 'DO', 'DS', 'DX', 'EO', 'GS', 'NL', 'NX', 'OL', 'OT', 'OX',
-       'PB', 'PC', 'PE', 'PF', 'PG', 'PH', 'PI', 'PL', 'PM', 'PP', 'PU',
-       'PX', 'RF', 'RM', 'RO', 'RX', 'SA', 'SB', 'SC', 'SF', 'SH', 'SO',
-       'SS', 'ST', 'SU', 'SX', 'UL', 'UP', 'UR', 'US', 'ZL', 'ZM'],
-      dtype=object)</code></pre>
+</div>
+</div>
 </div>
 <p>The number of rows in the merged dataframe is lower than in the
 original surveys dataframe. By default, <code>pd.merge()</code> performs
@@ -2486,13 +2499,13 @@ Columns from the left dataframe are populated if a common value exists
 and set to NaN if not.</li>
 <li>
 <strong>Outer:</strong> Include all rows from both dataframes</li>
-</ul><p>We want to keep all of our observations, so let’s do a left join
+</ul><p>We want to keep all of the observations, so let’s do a left join
 instead. To specify the type of merge, we use the <em>how</em> keyword
 argument:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2976,20 +2989,20 @@ NaN
 </p>
 <p>Now all 35,549 rows appear in the merged dataframe.</p>
 </section><section><h2 class="section-heading" id="appending-rows-to-a-dataframe">Appending rows to a dataframe<a class="anchor" aria-label="anchor" href="#appending-rows-to-a-dataframe"></a></h2>
-<hr class="half-width"><p>Merges address the case where information related to a set of
-observations is spread across multiple files. What about when the
-observations themselves are in more than one file? For a survey like the
-one we’ve been looking at in this lesson, we might get a new file once a
-year with the same columns but a completely new set of observations. How
-can we add those new observations to our dataframe?</p>
+<hr class="half-width"><p>Merges address the case where information from a set of observations
+is spread across multiple files. What about when the observations
+themselves are in more than one file? For a survey like the one we’ve
+been looking at in this lesson, we might get a new file once a year with
+the same columns but a completely new set of observations. How can we
+add those new observations to our dataframe?</p>
 <p>We’ll simulate this operation by splitting data from two different
 years, 2001 and 2002, into separate dataframes. We can filter the
 dataset this using conditionals, as we saw in lesson 3:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>surveys_2001 <span class="op">=</span> surveys[surveys[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2001</span>].copy()</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>surveys_2001</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>surveys_2001 <span class="op">=</span> surveys[surveys[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2001</span>].copy()</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>surveys_2001</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3363,11 +3376,11 @@ NaN
 </tr></tbody></table><p>
 1610 rows × 9 columns
 </p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>surveys_2002 <span class="op">=</span> surveys[surveys[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2002</span>].copy()</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>surveys_2002</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>surveys_2002 <span class="op">=</span> surveys[surveys[<span class="st">"year"</span>] <span class="op">==</span> <span class="dv">2002</span>].copy()</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>surveys_2002</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3745,16 +3758,16 @@ NaN
 different data, one with 1,610 rows, the other with 2,229 rows, for a
 total of 3,839 records. We can combine them into a new dataframe using
 <code>pd.concat()</code>, which stacks the dataframes vertically (that
-is, it appends records from the 2002 dataset to the 2001 dataset). This
-method accepts a list of dataframes and works from left to right (so the
+is, it adds records from one dataset to the end of another). This method
+accepts a list of dataframes and works from left to right (so the
 leftmost dataframe will be at the top of the new dataframe and the
 rightmost will be at the bottom). We’re only combining two dataframes
 here but could include more if necessary.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>surveys_2001_2002 <span class="op">=</span> pd.concat([surveys_2001, surveys_2002])</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>surveys_2001_2002</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>surveys_2001_2002 <span class="op">=</span> pd.concat([surveys_2001, surveys_2002])</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>surveys_2001_2002</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4138,13 +4151,13 @@ dataset will have the value NaN for those rows in the combined
 dataframe.</p>
 <p>To illustrate this, we’ll add a column called test to the 2002
 survey, then re-run <code>pd.concat()</code>:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>surveys_2002[<span class="st">"test"</span>] <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>surveys_2001_2002 <span class="op">=</span> pd.concat([surveys_2001, surveys_2002])</span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>surveys_2001_2002</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>surveys_2002[<span class="st">"test"</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>surveys_2001_2002 <span class="op">=</span> pd.concat([surveys_2001, surveys_2002])</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>surveys_2001_2002</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4562,11 +4575,11 @@ single column. For example, we might want to refer to the species in
 each record by both its genus and species names. In Python, we use the
 <code>+</code> operator to concatenate (or join) strings, and pandas
 works the same way:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>species[<span class="st">"genus_species"</span>] <span class="op">=</span> species[<span class="st">"genus"</span>] <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> species[<span class="st">"species"</span>]</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>species[<span class="st">"genus_species"</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>species[<span class="st">"genus_species"</span>] <span class="op">=</span> species[<span class="st">"genus"</span>] <span class="op">+</span> <span class="st">" "</span> <span class="op">+</span> species[<span class="st">"species"</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>species[<span class="st">"genus_species"</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4635,16 +4648,15 @@ caveat.)</p>
 <hr class="half-width"><p>Another common need is to join or split dates. In the ecology
 dataset, the date of each observation is split across year, month, and
 day columns. However, pandas has a special data type,
-<code>datetime64</code>, for representing dates that is useful for
+<code>datetime64</code>, for representing dates that can be useful for
 analyzing time series data. To make use of that functionality, we can
-concatenate the date columns and convert them to a datetime object using
-the <code>pd.to_datetime()</code> method. The pandas library is doing a
-lot of work behind the scenes here.</p>
-<div class="codewrapper sourceCode" id="cb25">
+concatenate the columns with the date components and convert them to a
+datetime object using the <code>pd.to_datetime()</code> method.</p>
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>surveys[<span class="st">"date"</span>] <span class="op">=</span> pd.to_datetime(surveys[[<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]])</span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>surveys[<span class="st">"date"</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>surveys[<span class="st">"date"</span>] <span class="op">=</span> pd.to_datetime(surveys[[<span class="st">"year"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>]])</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>surveys[<span class="st">"date"</span>]</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4662,14 +4674,15 @@ lot of work behind the scenes here.</p>
 35548   2002-12-31
 Name: date, Length: 35549, dtype: datetime64[ns]</code></pre>
 </div>
-<div id="challenge1" class="callout challenge">
+<p>Pandas is doing a lot of work behind the scenes here.</p>
+<div id="challenge3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
-<p>pandas allows us to ask specific questions about our data. A key
+<p>Pandas allows us to ask specific questions about our data. A key
 skill is knowing how to translate our scientific questions into a
 sensible approach (and subsequently visualize and interpret our
 results).</p>
@@ -4686,29 +4699,27 @@ the years? Is there any noticeable trend for any of the species?</li>
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Show me the solution to challenge 1
-  </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution to challenge 1 </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>How many specimens of each sex are there for each year, including
 those whose sex is unknown?</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Fill in NaN values in sex with U</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>surveys[<span class="st">"sex"</span>] <span class="op">=</span> surveys[<span class="st">"sex"</span>].fillna(<span class="st">"U"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co"># Count records by sex</span></span>
-<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>result <span class="op">=</span> surveys.groupby([<span class="st">"year"</span>, <span class="st">"sex"</span>])[<span class="st">"record_id"</span>].count()</span>
-<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="co"># Use the option_context context manager to show all rows</span></span>
-<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="cf">with</span> pd.option_context(<span class="st">"display.max_rows"</span>, <span class="va">None</span>):</span>
-<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a>    <span class="bu">print</span>(result)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Fill in NaN values in sex with U</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>surveys[<span class="st">"sex"</span>] <span class="op">=</span> surveys[<span class="st">"sex"</span>].fillna(<span class="st">"U"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># Count records by sex</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>result <span class="op">=</span> surveys.groupby([<span class="st">"year"</span>, <span class="st">"sex"</span>])[<span class="st">"record_id"</span>].count()</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a><span class="co"># Use the option_context context manager to show all rows</span></span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a><span class="cf">with</span> pd.option_context(<span class="st">"display.max_rows"</span>, <span class="va">None</span>):</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>    <span class="bu">print</span>(result)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4799,27 +4810,25 @@ Name: record_id, dtype: int64
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  Show me the solution to challenge 2
-  </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution to challenge 2 </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>What is the average weight of each taxa?</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
-<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="co"># Group by taxa</span></span>
-<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>grouped <span class="op">=</span> merged.groupby(<span class="st">"taxa"</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="co"># Calculate the min, max, and mean weight</span></span>
-<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>grouped[<span class="st">"weight"</span>].mean()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co"># Group by taxa</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>grouped <span class="op">=</span> merged.groupby(<span class="st">"taxa"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a><span class="co"># Calculate the min, max, and mean weight</span></span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>grouped[<span class="st">"weight"</span>].mean()</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4835,31 +4844,29 @@ Name: weight, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">
-  Show me the solution to challenge 3
-  </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution to challenge 3 </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>What are the minimum, maximum and average weight for each species of
 Rodent?</p>
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
-<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="co"># Limit merged dataframe to rodents</span></span>
-<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>rodents <span class="op">=</span> merged[merged[<span class="st">"taxa"</span>] <span class="op">==</span> <span class="st">"Rodent"</span>]</span>
-<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co"># Group rodents by species</span></span>
-<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>grouped <span class="op">=</span> rodents.groupby(<span class="st">"species_id"</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="co"># Calculate the min, max, and mean weight</span></span>
-<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>grouped.agg({<span class="st">"weight"</span>: [<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"mean"</span>]})</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="co"># Limit merged dataframe to rodents</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>rodents <span class="op">=</span> merged[merged[<span class="st">"taxa"</span>] <span class="op">==</span> <span class="st">"Rodent"</span>]</span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="co"># Group rodents by species</span></span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a>grouped <span class="op">=</span> rodents.groupby(<span class="st">"species_id"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" tabindex="-1"></a><span class="co"># Calculate the min, max, and mean weight</span></span>
+<span id="cb29-11"><a href="#cb29-11" tabindex="-1"></a>grouped.agg({<span class="st">"weight"</span>: [<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"mean"</span>]})</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5248,33 +5255,31 @@ NaN
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">
-  Show me the solution to challenge 4
-  </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution to challenge 4 </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>What is the average hindfoot length for male and female rodent of
 each species? Is there a male/female difference?</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
-<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a><span class="co"># Limit merged dataframe to rodents</span></span>
-<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>rodents <span class="op">=</span> merged[merged[<span class="st">"taxa"</span>] <span class="op">==</span> <span class="st">"Rodent"</span>]</span>
-<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="co"># Group rodents by species and sex</span></span>
-<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>grouped <span class="op">=</span> rodents.groupby([<span class="st">"species_id"</span>, <span class="st">"sex"</span>])</span>
-<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a><span class="co"># Calculate the mean hindfoot length, plus count and standard deviation</span></span>
-<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a><span class="co"># to better assess the question</span></span>
-<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a><span class="cf">with</span> pd.option_context(<span class="st">"display.max_rows"</span>, <span class="va">None</span>):</span>
-<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a>    <span class="bu">print</span>(grouped[<span class="st">"hindfoot_length"</span>].agg([<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>]))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="co"># Limit merged dataframe to rodents</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>rodents <span class="op">=</span> merged[merged[<span class="st">"taxa"</span>] <span class="op">==</span> <span class="st">"Rodent"</span>]</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a><span class="co"># Group rodents by species and sex</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>grouped <span class="op">=</span> rodents.groupby([<span class="st">"species_id"</span>, <span class="st">"sex"</span>])</span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a><span class="co"># Calculate the mean hindfoot length, plus count and standard deviation</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="co"># to better assess the question</span></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a><span class="cf">with</span> pd.option_context(<span class="st">"display.max_rows"</span>, <span class="va">None</span>):</span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>    <span class="bu">print</span>(grouped[<span class="st">"hindfoot_length"</span>].agg([<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>]))</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5360,35 +5365,33 @@ UR         U        0        NaN        NaN
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">
-  Show me the solution to challenge 5
-  </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution to challenge 5 </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>What is the average weight of each rodent species over the course of
 the years? Is there any noticeable trend for any of the species?</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="co"># Limit merged dataframe to rodents</span></span>
-<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>rodents <span class="op">=</span> merged[merged[<span class="st">"taxa"</span>] <span class="op">==</span> <span class="st">"Rodent"</span>]</span>
-<span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a><span class="co"># Group rodents by species and year</span></span>
-<span id="cb35-8"><a href="#cb35-8" tabindex="-1"></a>grouped <span class="op">=</span> rodents.groupby([<span class="st">"species_id"</span>, <span class="st">"year"</span>])</span>
-<span id="cb35-9"><a href="#cb35-9" tabindex="-1"></a></span>
-<span id="cb35-10"><a href="#cb35-10" tabindex="-1"></a><span class="co"># Calculate the mean weight by year</span></span>
-<span id="cb35-11"><a href="#cb35-11" tabindex="-1"></a>result <span class="op">=</span> grouped[<span class="st">"weight"</span>].mean()</span>
-<span id="cb35-12"><a href="#cb35-12" tabindex="-1"></a></span>
-<span id="cb35-13"><a href="#cb35-13" tabindex="-1"></a><span class="co"># Use the option_context context manager to show all rows</span></span>
-<span id="cb35-14"><a href="#cb35-14" tabindex="-1"></a><span class="cf">with</span> pd.option_context(<span class="st">"display.max_rows"</span>, <span class="va">None</span>):</span>
-<span id="cb35-15"><a href="#cb35-15" tabindex="-1"></a>    <span class="bu">print</span>(result)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Create the merged dataframe</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(surveys, species, how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a><span class="co"># Limit merged dataframe to rodents</span></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>rodents <span class="op">=</span> merged[merged[<span class="st">"taxa"</span>] <span class="op">==</span> <span class="st">"Rodent"</span>]</span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a><span class="co"># Group rodents by species and year</span></span>
+<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>grouped <span class="op">=</span> rodents.groupby([<span class="st">"species_id"</span>, <span class="st">"year"</span>])</span>
+<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a><span class="co"># Calculate the mean weight by year</span></span>
+<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a>result <span class="op">=</span> grouped[<span class="st">"weight"</span>].mean()</span>
+<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a><span class="co"># Use the option_context context manager to show all rows</span></span>
+<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a><span class="cf">with</span> pd.option_context(<span class="st">"display.max_rows"</span>, <span class="va">None</span>):</span>
+<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a>    <span class="bu">print</span>(result)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5831,9 +5834,7 @@ Name: weight, dtype: float64
 </li>
 <li>Combine multiple text columns into one using the <code>+</code>
 operator</li>
-<li>Use the <code>str</code> accessor to use string methods like
-<code>split()</code> and <code>zfill()</code> on text columns</li>
-<li>Convert date strings to datetime objects using
+<li>Convert date info to datetime objects using
 <code>pd.to_datetime()</code>
 </li>
 </ul></div>
@@ -5855,7 +5856,7 @@ any links that you are not going to use.
           Previous: Aggregating and
         </a>
         <a class="chapter-link float-end" href="../instructor/06-visualizing-data.html" rel="next">
-          Next: Visualizing Data in...
+          Next: Visualizing Data...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
