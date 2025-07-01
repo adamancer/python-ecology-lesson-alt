@@ -32,10 +32,10 @@ surveys = pd.read_csv("data/surveys.csv")
 
 Aggregation allows us to describe the data in our dataframe by
 calculating totals (like the number of records) and statistics (like the
-mean value of a column). pandas allows us to run these calculations on
-dataframes or subsets.
+mean value of a column). Pandas allows us to run these calculations on
+dataframes or on subsets of interest.
 
-Suppose we need to know how many records are in our dataset. We've
+Suppose we want to know how many records are in our dataset. We've
 already seen that we can use the `info()` method to get high-level about
 the dataset, including the number of entries. What if just wanted the
 number of rows? One approach is to use the built-in function `len()`,
@@ -51,7 +51,7 @@ len(surveys)
 35549
 ```
 
-pandas provides a suite of aggregation methods that go beyond this
+Pandas provides a suite of aggregation methods that go beyond this
 simple case. For example, we can count the number of non-NaN values in
 each column using `count()`:
 
@@ -72,8 +72,7 @@ weight             32283
 dtype: int64
 ```
 
-Or we can find out the total weight of all individuals in grams using
-`sum()`:
+Or we can find out the total weight of all individuals using `sum()`:
 
 ```python
 surveys["weight"].sum()
@@ -90,11 +89,10 @@ affect these calculations.
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Calculate the total weight, average weight, minimum and maximum weights
-for all animals caught over the duration of the survey. Can you modify
-your code so that it outputs these values only for weights between 5 and
-10 grams?
+for all animals observed during the survey. Can you modify your code so
+that it outputs these values only for weights between 5 and 10 grams?
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 # Create a subset of only the animals between 5 and 10 grams
@@ -115,6 +113,10 @@ weights = surveys[(surveys["weight"] > 5) & (surveys["weight"] < 10)]["weight"]
  'min': np.float64(6.0),
  'max': np.float64(9.0)}
 ```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 To quickly generate summary statistics, we can use the `describe()`
 method instead of calling each aggregation method separately. When we
@@ -256,11 +258,12 @@ Name: weight, dtype: float64
 
 If we need more control over the output (for example, if we want to
 calculate the total weight of all animals, as in the challenge above),
-pandas provides the `agg()` method, which allows us to specify methods
-by column. The argument passed to this method is a `dict`. Each key must
-be a column name and each value a list of the names of aggregation
-methods. To calculate the total weight, mean weight, and mean hindfoot
-length of all records in the survey, we can use:
+pandas provides the `agg()` method, which allows us to specify
+aggregation methods by column. The argument passed to this method is a
+`dict`. Each key must be a column name and each value a list of the
+names of aggregation methods. To calculate the total weight, mean
+weight, and mean hindfoot length of all records in the survey, we can
+use:
 
 ```python
 surveys.agg({"weight": ["sum", "mean"], "hindfoot_length": ["mean"]})
@@ -300,22 +303,25 @@ surveys.agg({"weight": ["sum", "mean"], "hindfoot_length": ["mean"]})
 
 ## Grouping data
 
-Now, let's find out how many individuals were counted for each species.
-We do this using `groupby()`, which creates an object similar to a
-dataframe where rows are grouped by the data in one or more columns. To
-group by species_id, use:
+Up to now, we have been calculating statistics based on all records in
+the dataframe, but the dataset includes a variety of species, each with
+a characteristic size and number of observations. We can look at
+individual species (or plots, years, etc.) using the `groupby()` method,
+which creates groups records based on the data in one or more columns.
+To group by species_id, use:
 
 ```python
 grouped = surveys.groupby("species_id")
 ```
 
-When we aggregate grouped data, pandas makes separate calculations for
-each member of the group. In the example below, we'll calculate the
-number of times each species appears in the dataset. Rather than
-outputting the full dataframe, we'll limit the count to a single column.
-Because count ignores NaN cells, it's good practice to use a column that
-does not contain nulls. Record ID fields are a often a good choice, but
-any field that is populated for every row will work.
+We can use this object to aggregate data. When we aggregate grouped
+data, pandas makes separate calculations for each member of the group.
+In the example below, we'll calculate the number of times each species
+appears in the dataset. Rather than outputting the full dataframe, we'll
+limit the count to a single column. Because count ignores NaN cells,
+it's often a good practice to choose a column that does not contain
+nulls. Record ID fields are a good choice, but any field that is
+populated for every row will work.
 
 ```python
 grouped["species_id"].count()
@@ -374,7 +380,9 @@ ZL        2
 Name: species_id, dtype: int64
 ```
 
-To group by multiple columns, we can pass a list to `groupby()`:
+To group by multiple columns, we can pass a list to `groupby()`. To
+determine how many observations of each species were made in each year,
+we can use:
 
 ```python
 surveys.groupby(["species_id", "year"])["record_id"].count()
@@ -1698,9 +1706,8 @@ surveys.groupby(["year", "species_id"]).agg(
 As we've discussed, some columns in the surveys dataframe have the value
 NaN instead of text or numbers. NaN, short for "not a number," is a
 special type of float used by pandas to represent missing data. When
-reading from a CSV, as we have done throughout this lesson, pandas
-interprets certains values as NaN. NaNs are excluded from groups and
-most aggregation calculations in pandas, including counts.
+reading from a CSV, pandas interprets certains values as NaN. NaNs are
+excluded from groups and most aggregation calculations in pandas.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -1721,7 +1728,7 @@ Failure to convert such values to NaN will result in significant errors
 on any calculations performed on that dataset.
 
 In some cases, it can be useful to fill in cells containing NaN with a
-non-null value. For example, the `groupby()` method excludes NaN cells.
+non-null value. Recall that the `groupby()` method excludes NaN cells.
 When looking at sex, the following code counts only those cells with
 either F (female) or M (male):
 
@@ -1767,17 +1774,22 @@ surveys = surveys.dropna()
 ```
 
 This method returns a copy of the dataframe containing only those rows
-that have valid data in every field.
+that have non-NaN data in every field.
 
-## Visualizing groups of data
+## Visualizing subsets and groups
 
-Grouping data is a common operation when visualizing data.
+Plots are often a useful way to identify patterns, commonalities, and
+differences within a dataset. They can use color, shape, and size to
+highlight features of interest. Plotly allows us to style the markers on
+a scatter plot in much the same way as we selected x and y variables to
+plot at the end of the last lesson. For example, to color the markers on
+a scatterplot based on the species_id column, we can use the color
+keyword argument:
 
 ```python
 import plotly.express as px
 
-fig = px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
-fig.show()
+px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
 ```
 
 ```{.output}
@@ -1785,26 +1797,30 @@ fig.show()
 
 <embed src="files/fig-6c9b8a7490eacbd3c686340a3a0e8134.html" width=760 height=570>
 
+Now we have a much more colorful plot that shows how the size of
+individual species. When hovering over a point, we can quickly see the
+exact weight, hindfoot length, and species.
+
+Scatterplots help us understand how parameters within a dataset covary.
+Other plots, like box-and-whisker and violin plots, can be used to show
+the distribution of a single parameter. Plotly can create a
+box-and-whisker plot using almost the same syntax that we used above to
+create the scatterplot. Let's make one for hindfoot length:
+
 ```python
-surveys = surveys.sort_values("species_id")
-fig = px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
-fig.show()
+px.box(surveys, x="species_id", y="hindfoot_length", color="species_id")
 ```
 
 ```{.output}
 ```
 
-<embed src="files/fig-7b90cc79700da3b8bba4e940ff25d031.html" width=760 height=570>
+<embed src="files/fig-81b50ac778849616cb1b3c826a32b9de.html" width=760 height=570>
 
-```python
-fig = px.box(surveys, x="species_id", y="weight", color="species_id")
-fig.show()
-```
-
-```{.output}
-```
-
-<embed src="files/fig-fe802909dfeb1cf2b9154a95e3af1388.html" width=760 height=570>
+When we hover over any of the boxes on the plot above, the tooltip now
+shows aggregate statistics for the species, including the minimum,
+median, maximum, upper, Q1, Q3, upper fence, and lower fence values. In
+lesson 6, we will return to box plots to see how we can modify them to
+better visualize the distribution of a parameter.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -1813,8 +1829,9 @@ fig.show()
 -   Calculate multiple summary statistics at once using the dataframe
     methods `describe()` and `agg()`
 -   Group data by one or more columns using the `groupby()` method
--   pandas uses NaN to represent missing data in a dataframe
 -   Failing to consider how missing data is interpreted in a dataset can
-    introduce errors into calculations
+    introduce significant errors
+-   Box-and-whisker plots can be used to visualize the distribution of a
+    single parameter
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

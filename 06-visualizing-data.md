@@ -1,5 +1,5 @@
 ---
-title: Visualizing Data in a Dataframe
+title: Visualizing Data
 teaching: 60
 exercises: 0
 ---
@@ -7,7 +7,7 @@ exercises: 0
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 -   How can we look at individual rows and columns in a dataframe?
--   How can we perform calculations?
+-   How can we style plots?
 -   How can we modify the table and data?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -21,17 +21,22 @@ exercises: 0
 
 We'll begin by loading and preparing the data we'd like to plot. This
 will include operations introduced in previous lessons, including
-reading CSVs into dataframes, creating a date column, merging
-dataframes, sorting a dataframe, and removing records including null
-values.
+reading CSVs into dataframes, merging dataframes, sorting a dataframe,
+and removing records that include null values. We'll begin by importing
+pands:
 
 ```python
 import pandas as pd
 ```
 
+Next we'll load the surveys dataset using `pd.read_csv()`:
+
 ```python
 surveys = pd.read_csv("data/surveys.csv")
 ```
+
+Now we want to take a quick look at the surveys dataset. Since we're
+going to be plotting data, we need to
 
 ```python
 surveys.info()
@@ -86,10 +91,11 @@ plots = pd.read_csv("data/plots.csv")
 surveys = surveys.merge(species, how="left").merge(plots, how="left")
 ```
 
-```python
-surveys["date"] = pd.to_datetime(surveys[["year", "month", "day"]])
-surveys = surveys.sort_values("plot_type")
-```
+### Chaining
+
+The previous cell performs two merges in the same line of code.
+Performing multiple operations on the same object in a single line of
+code is called chaining.
 
 ```python
 surveys["taxa"].unique()
@@ -133,34 +139,64 @@ rodents.sample(5)
       <th>species</th>
       <th>taxa</th>
       <th>plot_type</th>
-      <th>date</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>9192</th>
-      <td>11534</td>
-      <td>5</td>
-      <td>11</td>
-      <td>1986</td>
-      <td>11</td>
+      <th>8645</th>
+      <td>10920</td>
+      <td>10</td>
+      <td>13</td>
+      <td>1985</td>
+      <td>2</td>
       <td>DM</td>
       <td>F</td>
-      <td>34.0</td>
-      <td>24.0</td>
+      <td>37.0</td>
+      <td>40.0</td>
       <td>Dipodomys</td>
       <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
-      <td>1986-05-11</td>
     </tr>
     <tr>
-      <th>2049</th>
-      <td>3052</td>
+      <th>25291</th>
+      <td>29628</td>
+      <td>5</td>
+      <td>16</td>
+      <td>1999</td>
+      <td>3</td>
+      <td>PB</td>
+      <td>F</td>
+      <td>27.0</td>
+      <td>43.0</td>
+      <td>Chaetodipus</td>
+      <td>baileyi</td>
+      <td>Rodent</td>
+      <td>Long-term Krat Exclosure</td>
+    </tr>
+    <tr>
+      <th>21521</th>
+      <td>25534</td>
+      <td>4</td>
+      <td>12</td>
+      <td>1997</td>
+      <td>12</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>45.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>14502</th>
+      <td>17652</td>
       <td>6</td>
       <td>22</td>
-      <td>1980</td>
-      <td>17</td>
+      <td>1990</td>
+      <td>9</td>
       <td>DM</td>
       <td>M</td>
       <td>35.0</td>
@@ -168,59 +204,23 @@ rodents.sample(5)
       <td>Dipodomys</td>
       <td>merriami</td>
       <td>Rodent</td>
-      <td>Control</td>
-      <td>1980-06-22</td>
-    </tr>
-    <tr>
-      <th>5596</th>
-      <td>7601</td>
-      <td>3</td>
-      <td>15</td>
-      <td>1983</td>
-      <td>14</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
-      <td>44.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
-      <td>Rodent</td>
-      <td>Control</td>
-      <td>1983-03-15</td>
-    </tr>
-    <tr>
-      <th>10395</th>
-      <td>12880</td>
-      <td>5</td>
-      <td>28</td>
-      <td>1987</td>
-      <td>22</td>
-      <td>OL</td>
-      <td>M</td>
-      <td>20.0</td>
-      <td>27.0</td>
-      <td>Onychomys</td>
-      <td>leucogaster</td>
-      <td>Rodent</td>
-      <td>Control</td>
-      <td>1987-05-28</td>
-    </tr>
-    <tr>
-      <th>17042</th>
-      <td>20566</td>
-      <td>12</td>
-      <td>22</td>
-      <td>1992</td>
-      <td>9</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
-      <td>41.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
-      <td>Rodent</td>
       <td>Spectab exclosure</td>
-      <td>1992-12-22</td>
+    </tr>
+    <tr>
+      <th>18901</th>
+      <td>22779</td>
+      <td>9</td>
+      <td>24</td>
+      <td>1995</td>
+      <td>8</td>
+      <td>PP</td>
+      <td>F</td>
+      <td>20.0</td>
+      <td>16.0</td>
+      <td>Chaetodipus</td>
+      <td>penicillatus</td>
+      <td>Rodent</td>
+      <td>Control</td>
     </tr>
   </tbody>
 </table>
@@ -235,11 +235,16 @@ We can load that dataframe directly in the future.
 
 ## Using plotly
 
-We've already used plotly.
+We've already worked a little with plotly in previous lessons.
 
--   **Customizable.**
--   **Interactive.** You can pan and zoom across plots and hover over
-    elements to get additional information about them.
+-   **Customizable.** Allows the appearance of plots to be extensively
+    modified.
+-   **Interactive.** Pan and zoom across plots, or hover over elements
+    to get additional information about them.
+-   **Flexible.** Allows creation of many different plot types, often
+    with only a few lines of code.
+-   **Embeddable.** Interactive plots can be embedded on websites using
+    ploty's JavaScript library.
 
 Plotly has two main ways of making plots:
 
@@ -254,33 +259,19 @@ We will use plotly.express in this lesson.
 
 ## Other plotting libraries
 
-The R community has largely coalesced around the gg2plot library for
-plotting. By contract, Python has a wider variety of commonly used
-libraries. Some common alternatives include:
+The R community has largely coalesced around gg2plot for plotting. In
+contrast, the Python community uses a number of data visualization
+libraries. Some commonly used alternatives to plotly include:
 
--   altair
--   bokeh
--   matplotlib
--   seaborn
+-   [Bokeh](https://bokeh.org/)
+-   [Matplotlib](https://matplotlib.org/)
+-   [seaborn](https://seaborn.pydata.org/)
+-   [Vega-Altair](https://altair-viz.github.io/)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Thinking about plots
-
-What numeric data is included in the dataset? What categories of data
-might we be interested in plotting?
-
-For the plots below, we will focus on rodent data.
-
-We want to include clear, human-readable labels for the data. Consistent
-colors and symbols: When creating multiple plots, it is useful to use
-the same styles to
-
-We'll begin by loading and preparing the data we'd like to plot. This
-will include operations introduced in previous lessons, including
-reading CSVs into dataframes, creating a date column, merging
-dataframes, sorting a dataframe, and removing records including null
-values.
+We'll begin by reproducing the scatterplot from the end of lesson 4,
+which used weight on the x axis and hindfoot length on the y axis.
 
 ```python
 import plotly.express as px
@@ -291,28 +282,52 @@ px.scatter(surveys, x="weight", y="hindfoot_length")
 ```{.output}
 ```
 
-<embed src="files/fig-32d380f5fbf3ed4027b96bb70a04c7cb.html" width=760 height=570>
+<embed src="files/fig-a5bc67ed89866863a9a8945a8141239c.html" width=760 height=570>
 
 Let's take a quick look at the interactive elements on this plot. When
-you hover over a plotly plot, a toolbar appears in the upper right
-corner. Each icon on the toolbar is a widget that allows you to interact
+we hover over a plotly plot, a toolbar appears in the upper right
+corner. Each icon on the toolbar is a widget that allows us to interact
 with the plot. By default, the toolbar includes the following widgets:
 
--   The camera allows you to save the current view as a PNG file
--   The next four widgets control how click-and-drag affects the plot:
-    -   The magnifying glass allows you to draw a box and zoom
-    -   The crossing arrows allw you to pan
-    -   The dotted box allows you to select data by drawing a box
-    -   The dotted lasso allows you to select data by drawing a shape
--   The plus box allows you to zoom in
--   The minus box allows you to zoom out
+-   The camera allows us to save the current view as a PNG file
+-   The next four widgets are toggles that control how click-and-drag
+    affects the plot. Only one can be active at a time.
+    -   The magnifying glass enable a zoom box
+    -   The crossing arrows enable panning
+    -   The dotted box enables drawing a box to select data
+    -   The dotted lasso enables drawing an arbitrary shape to to select
+        data
+-   The plus box allows us to zoom in
+-   The minus box allows us to zoom out
 -   The crossing arrows autoscale the plot to show all adata
--   The house resets the view to the original view
+-   The house resets the plot to the original view
 
-The default appearance of the plot has some drawbacks. One is that many
-of the points overlap, making it difficult to understand how the data is
-distributed. We can partially address this issue by making the point
-semitransparent using the opacity keyword argument.
+::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+What are some limitations to the plot above? Think about how the data
+itself is presented as well as the general appearance of the plot.
+
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+-   All points are the same color
+-   Points overlap, making it difficult to understand how data is
+    distributed
+-   Axis labels include underscores and lack units
+-   No plot title
+
+Any others?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+One issue with the plot is that many of the points in the dataframe
+overlap, making it difficult to get a feel for how the data is
+distributed. Does it cluster in places? Is it evenly distributed? We
+really can't tell.
+
+We can mitigate this issue in part by making the points semitransparent
+using the opacity keyword argument:
 
 ```python
 px.scatter(surveys, x="weight", y="hindfoot_length", opacity=0.2)
@@ -321,26 +336,27 @@ px.scatter(surveys, x="weight", y="hindfoot_length", opacity=0.2)
 ```{.output}
 ```
 
-<embed src="files/fig-f4a878dd37177fdfcf9c24f6f542c407.html" width=760 height=570>
+<embed src="files/fig-e6e8b7846f1f5308785022397604b063.html" width=760 height=570>
 
-With the points now partially transparent, we can get a better sense of
-how the data is distributed.
+With the points now partially transparent, the places where they overlap
+are clearer, and we can see several areas where the observations
+cluster.
 
 ```python
-px.scatter(surveys, x="weight", y="hindfoot_length", color="plot_type", opacity=0.2)
+px.scatter(surveys, x="weight", y="hindfoot_length", color="genus", opacity=0.2)
 ```
 
 ```{.output}
 ```
 
-<embed src="files/fig-10872cd42c10b3f5677ae7b48a6917aa.html" width=760 height=570>
+<embed src="files/fig-9c621cbf03e5d76575c93439a4277a21.html" width=760 height=570>
 
 ```python
 px.scatter(
     surveys,
     x="weight",
     y="hindfoot_length",
-    color="plot_type",
+    color="genus",
     opacity=0.2,
     color_discrete_sequence=px.colors.qualitative.Safe,
 )
@@ -349,40 +365,122 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-d35e03fcbd5418e9d7371320e9c80e94.html" width=760 height=570>
+<embed src="files/fig-349b125e7900fc69cfa30682b78779c0.html" width=760 height=570>
 
-## Making a box plot
+The legend of the plot is not ordered. Because we want to use a
+consistent color scheme across plots. We can use the category_order
+keyword argument to order the legend alphabetically.
+
+This argument uses a `dict`, which is a built-in data type that we have
+not discussed yet. That means it can be used in any Python application
+without having to import anything. Like a `list`, a `dict` is a
+container that can include more than one object. Where as a `list` is a
+sequence, a `dict` is a mapping consisting of *keys* that map to
+*values*.
+
+Let's see what that looks like in practice. Here we define a `dict`
+mapping lowercase to uppercase letters. Each pair of values is separated
+by a colon, with the key on the left and the value on the right.
 
 ```python
-px.box(surveys, x="plot_type", y="hindfoot_length")
+letters = {"a": "A", "b": "B", "c": "C"}
+```
+
+To retrieve the value for a given key, we use square brackets:
+
+```python
+letters["a"]
 ```
 
 ```{.output}
+'A'
 ```
 
-<embed src="files/fig-f891ba915789ced0ec09d9c9ac675060.html" width=760 height=570>
+The `dict` passed to category_orders maps a column name from the
+dataframe to a list of values in the preferred order. We stated above
+that we'd like the genera in the plot to appear in alphabetical order.
+We can construct that list manually. Instead, we will used the built-in
+`sorted()` function to sort the values from the genus column of the
+dataframe. Because we will be using the same order in all following
+plots, we will store the sorted values in a variable.
 
 ```python
-px.box(
+order = sorted(surveys["genus"].unique())
+order
+```
+
+```{.output}
+['Baiomys',
+ 'Chaetodipus',
+ 'Dipodomys',
+ 'Neotoma',
+ 'Onychomys',
+ 'Perognathus',
+ 'Peromyscus',
+ 'Reithrodontomys',
+ 'Sigmodon']
+```
+
+We can then pass the full `dict`---that is, `{"genus": order}`---to the
+`px.scatter()` method to put the legend in alphabetical order:
+
+```python
+px.scatter(
     surveys,
-    x="plot_type",
+    x="weight",
     y="hindfoot_length",
-    color="plot_type",
+    color="genus",
+    opacity=0.2,
     color_discrete_sequence=px.colors.qualitative.Safe,
+    category_orders={"genus": order}
 )
 ```
 
 ```{.output}
 ```
 
-<embed src="files/fig-20a7b29b05173e9279c94fe1bd43da80.html" width=760 height=570>
+<embed src="files/fig-933d2518a110bd65ab5ebc96e3dcfc7c.html" width=760 height=570>
+
+## Making a box plot
 
 ```python
 px.box(
     surveys,
-    x="plot_type",
+    x="genus",
     y="hindfoot_length",
-    color="plot_type",
+    color="genus",
+    color_discrete_sequence=px.colors.qualitative.Safe,
+    category_orders={"genus": order}
+)
+```
+
+```{.output}
+```
+
+<embed src="files/fig-1822cae94d8b2ae13c24587aa9846d13.html" width=760 height=570>
+
+```python
+px.box(
+    surveys,
+    x="genus",
+    y="hindfoot_length",
+    color="genus",
+    color_discrete_sequence=px.colors.qualitative.Safe,
+    category_orders={"genus": order},
+)
+```
+
+```{.output}
+```
+
+<embed src="files/fig-1822cae94d8b2ae13c24587aa9846d13.html" width=760 height=570>
+
+```python
+px.box(
+    surveys,
+    x="genus",
+    y="hindfoot_length",
+    color="genus",
     color_discrete_sequence=px.colors.qualitative.Safe,
     points="all",
 )
@@ -391,17 +489,18 @@ px.box(
 ```{.output}
 ```
 
-<embed src="files/fig-796d1bb14cd4cab8476127562ceade0f.html" width=760 height=570>
+<embed src="files/fig-1121e84c510b364cb091c14e4c235f1b.html" width=760 height=570>
 
 To update, we can use the update_traces() method.
 
 ```python
 fig = px.box(
     surveys,
-    x="plot_type",
+    x="genus",
     y="hindfoot_length",
-    color="plot_type",
+    color="genus",
     color_discrete_sequence=px.colors.qualitative.Safe,
+    category_orders={"genus": order},
     points="all",
 )
 fig.update_traces(marker={"opacity": 0.2})
@@ -410,25 +509,31 @@ fig.update_traces(marker={"opacity": 0.2})
 ```{.output}
 ```
 
-<embed src="files/fig-5328f0bbe80ccf9843e8d38a873dc8ab.html" width=760 height=570>
+<embed src="files/fig-7ce43f9683783ab25be1e3c9b9c449d0.html" width=760 height=570>
 
 A similar plot is a violin plot. Try changing `px.box` to `px.violin` in
 the code above.
 
 ## Changing labels
 
+By default, plotly uses the column names from the dataframe as axis
+labels. Column names may be legible but are rarely ideal.
+
+Like category_orders, updating labels requires a `dict`.
+
 ```python
 fig = px.box(
     surveys,
-    x="plot_type",
+    x="genus",
     y="hindfoot_length",
-    color="plot_type",
+    color="genus",
     color_discrete_sequence=px.colors.qualitative.Safe,
+    category_orders={"genus": order},
     points="all",
-    title="Rodent hindfoot length by plot type",
+    title="Rodent hindfoot length by genus",
     labels={
         "hindfoot_length": "Hindfoot length (mm)",
-        "plot_type": "Plot type",
+        "genus": "Genus",
     }
 )
 fig.update_traces(marker={"opacity": 0.2})
@@ -437,7 +542,7 @@ fig.update_traces(marker={"opacity": 0.2})
 ```{.output}
 ```
 
-<embed src="files/fig-ee720fb27a5bbe3891f5fcfe37eaa91b.html" width=760 height=570>
+<embed src="files/fig-f45c439b56eb033a7459b9373521bc41.html" width=760 height=570>
 
 ## Making a bar chart
 

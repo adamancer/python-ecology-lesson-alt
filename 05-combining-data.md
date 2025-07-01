@@ -34,10 +34,13 @@ and split data using pandas.
 The survey dataframe we've been using throughout this lesson has a
 column called species_id. We used this column in the previous lesson to
 calculate summary statistics about observations of each species. But the
-species_id is just a two-letter code---what does each code stand for? To
-find out, we'll now load both the survey dataset and a second dataset
-containing more detailed information about the various species observed.
-Read the second dataframe from a file called species.csv:
+species_id is just a two-letter code. Without knowing what each code
+represents, we can't really understand, describe, or even properly label
+the observations. We need a way to go from the code to more detailed
+species information.
+
+To do so, we'll begin by loading a second dataset, called species.csv,
+that contains taxonomic information for each species code:
 
 ```python
 import pandas as pd
@@ -452,10 +455,10 @@ species
 
 We can see that the species dataframe includes a genus, species, and
 taxon for each species_id. This is much more useful than the species_id
-included in the original dataframe--how can we add that data to our
-surveys dataframe? Adding it by hand would be tedious and error prone.
-Fortunately, pandas provides the `pd.merge()` function to join two
-dataframes.
+included in the original dataframe--how can we integrate that data into
+our surveys dataframe? Adding it by hand would be tedious and error
+prone. Fortunately, pandas provides the `pd.merge()` function to join
+two dataframes.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -464,11 +467,11 @@ dataframes.
 Why store species data in a separate table in the first place? Species
 information is repetitive: Every observation of the same species has the
 same genus, species, and taxa. Storing it in the original survey table
-would require including that data in every record, increasing the
-complexity of the table and increasing the likelihood of errors. Storing
-that data in a separate table means we only have to enter and validate
-it once. A tool like pandas then allows us to access that data when we
-need it.
+would require including that data in every record, increasing both the
+size of the table and the likelihood of errors. Storing that data in a
+separate table means we only have to enter and validate it once. A tool
+like pandas then allows us to access the authoratative data when we need
+it.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -686,16 +689,16 @@ and summarize our data.
 
 ### Joins
 
-The `pd.merge()` method is equivalent to the JOIN operation in SQL
+The `pd.merge()` method performs the same function as joins in SQL
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Filter the merged dataframe to show the genus, the species name, and the
-weight for every individual captured at the site
+weight for every individual observed at the site.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 merged[["genus", "species", "weight"]]
@@ -791,13 +794,18 @@ merged[["genus", "species", "weight"]]
 </table>
 <p>34786 rows × 3 columns</p>
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 In the example above, we didn't provide any information about how we
 wanted to merge the dataframes together, so pandas made an educated
 guess by looking at the columns in each of the dataframes and merging
 them on the only column that appeared in both datasets, species_id. For
-more complex tables, we may want to specify the columns are used for
-merging. We can do so by passing one or more column names using the *on*
-keyword argument:
+more complex tables, we may need more control over the operation, for
+example, by specifiying the exact columns we want to merge on. We can do
+that by passing one or more column names using the *on* keyword
+argument:
 
 ```python
 pd.merge(surveys, species, on="species_id")
@@ -1004,12 +1012,12 @@ pd.merge(surveys, species, on="species_id")
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Compare the number of rows in the original and merged survey dataframes.
-How do they differ? Why do you think that might be?
+How do they differ? Why might that be?
 
 **Hint:** Use `pd.unique()` method to look at the species_id column in
 each dataframe.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 pd.unique(surveys["species_id"].sort_values())
@@ -1023,18 +1031,11 @@ array(['AB', 'AH', 'AS', 'BA', 'CB', 'CM', 'CQ', 'CS', 'CT', 'CU', 'CV',
        'UP', 'UR', 'US', 'ZL', nan], dtype=object)
 ```
 
-```python
-pd.unique(species["species_id"].sort_values())
-```
+The merged dataframe omits rows with no value in the species_id column.
 
-```{.output}
-array(['AB', 'AH', 'AS', 'BA', 'CB', 'CM', 'CQ', 'CS', 'CT', 'CU', 'CV',
-       'DM', 'DO', 'DS', 'DX', 'EO', 'GS', 'NL', 'NX', 'OL', 'OT', 'OX',
-       'PB', 'PC', 'PE', 'PF', 'PG', 'PH', 'PI', 'PL', 'PM', 'PP', 'PU',
-       'PX', 'RF', 'RM', 'RO', 'RX', 'SA', 'SB', 'SC', 'SF', 'SH', 'SO',
-       'SS', 'ST', 'SU', 'SX', 'UL', 'UP', 'UR', 'US', 'ZL', 'ZM'],
-      dtype=object)
-```
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 The number of rows in the merged dataframe is lower than in the original
 surveys dataframe. By default, `pd.merge()` performs an **inner join**.
@@ -1056,7 +1057,7 @@ other kinds of merges:
     NaN if not.
 -   **Outer:** Include all rows from both dataframes
 
-We want to keep all of our observations, so let's do a left join
+We want to keep all of the observations, so let's do a left join
 instead. To specify the type of merge, we use the *how* keyword
 argument:
 
@@ -1266,12 +1267,12 @@ Now all 35,549 rows appear in the merged dataframe.
 
 ## Appending rows to a dataframe
 
-Merges address the case where information related to a set of
-observations is spread across multiple files. What about when the
-observations themselves are in more than one file? For a survey like the
-one we've been looking at in this lesson, we might get a new file once a
-year with the same columns but a completely new set of observations. How
-can we add those new observations to our dataframe?
+Merges address the case where information from a set of observations is
+spread across multiple files. What about when the observations
+themselves are in more than one file? For a survey like the one we've
+been looking at in this lesson, we might get a new file once a year with
+the same columns but a completely new set of observations. How can we
+add those new observations to our dataframe?
 
 We'll simulate this operation by splitting data from two different
 years, 2001 and 2002, into separate dataframes. We can filter the
@@ -1614,12 +1615,12 @@ surveys_2002
 We now have two different dataframes with the same columns but different
 data, one with 1,610 rows, the other with 2,229 rows, for a total of
 3,839 records. We can combine them into a new dataframe using
-`pd.concat()`, which stacks the dataframes vertically (that is, it
-appends records from the 2002 dataset to the 2001 dataset). This method
-accepts a list of dataframes and works from left to right (so the
-leftmost dataframe will be at the top of the new dataframe and the
-rightmost will be at the bottom). We're only combining two dataframes
-here but could include more if necessary.
+`pd.concat()`, which stacks the dataframes vertically (that is, it adds
+records from one dataset to the end of another). This method accepts a
+list of dataframes and works from left to right (so the leftmost
+dataframe will be at the top of the new dataframe and the rightmost will
+be at the bottom). We're only combining two dataframes here but could
+include more if necessary.
 
 ```python
 surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
@@ -2065,10 +2066,10 @@ for different data types (but keep reading for an important caveat.)
 Another common need is to join or split dates. In the ecology dataset,
 the date of each observation is split across year, month, and day
 columns. However, pandas has a special data type, `datetime64`, for
-representing dates that is useful for analyzing time series data. To
-make use of that functionality, we can concatenate the date columns and
-convert them to a datetime object using the `pd.to_datetime()` method.
-The pandas library is doing a lot of work behind the scenes here.
+representing dates that can be useful for analyzing time series data. To
+make use of that functionality, we can concatenate the columns with the
+date components and convert them to a datetime object using the
+`pd.to_datetime()` method.
 
 ```python
 surveys["date"] = pd.to_datetime(surveys[["year", "month", "day"]])
@@ -2090,9 +2091,11 @@ surveys["date"]
 Name: date, Length: 35549, dtype: datetime64[ns]
 ```
 
+Pandas is doing a lot of work behind the scenes here.
+
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-pandas allows us to ask specific questions about our data. A key skill
+Pandas allows us to ask specific questions about our data. A key skill
 is knowing how to translate our scientific questions into a sensible
 approach (and subsequently visualize and interpret our results).
 
@@ -3031,8 +3034,6 @@ Name: weight, dtype: float64
     `pd.merge()`
 -   Append rows from one dataframe to another using `pd.concat()`
 -   Combine multiple text columns into one using the `+` operator
--   Use the `str` accessor to use string methods like `split()` and
-    `zfill()` on text columns
--   Convert date strings to datetime objects using `pd.to_datetime()`
+-   Convert date info to datetime objects using `pd.to_datetime()`
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
