@@ -337,6 +337,14 @@ class Notebook:
         self.blocks = cells_to_blocks(self.json["cells"], always_part=["solution"])
 
     def __str__(self):
+
+        for block in self.blocks:
+            try:
+                block.to_markdown()
+            except:
+                print(block)
+                print("====")
+
         content = "\n".join([b.to_markdown().rstrip("\n") + "\n" for b in self.blocks])
         content = re.sub("^# .*", "", content).strip()
         return (
@@ -518,8 +526,8 @@ if __name__ == "__main__":
 
         # Save chapters as markdown
         try:
-            if os.path.getmtime(nb_path) > os.path.getmtime(md_path):
-                raise FileNotFoundError
+            # if os.path.getmtime(nb_path) > os.path.getmtime(md_path):
+            #    raise FileNotFoundError
             with open(md_path) as f:
                 if not f.read():
                     raise FileNotFoundError
@@ -546,16 +554,20 @@ if __name__ == "__main__":
             Notebook(nb_path).to_markdown(md_path)
 
             # Clear the notebook
-            subprocess.run(
-                [
-                    "jupyter",
-                    "nbconvert",
-                    "--ClearOutputPreprocessor.enabled=True",
-                    "--ClearMetadataPreprocessor.enabled=True",
-                    "--to",
-                    "notebook",
-                    "--clear-output",
-                    "--inplace",
-                    nb_path,
-                ]
-            )
+            with open(nb_path, encoding="utf-8") as f:
+                nb = json.load(f)
+            nb["metadata"] = {
+                "language_info": {"name": nb["metadata"]["language_info"]["name"]}
+            }
+            print(nb["metadata"])
+            for cell in nb["cells"]:
+                if cell.get("outputs"):
+                    cell["outputs"] = []
+                if cell.get("execution_count"):
+                    cell["execution_count"] = None
+                cell["metadata"] = {
+                    k: v for k, v in cell["metadata"].items() if k == "tags"
+                }
+
+            with open(nb_path, "w", encoding="utf-8") as f:
+                json.dump(nb, f, indent=1, ensure_ascii=False)
