@@ -1,5 +1,5 @@
 ---
-title: Visualizing data in a dataframe
+title: Visualizing Data in a Dataframe
 teaching: 60
 exercises: 0
 ---
@@ -103,9 +103,127 @@ In honor of this, we will rename our dataframe:
 
 ```python
 rodents = surveys
+rodents.sample(5)
 ```
 
-surveys.sample(5)
+```{.output}
+```
+
+<style>
+  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
+  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
+  table.dataframe th { text-align: right; font-weight: bold; }
+  table.dataframe td { text-align: right; }
+</style>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
+      <th>genus</th>
+      <th>species</th>
+      <th>taxa</th>
+      <th>plot_type</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9192</th>
+      <td>11534</td>
+      <td>5</td>
+      <td>11</td>
+      <td>1986</td>
+      <td>11</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>34.0</td>
+      <td>24.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+      <td>Control</td>
+      <td>1986-05-11</td>
+    </tr>
+    <tr>
+      <th>2049</th>
+      <td>3052</td>
+      <td>6</td>
+      <td>22</td>
+      <td>1980</td>
+      <td>17</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>46.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+      <td>Control</td>
+      <td>1980-06-22</td>
+    </tr>
+    <tr>
+      <th>5596</th>
+      <td>7601</td>
+      <td>3</td>
+      <td>15</td>
+      <td>1983</td>
+      <td>14</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>44.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+      <td>Control</td>
+      <td>1983-03-15</td>
+    </tr>
+    <tr>
+      <th>10395</th>
+      <td>12880</td>
+      <td>5</td>
+      <td>28</td>
+      <td>1987</td>
+      <td>22</td>
+      <td>OL</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>27.0</td>
+      <td>Onychomys</td>
+      <td>leucogaster</td>
+      <td>Rodent</td>
+      <td>Control</td>
+      <td>1987-05-28</td>
+    </tr>
+    <tr>
+      <th>17042</th>
+      <td>20566</td>
+      <td>12</td>
+      <td>22</td>
+      <td>1992</td>
+      <td>9</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>41.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+      <td>Spectab exclosure</td>
+      <td>1992-12-22</td>
+    </tr>
+  </tbody>
+</table>
 
 Finally we will save the rodents dataframe to a file:
 
@@ -173,7 +291,7 @@ px.scatter(surveys, x="weight", y="hindfoot_length")
 ```{.output}
 ```
 
-<embed src="files/fig-bc9a572edafa6c7a1e482b048bdfd859.html" width=760 height=570>
+<embed src="files/fig-32d380f5fbf3ed4027b96bb70a04c7cb.html" width=760 height=570>
 
 Let's take a quick look at the interactive elements on this plot. When
 you hover over a plotly plot, a toolbar appears in the upper right
@@ -203,7 +321,7 @@ px.scatter(surveys, x="weight", y="hindfoot_length", opacity=0.2)
 ```{.output}
 ```
 
-<embed src="files/fig-b1611b036822e93155adf6c6d6f2e8cf.html" width=760 height=570>
+<embed src="files/fig-f4a878dd37177fdfcf9c24f6f542c407.html" width=760 height=570>
 
 With the points now partially transparent, we can get a better sense of
 how the data is distributed.
@@ -215,7 +333,7 @@ px.scatter(surveys, x="weight", y="hindfoot_length", color="plot_type", opacity=
 ```{.output}
 ```
 
-<embed src="files/fig-1815d1eb8e724ef1d0450030dd3918b1.html" width=760 height=570>
+<embed src="files/fig-10872cd42c10b3f5677ae7b48a6917aa.html" width=760 height=570>
 
 ```python
 px.scatter(
@@ -231,7 +349,7 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-4b47c4efad024d1aff63df7a70932d42.html" width=760 height=570>
+<embed src="files/fig-d35e03fcbd5418e9d7371320e9c80e94.html" width=760 height=570>
 
 ## Making a box plot
 
@@ -242,7 +360,7 @@ px.box(surveys, x="plot_type", y="hindfoot_length")
 ```{.output}
 ```
 
-<embed src="files/fig-ae736a9ee93cea679eaf576c4d9ab989.html" width=760 height=570>
+<embed src="files/fig-f891ba915789ced0ec09d9c9ac675060.html" width=760 height=570>
 
 ```python
 px.box(
@@ -257,7 +375,7 @@ px.box(
 ```{.output}
 ```
 
-<embed src="files/fig-f758a59a4e6fca47485dbeca79316098.html" width=760 height=570>
+<embed src="files/fig-20a7b29b05173e9279c94fe1bd43da80.html" width=760 height=570>
 
 ```python
 px.box(
@@ -273,7 +391,7 @@ px.box(
 ```{.output}
 ```
 
-<embed src="files/fig-2b50f852a8b45635d8fbfcdd7f2b4adc.html" width=760 height=570>
+<embed src="files/fig-796d1bb14cd4cab8476127562ceade0f.html" width=760 height=570>
 
 To update, we can use the update_traces() method.
 
@@ -292,7 +410,7 @@ fig.update_traces(marker={"opacity": 0.2})
 ```{.output}
 ```
 
-<embed src="files/fig-5cf1ec9469c574f9e904d1e65d017659.html" width=760 height=570>
+<embed src="files/fig-5328f0bbe80ccf9843e8d38a873dc8ab.html" width=760 height=570>
 
 A similar plot is a violin plot. Try changing `px.box` to `px.violin` in
 the code above.
@@ -319,7 +437,7 @@ fig.update_traces(marker={"opacity": 0.2})
 ```{.output}
 ```
 
-<embed src="files/fig-be5e42e690afc63c7e9c647ffe0c2413.html" width=760 height=570>
+<embed src="files/fig-ee720fb27a5bbe3891f5fcfe37eaa91b.html" width=760 height=570>
 
 ## Making a bar chart
 
@@ -342,7 +460,7 @@ px.bar(
 ```{.output}
 ```
 
-<embed src="files/fig-81c7ee3dd50c4971423c5998cbe9cb2f.html" width=760 height=570>
+<embed src="files/fig-14499ad0383f30c6d3b5384fff0f3585.html" width=760 height=570>
 
 ```python
 px.bar(
@@ -358,7 +476,7 @@ px.bar(
 ```{.output}
 ```
 
-<embed src="files/fig-0855e2a3e8080a3eee30698559e50dab.html" width=760 height=570>
+<embed src="files/fig-96cffed241e98e74588ea75b4e02c597.html" width=760 height=570>
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

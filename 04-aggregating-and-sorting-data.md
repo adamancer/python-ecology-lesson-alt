@@ -1783,7 +1783,7 @@ fig.show()
 ```{.output}
 ```
 
-<embed src="files/fig-cd302a176658e2470f869c8a808a5547.html" width=760 height=570>
+<embed src="files/fig-6c9b8a7490eacbd3c686340a3a0e8134.html" width=760 height=570>
 
 ```python
 surveys = surveys.sort_values("species_id")
@@ -1794,7 +1794,7 @@ fig.show()
 ```{.output}
 ```
 
-<embed src="files/fig-a29867549590a840258ecc3bcebdb665.html" width=760 height=570>
+<embed src="files/fig-7b90cc79700da3b8bba4e940ff25d031.html" width=760 height=570>
 
 ```python
 fig = px.box(surveys, x="species_id", y="weight", color="species_id")
@@ -1804,7 +1804,7 @@ fig.show()
 ```{.output}
 ```
 
-<embed src="files/fig-af6b53729521905cdc1774684a9a8792.html" width=760 height=570>
+<embed src="files/fig-fe802909dfeb1cf2b9154a95e3af1388.html" width=760 height=570>
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

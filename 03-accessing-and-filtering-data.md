@@ -730,15 +730,15 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>13485</th>
-      <td>13486</td>
-      <td>10</td>
-      <td>24</td>
-      <td>1987</td>
-      <td>20</td>
-      <td>DM</td>
+      <th>25982</th>
+      <td>25983</td>
+      <td>6</td>
+      <td>9</td>
+      <td>1997</td>
+      <td>3</td>
+      <td>PB</td>
       <td>F</td>
-      <td>36.0</td>
+      <td>28.0</td>
       <td>36.0</td>
     </tr>
   </tbody>
@@ -2321,7 +2321,7 @@ fig.show()
 ```{.output}
 ```
 
-<embed src="files/fig-25028926113cc479b199dab433a782b0.html" width=760 height=570>
+<embed src="files/fig-b6a08e591b0d820b0d32fd9335576843.html" width=760 height=570>
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
