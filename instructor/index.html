@@ -228,7 +228,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-accessing-data-in-a-dataframe.html">3. Accessing Data in a Dataframe</a>
+        <a href="03-accessing-and-filtering-data.html">3. Accessing and Filtering Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -237,7 +237,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-aggregating-and-grouping-data.html">4. Aggregating and Grouping Data</a>
+        <a href="04-aggregating-and-sorting-data.html">4. Aggregating and Sorting Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -246,7 +246,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05-combining-data-with-joins.html">5. Combining Dataframes</a>
+        <a href="05-combining-data.html">5. Combining Dataframes</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -255,7 +255,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-loops-and-functions.html">6. Data Workflows and Automation</a>
+        <a href="06-visualizing-data.html">6. Visualizing data in a dataframe</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -347,8 +347,8 @@ write data using pandas?
 <span class="visually-hidden">Duration: </span>02h 00m
 </td>
 <td>
- 3. <a href="03-accessing-data-in-a-dataframe.html">Accessing Data in a
-Dataframe</a>
+ 3. <a href="03-accessing-and-filtering-data.html">Accessing and
+Filtering Data</a>
 </td>
 <td>
 How can we look at individual rows and columns in a dataframe?<br>How
@@ -358,8 +358,8 @@ can we perform calculations?<br>How can we modify the table and data?
 <span class="visually-hidden">Duration: </span>03h 00m
 </td>
 <td>
- 4. <a href="04-aggregating-and-grouping-data.html">Aggregating and
-Grouping Data</a>
+ 4. <a href="04-aggregating-and-sorting-data.html">Aggregating and
+Sorting Data</a>
 </td>
 <td>
 How do we calculate summary statistics?<br>How do we group
@@ -369,7 +369,7 @@ data?<br>How do null values affect calculations?
 <span class="visually-hidden">Duration: </span>04h 00m
 </td>
 <td>
- 5. <a href="05-combining-data-with-joins.html">Combining Dataframes</a>
+ 5. <a href="05-combining-data.html">Combining Dataframes</a>
 </td>
 <td>
 How do we combine data from multiple sources using pandas?<br>How do we
@@ -380,15 +380,15 @@ columns?
 <span class="visually-hidden">Duration: </span>05h 00m
 </td>
 <td>
- 6. <a href="06-loops-and-functions.html">Data Workflows and
-Automation</a>
+ 6. <a href="06-visualizing-data.html">Visualizing data in a
+dataframe</a>
 </td>
 <td>
-Can I automate operations in Python?<br>What are functions and why
-should I use them?
+How can we look at individual rows and columns in a dataframe?<br>How
+can we perform calculations?<br>How can we modify the table and data?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>06h 30m
+<span class="visually-hidden">Duration: </span>06h 00m
 </td>
 <td>
 Finish
@@ -401,145 +401,109 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><p>This lesson uses JupyterLab and pandas to analyze and visualize data
-from an ecology dataset. It was adapted (and currently includes huge
-chunks of text lifted directly from) <a href="https://datacarpentry.org/sql-ecology-lesson/" class="external-link">Data Management
+      </section><section id="setup"><p>This lesson uses Python to analyze and visualize data from an ecology
+dataset. It was adapted (and currently includes huge chunks of text
+lifted directly from) <a href="https://datacarpentry.org/sql-ecology-lesson/" class="external-link">Data Management
 with SQL for Ecologists</a> and covers similar material to <a href="https://datacarpentry.org/python-ecology-lesson/" class="external-link">Data Analysis
 and Visualization in Python for Ecologists</a>. The idea was to create
 parallel lessons for SQL and Python for use by the Smithsonian
 Carpentries.</p>
-<p>This lesson is designed to use JupyterLab, an interactive development
-environment widely used for doing data science with Python. <strong>The
-rest of this page provides instructions for setting up the software and
-data needed to complete this lesson. Please complete the setup prior to
-your scheduled lesson.</strong></p>
+<p>This lesson is designed to use Jupyter notebooks, an interactive
+development environment widely used for doing data science with Python.
+<strong>The rest of this page provides instructions for setting up the
+software and data needed to complete this lesson. Please complete setup
+prior to your scheduled lesson.</strong></p>
 <section><h2 class="section-heading" id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
-<hr class="half-width"><p>We will use a program called Miniconda to set up JupyterLab, so first
-we need to download and install <a href="https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links" class="external-link">Miniconda
-(64 bit)</a>. We recommend using the following installers:</p>
+<hr class="half-width"><p>This lesson requires two pieces of software: Visual Studio Code and
+Miniforge.</p>
+<div class="section level3">
+<h3 id="visual-studio-code">Visual Studio Code<a class="anchor" aria-label="anchor" href="#visual-studio-code"></a></h3>
+<p>Visual Studio Code, also known as VS Code, is a code editor developed
+by Microsoft.</p>
+<ol style="list-style-type: decimal"><li>Download the <a href="https://code.visualstudio.com/download" class="external-link">VS
+Code installer</a>
+</li>
+<li>Run the installer</li>
+</ol></div>
+<div class="section level3">
+<h3 id="miniforge">Miniforge<a class="anchor" aria-label="anchor" href="#miniforge"></a></h3>
+<p>Miniforge is a package manager used to manage software related to
+Python. To install:</p>
+<ol style="list-style-type: decimal"><li>Download the Miniforge installer for your system from <a href="https://conda-forge.org/download/" class="external-link">conda-forge</a>
 <ul><li>
-<strong>Windows</strong>: Miniconda3 Windows 64-bit</li>
-<li>
-<strong>macOS</strong>:
-<ul><li>
-<strong>Apple M1:</strong> Miniconda3 macOS Apple M1 64-bit pkg</li>
-<li>
-<strong>Intel:</strong> Miniconda3 macOS Intel x86 64-bit pkg</li>
+<strong>Windows:</strong> Choose the User Installer version</li>
 </ul></li>
-</ul><div class="section level3">
-<h3 id="using-the-command-line-interface">Using the command-line interface<a class="anchor" aria-label="anchor" href="#using-the-command-line-interface"></a></h3>
-<p>A command-line interface, or CLI, is an application that can run
-commands supplied as text. Examples of command-line interfaces include
-the Windows command prompt and Unix shells, including bash. We’ll be
-using the CLI to install and run JupyterLab.</p>
+<li>Run the installer</li>
+</ol><div id="anaconda" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="anaconda" class="callout-inner">
+<h3 class="callout-title">Anaconda</h3>
+<div class="callout-content">
+<p>You may already be familiar with Anaconda, which includes similar
+package management software as Miniforge and a whole lot more. We
+<strong>strongly recommend</strong> sticking to the installation
+instructions and software presented here for this training. The Anaconda
+distribution includes additional programs that may affect the output of
+some of the code presented in this lesson, which can be confusing for
+people new to Python.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="setting-up-the-python-environment">Setting up the Python environment<a class="anchor" aria-label="anchor" href="#setting-up-the-python-environment"></a></h3>
+<p>Once Miniforge is installed, you’re ready to set up the Python
+environment. You’ll need to use a command-line interface, or CLI, to do
+so. A CLI is an application that runs commands that are provided as
+text. Examples of command-line interfaces include the Windows command
+prompt and Unix shells, including bash. We’ll be using the CLI to
+install and run JupyterLab.</p>
 <p>Each operating system has one or more command-line interfaces
 available. We recommend using the following applications for this
 lesson:</p>
 <ul><li>
-<strong>Windows:</strong> Use the Anaconda Prompt, which was
-installed as part of Miniconda. You can find it by searching for
-Anaconda Prompt in the search box on the Windows toolbar.</li>
+<strong>Windows:</strong> Use the Miniforge Prompt, which was
+installed as part of Miniforge. You can find it by searching for
+Miniforge Prompt in the search box on the Windows toolbar.</li>
 <li>
 <strong>macOS:</strong> Use the Terminal. You can find it in the
 Applications/Utilities folder or by searching for Terminal using
 Spotlight.</li>
-</ul><p>The commands given below may not work if a different application is
-used, so we’d strongly encourage you to use the recommended ones.</p>
-<div id="running-commands" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="running-commands" class="callout-inner">
-<h3 class="callout-title">Running commands</h3>
-<div class="callout-content">
-<p>To run any of the commands presented here, copy-paste them into the
-CLI, then press enter to run the command.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="installing-jupyterlab">Installing JupyterLab<a class="anchor" aria-label="anchor" href="#installing-jupyterlab"></a></h3>
-<p>Once the command-line interface is open, run the following commands
-to install the software needed for this course:</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> python-ecology-lesson</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">conda</span> activate python-ecology-lesson</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">--channel</span> conda-forge <span class="at">--yes</span> altair jupyterlab pandas</span></code></pre>
-</div>
+</ul><p>Type or copy the following command into the CLI to set up the
+environment:</p>
+<p>mamba create –name python-ecology-lesson ipykernel pandas plotly
+jupyterlab</p>
 </div>
 <div class="section level3">
 <h3 id="downloading-data-to-the-lesson-folder">Downloading data to the lesson folder<a class="anchor" aria-label="anchor" href="#downloading-data-to-the-lesson-folder"></a></h3>
-<p>Next we’ll create the lesson folder and download the data needed for
-the lesson:</p>
+<p>This lesson uses specific data files from the <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459" class="external-link">Portal
+Project Teaching Database</a>. Here, we’ll create the lesson folder and
+download the files we need for the lesson.</p>
 <ol style="list-style-type: decimal"><li>Create a folder called <strong>python-ecology-lesson</strong> on
 your desktop</li>
-<li>Create a folder called <strong>data</strong> inside the folder
-created in step 1</li>
+<li>Create a folder called <strong>data</strong> inside the folder from
+step 1</li>
 <li>Download the following files into the data folder:
 <ul><li>surveys.csv: <a href="https://figshare.com/ndownloader/files/10717177" class="external-link uri">https://figshare.com/ndownloader/files/10717177</a>
 </li>
 <li>species.csv: <a href="https://figshare.com/ndownloader/files/3299483" class="external-link uri">https://figshare.com/ndownloader/files/3299483</a>
 </li>
+<li>plots.csv: <a href="https://figshare.com/ndownloader/files/3299474" class="external-link uri">https://figshare.com/ndownloader/files/3299474</a>
+</li>
 </ul></li>
-</ol><p>Alternatively, we can run the following commands to create the lesson
-folders and download the necessary data:</p>
-<div class="codewrapper sourceCode" id="cb2">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> python-ecology-lesson/data</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">cd</span> python-ecology-lesson/data</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> surveys.csv https://figshare.com/ndownloader/files/10717177</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-O</span> species.csv https://figshare.com/ndownloader/files/3299483</span></code></pre>
-</div>
-<div id="note-for-windows-users" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="note-for-windows-users" class="callout-inner">
-<h3 class="callout-title">Note for Windows users</h3>
-<div class="callout-content">
-<p>The commands used here assume that your desktop is in a standard
-location. If you are using a Windows computer with OneDrive enabled,
-your desktop may be in a different place. You can use the following
-command in place of <code>cd ~/Desktop</code> in the instructions on
-this page to get to your desktop no matter where it is:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">POWERSHELL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode powershell" tabindex="0"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">cd</span> <span class="op">$([</span>Environment<span class="op">]::</span>GetFolderPath<span class="op">(</span><span class="st">"Desktop"</span><span class="op">))</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="running-jupyterlab">Running JupyterLab<a class="anchor" aria-label="anchor" href="#running-jupyterlab"></a></h2>
-<hr class="half-width"><p>Once JupyterLab has been installed, we can run it by opening the
-command-line interface and running the following commands:</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">conda</span> activate python-ecology-lesson</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="bu">cd</span> python-ecology-lesson</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">jupyter-lab</span></span></code></pre>
-</div>
-<p>JupyterLab should now open in a new browser window.</p>
-<div id="test-your-installation" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<div id="test-your-installation" class="callout-inner">
-<h3 class="callout-title">Test your installation</h3>
-<div class="callout-content">
-<p>Try running this command before the scheduled lesson – does
-JupyterLab appear as expected?</p>
-</div>
-</div>
-</div>
+</ol></div>
+</section><section><h2 class="section-heading" id="using-vs-code">Using VS Code<a class="anchor" aria-label="anchor" href="#using-vs-code"></a></h2>
+<hr class="half-width"><p>Find and open VS Code using the search interface in your operating
+system.</p>
+<ol style="list-style-type: decimal"><li>Click File &gt; Open Folder</li>
+<li>Select the <strong>python-ecology-lesson</strong> folder on your
+desktop</li>
+</ol><p>The contents of the folder should now appear in the left sidebar of
+the VS Code window.</p>
+<p>Your instructor will explain how to work with VS Code as part of the
+lesson.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.

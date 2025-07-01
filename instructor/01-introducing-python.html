@@ -237,7 +237,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03-accessing-data-in-a-dataframe.html">3. Accessing Data in a Dataframe</a>
+        <a href="03-accessing-and-filtering-data.html">3. Accessing and Filtering Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -246,7 +246,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-aggregating-and-grouping-data.html">4. Aggregating and Grouping Data</a>
+        <a href="04-aggregating-and-sorting-data.html">4. Aggregating and Sorting Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -255,7 +255,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05-combining-data-with-joins.html">5. Combining Dataframes</a>
+        <a href="05-combining-data.html">5. Combining Dataframes</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -264,7 +264,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-loops-and-functions.html">6. Data Workflows and Automation</a>
+        <a href="06-visualizing-data.html">6. Visualizing data in a dataframe</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -328,7 +328,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introducing Python</h1>
-        <p>Last updated on 2022-07-18 |
+        <p>Last updated on 2025-07-01 |
 
         <a href="https://github.com/adamancer/python-ecology-lesson-alt/edit/main/episodes/01-introducing-python.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -515,7 +515,7 @@ class str(object)
  |  that will be decoded using the given encoding and error handler.
  |  Otherwise, returns the result of object.__str__() (if defined)
  |  or repr(object).
- |  encoding defaults to sys.getdefaultencoding().
+ |  encoding defaults to 'utf-8'.
  |  errors defaults to 'strict'.
  |
  |  Methods defined here:
@@ -524,7 +524,7 @@ class str(object)
  |      Return self+value.
  |
  |  __contains__(self, key, /)
- |      Return key in self.
+ |      Return bool(key in self).
  |
  |  __eq__(self, value, /)
  |      Return self==value.
@@ -535,13 +535,10 @@ class str(object)
  |  __ge__(self, value, /)
  |      Return self&gt;=value.
  |
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |
  |  __getitem__(self, key, /)
  |      Return self[key].
  |
- |  __getnewargs__(...)
+ |  __getnewargs__(self, /)
  |
  |  __gt__(self, value, /)
  |      Return self&gt;value.
@@ -599,12 +596,10 @@ class str(object)
  |
  |      Padding is done using the specified fill character (default is a space).
  |
- |  count(...)
- |      S.count(sub[, start[, end]]) -&gt; int
+ |  count(self, sub[, start[, end]], /)
+ |      Return the number of non-overlapping occurrences of substring sub in string S[start:end].
  |
- |      Return the number of non-overlapping occurrences of substring sub in
- |      string S[start:end].  Optional arguments start and end are
- |      interpreted as in slice notation.
+ |      Optional arguments start and end are interpreted as in slice notation.
  |
  |  encode(self, /, encoding='utf-8', errors='strict')
  |      Encode the string using the codec registered for encoding.
@@ -618,47 +613,39 @@ class str(object)
  |        'xmlcharrefreplace' as well as any other name registered with
  |        codecs.register_error that can handle UnicodeEncodeErrors.
  |
- |  endswith(...)
- |      S.endswith(suffix[, start[, end]]) -&gt; bool
+ |  endswith(self, suffix[, start[, end]], /)
+ |      Return True if the string ends with the specified suffix, False otherwise.
  |
- |      Return True if S ends with the specified suffix, False otherwise.
- |      With optional start, test S beginning at that position.
- |      With optional end, stop comparing S at that position.
- |      suffix can also be a tuple of strings to try.
+ |      suffix
+ |        A string or a tuple of strings to try.
+ |      start
+ |        Optional start position. Default: start of the string.
+ |      end
+ |        Optional stop position. Default: end of the string.
  |
  |  expandtabs(self, /, tabsize=8)
  |      Return a copy where all tab characters are expanded using spaces.
  |
  |      If tabsize is not given, a tab size of 8 characters is assumed.
  |
- |  find(...)
- |      S.find(sub[, start[, end]]) -&gt; int
+ |  find(self, sub[, start[, end]], /)
+ |      Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Return the lowest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |
+ |      Optional arguments start and end are interpreted as in slice notation.
  |      Return -1 on failure.
  |
- |  format(...)
- |      S.format(*args, **kwargs) -&gt; str
- |
- |      Return a formatted version of S, using substitutions from args and kwargs.
+ |  format(self, /, *args, **kwargs)
+ |      Return a formatted version of the string, using substitutions from args and kwargs.
  |      The substitutions are identified by braces ('{' and '}').
  |
- |  format_map(...)
- |      S.format_map(mapping) -&gt; str
- |
- |      Return a formatted version of S, using substitutions from mapping.
+ |  format_map(self, mapping, /)
+ |      Return a formatted version of the string, using substitutions from mapping.
  |      The substitutions are identified by braces ('{' and '}').
  |
- |  index(...)
- |      S.index(sub[, start[, end]]) -&gt; int
+ |  index(self, sub[, start[, end]], /)
+ |      Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Return the lowest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |
+ |      Optional arguments start and end are interpreted as in slice notation.
  |      Raises ValueError when the substring is not found.
  |
  |  isalnum(self, /)
@@ -710,10 +697,9 @@ class str(object)
  |      least one character in the string.
  |
  |  isprintable(self, /)
- |      Return True if the string is printable, False otherwise.
+ |      Return True if all characters in the string are printable, False otherwise.
  |
- |      A string is printable if all of its characters are considered printable in
- |      repr() or if it is empty.
+ |      A character is printable if repr() may use it in its output.
  |
  |  isspace(self, /)
  |      Return True if the string is a whitespace string, False otherwise.
@@ -777,7 +763,7 @@ class str(object)
  |      return string[:-len(suffix)]. Otherwise, return a copy of the original
  |      string.
  |
- |  replace(self, old, new, count=-1, /)
+ |  replace(self, old, new, /, count=-1)
  |      Return a copy with all occurrences of substring old replaced by new.
  |
  |        count
@@ -787,22 +773,16 @@ class str(object)
  |      If the optional argument count is given, only the first count occurrences are
  |      replaced.
  |
- |  rfind(...)
- |      S.rfind(sub[, start[, end]]) -&gt; int
+ |  rfind(self, sub[, start[, end]], /)
+ |      Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Return the highest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |
+ |      Optional arguments start and end are interpreted as in slice notation.
  |      Return -1 on failure.
  |
- |  rindex(...)
- |      S.rindex(sub[, start[, end]]) -&gt; int
+ |  rindex(self, sub[, start[, end]], /)
+ |      Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Return the highest index in S where substring sub is found,
- |      such that sub is contained within S[start:end].  Optional
- |      arguments start and end are interpreted as in slice notation.
- |
+ |      Optional arguments start and end are interpreted as in slice notation.
  |      Raises ValueError when the substring is not found.
  |
  |  rjust(self, width, fillchar=' ', /)
@@ -821,17 +801,19 @@ class str(object)
  |      and the original string.
  |
  |  rsplit(self, /, sep=None, maxsplit=-1)
- |      Return a list of the words in the string, using sep as the delimiter string.
+ |      Return a list of the substrings in the string, using sep as the separator string.
  |
  |        sep
- |          The delimiter according which to split the string.
- |          None (the default value) means split according to any whitespace,
- |          and discard empty strings from the result.
+ |          The separator used to split the string.
+ |
+ |          When set to None (the default value), will split on any whitespace
+ |          character (including \n \r \t \f and spaces) and will discard
+ |          empty strings from the result.
  |        maxsplit
- |          Maximum number of splits to do.
+ |          Maximum number of splits.
  |          -1 (the default value) means no limit.
  |
- |      Splits are done starting at the end of the string and working to the front.
+ |      Splitting starts at the end of the string and works to the front.
  |
  |  rstrip(self, chars=None, /)
  |      Return a copy of the string with trailing whitespace removed.
@@ -839,15 +821,23 @@ class str(object)
  |      If chars is given and not None, remove characters in chars instead.
  |
  |  split(self, /, sep=None, maxsplit=-1)
- |      Return a list of the words in the string, using sep as the delimiter string.
+ |      Return a list of the substrings in the string, using sep as the separator string.
  |
- |      sep
- |        The delimiter according which to split the string.
- |        None (the default value) means split according to any whitespace,
- |        and discard empty strings from the result.
- |      maxsplit
- |        Maximum number of splits to do.
- |        -1 (the default value) means no limit.
+ |        sep
+ |          The separator used to split the string.
+ |
+ |          When set to None (the default value), will split on any whitespace
+ |          character (including \n \r \t \f and spaces) and will discard
+ |          empty strings from the result.
+ |        maxsplit
+ |          Maximum number of splits.
+ |          -1 (the default value) means no limit.
+ |
+ |      Splitting starts at the front of the string and works to the end.
+ |
+ |      Note, str.split() is mainly useful for data that has been intentionally
+ |      delimited.  With natural text that includes punctuation, consider using
+ |      the regular expression module.
  |
  |  splitlines(self, /, keepends=False)
  |      Return a list of the lines in the string, breaking at line boundaries.
@@ -855,13 +845,15 @@ class str(object)
  |      Line breaks are not included in the resulting list unless keepends is given and
  |      true.
  |
- |  startswith(...)
- |      S.startswith(prefix[, start[, end]]) -&gt; bool
+ |  startswith(self, prefix[, start[, end]], /)
+ |      Return True if the string starts with the specified prefix, False otherwise.
  |
- |      Return True if S starts with the specified prefix, False otherwise.
- |      With optional start, test S beginning at that position.
- |      With optional end, stop comparing S at that position.
- |      prefix can also be a tuple of strings to try.
+ |      prefix
+ |        A string or a tuple of strings to try.
+ |      start
+ |        Optional start position. Default: start of the string.
+ |      end
+ |        Optional stop position. Default: end of the string.
  |
  |  strip(self, chars=None, /)
  |      Return a copy of the string with leading and trailing whitespace removed.
@@ -899,10 +891,10 @@ class str(object)
  |  ----------------------------------------------------------------------
  |  Static methods defined here:
  |
- |  __new__(*args, **kwargs) from builtins.type
+ |  __new__(*args, **kwargs)
  |      Create and return a new object.  See help(type) for accurate signature.
  |
- |  maketrans(...)
+ |  maketrans(x, y=&lt;unrepresentable&gt;, z=&lt;unrepresentable&gt;, /)
  |      Return a translation table usable for str.translate().
  |
  |      If there is only one argument, it must be a dictionary mapping Unicode
@@ -1040,7 +1032,7 @@ use the year attribute to get the year:</p>
 <pre class="output" tabindex="0"><code><span><span class="fl">1970</span></span></code></pre>
 </div>
 <p>Or convert the date to a string using the <a href="https://docs.python.org/3/library/datetime.html#datetime.date.strftime" class="external-link"><code>strftime()</code></a>
-method and <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes" class="external-link">date
+method and Python’s <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes" class="external-link">date
 format codes</a>. Here, %Y corresponds to YYYY, %m to MM, and %d to
 DD.</p>
 <div class="codewrapper sourceCode" id="cb16">
@@ -1144,7 +1136,7 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/01-introducing-python.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/instructor/01-introducing-python.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2022-07-18",
+  "dateModified": "2025-07-01",
   "datePublished": "2025-07-01"
 }
 

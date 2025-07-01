@@ -10,16 +10,28 @@
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/02-introducing-pandas.html</loc>
   </url>
   <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/03-accessing-and-filtering-data.html</loc>
+  </url>
+  <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/03-accessing-data-in-a-dataframe.html</loc>
   </url>
   <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/04-aggregating-and-grouping-data.html</loc>
   </url>
   <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/04-aggregating-and-sorting-data.html</loc>
+  </url>
+  <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/05-combining-data-with-joins.html</loc>
   </url>
   <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/05-combining-data.html</loc>
+  </url>
+  <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/06-loops-and-functions.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/06-visualizing-data.html</loc>
   </url>
   <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/404.html</loc>
@@ -32,6 +44,51 @@
   </url>
   <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-0855e2a3e8080a3eee30698559e50dab.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-1815d1eb8e724ef1d0450030dd3918b1.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-25028926113cc479b199dab433a782b0.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-2b50f852a8b45635d8fbfcdd7f2b4adc.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-4b47c4efad024d1aff63df7a70932d42.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-5cf1ec9469c574f9e904d1e65d017659.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-81c7ee3dd50c4971423c5998cbe9cb2f.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-a29867549590a840258ecc3bcebdb665.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-ae736a9ee93cea679eaf576c4d9ab989.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-af6b53729521905cdc1774684a9a8792.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-b1611b036822e93155adf6c6d6f2e8cf.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-bc9a572edafa6c7a1e482b048bdfd859.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-be5e42e690afc63c7e9c647ffe0c2413.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-cd302a176658e2470f869c8a808a5547.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/files/fig-f758a59a4e6fca47485dbeca79316098.html</loc>
   </url>
   <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/images.html</loc>
@@ -49,16 +106,28 @@
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/02-introducing-pandas.html</loc>
   </url>
   <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/03-accessing-and-filtering-data.html</loc>
+  </url>
+  <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/03-accessing-data-in-a-dataframe.html</loc>
   </url>
   <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/04-aggregating-and-grouping-data.html</loc>
   </url>
   <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/04-aggregating-and-sorting-data.html</loc>
+  </url>
+  <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/05-combining-data-with-joins.html</loc>
   </url>
   <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/05-combining-data.html</loc>
+  </url>
+  <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/06-loops-and-functions.html</loc>
+  </url>
+  <url>
+    <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/06-visualizing-data.html</loc>
   </url>
   <url>
     <loc>https://adamancer.github.io/python-ecology-lesson-alt/instructor/404.html</loc>
