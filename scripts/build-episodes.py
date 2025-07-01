@@ -122,7 +122,7 @@ class Cell:
 
         # Single space code blocks
         for code_block in re.findall("```.*?```", text, flags=re.DOTALL):
-            text = text.replace(code_block, re.sub(r"\n+", "\n", code_block), 1)
+            text = text.replace(code_block, re.sub(r"\n+", "\n", code_block, "\n"), 1)
 
         return re.sub(r"\n{2,}", "\n\n", text)
 
