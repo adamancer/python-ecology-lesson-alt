@@ -43,10 +43,12 @@ today.
 ## Answering questions using data
 
 Let's look at some of the cleaned spreadsheets we downloaded during
-Setup to complete this challenge. We'll need the following two files:
+Setup to complete this challenge. Over the course of this lesson, we'll
+be working with the following three files:
 
 -   surveys.csv
 -   species.csv
+-   plots.csv
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -92,9 +94,9 @@ without actually modifying our source data.
 The Python Data Analysis Library, or pandas, is a Python library used to
 work with dataframes. A dataframe is a representation of tabular data
 very similar to a spreadsheet, consisting of rows (representing records)
-and columns (representing fields or variables). It is a very common
-format for representing scientific data and is likely to be very
-familiar to anyone taking this course.
+and columns (representing fields or variables). Tables are a very common
+format for representing scientific data and should be very familiar to
+anyone taking this course.
 
 pandas offers the same advantages as any well-written library: It
 creates a common codebase for working on a single task, in this case,
@@ -148,7 +150,7 @@ parts:
 -   The name of the method we'd like to use
 -   A set of parentheses that tells the function to run.
 
-Many functions define *parameters* that allow the user to modify the
+Many functions include *parameters* that allow the user to modify the
 behavior of the function. Parameters may be positional or named. In
 Python, data passed to positional parameters are called *arguments*
 (often abbreviated as args), and data passed to named parameters are
@@ -161,6 +163,9 @@ tells the function where to find the surveys.csv file.
 
 ```python
 pd.read_csv("data/surveys.csv")
+```
+
+```{.output}
 ```
 
 <style>
@@ -344,6 +349,9 @@ to use the existing record_id column as the row label, use the
 
 ```python
 pd.read_csv("data/surveys.csv", index_col="record_id")
+```
+
+```{.output}
 ```
 
 <style>
@@ -569,6 +577,9 @@ descriptive. By convention, variable names in Python use snake_case
 ```python
 surveys = pd.read_csv("data/surveys.csv")
 surveys
+```
+
+```{.output}
 ```
 
 <style>

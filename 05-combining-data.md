@@ -48,6 +48,9 @@ species = pd.read_csv("data/species.csv")
 species
 ```
 
+```{.output}
+```
+
 <style>
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
@@ -462,18 +465,22 @@ Why store species data in a separate table in the first place? Species
 information is repetitive: Every observation of the same species has the
 same genus, species, and taxa. Storing it in the original survey table
 would require including that data in every record, increasing the
-complexity of the table and creating the possibility of errors. Storing
+complexity of the table and increasing the likelihood of errors. Storing
 that data in a separate table means we only have to enter and validate
 it once. A tool like pandas then allows us to access that data when we
 need it.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To merge the surveys and species dataframes, use:
+To merge the surveys and species dataframes, we will use the `merge()`
+method:
 
 ```python
-merged = pd.merge(surveys, species)
+merged = surveys.merge(species)
 merged
+```
+
+```{.output}
 ```
 
 <style>
@@ -534,47 +541,47 @@ merged
     </tr>
     <tr>
       <th>2</th>
-      <td>22</td>
+      <td>3</td>
       <td>7</td>
-      <td>17</td>
+      <td>16</td>
       <td>1977</td>
-      <td>15</td>
-      <td>NL</td>
+      <td>2</td>
+      <td>DM</td>
       <td>F</td>
-      <td>31.0</td>
+      <td>37.0</td>
       <td>NaN</td>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>38</td>
+      <td>4</td>
       <td>7</td>
-      <td>17</td>
+      <td>16</td>
       <td>1977</td>
-      <td>17</td>
-      <td>NL</td>
+      <td>7</td>
+      <td>DM</td>
       <td>M</td>
-      <td>33.0</td>
+      <td>36.0</td>
       <td>NaN</td>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>72</td>
-      <td>8</td>
-      <td>19</td>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
       <td>1977</td>
-      <td>2</td>
-      <td>NL</td>
+      <td>3</td>
+      <td>DM</td>
       <td>M</td>
-      <td>31.0</td>
+      <td>35.0</td>
       <td>NaN</td>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
     </tr>
     <tr>
@@ -594,66 +601,6 @@ merged
     </tr>
     <tr>
       <th>34781</th>
-      <td>28988</td>
-      <td>12</td>
-      <td>23</td>
-      <td>1998</td>
-      <td>6</td>
-      <td>CT</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Cnemidophorus</td>
-      <td>tigris</td>
-      <td>Reptile</td>
-    </tr>
-    <tr>
-      <th>34782</th>
-      <td>35512</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>11</td>
-      <td>US</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>Bird</td>
-    </tr>
-    <tr>
-      <th>34783</th>
-      <td>35513</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>11</td>
-      <td>US</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>Bird</td>
-    </tr>
-    <tr>
-      <th>34784</th>
-      <td>35528</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>13</td>
-      <td>US</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>Bird</td>
-    </tr>
-    <tr>
-      <th>34785</th>
       <td>35544</td>
       <td>12</td>
       <td>31</td>
@@ -666,6 +613,66 @@ merged
       <td>Sparrow</td>
       <td>sp.</td>
       <td>Bird</td>
+    </tr>
+    <tr>
+      <th>34782</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34783</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34784</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>Reithrodontomys</td>
+      <td>megalotis</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34785</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>Rodent</td>
     </tr>
   </tbody>
 </table>
@@ -688,10 +695,13 @@ The `pd.merge()` method is equivalent to the JOIN operation in SQL
 Filter the merged dataframe to show the genus, the species name, and the
 weight for every individual captured at the site
 
-::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 merged[["genus", "species", "weight"]]
+```
+
+```{.output}
 ```
 
 <style>
@@ -725,20 +735,20 @@ merged[["genus", "species", "weight"]]
     </tr>
     <tr>
       <th>2</th>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -749,53 +759,51 @@ merged[["genus", "species", "weight"]]
     </tr>
     <tr>
       <th>34781</th>
-      <td>Cnemidophorus</td>
-      <td>tigris</td>
+      <td>Sparrow</td>
+      <td>sp.</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>34782</th>
-      <td>Sparrow</td>
-      <td>sp.</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>34783</th>
-      <td>Sparrow</td>
-      <td>sp.</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>34784</th>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>NaN</td>
+      <td>Reithrodontomys</td>
+      <td>megalotis</td>
+      <td>14.0</td>
     </tr>
     <tr>
       <th>34785</th>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>NaN</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>51.0</td>
     </tr>
   </tbody>
 </table>
 <p>34786 rows × 3 columns</p>
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 In the example above, we didn't provide any information about how we
-wanted to merge the dataframes together, so pandas used its default
-arguments to make an educated guess. It looked at the columns in each of
-the dataframes, then merged them based on the columns that appear in
-both. Here, the only shared name is species_id, so that's the column
-pandas used to merge. For more complex tables, we may want to specify
-the columns are used for merging. We can do so by passing one or more
-column names using the *on* keyword argument:
+wanted to merge the dataframes together, so pandas made an educated
+guess by looking at the columns in each of the dataframes and merging
+them on the only column that appeared in both datasets, species_id. For
+more complex tables, we may want to specify the columns are used for
+merging. We can do so by passing one or more column names using the *on*
+keyword argument:
 
 ```python
 pd.merge(surveys, species, on="species_id")
+```
+
+```{.output}
 ```
 
 <style>
@@ -856,47 +864,47 @@ pd.merge(surveys, species, on="species_id")
     </tr>
     <tr>
       <th>2</th>
-      <td>22</td>
+      <td>3</td>
       <td>7</td>
-      <td>17</td>
+      <td>16</td>
       <td>1977</td>
-      <td>15</td>
-      <td>NL</td>
+      <td>2</td>
+      <td>DM</td>
       <td>F</td>
-      <td>31.0</td>
+      <td>37.0</td>
       <td>NaN</td>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>38</td>
+      <td>4</td>
       <td>7</td>
-      <td>17</td>
+      <td>16</td>
       <td>1977</td>
-      <td>17</td>
-      <td>NL</td>
+      <td>7</td>
+      <td>DM</td>
       <td>M</td>
-      <td>33.0</td>
+      <td>36.0</td>
       <td>NaN</td>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>72</td>
-      <td>8</td>
-      <td>19</td>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
       <td>1977</td>
-      <td>2</td>
-      <td>NL</td>
+      <td>3</td>
+      <td>DM</td>
       <td>M</td>
-      <td>31.0</td>
+      <td>35.0</td>
       <td>NaN</td>
-      <td>Neotoma</td>
-      <td>albigula</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
     </tr>
     <tr>
@@ -916,66 +924,6 @@ pd.merge(surveys, species, on="species_id")
     </tr>
     <tr>
       <th>34781</th>
-      <td>28988</td>
-      <td>12</td>
-      <td>23</td>
-      <td>1998</td>
-      <td>6</td>
-      <td>CT</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Cnemidophorus</td>
-      <td>tigris</td>
-      <td>Reptile</td>
-    </tr>
-    <tr>
-      <th>34782</th>
-      <td>35512</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>11</td>
-      <td>US</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>Bird</td>
-    </tr>
-    <tr>
-      <th>34783</th>
-      <td>35513</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>11</td>
-      <td>US</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>Bird</td>
-    </tr>
-    <tr>
-      <th>34784</th>
-      <td>35528</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>13</td>
-      <td>US</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>Sparrow</td>
-      <td>sp.</td>
-      <td>Bird</td>
-    </tr>
-    <tr>
-      <th>34785</th>
       <td>35544</td>
       <td>12</td>
       <td>31</td>
@@ -989,6 +937,66 @@ pd.merge(surveys, species, on="species_id")
       <td>sp.</td>
       <td>Bird</td>
     </tr>
+    <tr>
+      <th>34782</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34783</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Ammospermophilus</td>
+      <td>harrisi</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34784</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
+      <td>Reithrodontomys</td>
+      <td>megalotis</td>
+      <td>Rodent</td>
+    </tr>
+    <tr>
+      <th>34785</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>Rodent</td>
+    </tr>
   </tbody>
 </table>
 <p>34786 rows × 12 columns</p>
@@ -1001,7 +1009,7 @@ How do they differ? Why do you think that might be?
 **Hint:** Use `pd.unique()` method to look at the species_id column in
 each dataframe.
 
-::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 pd.unique(surveys["species_id"].sort_values())
@@ -1028,41 +1036,17 @@ array(['AB', 'AH', 'AS', 'BA', 'CB', 'CM', 'CQ', 'CS', 'CT', 'CU', 'CV',
       dtype=object)
 ```
 
-Some records in the surveys dataframe do not specify a species. By
-default, only records with a value that occurs in both the surveys and
-species dataframes appear in the merged dataframe, so rows without a
-species_id are excluded.
-
-The built-in `set` type can be used to quickly assess differences like
-this:
-
-```python
-set(surveys["species_id"]) - set(species["species_id"])
-```
-
-```{.output}
-{nan}
-```
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-In practice, the values in the columns used to join two dataframes may
-not align exactly. Above, the surveys dataframe contains a few hundred
-rows where species_id is NaN. These are the rows that were dropped when
-the dataframes were merged.
-
-By default, `pd.merge()` performs an **inner join**. This means that a
-row will only appear if the value in the shared column appears in both
-of the datasets being merged. In this case, that means that survey
-observations that don't have a species_id or have a species_id that does
-not appear in the species dataframe will be dropped.
+The number of rows in the merged dataframe is lower than in the original
+surveys dataframe. By default, `pd.merge()` performs an **inner join**.
+This means that a row will only appear in the merged dataframe if the
+value(s) in the join column(s) appear in both dataframes. Here,
+observations that did not include a species_id or that included a
+species_id that was not definedin the species dataframe were dropped.
 
 This is not always desirable behavior. Fortunately, pandas supports
-additional types of merges:
+other kinds of merges:
 
--   **Inner:** Include all rows with common values in the join column.
+-   **Inner:** Include all rows with common values in the join columns.
     This is the default behavior.
 -   **Left:** Include all rows from the left dataframe. Columns from the
     right dataframe are populated if a common value exists and set to
@@ -1070,7 +1054,7 @@ additional types of merges:
 -   **Right:** Include all rows from the right dataframe. Columns from
     the left dataframe are populated if a common value exists and set to
     NaN if not.
--   **Outer:** Includes all rows from both dataframes
+-   **Outer:** Include all rows from both dataframes
 
 We want to keep all of our observations, so let's do a left join
 instead. To specify the type of merge, we use the *how* keyword
@@ -1078,6 +1062,9 @@ argument:
 
 ```python
 pd.merge(surveys, species, how="left")
+```
+
+```{.output}
 ```
 
 <style>
@@ -1279,20 +1266,23 @@ Now all 35,549 rows appear in the merged dataframe.
 
 ## Appending rows to a dataframe
 
-Merges address the case where information about the same set of
+Merges address the case where information related to a set of
 observations is spread across multiple files. What about when the
-observations themselves are split into more than one file? For a survey
-like the one we've been looking at in this lesson, we might get a new
-file once a year with the same columns but a completely new set of
-observations. How can we add those new observations to our dataframe?
+observations themselves are in more than one file? For a survey like the
+one we've been looking at in this lesson, we might get a new file once a
+year with the same columns but a completely new set of observations. How
+can we add those new observations to our dataframe?
 
 We'll simulate this operation by splitting data from two different
-years, 2001 and 2002, into separate dataframes. We can do this using
-conditionals, as we saw in lesson 3:
+years, 2001 and 2002, into separate dataframes. We can filter the
+dataset this using conditionals, as we saw in lesson 3:
 
 ```python
 surveys_2001 = surveys[surveys["year"] == 2001].copy()
 surveys_2001
+```
+
+```{.output}
 ```
 
 <style>
@@ -1459,6 +1449,9 @@ surveys_2002 = surveys[surveys["year"] == 2002].copy()
 surveys_2002
 ```
 
+```{.output}
+```
+
 <style>
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
@@ -1619,16 +1612,21 @@ surveys_2002
 <p>2229 rows × 9 columns</p>
 
 We now have two different dataframes with the same columns but different
-data, one with 1,610 rows, the other with 2,229 rows. We can combine
-them into a new dataframe using `pd.concat()`, which stacks the
-dataframes vertically (that is, it appends records from the 2002 dataset
-to the 2001 dataset). This method accepts a list and will concatenate
-each item moving from left to right. We're only combining two dataframes
-here but could do more if needed.
+data, one with 1,610 rows, the other with 2,229 rows, for a total of
+3,839 records. We can combine them into a new dataframe using
+`pd.concat()`, which stacks the dataframes vertically (that is, it
+appends records from the 2002 dataset to the 2001 dataset). This method
+accepts a list of dataframes and works from left to right (so the
+leftmost dataframe will be at the top of the new dataframe and the
+rightmost will be at the bottom). We're only combining two dataframes
+here but could include more if necessary.
 
 ```python
 surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
 surveys_2001_2002
+```
+
+```{.output}
 ```
 
 <style>
@@ -1797,16 +1795,20 @@ within the same project. For example, researchers may decide to add an
 additional column to track a new piece of data or to provide a quality
 check. If a column is present in only one dataset, you can still
 concatenate the datasets. Any column that does not appear in a given
-dataset will be set to NaN for those rows in the combined dataframe.
+dataset will have the value NaN for those rows in the combined
+dataframe.
 
-To illustrate this, we'll add a validated column to the 2002 survey,
+To illustrate this, we'll add a column called test to the 2002 survey,
 then re-run `pd.concat()`:
 
 ```python
-surveys_2002["validated"] = True
+surveys_2002["test"] = True
 
 surveys_2001_2002 = pd.concat([surveys_2001, surveys_2002])
 surveys_2001_2002
+```
+
+```{.output}
 ```
 
 <style>
@@ -1829,7 +1831,7 @@ surveys_2001_2002
       <th>sex</th>
       <th>hindfoot_length</th>
       <th>weight</th>
-      <th>validated</th>
+      <th>test</th>
     </tr>
   </thead>
   <tbody>
@@ -1980,12 +1982,12 @@ surveys_2001_2002
 </table>
 <p>3839 rows × 10 columns</p>
 
-As expected, the validated column has a value of NaN for the 2001 data
-in the combined dataframe.
+As expected, the test column has a value of NaN for the 2001 data in the
+combined dataframe.
 
-## Joining and splitting columns
+## Combining data in multiple columns
 
-Sometimes we'd like to combine values from two or more columns into a
+Sometimes we want to combine values from two or more columns into a
 single column. For example, we might want to refer to the species in
 each record by both its genus and species names. In Python, we use the
 `+` operator to concatenate (or join) strings, and pandas works the same
@@ -2054,214 +2056,22 @@ species["genus_species"]
 Name: genus_species, dtype: object
 ```
 
-Note that the `+` operator is also used to add numeric columns. In
+Note that the `+` operator can also be used to add numeric columns. In
 Python, the same operator can be used to perform different operations
 for different data types (but keep reading for an important caveat.)
 
+## Combining dates
+
 Another common need is to join or split dates. In the ecology dataset,
-the date is split across year, month, and day columns. However, pandas
-has a special data type, `datetime64`, for representing dates that is
-useful for plotting, comparing, and resampling time series data. To make
-use of that functionality, we can concatenate the date columns and
-convert them to a datetime object. For clarity, we'll use an unambiguous
-date format: YYYY-MM-DD.
-
-We need to perform an additional step before combining the date columns.
-Year, month, and day are all stored as integers in our dataframe
-(specifically, they use the `int64` data type). If we try to concatenate
-them as they are, we'll receive an error. This is because the `+`
-operator only works when each object has a similar type, that is, all
-objects are either the same type or can be coerced to a common type
-(like `int` and `float`, which are distinct types that generally play
-well together). In this case, the columns are integers and the hyphens
-are strings. pandas cannot determine exactly how the user wants to
-combine the values, so it gives an error.
-
-To resolve the error, we can use the `astype()` method to convert each
-column to a string before combining the columns:
+the date of each observation is split across year, month, and day
+columns. However, pandas has a special data type, `datetime64`, for
+representing dates that is useful for analyzing time series data. To
+make use of that functionality, we can concatenate the date columns and
+convert them to a datetime object using the `pd.to_datetime()` method.
+The pandas library is doing a lot of work behind the scenes here.
 
 ```python
-year = surveys["year"].astype(str)
-month = surveys["month"].astype(str)
-day = surveys["day"].astype(str)
-
-surveys["date"] = year + "-" + month + "-" + day
-surveys["date"]
-```
-
-```{.output}
-0         1977-7-16
-1         1977-7-16
-2         1977-7-16
-3         1977-7-16
-4         1977-7-16
-            ...    
-35544    2002-12-31
-35545    2002-12-31
-35546    2002-12-31
-35547    2002-12-31
-35548    2002-12-31
-Name: date, Length: 35549, dtype: object
-```
-
-Note that some of the dates look a little funny because single-digit
-days and months do not include a leading zero. For example, in the first
-row we have **1977-7-16** instead of **1977-07-16**. This is usually not
-a big deal but can be neatened up using the `str` accessor.
-
-In pandas, an accessor is an attribute that provides additional
-functionality to an object. Here, the `str` accessor allows us to access
-many of the methods from the built-in `str` data type, including
-`zfill()`, which pads a string to a given length by adding zeroes to the
-start of the string:
-
-```python
-text = "2"
-text.zfill(3)
-```
-
-```{.output}
-'002'
-```
-
-Using the `str` accessor, we can use that method to zero-pad the data in
-a `Series`:
-
-```python
-# Pad month and day to two characters
-month = month.str.zfill(2)
-day = day.str.zfill(2)
-
-surveys["date"] = year + "-" + month + "-" + day
-surveys["date"]
-```
-
-```{.output}
-0        1977-07-16
-1        1977-07-16
-2        1977-07-16
-3        1977-07-16
-4        1977-07-16
-            ...    
-35544    2002-12-31
-35545    2002-12-31
-35546    2002-12-31
-35547    2002-12-31
-35548    2002-12-31
-Name: date, Length: 35549, dtype: object
-```
-
-The month and date values in date are now padded to a length of two,
-allowing us to create a well-formed YYYY-MM-DD date string. Other string
-methods, like `upper()` and `lower()`, can be used in the same way.
-
-Before we convert the date column to a datetime, we're going to use the
-date string to show the opposite operation: Splitting a value stored in
-one column into multiple columns. One way to do this in pandas is to use
-`str.split()`, which splits each value in a series based on a
-*delimiter*, a character used as a boundary between parts of a string.
-Here, a hyphen is used to delimit the year, month, and date in each
-date. By splitting the column on a hyphen, we can extract each of those
-components into its own column. We also pass `True` to the *expand*
-keyword argument, which makes the `str.split()` method return a
-dataframe:
-
-```python
-surveys["date"].str.split("-", expand=True)
-```
-
-<style>
-  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
-  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
-  table.dataframe th { text-align: right; font-weight: bold; }
-  table.dataframe td { text-align: right; }
-</style>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1977</td>
-      <td>07</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1977</td>
-      <td>07</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1977</td>
-      <td>07</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1977</td>
-      <td>07</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1977</td>
-      <td>07</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>35544</th>
-      <td>2002</td>
-      <td>12</td>
-      <td>31</td>
-    </tr>
-    <tr>
-      <th>35545</th>
-      <td>2002</td>
-      <td>12</td>
-      <td>31</td>
-    </tr>
-    <tr>
-      <th>35546</th>
-      <td>2002</td>
-      <td>12</td>
-      <td>31</td>
-    </tr>
-    <tr>
-      <th>35547</th>
-      <td>2002</td>
-      <td>12</td>
-      <td>31</td>
-    </tr>
-    <tr>
-      <th>35548</th>
-      <td>2002</td>
-      <td>12</td>
-      <td>31</td>
-    </tr>
-  </tbody>
-</table>
-<p>35549 rows × 3 columns</p>
-
-Now let's go ahead and convert our date column into a datetime object
-using `pd.to_datetime()`:
-
-```python
-surveys["date"] = pd.to_datetime(surveys["date"])
+surveys["date"] = pd.to_datetime(surveys[["year", "month", "day"]])
 surveys["date"]
 ```
 
@@ -2282,10 +2092,9 @@ Name: date, Length: 35549, dtype: datetime64[ns]
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-pandas can help us ask specific questions which we want to answer about
-our data. The real skill is to know how to translate our scientific
-questions into a sensible approach (and subsequently visualize and
-interpret our results).
+pandas allows us to ask specific questions about our data. A key skill
+is knowing how to translate our scientific questions into a sensible
+approach (and subsequently visualize and interpret our results).
 
 Try using pandas to answer the following questions.
 
@@ -2451,6 +2260,9 @@ grouped = rodents.groupby("species_id")
 
 # Calculate the min, max, and mean weight
 grouped.agg({"weight": ["min", "max", "mean"]})
+```
+
+```{.output}
 ```
 
 <style>

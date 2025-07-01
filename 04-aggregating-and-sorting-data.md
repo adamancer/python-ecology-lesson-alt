@@ -1,5 +1,5 @@
 ---
-title: Aggregating and Grouping Data
+title: Aggregating and Sorting Data
 teaching: 60
 exercises: 0
 ---
@@ -80,7 +80,7 @@ surveys["weight"].sum()
 ```
 
 ```{.output}
-1377594.0
+np.float64(1377594.0)
 ```
 
 Other aggregation methods supported by pandas include `min()`, `max()`,
@@ -94,7 +94,7 @@ for all animals caught over the duration of the survey. Can you modify
 your code so that it outputs these values only for weights between 5 and
 10 grams?
 
-::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
 # Create a subset of only the animals between 5 and 10 grams
@@ -110,12 +110,11 @@ weights = surveys[(surveys["weight"] > 5) & (surveys["weight"] < 10)]["weight"]
 ```
 
 ```{.output}
-{'sum': 16994.0, 'mean': 7.91523055426176, 'min': 6.0, 'max': 9.0}
+{'sum': np.float64(16994.0),
+ 'mean': np.float64(7.91523055426176),
+ 'min': np.float64(6.0),
+ 'max': np.float64(9.0)}
 ```
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 To quickly generate summary statistics, we can use the `describe()`
 method instead of calling each aggregation method separately. When we
@@ -124,6 +123,9 @@ numeric data:
 
 ```python
 surveys.describe()
+```
+
+```{.output}
 ```
 
 <style>
@@ -264,6 +266,9 @@ length of all records in the survey, we can use:
 surveys.agg({"weight": ["sum", "mean"], "hindfoot_length": ["mean"]})
 ```
 
+```{.output}
+```
+
 <style>
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
@@ -309,9 +314,8 @@ each member of the group. In the example below, we'll calculate the
 number of times each species appears in the dataset. Rather than
 outputting the full dataframe, we'll limit the count to a single column.
 Because count ignores NaN cells, it's good practice to use a column that
-does not contain nulls. Record ID fields are a good choice because they
-makes it clear that we are counting rows. The fields used to group the
-data also work.
+does not contain nulls. Record ID fields are a often a good choice, but
+any field that is populated for every row will work.
 
 ```python
 grouped["species_id"].count()
@@ -394,13 +398,13 @@ Name: record_id, Length: 509, dtype: int64
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Write statements that return:
+Write statements to answer the following questions:
 
-1.  How many individuals were counted in each year in total
-2.  How many were counted each year, for each different species
-3.  The average weights of each species in each year
+1.  How many individuals were counted in each year in total?
+2.  How many were counted each year, for each different species?
+3.  What was the average weight of each species in each year?
 4.  How many individuals were counted for each species that was observed
-    more than 10 times
+    more than 10 times?
 
 Can you get the answer to both 2 and 3 in a single query?
 
@@ -452,7 +456,7 @@ Name: record_id, dtype: int64
 
 ### Show me the solution to challenge 2
 
-How many individuals were counted each year, for each different species?
+How many individuals were counted each year for each different species?
 
 ```python
 # Individual counts by species and year
@@ -1578,6 +1582,9 @@ surveys.groupby(["year", "species_id"]).agg(
 )
 ```
 
+```{.output}
+```
+
 <style>
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
@@ -1692,14 +1699,22 @@ As we've discussed, some columns in the surveys dataframe have the value
 NaN instead of text or numbers. NaN, short for "not a number," is a
 special type of float used by pandas to represent missing data. When
 reading from a CSV, as we have done throughout this lesson, pandas
-interprets certains values as NaN (see *na_values* in the [pd.read_csv()
-documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
-for the default list). NaNs are excluded from groups and most
-aggregation calculations in pandas, including counts.
+interprets certains values as NaN. NaNs are excluded from groups and
+most aggregation calculations in pandas, including counts.
 
-It is crucial to understand how missing data is represented in a
-dataset. Failing to do so may introduce errors into our analysis. The
-ecology dataset used in this lesson uses empty cells to represent
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Defaults
+
+See *na_values* in the [pd.read_csv()
+documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+for the values that pandas interprets as NaN by default.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+When analyzing a dataset, it is critical to understand how missing data
+is represented. Failing to do so may introduce errors into the analysis.
+The ecology dataset used in this lesson uses empty cells to represent
 missing data, but other disciplines have different conventions. For
 example, some geographic datasets use -9999 to represent null values.
 Failure to convert such values to NaN will result in significant errors
@@ -1723,15 +1738,14 @@ Name: record_id, dtype: int64
 
 But not all records specify a sex. To include records where sex was not
 specified, we can use the `fillna()` method on the sex column. This
-method replaces each NaN cell with the value passed as the first
-argument to the function call. To replace all NaN values in sex with
-"U", use:
+method replaces each NaN with the first argument passed to the function
+call. To replace all NaN values in sex with "U", use:
 
 ```python
 surveys["sex"] = surveys["sex"].fillna("U")
 ```
 
-The grouped calculation now accounts for all records in the dataframe:
+The calculation now includes all records in the dataframe:
 
 ```python
 surveys.groupby("sex")["record_id"].count()
@@ -1749,170 +1763,48 @@ In other cases, we may want to ignore rows that contain NaNs. This can
 be done using `dropna()`:
 
 ```python
-surveys.dropna()
+surveys = surveys.dropna()
 ```
-
-<style>
-  table.dataframe tbody tr:hover { background-color: #ccffff !important; }
-  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
-  table.dataframe th { text-align: right; font-weight: bold; }
-  table.dataframe td { text-align: right; }
-</style>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>record_id</th>
-      <th>month</th>
-      <th>day</th>
-      <th>year</th>
-      <th>plot_id</th>
-      <th>species_id</th>
-      <th>sex</th>
-      <th>hindfoot_length</th>
-      <th>weight</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>62</th>
-      <td>63</td>
-      <td>8</td>
-      <td>19</td>
-      <td>1977</td>
-      <td>3</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>40.0</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>64</td>
-      <td>8</td>
-      <td>19</td>
-      <td>1977</td>
-      <td>7</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>37.0</td>
-      <td>48.0</td>
-    </tr>
-    <tr>
-      <th>64</th>
-      <td>65</td>
-      <td>8</td>
-      <td>19</td>
-      <td>1977</td>
-      <td>4</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>34.0</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>66</td>
-      <td>8</td>
-      <td>19</td>
-      <td>1977</td>
-      <td>4</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
-      <td>46.0</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>67</td>
-      <td>8</td>
-      <td>19</td>
-      <td>1977</td>
-      <td>7</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>36.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>35540</th>
-      <td>35541</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>15</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>24.0</td>
-      <td>31.0</td>
-    </tr>
-    <tr>
-      <th>35541</th>
-      <td>35542</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>15</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>26.0</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>35542</th>
-      <td>35543</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>15</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>27.0</td>
-      <td>34.0</td>
-    </tr>
-    <tr>
-      <th>35546</th>
-      <td>35547</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>10</td>
-      <td>RM</td>
-      <td>F</td>
-      <td>15.0</td>
-      <td>14.0</td>
-    </tr>
-    <tr>
-      <th>35547</th>
-      <td>35548</td>
-      <td>12</td>
-      <td>31</td>
-      <td>2002</td>
-      <td>7</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>36.0</td>
-      <td>51.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>30738 rows × 9 columns</p>
 
 This method returns a copy of the dataframe containing only those rows
 that have valid data in every field.
+
+## Visualizing groups of data
+
+Grouping data is a common operation when visualizing data.
+
+```python
+import plotly.express as px
+
+fig = px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
+fig.show()
+```
+
+```{.output}
+```
+
+<embed src="files/fig-cd302a176658e2470f869c8a808a5547.html" width=760 height=570>
+
+```python
+surveys = surveys.sort_values("species_id")
+fig = px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
+fig.show()
+```
+
+```{.output}
+```
+
+<embed src="files/fig-a29867549590a840258ecc3bcebdb665.html" width=760 height=570>
+
+```python
+fig = px.box(surveys, x="species_id", y="weight", color="species_id")
+fig.show()
+```
+
+```{.output}
+```
+
+<embed src="files/fig-af6b53729521905cdc1774684a9a8792.html" width=760 height=570>
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
