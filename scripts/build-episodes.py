@@ -200,21 +200,36 @@ class Cell:
                 else:
                     # Output non-table HTML
                     output.append("".join(content))
-                is_html = True
 
             elif key == "application/vnd.plotly.v1+json":
-                with open("scripts/template.html") as f:
-                    template = f.read()
+
                 data = str(content["data"])
                 data = re.sub(r"\bFalse\b", "false", data)
                 data = re.sub(r"\bTrue\b", "true", data)
-                stem = hashlib.md5(json.dumps(data).encode("utf-8")).hexdigest()
+
+                layout = content.get("layout", {})
+                for key, val in {
+                    "autosize": False,
+                    "width": 760,
+                    "height": 570,
+                }.items():
+                    layout.setdefault(key, val)
+                layout = re.sub(r"\bFalse\b", "false", str(layout))
+                layout = re.sub(r"\bTrue\b", "true", layout)
+
+                stem = hashlib.md5(
+                    json.dumps([data, layout]).encode("utf-8")
+                ).hexdigest()
+
+                with open("scripts/template.html") as f:
+                    template = f.read()
+
                 with open(f"episodes/files/fig-{stem}.html", "w") as f:
-                    f.write(template.format(data))
+                    f.write(template.format(data, layout))
+
                 output.append(
                     f'<embed src="files/fig-{stem}.html" width=760 height=570>'
                 )
-                is_html = True
 
             # Output text inside output fence
             else:
@@ -559,7 +574,6 @@ if __name__ == "__main__":
             nb["metadata"] = {
                 "language_info": {"name": nb["metadata"]["language_info"]["name"]}
             }
-            print(nb["metadata"])
             for cell in nb["cells"]:
                 if cell.get("outputs"):
                     cell["outputs"] = []
