@@ -10,6 +10,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+from functools import cached_property
 from pathlib import Path
 
 import yaml
@@ -48,7 +49,7 @@ class Cell:
     def __str__(self):
         if self.fence == self.title.lower():
             return "\n".join(self.text.splitlines()[1:]).strip()
-        return self.text.strip()
+        return self.text.rstrip()
 
     @property
     def cell_type(self):
@@ -80,7 +81,7 @@ class Cell:
         """Gets the text of a markdown header"""
         return self.header.lstrip("# ")
 
-    @property
+    @cached_property
     def header(self):
         """Gets the header of a markdown cell"""
         if (
@@ -91,12 +92,12 @@ class Cell:
             return self.source[0].rstrip()
         return ""
 
-    @property
+    @cached_property
     def header_level(self):
         """Gets the header level"""
         return len(re.match("#*", self.header).group())
 
-    @property
+    @cached_property
     def text(self):
         """Gets the text of the cell"""
 
@@ -122,11 +123,11 @@ class Cell:
 
         # Single space code blocks
         for code_block in re.findall("```.*?```", text, flags=re.DOTALL):
-            text = text.replace(code_block, re.sub(r"\n+", "\n", code_block, "\n"), 1)
+            text = text.replace(code_block, re.sub(r"\n+", "\n", code_block), 1)
 
         return re.sub(r"\n{2,}", "\n\n", text)
 
-    @property
+    @cached_property
     def fence(self):
         """Gets the name of the fence"""
         fences = list(set(self.tags) & set(FENCES))
@@ -136,7 +137,7 @@ class Cell:
             return self.tags[0]
         return fences[0] if fences else None
 
-    @property
+    @cached_property
     def output(self):
 
         if "hide_output" in self.tags or not self.cell.get("outputs"):
@@ -169,14 +170,14 @@ class Cell:
             elif key.startswith("image"):
                 img_bytes = base64.b64decode(content)
                 filename = f"fig-{hashlib.md5(img_bytes).hexdigest()}.png"
-                path = os.path.join(self.lesson_root, "episodes", "figures", filename)
+                path = os.path.join(self.lesson_root, "episodes", "fig", filename)
                 try:
                     open(path)
                 except FileNotFoundError:
                     with open(path, "wb") as f:
                         f.write(img_bytes)
                 output.append(
-                    f'<img src="figures/{filename}" width="672" style="display: block; margin: auto;" />'
+                    f'<img src="fig/{filename}" width="672" style="display: block; margin: auto;" />'
                 )
 
             # Pretty print HTML if possible. This is just for pandas tables so far.
@@ -299,7 +300,7 @@ class Cell:
                 text = str(self)
             if self.fence and include_fence:
                 return fence(text.strip(), self.fence)
-            return text.strip() + "\n"
+            return text.rstrip() + "\n"
         return ""
 
 
@@ -503,6 +504,7 @@ if __name__ == "__main__":
 
     # Ensure that required directories exist
     Path("episodes/files").mkdir(exist_ok=True, parents=True)
+    Path("learners").mkdir(exist_ok=True, parents=True)
 
     # Remove previously generated files
     if args.reset:
@@ -517,7 +519,7 @@ if __name__ == "__main__":
 
         # Remove images
         for path in glob.iglob(
-            os.path.join(lesson_root, "episodes", "figures", "fig-*.png")
+            os.path.join(lesson_root, "episodes", "fig", "fig-*.png")
         ):
             os.remove(path)
 
