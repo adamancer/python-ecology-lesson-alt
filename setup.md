@@ -19,26 +19,27 @@ prior to your scheduled lesson.**
 
 ## Setup
 
-This lesson requires two pieces of software: Visual Studio Code and
+This lesson uses two pieces of software: Visual Studio Code and
 Miniforge.
 
-### Visual Studio Code
+### Installing Visual Studio Code
 
-Visual Studio Code, also known as VS Code, is a code editor developed by
-Microsoft.
+Visual Studio Code, also known as VS Code, is a customizable code editor
+developed by Microsoft for Windows, macOS, and Linux.
 
-1.  Download the [VS Code
-    installer](https://code.visualstudio.com/download)
+1.  Download the appropriate [VS Code
+    installer](https://code.visualstudio.com/download) for your system.
+    Most people should click the big blue button for their operating
+    system.
 2.  Run the installer
 
-### Miniforge
+### Installing Miniforge
 
 Miniforge is a package manager used to manage software related to
 Python. To install:
 
-1.  Download the Miniforge installer for your system from
-    [conda-forge](https://conda-forge.org/download/)
-    - **Windows:** Choose the User Installer version
+1.  Download the appropriate [Miniforge
+    installer](https://conda-forge.org/download/) for your system
 2.  Run the installer
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -48,7 +49,7 @@ Python. To install:
 You may already be familiar with Anaconda, which includes similar
 package management software as Miniforge and a whole lot more. We
 **strongly recommend** sticking to the installation instructions and
-software presented here for this training. The Anaconda distribution
+software presented here for this lesson. The Anaconda distribution
 includes additional programs that may affect the output of some of the
 code presented in this lesson, which can be confusing for people new to
 Python.
@@ -67,21 +68,21 @@ install and run JupyterLab.
 Each operating system has one or more command-line interfaces available.
 We recommend using the following applications for this lesson:
 
-- **Windows:** Use the Miniforge Prompt, which was installed as part of
-  Miniforge. You can find it by searching for Miniforge Prompt in the
-  search box on the Windows toolbar.
-- **macOS:** Use the Terminal. You can find it in the
-  Applications/Utilities folder or by searching for Terminal using
-  Spotlight.
+-   **Windows:** Use the Miniforge Prompt, which was installed as part
+    of Miniforge. You can find it by searching for Miniforge Prompt in
+    the search box on the Windows toolbar.
+-   **macOS:** Use the Terminal. You can find it in the
+    Applications/Utilities folder or by searching for Terminal using
+    Spotlight.
 
 Type or copy the following command into the CLI to set up the
 environment:
 
-mamba create --name python-ecology-lesson ipykernel pandas plotly jupyterlab
+    mamba create --name python-ecology-lesson ipykernel pandas plotly jupyterlab
 
-### Downloading data to the lesson folder
+### Creating the lesson folder
 
-This lesson uses specific data files from the [Portal Project Teaching
+This lesson uses data files from the [Portal Project Teaching
 Database](https://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
 Here, we'll create the lesson folder and download the files we need for
 the lesson.
@@ -89,20 +90,28 @@ the lesson.
 1.  Create a folder called **python-ecology-lesson** on your desktop
 2.  Create a folder called **data** inside the folder from step 1
 3.  Download the following files into the data folder:
-    - surveys.csv: https://figshare.com/ndownloader/files/10717177
-    - species.csv: https://figshare.com/ndownloader/files/3299483
-    - plots.csv: https://figshare.com/ndownloader/files/3299474
+    -   surveys.csv: https://figshare.com/ndownloader/files/10717177
+    -   species.csv: https://figshare.com/ndownloader/files/3299483
+    -   plots.csv: https://figshare.com/ndownloader/files/3299474
 
-## Using VS Code
+When we're done, the lesson folder should look like this:
+
+    ├── python-ecology-lesson
+        ├── data
+            ├── plots.csv
+            ├── species.csv
+            ├── surveys.csv
+
+### Using VS Code
 
 Find and open VS Code using the search interface in your operating
-system.
+system. Once VS Code is open:
 
 1.  Click File \> Open Folder
-2.  Select the **python-ecology-lesson** folder on your desktop
+2.  Select the **python-ecology-lesson** folder created above
 
 The contents of the folder should now appear in the left sidebar of the
 VS Code window.
 
-Your instructor will explain how to work with VS Code as part of the
-lesson.
+Your instructor will explain how to work with Python in VS Code as part
+of the lesson.

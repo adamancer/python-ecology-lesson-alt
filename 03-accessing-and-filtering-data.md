@@ -57,40 +57,40 @@ surveys.sample(3)
   </thead>
   <tbody>
     <tr>
-      <th>6879</th>
-      <td>6880</td>
-      <td>10</td>
-      <td>24</td>
-      <td>1982</td>
-      <td>22</td>
-      <td>DS</td>
-      <td>M</td>
-      <td>52.0</td>
-      <td>151.0</td>
-    </tr>
-    <tr>
-      <th>1955</th>
-      <td>1956</td>
+      <th>16359</th>
+      <td>16360</td>
       <td>7</td>
-      <td>26</td>
-      <td>1979</td>
-      <td>9</td>
-      <td>DS</td>
+      <td>30</td>
+      <td>1989</td>
+      <td>10</td>
+      <td>RM</td>
       <td>M</td>
-      <td>48.0</td>
-      <td>94.0</td>
+      <td>16.0</td>
+      <td>11.0</td>
     </tr>
     <tr>
-      <th>29190</th>
-      <td>29191</td>
-      <td>2</td>
-      <td>20</td>
-      <td>1999</td>
-      <td>19</td>
-      <td>PB</td>
+      <th>33938</th>
+      <td>33939</td>
+      <td>5</td>
+      <td>15</td>
+      <td>2002</td>
+      <td>1</td>
+      <td>PP</td>
       <td>F</td>
-      <td>26.0</td>
-      <td>33.0</td>
+      <td>22.0</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>3103</th>
+      <td>3104</td>
+      <td>6</td>
+      <td>23</td>
+      <td>1980</td>
+      <td>4</td>
+      <td>DS</td>
+      <td>M</td>
+      <td>49.0</td>
+      <td>106.0</td>
     </tr>
   </tbody>
 </table>
@@ -745,16 +745,16 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>9664</th>
-      <td>9665</td>
-      <td>10</td>
-      <td>21</td>
-      <td>1984</td>
-      <td>4</td>
-      <td>DM</td>
+      <th>33992</th>
+      <td>33993</td>
+      <td>5</td>
+      <td>15</td>
+      <td>2002</td>
+      <td>18</td>
+      <td>PB</td>
       <td>F</td>
-      <td>35.0</td>
-      <td>38.0</td>
+      <td>25.0</td>
+      <td>20.0</td>
     </tr>
   </tbody>
 </table>
