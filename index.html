@@ -208,7 +208,6 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#setup">Setup</a></li>
-<li><a href="#using-vs-code">Using VS Code</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -341,25 +340,23 @@ development environment widely used for doing data science with Python.
 software and data needed to complete this lesson. Please complete setup
 prior to your scheduled lesson.</strong></p>
 <section><h2 class="section-heading" id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
-<hr class="half-width"><p>This lesson requires two pieces of software: Visual Studio Code and
+<hr class="half-width"><p>This lesson uses two pieces of software: Visual Studio Code and
 Miniforge.</p>
 <div class="section level3">
-<h3 id="visual-studio-code">Visual Studio Code<a class="anchor" aria-label="anchor" href="#visual-studio-code"></a></h3>
-<p>Visual Studio Code, also known as VS Code, is a code editor developed
-by Microsoft.</p>
-<ol style="list-style-type: decimal"><li>Download the <a href="https://code.visualstudio.com/download" class="external-link">VS
-Code installer</a>
-</li>
+<h3 id="installing-visual-studio-code">Installing Visual Studio Code<a class="anchor" aria-label="anchor" href="#installing-visual-studio-code"></a></h3>
+<p>Visual Studio Code, also known as VS Code, is a customizable code
+editor developed by Microsoft for Windows, macOS, and Linux.</p>
+<ol style="list-style-type: decimal"><li>Download the appropriate <a href="https://code.visualstudio.com/download" class="external-link">VS Code installer</a> for
+your system. Most people should click the big blue button for their
+operating system.</li>
 <li>Run the installer</li>
 </ol></div>
 <div class="section level3">
-<h3 id="miniforge">Miniforge<a class="anchor" aria-label="anchor" href="#miniforge"></a></h3>
+<h3 id="installing-miniforge">Installing Miniforge<a class="anchor" aria-label="anchor" href="#installing-miniforge"></a></h3>
 <p>Miniforge is a package manager used to manage software related to
 Python. To install:</p>
-<ol style="list-style-type: decimal"><li>Download the Miniforge installer for your system from <a href="https://conda-forge.org/download/" class="external-link">conda-forge</a>
-<ul><li>
-<strong>Windows:</strong> Choose the User Installer version</li>
-</ul></li>
+<ol style="list-style-type: decimal"><li>Download the appropriate <a href="https://conda-forge.org/download/" class="external-link">Miniforge installer</a> for
+your system</li>
 <li>Run the installer</li>
 </ol><div id="anaconda" class="callout">
 <div class="callout-square">
@@ -371,7 +368,7 @@ Python. To install:</p>
 <p>You may already be familiar with Anaconda, which includes similar
 package management software as Miniforge and a whole lot more. We
 <strong>strongly recommend</strong> sticking to the installation
-instructions and software presented here for this training. The Anaconda
+instructions and software presented here for this lesson. The Anaconda
 distribution includes additional programs that may affect the output of
 some of the code presented in this lesson, which can be confusing for
 people new to Python.</p>
@@ -400,12 +397,15 @@ Applications/Utilities folder or by searching for Terminal using
 Spotlight.</li>
 </ul><p>Type or copy the following command into the CLI to set up the
 environment:</p>
-<p>mamba create –name python-ecology-lesson ipykernel pandas plotly
-jupyterlab</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">mamba</span> create <span class="at">--name</span> python-ecology-lesson ipykernel pandas plotly jupyterlab</span></code></pre>
+</div>
 </div>
 <div class="section level3">
-<h3 id="downloading-data-to-the-lesson-folder">Downloading data to the lesson folder<a class="anchor" aria-label="anchor" href="#downloading-data-to-the-lesson-folder"></a></h3>
-<p>This lesson uses specific data files from the <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459" class="external-link">Portal
+<h3 id="creating-the-lesson-folder">Creating the lesson folder<a class="anchor" aria-label="anchor" href="#creating-the-lesson-folder"></a></h3>
+<p>This lesson uses data files from the <a href="https://figshare.com/articles/Portal_Project_Teaching_Database/1314459" class="external-link">Portal
 Project Teaching Database</a>. Here, we’ll create the lesson folder and
 download the files we need for the lesson.</p>
 <ol style="list-style-type: decimal"><li>Create a folder called <strong>python-ecology-lesson</strong> on
@@ -420,21 +420,33 @@ step 1</li>
 <li>plots.csv: <a href="https://figshare.com/ndownloader/files/3299474" class="external-link uri">https://figshare.com/ndownloader/files/3299474</a>
 </li>
 </ul></li>
-</ol></div>
-</section><section><h2 class="section-heading" id="using-vs-code">Using VS Code<a class="anchor" aria-label="anchor" href="#using-vs-code"></a></h2>
-<hr class="half-width"><p>Find and open VS Code using the search interface in your operating
-system.</p>
+</ol><p>When we’re done, the lesson folder should look like this:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">├──</span> python-ecology-lesson</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="ex">├──</span> data</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>        <span class="ex">├──</span> plots.csv</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>        <span class="ex">├──</span> species.csv</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>        <span class="ex">├──</span> surveys.csv</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="using-vs-code">Using VS Code<a class="anchor" aria-label="anchor" href="#using-vs-code"></a></h3>
+<p>Find and open VS Code using the search interface in your operating
+system. Once VS Code is open:</p>
 <ol style="list-style-type: decimal"><li>Click File &gt; Open Folder</li>
-<li>Select the <strong>python-ecology-lesson</strong> folder on your
-desktop</li>
+<li>Select the <strong>python-ecology-lesson</strong> folder created
+above</li>
 </ol><p>The contents of the folder should now appear in the left sidebar of
 the VS Code window.</p>
-<p>Your instructor will explain how to work with VS Code as part of the
-lesson.</p>
+<p>Your instructor will explain how to work with Python in VS Code as
+part of the lesson.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="01-introducing-python.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
@@ -484,8 +496,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/index.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/index.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2025-07-01",
-  "datePublished": "2025-07-01"
+  "dateModified": "2025-07-02",
+  "datePublished": "2025-07-02"
 }
 
   </script><script>
