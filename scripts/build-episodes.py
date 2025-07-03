@@ -472,6 +472,9 @@ def fence(text, fence, length=80):
     str
         fence
     """
+    # HACK: Solutions do not render properly if they contain an embed tag
+    if fence == "solution":
+        text = re.sub(r"```{\.output}.*?<embed.*?>", "", text, flags=re.DOTALL)
     open_fence = f"::: {fence} " + ":" * (length - len(fence) - 5)
     return f"{open_fence}\n\n{text.rstrip()}\n\n{':' * length}\n"
 
