@@ -250,7 +250,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04-aggregating-and-sorting-data.html">4. Aggregating and Sorting Data</a>
+        <a href="04-aggregating-data.html">4. Aggregating Data</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -332,7 +332,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introducing pandas</h1>
-        <p>Last updated on 2025-07-01 |
+        <p>Last updated on 2025-07-03 |
 
         <a href="https://github.com/adamancer/python-ecology-lesson-alt/edit/main/episodes/02-introducing-pandas.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -380,7 +380,8 @@ community in southern Arizona. This is part of a project studying the
 effects of rodents and ants on the plant community that has been running
 for almost 40 years. The rodents are sampled on a series of 24 plots,
 with different experimental manipulations controlling which rodents are
-allowed to access which plots.</p>
+allowed to access which plots. Each row represents a single observation
+of an animal, including its species, weight, and hindfoot length.</p>
 <p>This is a real dataset that has been used in over 100 publications.
 We’ve simplified it for the workshop, but you can download the full
 dataset and work with it using exactly the same tools we’ll learn about
@@ -392,12 +393,12 @@ be working with the following three files:</p>
 <ul><li>surveys.csv</li>
 <li>species.csv</li>
 <li>plots.csv</li>
-</ul><div id="discussion1" class="callout discussion">
+</ul><div id="discussion" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<div id="discussion" class="callout-inner">
+<h3 class="callout-title">Discussion</h3>
 <div class="callout-content">
 <p>Open each of these csv files and explore them. What information is
 contained in each file? Specifically, if we had the following research
@@ -410,10 +411,8 @@ over time?</li>
 </ul><p>What would we need to answer these questions? Which files have the
 data we need? What operations would we need to perform if we were doing
 these analyses by hand?</p>
-<p><strong>Hint:</strong> We can view CSV files using JupyterLab using
-the left sidebar. Click on the Folder icon in the top left of the
-sidebar to see the files, then go to the data directory to see the CSV
-we’ve downloaded for this lesson.</p>
+<p><strong>Hint:</strong> We can view CSV files by clicking on them in
+the left sidebar.</p>
 </div>
 </div>
 </div>
@@ -423,6 +422,7 @@ the following basic data operations:</p>
 <li>group subsets of data</li>
 <li>do math and other calculations</li>
 <li>combine data across spreadsheets</li>
+<li>plot data to identify patterns</li>
 </ul><p>In addition, we don’t want to do this manually! Instead of searching
 for the right pieces of data ourselves, or clicking between
 spreadsheets, or manually sorting columns, we want to make the computer
@@ -431,13 +431,13 @@ do the work.</p>
 analysis in case our data changes. We also want to do all this searching
 without actually modifying our source data.</p>
 </section><section><h2 class="section-heading" id="why-use-pandas">Why use pandas?<a class="anchor" aria-label="anchor" href="#why-use-pandas"></a></h2>
-<hr class="half-width"><p>The Python Data Analysis Library, or pandas, is a Python library used
+<hr class="half-width"><p>The Python Data Analysis Library, or pandas, is a Python package used
 to work with dataframes. A dataframe is a representation of tabular data
-very similar to a spreadsheet, consisting of rows (representing records)
-and columns (representing fields or variables). Tables are a very common
-format for representing scientific data and should be very familiar to
-anyone taking this course.</p>
-<p>pandas offers the same advantages as any well-written library: It
+similar to a well-organized spreadsheet, consisting of rows
+(representing records) and columns (representing fields or variables).
+Tables are a very common format for representing scientific data and
+should be very familiar to anyone taking this course.</p>
+<p>Pandas offers the same advantages as any well-written package: It
 creates a common codebase for working on a single task, in this case,
 analyzing data. Some benefits of this approach include:</p>
 <ul><li>
@@ -456,10 +456,10 @@ narrative form using tools like Jupyter notebooks</li>
 <strong>Community:</strong> Access a large, active community for
 help when we run into problems</li>
 </ul></section><section><h2 class="section-heading" id="importing-data-using-pandas">Importing data using pandas<a class="anchor" aria-label="anchor" href="#importing-data-using-pandas"></a></h2>
-<hr class="half-width"><p>Unlike the libraries in the Python Standard Library discussed in the
+<hr class="half-width"><p>Unlike the modules in the Python Standard Library discussed in the
 previous lesson, pandas is not part of the typical Python installation.
 Once it has been installed, however, it can be accessed using the same
-<code>import</code> command used to import the built-in libraries. By
+<code>import</code> command used to import built-in modules. By
 convention, pandas is imported using the alias “pd”. We can assign the
 alias using the <code>as</code> keyword:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -477,7 +477,7 @@ alias using the <code>as</code> keyword:</p>
 <p>Why use an alias? We will refer to pandas many, many times when
 writing a script, so it’s useful to abbreviate the name and save some
 keystrokes. But it’s also a matter of consistency with the larger
-community. Many of the core scientific Python libraries, including
+community. Many of the core scientific Python packages, including
 pandas, recommend a specific alias, so most code shared online will use
 those aliases as well.</p>
 </div>
@@ -487,9 +487,9 @@ those aliases as well.</p>
 to load data from a CSV, <code>pd.read_csv()</code>. The function call
 has three parts:</p>
 <ul><li>The name (or in this case, alias) of the object that defines the
-function. This can be a library or any other object. It can also be
-omitted in some cases (for example, when using a function built into
-Python).</li>
+function. This can be a module, package, or any other object. It can
+also be omitted in some cases (for example, when using a function built
+into Python).</li>
 <li>The name of the method we’d like to use</li>
 <li>A set of parentheses that tells the function to run.</li>
 </ul><p>Many functions include <em>parameters</em> that allow the user to
@@ -880,8 +880,8 @@ NaN
 </p>
 <p>Here are a few things to observe about how the dataframe is
 structured:</p>
-<ul><li>By default, JupyterLab displays the first and last five rows of the
-dataframe</li>
+<ul><li>By default, the notebook displays the first and last five rows of
+the dataframe</li>
 <li>Each row represents a record</li>
 <li>Each column represents a field</li>
 <li>The unlabeled column on the far left is called the <em>row
@@ -1327,12 +1327,12 @@ like Excel.</p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="assigning-to-variables">Assigning to variables<a class="anchor" aria-label="anchor" href="#assigning-to-variables"></a></h2>
-<hr class="half-width"><p>We can assign the dataframe to a variable to make it easier to
-access. As we saw in the previous lesson, we use a single equals sign to
-assign an object to a variable. The variable name should be short and
-descriptive. By convention, variable names in Python use snake_case
-(that is, lower case with individual words separated by
-underscores).</p>
+<hr class="half-width"><p>We can assign the dataframe to a variable so we don’t need to load it
+every time we want to access it. As we saw in the previous lesson, we
+use a single equals sign to assign an object to a variable. The variable
+name should be short and descriptive. By convention, variable names in
+Python use snake_case (that is, lower case with individual words
+separated by underscores).</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1770,19 +1770,21 @@ equivalents.</p>
 </section><section><h2 class="section-heading" id="saving-a-dataframe">Saving a dataframe<a class="anchor" aria-label="anchor" href="#saving-a-dataframe"></a></h2>
 <hr class="half-width"><p>When analyzing a dataset, we’ll often want to save our work to a
 file. The <code>to_csv()</code> method can be used to write a dataframe
-to a CSV. As when we read a CSV from a file above, we need to provide a
-path to which to save the file. The example below also includes the
-<em>index</em> keyword argument. Setting that parameter to False tells
-pandas not to include the row label when writing the CSV.</p>
+to a CSV, which is a text file which places each row on a separate line
+and separates individual cells with commas. We will include a positional
+argument with the path to which we want to save the file. We will also
+include the <em>index</em> keyword argument. Setting that parameter to
+False tells pandas not to include the row label when writing the
+CSV.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>surveys.to_csv(<span class="st">"data/surveys_mod.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
-<p>This is far from the only option for writing data–pandas supports a
+<p>This is far from the only option for writing data—pandas supports a
 variety of file types for both reading and writing. Try searching for
 “read_” in the <a href="https://pandas.pydata.org/docs/reference/index.html" class="external-link">pandas API
-reference</a> to see the supported formats.</p>
+reference</a> to see other supported formats.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1792,13 +1794,13 @@ reference</a> to see the supported formats.</p>
 <div class="callout-content">
 <ul><li>This lesson uses real data from a decades-long survey of rodents in
 Arizona</li>
-<li>pandas is a data analysis library that allows users to read,
+<li>pandas is a data analysis package that allows users to read,
 manipulate, and view tabular data using Python</li>
 <li>pandas represents data as a dataframe consisting of rows (records)
 and columns (fields or variables)</li>
-<li>Read a dataframe from CSV using the <code>pd.read_csv()</code>
-function</li>
-<li>Write a dataframe to CSV using the <code>to_csv()</code> method</li>
+<li>We can read a dataframe from CSV using the
+<code>pd.read_csv()</code> function and write a dataframe to CSV using
+the <code>to_csv()</code> method</li>
 <li>The behavior of a function can be modified by including arguments
 and keyword arguments when the function is called</li>
 <li>pandas uses its own classes to represent text, numbers, booleans,
@@ -1868,8 +1870,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/02-introducing-pandas.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/02-introducing-pandas.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2025-07-01",
-  "datePublished": "2025-07-02"
+  "dateModified": "2025-07-03",
+  "datePublished": "2025-07-03"
 }
 
   </script><script>
