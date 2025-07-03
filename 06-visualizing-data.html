@@ -264,6 +264,8 @@
         <ul><li><a href="#re-introducing-plotly">Re-introducing plotly</a></li>
 <li><a href="#choosing-colors">Choosing colors</a></li>
 <li><a href="#sorting-data">Sorting data</a></li>
+<li><a href="#adding-plot-and-axis-titles">Adding plot and axis titles</a></li>
+<li><a href="#create-a-faceted-plot">Create a faceted plot</a></li>
 <li><a href="#making-a-box-plot">Making a box plot</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -348,9 +350,9 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How can we look at individual rows and columns in a dataframe?</li>
+<ul><li>How can we create different types of plots using Python?</li>
 <li>How can we style plots?</li>
-<li>How can we modify the table and data?</li>
+<li>How can we add descriptive titles to plots and axes?</li>
 </ul></div>
 </div>
 </div>
@@ -370,7 +372,7 @@ dataframes</li>
 will include operations introduced in previous lessons, including
 reading CSVs into dataframes, merging dataframes, sorting a dataframe,
 and removing records that include null values. We’ll begin by importing
-pands:</p>
+pandas:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -387,7 +389,7 @@ pands:</p>
 going to be plotting data, we need to consider how we want to handle any
 null values in the dataset. The <code>info()</code> method provides an
 overview, including counts of non-null values, that we can use to assess
-the null values in the dataset.</p>
+the dataset.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -416,7 +418,10 @@ memory usage: 2.4+ MB
 </div>
 <p>There are 35,459 records in the table. Four columns—species_id, sex,
 hindfoot_length, and weight—include null values, that is, they contain
-fewer non-null values than there are rows in the dataframe.</p>
+fewer non-null values than there are rows in the dataframe. We can us
+<code>fillna()</code> to replace null values where it makes sense to do
+so. For example, some specimens do not specify as sex. We can fill those
+values in with the letter U (for unknown):</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -447,11 +452,19 @@ plot_id</li>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>surveys <span class="op">=</span> surveys.merge(species, how<span class="op">=</span><span class="st">"left"</span>).merge(plots, how<span class="op">=</span><span class="st">"left"</span>)</span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="chaining">Chaining<a class="anchor" aria-label="anchor" href="#chaining"></a></h3>
+<div id="chaining" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="chaining" class="callout-inner">
+<h3 class="callout-title">Chaining</h3>
+<div class="callout-content">
 <p>The previous cell performs two merges in the same line of code.
 Performing multiple operations on the same object in a single line of
 code is called chaining.</p>
+</div>
+</div>
+</div>
 <p>We now have a dataframe that includes all observations from the
 Portal dataset that specify a species, weight, and hindfoot length, as
 well as descriptive metadata about each species and plot type. The taxa
@@ -481,6 +494,7 @@ of this, we will assign our dataframe to a new variable:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -527,70 +541,70 @@ taxa
 plot_type
 </th>
 </tr></thead><tbody><tr><th>
-19946
+21708
 </th>
 <td>
-23893
+25724
 </td>
 <td>
 5
 </td>
 <td>
-23
+10
 </td>
 <td>
-1996
+1997
 </td>
 <td>
-21
+12
 </td>
 <td>
-PP
+NL
 </td>
 <td>
 M
 </td>
 <td>
-23.0
+31.0
 </td>
 <td>
-11.0
+62.0
 </td>
 <td>
-Chaetodipus
+Neotoma
 </td>
 <td>
-penicillatus
+albigula
 </td>
 <td>
 Rodent
 </td>
 <td>
-Long-term Krat Exclosure
+Control
 </td>
 </tr><tr><th>
-15582
+5378
 </th>
 <td>
-18912
+7359
 </td>
 <td>
-8
+2
 </td>
 <td>
-7
+26
 </td>
 <td>
-1991
+1983
 </td>
 <td>
-18
+24
 </td>
 <td>
-PF
+RM
 </td>
 <td>
-M
+F
 </td>
 <td>
 16.0
@@ -599,156 +613,157 @@ M
 7.0
 </td>
 <td>
-Perognathus
+Reithrodontomys
 </td>
 <td>
-flavus
-</td>
-<td>
-Rodent
-</td>
-<td>
-Short-term Krat Exclosure
-</td>
-</tr><tr><th>
-13805
-</th>
-<td>
-16887
-</td>
-<td>
-1
-</td>
-<td>
-6
-</td>
-<td>
-1990
-</td>
-<td>
-12
-</td>
-<td>
-SF
-</td>
-<td>
-M
-</td>
-<td>
-28.0
-</td>
-<td>
-44.0
-</td>
-<td>
-Sigmodon
-</td>
-<td>
-fulviventer
+megalotis
 </td>
 <td>
 Rodent
 </td>
 <td>
-Control
+Rodent Exclosure
 </td>
 </tr><tr><th>
-20717
+21832
 </th>
 <td>
-24714
+25854
+</td>
+<td>
+5
 </td>
 <td>
 11
 </td>
 <td>
-16
+1997
 </td>
 <td>
-1996
+3
 </td>
 <td>
-2
-</td>
-<td>
-PE
-</td>
-<td>
-F
-</td>
-<td>
-20.0
-</td>
-<td>
-25.0
-</td>
-<td>
-Peromyscus
-</td>
-<td>
-eremicus
-</td>
-<td>
-Rodent
-</td>
-<td>
-Control
-</td>
-</tr><tr><th>
-24799
-</th>
-<td>
-29112
-</td>
-<td>
-1
-</td>
-<td>
-17
-</td>
-<td>
-1999
-</td>
-<td>
-6
-</td>
-<td>
-PM
+PB
 </td>
 <td>
 M
 </td>
 <td>
-21.0
+26.0
 </td>
 <td>
-21.0
+20.0
 </td>
 <td>
-Peromyscus
+Chaetodipus
 </td>
 <td>
-maniculatus
+baileyi
 </td>
 <td>
 Rodent
 </td>
 <td>
-Short-term Krat Exclosure
+Long-term Krat Exclosure
 </td>
-</tr></tbody></table><p>Finally, we will save the rodents dataframe to a file that we can
-load directly in the future if needed:</p>
+</tr><tr><th>
+1293
+</th>
+<td>
+1870
+</td>
+<td>
+7
+</td>
+<td>
+3
+</td>
+<td>
+1979
+</td>
+<td>
+9
+</td>
+<td>
+DS
+</td>
+<td>
+M
+</td>
+<td>
+46.0
+</td>
+<td>
+86.0
+</td>
+<td>
+Dipodomys
+</td>
+<td>
+spectabilis
+</td>
+<td>
+Rodent
+</td>
+<td>
+Spectab exclosure
+</td>
+</tr><tr><th>
+24665
+</th>
+<td>
+28975
+</td>
+<td>
+12
+</td>
+<td>
+23
+</td>
+<td>
+1998
+</td>
+<td>
+3
+</td>
+<td>
+PB
+</td>
+<td>
+M
+</td>
+<td>
+26.0
+</td>
+<td>
+40.0
+</td>
+<td>
+Chaetodipus
+</td>
+<td>
+baileyi
+</td>
+<td>
+Rodent
+</td>
+<td>
+Long-term Krat Exclosure
+</td>
+</tr></tbody></table><p>Finally, we’ll save the rodents dataframe to a file that we can load
+directly in the future if needed:</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>rodents.to_csv(<span class="st">"data/rodents.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre>
 </div>
-</div>
+<p>Now we’re ready to plot.</p>
 <section><h2 class="section-heading" id="re-introducing-plotly">Re-introducing plotly<a class="anchor" aria-label="anchor" href="#re-introducing-plotly"></a></h2>
 <hr class="half-width"><p>We’ve already worked with plotly a little in previous lessons, but we
 haven’t provided a comprehensive introduction. Plotly is a data
 visualization package for Python that allows us to create customizable,
-interactive plots of a variety of different types.</p>
+interactive plots of a variety of different types. Plotly makes plots
+that are:</p>
 <ul><li>
 <strong>Customizable.</strong> Allows the appearance of plots to be
 extensively modified.</li>
@@ -756,22 +771,14 @@ extensively modified.</li>
 <strong>Interactive.</strong> Pan and zoom across plots, or hover
 over elements to get additional information about them.</li>
 <li>
-<strong>Flexible.</strong> Allows creation of many different plot
-types, often with only a few lines of code. Because plotly uses similar
-syntax for each plot type, it is also easy to quickly change plot types
-to get a different perspective on a set of data.</li>
+<strong>Flexible.</strong> Many different plot types can be created,
+often with only a few lines of code. Because plotly uses similar syntax
+for each plot type, it is also easy to quickly change plot types to get
+a different perspective on a dataset.</li>
 <li>
 <strong>Embeddable.</strong> Interactive plots can be embedded on
 websites using ploty’s JavaScript library.</li>
-</ul><p>Plotly has two main ways of making plots:</p>
-<ul><li>
-<code>plotly.express</code> provides a simplified interface for
-quickly building and customizing plots</li>
-<li>
-<code>plotly.graph_objects</code> uses a more complex interface to
-provide more granular control over the contents of a plot</li>
-</ul><p>We will use <code>plotly.express</code> in this lesson.</p>
-<div id="other-plotting-libraries" class="callout">
+</ul><div id="other-plotting-libraries" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -779,8 +786,9 @@ provide more granular control over the contents of a plot</li>
 <h3 class="callout-title">Other plotting libraries</h3>
 <div class="callout-content">
 <p>The R community has largely coalesced around gg2plot for plotting. In
-contrast, the Python community uses a number of data visualization
-libraries. Some commonly used alternatives to plotly include:</p>
+contrast, the Python community has no clear consensus pick and makes use
+of a number of data visualization packages. Some other commonly used
+packages include:</p>
 <ul><li><a href="https://bokeh.org/" class="external-link">Bokeh</a></li>
 <li><a href="https://matplotlib.org/" class="external-link">Matplotlib</a></li>
 <li><a href="https://seaborn.pydata.org/" class="external-link">seaborn</a></li>
@@ -790,10 +798,19 @@ which one to use depends in large part on personal preference.</p>
 </div>
 </div>
 </div>
-<p>We’ll begin by reproducing the scatterplot from the <a href="03-accessing-and-filtering-data.html#showing-data-on-a-plot">end
-of lesson 3</a>, which used weight on the x axis and hindfoot length on
-the y axis. Likely pandas, the developers of <code>plotly.express</code>
-have a preferred alias, px.</p>
+<p>Plotly has two main ways of making plots:</p>
+<ul><li>
+<code>plotly.express</code> provides a simplified interface for
+quickly building and customizing plots</li>
+<li>
+<code>plotly.graph_objects</code> uses a more complex interface to
+provide more granular control over the contents of a plot</li>
+</ul><p>We will use <code>plotly.express</code> in this lesson.</p>
+<p>We’ll begin by reproducing the scatter plot from the <a href="03-accessing-and-filtering-data.html#showing-data-on-a-plot">end
+of lesson 3</a>, which included weight on the x axis and hindfoot length
+on the y axis. Likely pandas, the developers of
+<code>plotly.express</code> have a preferred alias, px, that we will use
+when we import <code>plotly.express</code>:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -814,7 +831,7 @@ default, the toolbar includes the following widgets:</p>
 <ul><li>The camera allows us to save the current view as a PNG file</li>
 <li>The next four widgets are toggles that control how click-and-drag
 affects the plot. Only one can be active at a time.
-<ul><li>The magnifying glass enable a zoom box</li>
+<ul><li>The magnifying glass enables drawing a box to zoom</li>
 <li>The crossing arrows enable panning</li>
 <li>The dotted box enables drawing a box to select data</li>
 <li>The dotted lasso enables drawing an arbitrary shape to to select
@@ -824,7 +841,9 @@ data</li>
 <li>The minus box allows us to zoom out</li>
 <li>The crossing arrows autoscale the plot to show all adata</li>
 <li>The house resets the plot to the original view</li>
-</ul><p>Now let’s think about the plot itself.</p>
+</ul><p>When we hover over a data point, we get a tooltip that shows
+information about that point.</p>
+<p>Now let’s think about the plot itself.</p>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -876,7 +895,7 @@ semitransparent using the opacity keyword argument. We’ll use a value of
 overlap are more obvious, and we can see several clusters. To get a
 better sense of what those clusters might be, let’s add some color to
 the plot.</p>
-<p>At the end of lesson 4, we colored this scatterplot based on the
+<p>At the end of lesson 4, we colored this scatter plot based on the
 species_id column. This revealed that several of the clusters reflected
 the species of rodent observed. But the use of species_id was
 problematic in other ways. For one, there are so many different species
@@ -904,9 +923,9 @@ do this. Color is another.</p>
 module. Because we are working with categorical data, we will use a
 <em>qualitative</em> palette, which consists of a list of discrete
 colors. Other palette types are also available. For example, plots
-showing a range of values might benefit from using a <em>diverging</em>
-color scheme, which provide a continuous range of colors (for example,
-blue to red for a heat map.)</p>
+showing a range of values might benefit from using a <em>sequential</em>
+or <em>diverging</em> color scheme, which use a continuous range of
+colors (for example, blue to red for a heat map).</p>
 <p>Qualitative palettes are available under
 <code>px.colors.qualitative</code>. We can view the available plaettes
 using the swatches function:</p>
@@ -920,18 +939,19 @@ using the swatches function:</p>
 </h3>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
-<embed src="files/fig-20548c05560600010e3e88783aacdd86.html" width="760" height="570"><p>In the spirit of effectively communicating with a wide audience, we
+<embed src="files/fig-20548c05560600010e3e88783aacdd86.html" width="760" height="570"><p>In the spirit of effective communication with a wide audience, we
 will use <code>px.colors.qualitative.Safe</code>, a colorblind-safe
-paletter. Because we will be using the same palette for the rest of the
+palette. Because we will be using the same palette for the rest of the
 lesson, we will store the palette as a variable:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>colors <span class="op">=</span> px.colors.qualitative.Safe</span></code></pre>
 </div>
-<p>In addition to simplifying future plots a bit, this also allows us to
-quickly change the color scheme for all our plots at once if needed.</p>
-<p>Let’s apply the safe colors to our scatterplot:</p>
+<p>In addition to simplifying the code for future plots a bit, storing
+the palette as a variable also allows us to quickly change the color
+scheme for all our plots at once if needed.</p>
+<p>Let’s apply the safe colors to our scatter plot:</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -951,22 +971,22 @@ quickly change the color scheme for all our plots at once if needed.</p>
 </div>
 <embed src="files/fig-349b125e7900fc69cfa30682b78779c0.html" width="760" height="570"></embed></embed></section><section><h2 class="section-heading" id="sorting-data">Sorting data<a class="anchor" aria-label="anchor" href="#sorting-data"></a></h2>
 <hr class="half-width"><p>Take a look at the legend of the plot. The genera from the dataset
-are all listed, but they are in no apparent order. This will make it
-more difficult for anyone looking at the plot to quickly pick out a
-given genus. Alphabetizing the legend will make it more readable. To do
-so, we can use the category_order keyword argument.</p>
+are all listed, but they are in no apparent order. This makes it
+difficult for anyone looking at the plot to quickly pick out a given
+genus. We can alphabetize the legend to make it more readable. To do so,
+we can use the category_order keyword argument.</p>
 <p>This argument requires a <code>dict</code>. Recall that a
 <code>dict</code> is a mapping of keys to values defined using curly
 braces. The <code>dict</code> passed to category_orders maps a column
-name from the dataframe to a list of categories in the preferred order.
-One approach to creating an alphabetical list would be to simply crate
-the list manually. That would work well enough here, but could quickly
-become unwiedly for larger datasets. Instead, we will used the built-in
-<code>sorted()</code> function to sort the values from the genus column
-of the dataframe. Because we will be using the same order in all
-following plots, we will store the dict with the sorted values in a
-variable that we can refer to whenever we need to and can change if
-needed.</p>
+name from the dataframe to a list of values in the preferred order.</p>
+<p>One approach to creating an alphabetical list would be to simply
+build the list manually. That would work well enough here, where we have
+only a handful of values, but quickly becomes unwiedly for larger
+datasets. Instead, we will used the built-in <code>sorted()</code>
+function to create a sorted list of values in the genus column. Because
+we will be using the same order in all following plots, we will store
+the dict with the sorted values in a variable that we can refer to
+whenever we need to and can change if needed.</p>
 <div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -999,8 +1019,8 @@ ordered list of unique values from that column.</p>
 </div>
 </div>
 </div>
-<p>Alternatively, we can create the <code>dict</code> we need with a
-single line of code:</p>
+<p>In addition to the approach used in the challenge, we can create the
+<code>dict</code> we need with a single line of code:</p>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1008,8 +1028,7 @@ single line of code:</p>
 </div>
 <p>That variable can now be passed to the category_orders keyword
 argument, producing a new version of the plot with an alphabetical
-legend. Note that the colors in the plot have also changed. Colors are
-assigned in the same order as the legend.</p>
+legend.</p>
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1021,25 +1040,32 @@ assigned in the same order as the legend.</p>
 <span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>    opacity<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>    color_discrete_sequence<span class="op">=</span>colors,</span>
 <span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>    category_orders<span class="op">=</span>cat_order,</span>
-<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Rodent hindfoot length by genus"</span>,</span>
-<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>)</span></code></pre>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
-<embed src="files/fig-0db75d47b3dc27b26c8a5a02a9e54860.html" width="760" height="570"><p>We will turn again to a <code>dict</code>, which we will use to map
-column names to preferred display values.</p>
+<embed src="files/fig-933d2518a110bd65ab5ebc96e3dcfc7c.html" width="760" height="570"><p>Note that the colors in the plot have also changed. Colors are
+assigned based on the same category order used by the legend.</p>
+</embed></section><section><h2 class="section-heading" id="adding-plot-and-axis-titles">Adding plot and axis titles<a class="anchor" aria-label="anchor" href="#adding-plot-and-axis-titles"></a></h2>
+<hr class="half-width"><p>By default, plotly uses the column names from the dataframe to label
+the axes of a plot. Here, the axis labels are adequate but would benefit
+from removing the underscore and including units. We can use the labels
+keyword argument to assign human-readable labels to our plto.</p>
+<p>We will turn again to a <code>dict</code> for this, which we will use
+to map the underlying column names to preferred display values:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>labels <span class="op">=</span> {</span>
 <span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>    <span class="st">"hindfoot_length"</span>: <span class="st">"Hindfoot length (mm)"</span>,</span>
 <span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>    <span class="st">"genus"</span>: <span class="st">"Genus"</span>,</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>}</span></code></pre>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>    <span class="st">"weight"</span>: <span class="st">"Weight (g)"</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>}</span></code></pre>
 </div>
-<p>We can update the plot itself using the title and labels keyword
+<p>We can then update the plot itself using the title and labels keyword
 arguments:</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1061,7 +1087,27 @@ arguments:</p>
 </h3>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
-<embed src="files/fig-dd11a3da528adb4654e0ef24b428306f.html" width="760" height="570"><p>Facet plot:</p>
+<embed src="files/fig-25169cdf2c7196dc94ea79f6aadba526.html" width="760" height="570"></embed></section><section><h2 class="section-heading" id="create-a-faceted-plot">Create a faceted plot<a class="anchor" aria-label="anchor" href="#create-a-faceted-plot"></a></h2>
+<hr class="half-width"><p>Even with the semitransparent points, there is a good deal of overlap
+among the data on this plot, particularly in the lower left part. It may
+be useful to plot each genus separately to see if anyting interesting is
+being obscured. We could do so using some of the techniques we’ve
+already covered. For example, we could filter the dataframe by genus and
+create a separate plots for each.</p>
+<p>Plotly provides a simpler approach called faceting. A facet is a type
+of filter, and a faceted plot includes a separate subplot for each
+unique value. In plotly, we can create a faceted plot using the
+facet_col keyword argument. This argument produces a separate subplot
+for each unique value in the specified column. The subplots are arranged
+in a single row.</p>
+<p>The plots we have created so far have not specified dimensions, but
+we will need to consider the size of the faceted plot. Because this plot
+includes a number of subplots, it may appear cramped unless it is quite
+wide. We can use the height and width keyword arguments to set the size
+of the plot. Each of these arguments requires an integer specifying a
+size in pixels.</p>
+<p>Let’s update our plot to facet it by genus and make it 1400 pixels
+wide by 400 pixels tall:</p>
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1073,27 +1119,45 @@ arguments:</p>
 <span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>    opacity<span class="op">=</span><span class="fl">0.2</span>,</span>
 <span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>    color_discrete_sequence<span class="op">=</span>colors,</span>
 <span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>    category_orders<span class="op">=</span>cat_order,</span>
-<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>    facet_col<span class="op">=</span><span class="st">"genus"</span>,</span>
-<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Rodent size by genus"</span>,</span>
-<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>    labels<span class="op">=</span>labels,</span>
-<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>)</span></code></pre>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Rodent size by genus"</span>,</span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>    labels<span class="op">=</span>labels,</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>    facet_col<span class="op">=</span><span class="st">"genus"</span>,</span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">1400</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>)</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
-<embed src="files/fig-4993b02483f76e1933fdd907bc74923c.html" width="760" height="570"></embed></embed></embed></section><section><h2 class="section-heading" id="making-a-box-plot">Making a box plot<a class="anchor" aria-label="anchor" href="#making-a-box-plot"></a></h2>
+<embed src="files/fig-7af8a7c1bc6df4beb06c9a47f54800e5.html" width="760" height="570"><div id="row-facets" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="row-facets" class="callout-inner">
+<h3 class="callout-title">Row facets</h3>
+<div class="callout-content">
+<p>The facet_col argument produces a single row of subplots. There is
+another argument, facet_row, that places each subplot in a separate row
+instead. Column and row facets can even be combined, for example, to
+produce a grid of subplots with genus as columns and sex as rows.</p>
+</div>
+</div>
+</div>
+</embed></section><section><h2 class="section-heading" id="making-a-box-plot">Making a box plot<a class="anchor" aria-label="anchor" href="#making-a-box-plot"></a></h2>
 <hr class="half-width"><p>We briefly discussed box plots (also known as box-and-whisker plots)
-in lesson 4 as part of the discussion of summary statistics. Box plots
-are an effective way to visualize the distribution of data. Plotly uses
-the <code>px.box()</code> method to generate them.</p>
-<p>The issues raised about the plot created during the earlier
-lesson–including the arbitrary order in which data was plotted, the
-repeated colors, and the inclusion of species with no data–can be
-addressed using the same approaches that we used for the scatterplots
-above. Let’s create a box plot of hindfoot length by genus using the
-same color and ordering rules we used above:</p>
+in <a href="04-aggregating-data.html#visualizing-groups-and-statistics">lesson
+4</a> as part of the discussion of summary statistics. Box plots are an
+effective way to visualize the distribution of data. Plotly uses the
+<code>px.box()</code> method to generate them.</p>
+<p>Some issues raised about the plot created during the earlier
+lesson—including the arbitrary order in which data was plotted, the
+repeated colors, and the inclusion of species with no data—have already
+been addressed above. We can integrate them into the box plot using the
+same approaches that we used for the scatter plots previously. Let’s
+create a box plot of hindfoot length by genus using the same color and
+ordering rules we defined earlier:</p>
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1114,25 +1178,26 @@ same color and ordering rules we used above:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <embed src="files/fig-88a734bc811c5eb1714bc2bec0cd0a92.html" width="760" height="570"><p>We now have a box plot with colors corresponding to the scatter plots
-above, with a alphabetically ordered x axis and legend.</p>
-<p>We’ll start with a concern about how the data is being represented.
-By default, ploty’s box plots show individual points only for outliers,
-that is, points that plot outside the upper and lower fences of the
-box-and-whisker. This works well enough for normally distributed data
-but can obscure patterns for more complex distributions. And indeed,
-some genera, like <em>Dipodomys</em>, show a large number of outliers
-and multiple clusters of data on the scatterplot. How might we update
-the box plot to better convey these distributions?</p>
+above, with an alphabetically ordered x axis and legend.</p>
+<p>There are other aspects of the box plot that we may want to tweak.
+We’ll start with a concern about how the data is being represented. By
+default, ploty’s box plots show individual points only for outliers,
+that is, points that plot outside the upper and lower fences. This works
+well enough for normally distributed data but can obscure patterns for
+more complex distributions. And indeed, some genera, like
+<em>Dipodomys</em>, show a large number of outliers on the box pot and
+multiple clusters of data on the scatter plot. How might we update the
+box plot to better convey these distributions?</p>
 <p>The <code>px.box()</code> method includes a keyword argument, points,
 that allows us to change how the underlying data is displayed. It
 accepts three values:</p>
 <ul><li>
-<em>outliers</em> shows outlier only (default)</li>
+<em>outliers</em> only shows the outliers (default)</li>
 <li>
 <em>all</em> shows all points</li>
 <li>
 <em>None</em> shows no points</li>
-</ul><p>Let’s try updating the box plot to show all points:</p>
+</ul><p>Let’s try updating the box plot to show all the underlying data:</p>
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1157,9 +1222,9 @@ accepts three values:</p>
 can see that plotly has spread the points out a bit along the x axis.
 This process, called jitter, is necessary because otherwise the points
 for each category would fall in a vertical line. We can also see that
-we’ve run into the same problem we did above with the scatterplot: The
-large number of overlapping points for each box makes it impossible to
-gt much insight into the distribution.</p>
+we’ve run into the same problem we did above with the scatter plot: The
+large number of overlapping points for each box makes it hard to see
+what is going on inside each point cloud.</p>
 <p>We can again address this problem by changing the opacity of the
 markers. It’s a little more complicated than it was for the scatter
 plot, however, because the <code>px.box()</code> method does not allow
@@ -1188,12 +1253,12 @@ and other elements as traces.)</p>
 </h3>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
-<embed src="files/fig-868351fb9d246f1d5921e6d6b8303f39.html" width="760" height="570"><p>The point clouds make it easier to see separate population among some
-genera, like <em>Dipodomys</em>.</p>
+<embed src="files/fig-868351fb9d246f1d5921e6d6b8303f39.html" width="760" height="570"><p>With the points now semitransparent, it is possible to see separate
+populations among some genera, like <em>Dipodomys</em>.</p>
 <p>Another way to examine the distribution of data is a violin plot,
 which visualizes the distribution of points as a line, similar to a Bell
-curve, on either side. We can change our box plot to a violin plot by
-swapping <code>px.violin()</code> in for <code>px.box()</code>:</p>
+curve. We can change our box plot to a violin plot by swapping
+<code>px.violin()</code> in for <code>px.box()</code>:</p>
 <div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1216,7 +1281,7 @@ swapping <code>px.violin()</code> in for <code>px.box()</code>:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <embed src="files/fig-a2b6e5819ae8ea740baeb7e00455bb9c.html" width="760" height="570"><p>This plot makes it easier to see identify complex distributions, like
-the bimodal distribution for <em>Caetodipus</em>, that are visible but
+the bimodal distribution for <em>Chaetodipus</em>, that are visible but
 not necessarily obvious in the point clouds.</p>
 <div id="challenge3" class="callout challenge">
 <div class="callout-square">
@@ -1239,9 +1304,9 @@ plot that tries to answer this question.</p>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>There are several reasonable approaches to this question using the
-scatterplots and boxplots covered so far in this lesson. One possibility
-is a faceted plot showing the mean weight of each <em>Dipodomys</em>
-over the course of the study.</p>
+scatter plots and boxplots covered so far in this lesson. One
+possibility is a faceted plot showing the mean weight of each
+<em>Dipodomys</em> over the course of the study.</p>
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1273,7 +1338,8 @@ a trend difficult.)</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>Build and style scatter plots using plotly</li>
+<ul><li>Plotly offers a wide variety of ways to build and style scatter
+plots</li>
 <li>Use scatter plots to visualize how parameters covary</li>
 <li>Use box and violin plots to visualize the distribution of a
 parameter</li>

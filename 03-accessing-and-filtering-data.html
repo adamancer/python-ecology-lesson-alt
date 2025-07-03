@@ -389,6 +389,7 @@ lesson:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -843,6 +844,7 @@ returns a dataframe:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1011,6 +1013,7 @@ returns a copy of the dataframe with all duplicate rows removed.</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1140,6 +1143,7 @@ can get the rows at the beginning of the dataframe using
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1337,6 +1341,7 @@ rows:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1683,6 +1688,7 @@ from the end of the table:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1879,6 +1885,7 @@ anywhere in the dataframe:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1913,40 +1920,39 @@ hindfoot_length
 weight
 </th>
 </tr></thead><tbody><tr><th>
-28471
+11493
 </th>
 <td>
-28472
+11494
 </td>
 <td>
-8
+5
 </td>
 <td>
-23
+11
 </td>
 <td>
-1998
+1986
 </td>
 <td>
-15
+13
 </td>
 <td>
-PM
+NL
 </td>
 <td>
 M
 </td>
 <td>
-20.0
+32.0
 </td>
 <td>
-20.0
+123.0
 </td>
 </tr></tbody></table><p>If you’re following along, you may notice that the output of this
 method on your screen differs from what’s shown here. That’s exactly
 what we’d expect to see. Remember, <code>sample()</code> is returnning a
-random row–it would be far less likely for the outputs to be the
-same!</p>
+random row—it would be more surprising if the outputs were the same!</p>
 </section><section><h2 class="section-heading" id="slicing-the-dataframe">Slicing the dataframe<a class="anchor" aria-label="anchor" href="#slicing-the-dataframe"></a></h2>
 <hr class="half-width"><p>The <code>head()</code>, <code>tail()</code>, and
 <code>sample()</code> methods are useful for getting a feel for how our
@@ -1967,6 +1973,7 @@ square brackets as <code>start:end</code>:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2165,6 +2172,7 @@ brackets:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2544,6 +2552,7 @@ to observations made in or after 2000, use:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2939,6 +2948,7 @@ order.</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -3323,6 +3333,7 @@ species_id column:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -3704,6 +3715,7 @@ To sort by weight, we’ll pass the name of that column to the
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -4084,6 +4096,7 @@ We can reorder them from largest to smallest using the
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -4466,6 +4479,7 @@ to smallest), then by weight (smallest to largest):</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -4869,6 +4883,7 @@ surveys table, sorted with the largest weights at the top.</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }

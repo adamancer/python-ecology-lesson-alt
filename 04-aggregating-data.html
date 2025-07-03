@@ -246,7 +246,7 @@
         <ul><li><a href="#aggregating-data">Aggregating data</a></li>
 <li><a href="#grouping-data">Grouping data</a></li>
 <li><a href="#handling-missing-data">Handling missing data</a></li>
-<li><a href="#visualizing-subsets-and-groups">Visualizing subsets and groups</a></li>
+<li><a href="#visualizing-groups-and-statistics">Visualizing groups and statistics</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -458,7 +458,7 @@ grams?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -501,6 +501,7 @@ stats for all columns with numeric data:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -796,6 +797,7 @@ of all records in the survey, we can use:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -832,8 +834,8 @@ in the dataframe, but the dataset includes a variety of species, each
 with a characteristic size and number of observations. We may find it
 useful to look at subsets for individual species (or plots, years,
 etc.). We can do so using the <code>groupby()</code> method, which
-creates groups records based on the data in one or more columns. To
-group by species_id, use:</p>
+groups records based on the data in one or more columns. To group by
+species_id, use:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -845,10 +847,10 @@ group by species_id, use:</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <p>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at
-0x7f07645396a0&gt;</p>
+0x7f287e31d6a0&gt;</p>
 <p>The <code>groupby()</code> methods returns a special object that
-includes the rows assoicated with each species_id, but we wouldn’t know
-that based on the output of the previous cell! Instead of a table or
+includes the rows associated with each species_id, but we wouldn’t know
+that based on the output of the previous cell. Instead of a table or
 another view of the grouped records, the method outputs a string with
 the type of object
 (<code>pandas.core.groupby.generic.DataFrameGroupBy</code>) and some
@@ -970,7 +972,7 @@ more than 10 times?</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution to challenge 1 </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>How many individuals were counted in each year in total?</p>
 <div class="codewrapper sourceCode" id="cb25">
@@ -1020,7 +1022,7 @@ Name: record_id, dtype: int64</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution to challenge 2 </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>How many individuals were counted each year for each different
 species?</p>
@@ -1559,7 +1561,7 @@ Name: record_id, dtype: int64
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution to challenge 3 </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>What was the average weight of each species in each year?</p>
 <div class="codewrapper sourceCode" id="cb29">
@@ -2097,7 +2099,7 @@ Name: weight, dtype: float64
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution to challenge 4 </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>How many individuals were counted for each species that was observed
 more than 10 times?</p>
@@ -2152,7 +2154,7 @@ Name: record_id, dtype: int64</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution to challenges 2 and 3 combined </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>Calculate the number of individuals observed and the average weight
 for each species in each year.</p>
@@ -2172,6 +2174,7 @@ differ.</p>
 <pre class="output" tabindex="0"><code></code></pre>
 </div>
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2437,13 +2440,13 @@ can be done using <code>dropna()</code>:</p>
 </div>
 <p>This method returns a copy of the dataframe containing only those
 rows that have non-NaN data in every field.</p>
-</section><section><h2 class="section-heading" id="visualizing-subsets-and-groups">Visualizing subsets and groups<a class="anchor" aria-label="anchor" href="#visualizing-subsets-and-groups"></a></h2>
+</section><section><h2 class="section-heading" id="visualizing-groups-and-statistics">Visualizing groups and statistics<a class="anchor" aria-label="anchor" href="#visualizing-groups-and-statistics"></a></h2>
 <hr class="half-width"><p>Plots can be a useful way to identify patterns, commonalities, and
 differences within a dataset. For example, they can use color, shape,
 and size to highlight features of interest. Plotly allows us to style
 the markers on a scatter plot in much the same way as we selected x and
 y variables to plot at the end of the last lesson. To color the markers
-on a scatterplot based on species_id, we can use the color keyword
+on a scatter plot based on species_id, we can use the color keyword
 argument:</p>
 <div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2505,8 +2508,8 @@ methods <code>describe()</code> and <code>agg()</code>
 method</li>
 <li>Failing to consider how missing data is interpreted in a dataset can
 introduce significant errors</li>
-<li>Box-and-whisker plots can be used to visualize the distribution of a
-single parameter</li>
+<li>Box plots can be used to visualize the distribution of a single
+parameter</li>
 </ul></div>
 </div>
 </div>
