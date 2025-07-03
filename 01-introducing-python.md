@@ -36,9 +36,15 @@ emphasize writing well-documented, consistently formatted code that
 follows language-wide standards. **In a Pythonic world, everyone's code
 would look the same.**
 
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+#### Whitespace
+
 One feature to be aware of going in is that Python uses whitespace (as
 opposed to braces) to organize blocks of code. This can be a sticking
 point for people used to other languages.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Getting started
 
@@ -49,8 +55,8 @@ together or append a string to a list. An object can be *assigned* to a
 
 Python is an *object-oriented language*. This means that each object
 includes built-in variables and functions that can be used from the
-object itself. When working from an object, we use different terms to
-refer to these concepts:
+object itself. Whe use different terms to refer to variables and
+functions associated with an object:
 
 -   an *attribute* stores a piece of data
 -   a *method* performs an action
@@ -61,6 +67,10 @@ and manipulate text. To get started, we'll assign the string "hello
 world" to the variable **text**. In Python, we use a single equal sign
 for assignment and quotes to create a string.
 
+```python
+text = "hello world"
+```
+
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Using quotes
@@ -69,13 +79,6 @@ Either single or double quotes can be used to create strings, but try to
 use them consistently! We will use double quotes in the examples here.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-First we'll define a variable called text. Variables can be any type of
-object supported by Python, but in this case we'll use a string:
-
-```python
-text = "hello world"
-```
 
 Now, instead of retyping the full string every time we need it, we can
 access that string by referring to the variable:
@@ -98,10 +101,10 @@ type(text)
 str
 ```
 
-We can modify the text by calling one of the methods built into the
-`str` class. We call methods by appending a period and the name of the
-method to the object. For example, to display the string in upper case,
-use `upper()`:
+A `str` is also an object, which means that it includes methods and
+attributes that we can use. Let's use the `upper()` method to convert
+the text to upper case. We call methods by adding a period and the name
+of the method to the variable:
 
 ```python
 text.upper()
@@ -111,13 +114,12 @@ text.upper()
 'HELLO WORLD'
 ```
 
-After running a cell, Jupyter displays a representation of the object
-that appears in the last line of a cell (but note that some actions,
-like assigning an object, have no output). Some cells will have more
-than one line, and it is often useful to display content produced
-earlier in a cell. This can be accomplished using the built-in `print()`
-function. In the cell below, we'll use `print()` to show a series of
-strings:
+After running a cell, the notebook displays the object that appears in
+the last line of a cell (but note that some actions, like assigning to a
+variable, have no output). Some cells will have more than one line, and
+it is often useful to display output from earlier in a cell. This can be
+accomplished using the built-in `print()` function. In the cell below,
+we'll use `print()` to show a series of strings:
 
 ```python
 "hello"
@@ -558,7 +560,7 @@ class str(object)
 
 ### Data types
 
-Python also includes data types for representing other types of data,
+Python includes data types for representing other types of data,
 including numbers or collections of data. The core Python data types are
 introduced in the table below. We'll talk more about some of these as we
 encounter them in the lesson:
@@ -613,13 +615,22 @@ examples.
                                                                         nearest integer         
   ----------------------------------------------------------------------------------------------------------------------------
 
-Python also includes a number of built-in libraries. A *library* bundles
+Python also includes a number of built-in modules. A *module* bundles
 functions and other code related to a single task or data type. They are
-used to simplify the performance of common tasks. By using a common code
-base, a library allows coders to work more quickly and with fewer
-errors.
+used to simplify the performance of common tasks. By using a common,
+well-tested code base, modules allow coders to work more quickly and
+with fewer errors.
 
-The libraries built into Python are referred to as the [Python Standard
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+#### Modules, packages, and libraries
+
+A module is generally a single file. Collections of modules are referred
+to as packages or libraries.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+The modules built into Python are referred to as the [Python Standard
 Library](https://docs.python.org/3/library/index.html). They can be
 accessed through a typical Python installation and do not require any
 additional downloads. A few examples are included in the table below,
@@ -631,8 +642,8 @@ came from.
   -------------------------------------------------------------------------------------------------
   Library                                                       Description
   ------------------------------------------------------------- -----------------------------------
-  [datetime](https://docs.python.org/3/library/datetime.html)   Reads, writes, and analyzes dates
-                                                                and times
+  [datetime](https://docs.python.org/3/library/datetime.html)   Read, write, and analyze dates and
+                                                                times
 
   [os](https://docs.python.org/3/library/os.html)               Create, manipulate, and get
                                                                 information about files and paths
@@ -644,10 +655,10 @@ came from.
 
 ## Documentation
 
-The documentation for each library can be viewed by clicking the link in
+The documentation for each module can be viewed by clicking the link in
 the table. Documentation is an invaluable resource. It provides
-descriptions of what a library does and detailed information about how
-it can be used, often including examples.
+descriptions of what a module does and detailed information about how it
+can be used, often including examples.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -658,11 +669,11 @@ use it. We do so using the `import` statement:
 import datetime
 ```
 
-Once imported, the library is available for use anywhere in the current
-document. When using a library, we must include the name of the library
-to access its functions. For example, to create a `datetime.date` object
-(that is, a `date` object defined by the `datetime` library), we include
-both the library and method name:
+Once imported, the module is available for use anywhere in the current
+document. A module is itself an object, and we must include the name of
+the module to access any functions it defines. For example, to create a
+`datetime.date` object (that is, a `date` object defined by the
+`datetime` module), we include both the module and method name:
 
 ```python
 date = datetime.date(1970, 1, 1)
@@ -695,11 +706,11 @@ date.strftime("%Y-%m-%d")
 ```
 
 Like Python itself, the Python Standard Library is maintained by the
-Python Software Foundation. The built-in libraries are limited to a
+Python Software Foundation. The built-in modules are limited to a
 relatively small set of operations expected to be useful to a broad
 population of users. However, Python allows users to create their own
-libraries to perform actions that are beyond the scope of core Python.
-The rest of this lesson will focus on an external library called pandas.
+packages to perform actions that are beyond the scope of core Python.
+The rest of this lesson will focus on an external package called pandas.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -709,10 +720,9 @@ The rest of this lesson will focus on an external library called pandas.
     collections, and other kinds of data
 -   Assign values to variables using the `=` operator
 -   Use functions and methods to perform specific actions
--   Python's functionality can be extended using libraries, including
-    libraries written by members of the community that address
-    discipline-specific needs
+-   Python's functionality can be extended using packages developed by
+    the community
 -   Use the `help()` function and developer documentation to learn more
-    about Python and Python libraries
+    about Python modules and packages
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -14,10 +14,11 @@ exercises: 0
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Use `pd.merge()` to add species info to the survey dataset
--   Use `pd.concat()` to add additional rows the dataset
--   Use string methods to combine, split, and modify text columns using
-    the `str` accessor
+-   Use `pd.merge()` to add related columns to a dataframe
+-   Use `pd.concat()` to add rows to a dataframe
+-   Combine text columns
+-   Create a datetime object based on a dataframe with year, month, and
+    day
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -39,8 +40,25 @@ represents, we can't really understand, describe, or even properly label
 the observations. We need a way to go from the code to more detailed
 species information.
 
-To do so, we'll begin by loading a second dataset, called species.csv,
-that contains taxonomic information for each species code:
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Managing repetitive data
+
+Why store species data in a separate table in the first place? Species
+information is repetitive: Every observation of the same species has the
+same genus, species, and taxa. Storing it in the original survey table
+would require including that data in every record, increasing both the
+size of the table and the likelihood of errors. Storing that data in a
+separate table means we only have to enter and validate it once. A tool
+like pandas then allows us to access the authoratative data when we need
+it.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+We can enhance the species data in the dataframe using an authoratative
+dataset that contains the taxonomic information associated with each
+species. This data is stored in the species.csv file, which can be
+loaded using `pd.read_csv()`:
 
 ```python
 import pandas as pd
@@ -453,30 +471,13 @@ species
   </tbody>
 </table>
 
-We can see that the species dataframe includes a genus, species, and
+We can see that the species dataframe includes the genus, species, and
 taxon for each species_id. This is much more useful than the species_id
-included in the original dataframe--how can we integrate that data into
+included in the original dataframe---how can we integrate that data into
 our surveys dataframe? Adding it by hand would be tedious and error
 prone. Fortunately, pandas provides the `pd.merge()` function to join
-two dataframes.
-
-::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Managing repetitive data
-
-Why store species data in a separate table in the first place? Species
-information is repetitive: Every observation of the same species has the
-same genus, species, and taxa. Storing it in the original survey table
-would require including that data in every record, increasing both the
-size of the table and the likelihood of errors. Storing that data in a
-separate table means we only have to enter and validate it once. A tool
-like pandas then allows us to access the authoratative data when we need
-it.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-To merge the surveys and species dataframes, we will use the `merge()`
-method:
+two dataframes. We'll assigned the new, merged dataframe to the variable
+merged:
 
 ```python
 merged = surveys.merge(species)
@@ -689,19 +690,43 @@ and summarize our data.
 
 ### Joins
 
-The `pd.merge()` method performs the same function as joins in SQL
+The `merge()` method performs the same function as joins in SQL
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Filter the merged dataframe to show the genus, the species name, and the
-weight for every individual observed at the site.
+We previously described the dataset as consisting of observations of
+rodents. That's mostly true, but observations of other animals are also
+included. Based on the merged dataframe, what other types of animals are
+present in the dataframe? We are interesed in the *type* of animal, not
+the Latin name.
 
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```python
-merged[["genus", "species", "weight"]]
+merged[merged["taxa"] != "Rodent"]["taxa"].unique()
+```
+
+```{.output}
+array(['Rabbit', 'Bird', 'Reptile'], dtype=object)
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In the example above, we didn't provide any information about how we
+wanted to merge the dataframes together, so pandas made an educated
+guess by looking at the columns in each of the dataframes and merging
+them on the only column that appeared in both datasets, species_id. For
+more complex tables, we may need more control over the operation, for
+example, by specifiying the exact columns we want to merge on. We can do
+that by passing one or more column names using the *on* keyword
+argument:
+
+```python
+surveys.merge(species, on="species_id")
 ```
 
 ```{.output}
@@ -718,97 +743,197 @@ merged[["genus", "species", "weight"]]
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>record_id</th>
+      <th>month</th>
+      <th>day</th>
+      <th>year</th>
+      <th>plot_id</th>
+      <th>species_id</th>
+      <th>sex</th>
+      <th>hindfoot_length</th>
+      <th>weight</th>
       <th>genus</th>
       <th>species</th>
-      <th>weight</th>
+      <th>taxa</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>1</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
       <td>Neotoma</td>
       <td>albigula</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
       <td>Neotoma</td>
       <td>albigula</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
       <td>Dipodomys</td>
       <td>merriami</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
       <td>Dipodomys</td>
       <td>merriami</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
       <td>Dipodomys</td>
       <td>merriami</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>34781</th>
+      <td>35544</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>Sparrow</td>
       <td>sp.</td>
-      <td>NaN</td>
+      <td>Bird</td>
     </tr>
     <tr>
       <th>34782</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>Ammospermophilus</td>
       <td>harrisi</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>34783</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>Ammospermophilus</td>
       <td>harrisi</td>
-      <td>NaN</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>34784</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>15.0</td>
+      <td>14.0</td>
       <td>Reithrodontomys</td>
       <td>megalotis</td>
-      <td>14.0</td>
+      <td>Rodent</td>
     </tr>
     <tr>
       <th>34785</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>51.0</td>
       <td>Dipodomys</td>
       <td>ordii</td>
-      <td>51.0</td>
+      <td>Rodent</td>
     </tr>
   </tbody>
 </table>
-<p>34786 rows × 3 columns</p>
+<p>34786 rows × 12 columns</p>
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-In the example above, we didn't provide any information about how we
-wanted to merge the dataframes together, so pandas made an educated
-guess by looking at the columns in each of the dataframes and merging
-them on the only column that appeared in both datasets, species_id. For
-more complex tables, we may need more control over the operation, for
-example, by specifiying the exact columns we want to merge on. We can do
-that by passing one or more column names using the *on* keyword
-argument:
+It's not necessary here, but we can also merge datasets where the common
+data is stored in columns with different names. To do so, we'd use the
+left_on (to specify the column name in the first dataframe) and right_on
+(to specify the column name in the second dataframe).
 
 ```python
-pd.merge(surveys, species, on="species_id")
+surveys.merge(species, left_on="species_id", right_on="species_id")
 ```
 
 ```{.output}
@@ -1038,7 +1163,7 @@ The merged dataframe omits rows with no value in the species_id column.
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 The number of rows in the merged dataframe is lower than in the original
-surveys dataframe. By default, `pd.merge()` performs an **inner join**.
+surveys dataframe. By default, `merge()` performs an **inner join**.
 This means that a row will only appear in the merged dataframe if the
 value(s) in the join column(s) appear in both dataframes. Here,
 observations that did not include a species_id or that included a
@@ -1062,7 +1187,7 @@ instead. To specify the type of merge, we use the *how* keyword
 argument:
 
 ```python
-pd.merge(surveys, species, how="left")
+surveys.merge(species, how="left")
 ```
 
 ```{.output}
@@ -1267,7 +1392,7 @@ Now all 35,549 rows appear in the merged dataframe.
 
 ## Appending rows to a dataframe
 
-Merges address the case where information from a set of observations is
+Merges address the case where information for a set of observations is
 spread across multiple files. What about when the observations
 themselves are in more than one file? For a survey like the one we've
 been looking at in this lesson, we might get a new file once a year with

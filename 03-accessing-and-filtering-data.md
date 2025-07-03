@@ -20,14 +20,16 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We'll begin by importing pandas and reading our CSV, as we did in the
-previous lesson:
+In the previous lesson, we saw how to load a dataframe from a file. Now
+we'll look at how to access the data within that dataframe. We'll begin
+by importing pandas and reading our CSV, as we did in the previous
+lesson:
 
 ```python
 import pandas as pd
 
 surveys = pd.read_csv("data/surveys.csv")
-surveys.sample(3)
+surveys
 ```
 
 ```{.output}
@@ -57,53 +59,148 @@ surveys.sample(3)
   </thead>
   <tbody>
     <tr>
-      <th>16359</th>
-      <td>16360</td>
+      <th>0</th>
+      <td>1</td>
       <td>7</td>
-      <td>30</td>
-      <td>1989</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>2</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>37.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>7</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>7</td>
+      <td>16</td>
+      <td>1977</td>
+      <td>3</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35546</th>
+      <td>35547</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
       <td>10</td>
       <td>RM</td>
-      <td>M</td>
-      <td>16.0</td>
-      <td>11.0</td>
-    </tr>
-    <tr>
-      <th>33938</th>
-      <td>33939</td>
-      <td>5</td>
-      <td>15</td>
-      <td>2002</td>
-      <td>1</td>
-      <td>PP</td>
       <td>F</td>
-      <td>22.0</td>
-      <td>20.0</td>
+      <td>15.0</td>
+      <td>14.0</td>
     </tr>
     <tr>
-      <th>3103</th>
-      <td>3104</td>
-      <td>6</td>
-      <td>23</td>
-      <td>1980</td>
-      <td>4</td>
-      <td>DS</td>
+      <th>35547</th>
+      <td>35548</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>7</td>
+      <td>DO</td>
       <td>M</td>
-      <td>49.0</td>
-      <td>106.0</td>
+      <td>36.0</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
+<p>35549 rows × 9 columns</p>
 
-We will now look at how to access rows and columns in the dataframe.
-
-## Get a column
+## Getting a column
 
 We can get a single column from the dataframe using square brackets.
 Square brackets are used in Python to access objects inside a container
 like a `list`, `dict`, or `DataFrame`. To get a column, we pass the name
-of the column inside the brackets. For example, tp retrieve the year,
-use:
+of the column inside a set brackets appended to the dataframe. For
+example, tp retrieve the year, use:
 
 ```python
 surveys["year"]
@@ -135,12 +232,29 @@ Changing values in the series will have no effect on the original
 dataframe. **Most operations on a DataFrame or Series return a copy of
 the original object.**
 
-## Get multiple columns
+## Getting unique values
 
-It is also possible to retrieve more than one column at a time using the
-built-in `list` data type.
+We can get the list of unique values within a column using the
+`unique()` method:
 
-Python uses `list`s to store sequences, that is, ordered lists of
+```python
+surveys["species_id"].unique()
+```
+
+```{.output}
+array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
+       'OL', 'RM', nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ',
+       'RF', 'PC', 'PG', 'PH', 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS',
+       'SC', 'BA', 'SF', 'RO', 'AS', 'SO', 'PI', 'ST', 'CU', 'SU', 'RX',
+       'PB', 'PL', 'PX', 'CT', 'US'], dtype=object)
+```
+
+## Getting multiple columns
+
+It is also possible to retrieve more than one column at a time. To do
+some, we'll use the built-in `list` data type.
+
+Python uses `list` to store sequences, that is, ordered lists of
 objects. Any type of Python object can be stored in a list: strings,
 integers, floats, even other lists or collections. Once created, a list
 can be modified by appending, inserting, or deleting items. We will not
@@ -255,28 +369,12 @@ surveys[cols]
 </table>
 <p>35549 rows × 3 columns</p>
 
-## Get unique values
-
-We can get the list of unique values within that column using the
-`unique()` method:
-
-```python
-surveys["species_id"].unique()
-```
-
-```{.output}
-array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
-       'OL', 'RM', nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ',
-       'RF', 'PC', 'PG', 'PH', 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS',
-       'SC', 'BA', 'SF', 'RO', 'AS', 'SO', 'PI', 'ST', 'CU', 'SU', 'RX',
-       'PB', 'PL', 'PX', 'CT', 'US'], dtype=object)
-```
-
-To do the same across multiple columns, we can use the
-`drop_duplicates()` method on a copy of the dataframe containing only
-the columns we're interested in. Like any well-named method,
-`drop_duplicates()` does exactly what the name implies: It returns a
-copy of the dataframe with all duplicate rows removed.
+Suppose we want to get the unique values for multiple columns. The
+`unique()` method only works on a `Series`, that is, a single column.
+Instead, we can use the `drop_duplicates()` method on a copy of the
+dataframe with the columns we're interested in. Like any well-named
+method, `drop_duplicates()` does exactly what the name implies: It
+returns a copy of the dataframe with all duplicate rows removed.
 
 ```python
 surveys[["plot_id", "species_id"]].drop_duplicates()
@@ -360,11 +458,10 @@ surveys[["plot_id", "species_id"]].drop_duplicates()
 </table>
 <p>612 rows × 2 columns</p>
 
-## Get one or more rows
+## Getting one or more rows
 
 Pandas provides a variety of ways to view rows within a dataframe. We
-can get the rows at the beginning of the dataframe using the `head`
-method:
+can get the rows at the beginning of the dataframe using `head()`:
 
 ```python
 surveys.head()
@@ -460,7 +557,8 @@ surveys.head()
 </table>
 
 By default, this methods returns the first five rows. We can provide a
-number inside the parentheses if we need a specific number of rows:
+number inside the parentheses if we want to view a different number of
+rows:
 
 ```python
 surveys.head(10)
@@ -745,29 +843,34 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>33992</th>
-      <td>33993</td>
-      <td>5</td>
+      <th>28471</th>
+      <td>28472</td>
+      <td>8</td>
+      <td>23</td>
+      <td>1998</td>
       <td>15</td>
-      <td>2002</td>
-      <td>18</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>25.0</td>
+      <td>PM</td>
+      <td>M</td>
+      <td>20.0</td>
       <td>20.0</td>
     </tr>
   </tbody>
 </table>
 
+If you're following along, you may notice that the output of this method
+on your screen differs from what's shown here. That's exactly what we'd
+expect to see. Remember, `sample()` is returnning a random row--it would
+be far less likely for the outputs to be the same!
+
 ## Slicing the dataframe
 
 The `head()`, `tail()`, and `sample()` methods are useful for getting a
 feel for how our data is structured, but we may also want to look at
-specific rows. As when we selected columns above, we can use square
-brackets to extract *slices* from the dataframe. A slice is a subset of
-the dataframe starting at one row and ending at another. To get a slice,
-we pass the starting and ending indexes to the square brackets as
-`start:end`:
+specific rows. One way to do so is to extract rows based on where they
+appear in the dataframe. We can use square brackets to extract these
+*slices*. A slice is a subset of the dataframe starting at one row and
+ending at another. To get a slice, we pass the starting and ending
+indexes to the square brackets as `start:end`:
 
 ```python
 surveys[2:5]
@@ -848,12 +951,12 @@ There are three things to be aware of when slicing a dataframe:
     the same here, but don't count on that being true.
 
 Core Python types like `list` and `tuple` use the same conventions, as
-do most Python libraries that deal with sequences.
+do most Python pacakges that work with sequences.
 
 ## Filtering data
 
-It is often more useful to subset the dataframe based on data. Pandas
-provides a variety of ways to filter a dataframe in this way. For
+It is often more useful to subset a dataframe based on the data itself.
+Pandas provides a variety of ways to filter a dataframe in this way. For
 example, suppose we want to look at a specific species in the surveys
 dataframe. We can view the rows matching a given species using the same
 square brackets we used above to select specific columns and rows. Here,
@@ -1233,20 +1336,21 @@ surveys[surveys["year"] >= 2000]
 As when we selected columns above, each filtering operation returns a
 copy of the dataframe.
 
-## Complex filters
+## Using complex filters
 
 When analyzing data, we will often need to filter on multiple columns at
-one time. We can combine conditionals using *bitwise operators*. These
-work like the terms AND and OR in many search interfaces:
+one time. In pandas, we can combine conditionals using *bitwise
+operators*. These work like the terms AND and OR in many search
+interfaces:
 
 -   `&`: True if conditions on both sides of the operator are True (and)
 -   `|`: True if a condition on either side is True (or)
 
 To return all observations of DM in or after 2000, we can combine the
-two conditionals we used previously. Note that, when joining
-conditionals using `&` or `|`, we must wrap each individual condition in
-parentheses. If we omit the parentheses, pandas will not perform the
-comparisons in the expected order.
+two conditionals we used previously into a single operation. Note that,
+when joining conditionals using `&` or `|`, we must wrap each individual
+condition in parentheses. If we omit the parentheses, pandas will not
+perform the comparisons in the expected order.
 
 ```python
 surveys[(surveys["species_id"] == "DM") & (surveys["year"] >= 2000)]
@@ -1589,21 +1693,11 @@ surveys[
 
 ## Sorting data
 
-We can sort a dataframe using the `sort_values()` method. For this
-example, we'll work from the subset defined above. First, we need to
-assign that subset to a variable:
+We can sort a dataframe using the `sort_values()` method. To sort by
+weight, we'll pass the name of that column to the `sort_values()`:
 
 ```python
-results = surveys[
-    surveys["species_id"].isin(["DM", "DO", "DS"]) & (surveys["year"] >= 2000)
-]
-```
-
-Now we'll sort the results by weight by including that column name
-inside the parentheses for the `sort_values()` method:
-
-```python
-results.sort_values("weight")
+surveys.sort_values("weight")
 ```
 
 ```{.output}
@@ -1633,64 +1727,64 @@ results.sort_values("weight")
   </thead>
   <tbody>
     <tr>
-      <th>30614</th>
-      <td>30615</td>
-      <td>4</td>
-      <td>30</td>
-      <td>2000</td>
-      <td>12</td>
-      <td>DM</td>
+      <th>28125</th>
+      <td>28126</td>
+      <td>6</td>
+      <td>28</td>
+      <td>1998</td>
+      <td>15</td>
+      <td>PF</td>
       <td>M</td>
-      <td>34.0</td>
-      <td>18.0</td>
+      <td>NaN</td>
+      <td>4.0</td>
     </tr>
     <tr>
-      <th>34790</th>
-      <td>34791</td>
-      <td>10</td>
-      <td>5</td>
-      <td>2002</td>
-      <td>17</td>
-      <td>DM</td>
+      <th>217</th>
+      <td>218</td>
+      <td>9</td>
+      <td>13</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>PF</td>
       <td>M</td>
-      <td>34.0</td>
-      <td>20.0</td>
+      <td>13.0</td>
+      <td>4.0</td>
     </tr>
     <tr>
-      <th>32650</th>
-      <td>32651</td>
-      <td>9</td>
-      <td>22</td>
-      <td>2001</td>
-      <td>17</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>33.0</td>
-      <td>21.0</td>
-    </tr>
-    <tr>
-      <th>32782</th>
-      <td>32783</td>
-      <td>9</td>
+      <th>9822</th>
+      <td>9823</td>
+      <td>1</td>
+      <td>19</td>
+      <td>1985</td>
       <td>23</td>
-      <td>2001</td>
-      <td>14</td>
-      <td>DM</td>
+      <td>RM</td>
       <td>M</td>
-      <td>34.0</td>
-      <td>21.0</td>
+      <td>16.0</td>
+      <td>4.0</td>
     </tr>
     <tr>
-      <th>32968</th>
-      <td>32969</td>
-      <td>10</td>
-      <td>14</td>
-      <td>2001</td>
-      <td>9</td>
-      <td>DM</td>
+      <th>9852</th>
+      <td>9853</td>
+      <td>1</td>
+      <td>19</td>
+      <td>1985</td>
+      <td>17</td>
+      <td>RM</td>
       <td>M</td>
-      <td>32.0</td>
-      <td>22.0</td>
+      <td>16.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>9936</th>
+      <td>9937</td>
+      <td>2</td>
+      <td>16</td>
+      <td>1985</td>
+      <td>21</td>
+      <td>RM</td>
+      <td>M</td>
+      <td>16.0</td>
+      <td>4.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1705,75 +1799,75 @@ results.sort_values("weight")
       <td>...</td>
     </tr>
     <tr>
-      <th>34724</th>
-      <td>34725</td>
-      <td>9</td>
-      <td>10</td>
-      <td>2002</td>
-      <td>9</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>38.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>34950</th>
-      <td>34951</td>
-      <td>10</td>
-      <td>6</td>
-      <td>2002</td>
-      <td>14</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>36.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>35088</th>
-      <td>35089</td>
-      <td>11</td>
-      <td>10</td>
-      <td>2002</td>
-      <td>11</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>35387</th>
-      <td>35388</td>
+      <th>35530</th>
+      <td>35531</td>
       <td>12</td>
-      <td>29</td>
+      <td>31</td>
       <td>2002</td>
-      <td>1</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>35.0</td>
+      <td>13</td>
+      <td>PB</td>
+      <td>F</td>
+      <td>27.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>35485</th>
-      <td>35486</td>
+      <th>35543</th>
+      <td>35544</td>
       <td>12</td>
-      <td>29</td>
+      <td>31</td>
       <td>2002</td>
-      <td>16</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>37.0</td>
+      <td>15</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>1268 rows × 9 columns</p>
+<p>35549 rows × 9 columns</p>
 
 By default, rows are sorted in ascending order (smallest to largest). We
 can reorder them from largest to smallest using the *ascending* keyword
 argument:
 
 ```python
-results.sort_values("weight", ascending=False)
+surveys.sort_values("weight", ascending=False)
 ```
 
 ```{.output}
@@ -1803,64 +1897,64 @@ results.sort_values("weight", ascending=False)
   </thead>
   <tbody>
     <tr>
-      <th>31955</th>
-      <td>31956</td>
-      <td>4</td>
-      <td>21</td>
+      <th>33048</th>
+      <td>33049</td>
+      <td>11</td>
+      <td>17</td>
       <td>2001</td>
-      <td>24</td>
-      <td>DO</td>
-      <td>F</td>
-      <td>36.0</td>
-      <td>76.0</td>
+      <td>12</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>33.0</td>
+      <td>280.0</td>
     </tr>
     <tr>
-      <th>32041</th>
-      <td>32042</td>
+      <th>12870</th>
+      <td>12871</td>
       <td>5</td>
+      <td>28</td>
+      <td>1987</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>278.0</td>
+    </tr>
+    <tr>
+      <th>15458</th>
+      <td>15459</td>
+      <td>1</td>
+      <td>11</td>
+      <td>1989</td>
+      <td>9</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>36.0</td>
+      <td>275.0</td>
+    </tr>
+    <tr>
+      <th>2132</th>
+      <td>2133</td>
+      <td>10</td>
+      <td>25</td>
+      <td>1979</td>
+      <td>2</td>
+      <td>NL</td>
+      <td>F</td>
+      <td>33.0</td>
+      <td>274.0</td>
+    </tr>
+    <tr>
+      <th>12728</th>
+      <td>12729</td>
+      <td>4</td>
       <td>26</td>
-      <td>2001</td>
-      <td>1</td>
-      <td>DO</td>
-      <td>F</td>
-      <td>37.0</td>
-      <td>68.0</td>
-    </tr>
-    <tr>
-      <th>31942</th>
-      <td>31943</td>
-      <td>4</td>
-      <td>21</td>
-      <td>2001</td>
-      <td>1</td>
-      <td>DO</td>
-      <td>F</td>
-      <td>37.0</td>
-      <td>68.0</td>
-    </tr>
-    <tr>
-      <th>30441</th>
-      <td>30442</td>
-      <td>3</td>
-      <td>4</td>
-      <td>2000</td>
+      <td>1987</td>
       <td>2</td>
-      <td>DO</td>
-      <td>F</td>
-      <td>NaN</td>
-      <td>66.0</td>
-    </tr>
-    <tr>
-      <th>30289</th>
-      <td>30290</td>
-      <td>2</td>
-      <td>5</td>
-      <td>2000</td>
-      <td>1</td>
-      <td>DO</td>
-      <td>F</td>
-      <td>36.0</td>
-      <td>65.0</td>
+      <td>NL</td>
+      <td>M</td>
+      <td>32.0</td>
+      <td>270.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1875,68 +1969,68 @@ results.sort_values("weight", ascending=False)
       <td>...</td>
     </tr>
     <tr>
-      <th>34724</th>
-      <td>34725</td>
-      <td>9</td>
-      <td>10</td>
-      <td>2002</td>
-      <td>9</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>38.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>34950</th>
-      <td>34951</td>
-      <td>10</td>
-      <td>6</td>
-      <td>2002</td>
-      <td>14</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>36.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>35088</th>
-      <td>35089</td>
-      <td>11</td>
-      <td>10</td>
-      <td>2002</td>
-      <td>11</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>35387</th>
-      <td>35388</td>
+      <th>35530</th>
+      <td>35531</td>
       <td>12</td>
-      <td>29</td>
+      <td>31</td>
       <td>2002</td>
-      <td>1</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>35.0</td>
+      <td>13</td>
+      <td>PB</td>
+      <td>F</td>
+      <td>27.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>35485</th>
-      <td>35486</td>
+      <th>35543</th>
+      <td>35544</td>
       <td>12</td>
-      <td>29</td>
+      <td>31</td>
       <td>2002</td>
-      <td>16</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>37.0</td>
+      <td>15</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35544</th>
+      <td>35545</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35545</th>
+      <td>35546</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>15</td>
+      <td>AH</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>1268 rows × 9 columns</p>
+<p>35549 rows × 9 columns</p>
 
 We can sort on multiple fields at once by passing a list of column
 names. We can control how each column sorts by passing a list with the
@@ -1945,7 +2039,7 @@ keyword. The cell below sorts the results first by species_id (largest
 to smallest), then by weight (smallest to largest):
 
 ```python
-results.sort_values(["species_id", "weight"], ascending=[False, True])
+surveys.sort_values(["species_id", "weight"], ascending=[False, True])
 ```
 
 ```{.output}
@@ -1975,64 +2069,64 @@ results.sort_values(["species_id", "weight"], ascending=[False, True])
   </thead>
   <tbody>
     <tr>
-      <th>30687</th>
-      <td>30688</td>
-      <td>5</td>
-      <td>1</td>
-      <td>2000</td>
-      <td>8</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>23.0</td>
-    </tr>
-    <tr>
-      <th>30768</th>
-      <td>30769</td>
-      <td>6</td>
+      <th>14249</th>
+      <td>14250</td>
       <td>3</td>
-      <td>2000</td>
+      <td>20</td>
+      <td>1988</td>
+      <td>18</td>
+      <td>ZL</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14350</th>
+      <td>14351</td>
+      <td>4</td>
       <td>17</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>24.0</td>
+      <td>1988</td>
+      <td>23</td>
+      <td>ZL</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>33339</th>
-      <td>33340</td>
-      <td>1</td>
+      <th>35511</th>
+      <td>35512</td>
       <td>12</td>
+      <td>31</td>
       <td>2002</td>
+      <td>11</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35512</th>
+      <td>35513</td>
       <td>12</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>34.0</td>
-      <td>24.0</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>11</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>34082</th>
-      <td>34083</td>
-      <td>5</td>
-      <td>16</td>
+      <th>35527</th>
+      <td>35528</td>
+      <td>12</td>
+      <td>31</td>
       <td>2002</td>
-      <td>6</td>
-      <td>DO</td>
-      <td>F</td>
-      <td>33.0</td>
-      <td>24.0</td>
-    </tr>
-    <tr>
-      <th>34096</th>
-      <td>34097</td>
-      <td>5</td>
-      <td>16</td>
-      <td>2002</td>
-      <td>6</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>24.0</td>
+      <td>13</td>
+      <td>US</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2047,68 +2141,68 @@ results.sort_values(["species_id", "weight"], ascending=[False, True])
       <td>...</td>
     </tr>
     <tr>
-      <th>34698</th>
-      <td>34699</td>
+      <th>34756</th>
+      <td>34757</td>
       <td>9</td>
       <td>10</td>
       <td>2002</td>
-      <td>15</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>38.0</td>
+      <td>23</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>34707</th>
-      <td>34708</td>
-      <td>9</td>
-      <td>10</td>
-      <td>2002</td>
-      <td>14</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>34724</th>
-      <td>34725</td>
-      <td>9</td>
-      <td>10</td>
-      <td>2002</td>
-      <td>9</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>38.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>34950</th>
-      <td>34951</td>
+      <th>34969</th>
+      <td>34970</td>
       <td>10</td>
       <td>6</td>
       <td>2002</td>
-      <td>14</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>36.0</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>35088</th>
-      <td>35089</td>
+      <th>35187</th>
+      <td>35188</td>
       <td>11</td>
       <td>10</td>
       <td>2002</td>
-      <td>11</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35384</th>
+      <td>35385</td>
+      <td>12</td>
+      <td>8</td>
+      <td>2002</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35548</th>
+      <td>35549</td>
+      <td>12</td>
+      <td>31</td>
+      <td>2002</td>
+      <td>5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>1268 rows × 9 columns</p>
+<p>35549 rows × 9 columns</p>
 
 As with the dataframe methods above, `sort_values()` returns a copy of
 the original dataframe and leaves the original untouched.
@@ -2229,14 +2323,17 @@ We will discuss data visualization using plotly in depth in [lesson
 concepts as we go along. Like pandas, plotly is an external package
 installed separately from Python itself. It can be used to create
 interactive, highly customizable plots based on pandas dataframes using
-just a few lines of code. For example, to create a scatterplot of the
+just a few lines of code. For example, to create a scatter plot of the
 weight and hindfoot length, we need only to import plotly:
 
 ```python
 import plotly.express as px
 ```
 
-Once plotly is loaded, we can create a scatterplot:
+Once plotly is loaded, we can create a scatter plot using the
+`px.scatter()` method. We include the dataframe as the first argument,
+then x and y keyword arguments to select the columns we want to show on
+our scatter plot:
 
 ```python
 px.scatter(surveys, x="weight", y="hindfoot_length")
@@ -2248,18 +2345,18 @@ px.scatter(surveys, x="weight", y="hindfoot_length")
 <embed src="files/fig-b6a08e591b0d820b0d32fd9335576843.html" width=760 height=570>
 
 This simple plot is limited in what it can tell us about the
-observations in the dataset. We will return to this scatterplot in later
-lessons to see how we can improve it to better understand the survey
-data.
+observations in the dataset. We will return to this scatter plot in
+later lessons to see how we can improve it to better understand the
+survey data.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 -   Use square brackets to access rows, columns, and specific cells
--   Sort data, rename columns, and get unique values in a dataframe
-    using methods provided by pandas
+-   Sort data and get unique values in a dataframe using methods
+    provided by pandas
 -   By default, most dataframe operations return a copy of the original
     data
--   Scatterplots can be used to visualize how two parameters in a
+-   Scatter plots can be used to visualize how two parameters in a
     dataset covary
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

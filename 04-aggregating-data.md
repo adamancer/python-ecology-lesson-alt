@@ -1,5 +1,5 @@
 ---
-title: Aggregating and Sorting Data
+title: Aggregating Data
 teaching: 60
 exercises: 0
 ---
@@ -17,8 +17,13 @@ exercises: 0
 -   Introduce aggregation calculations in pandas
 -   Introduce grouping in pandas
 -   Learn about how pandas handles null values
+-   Make a boxplot showing summary stats
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In the previous lesson, we saw how to access and filter our dataframe.
+Here, we'll use pandas to calculate summary statistics for some of that
+data.
 
 As always, we'll begin by importing pandas and reading our CSV:
 
@@ -39,9 +44,9 @@ Suppose we want to know how many records are in our dataset. We've
 already seen that we can use the `info()` method to get high-level about
 the dataset, including the number of entries. What if just wanted the
 number of rows? One approach is to use the built-in function `len()`,
-which is used to calculate the number of items in an object (for
-example, the number of characters in a string or the number of items in
-a list). When used on a dataframe, `len()` returns the number of rows:
+which is used to count the number of items in an object (for example,
+the number of characters in a string or the number of items in a list).
+When used on a dataframe, `len()` returns the number of rows:
 
 ```python
 len(surveys)
@@ -84,7 +89,7 @@ np.float64(1377594.0)
 
 Other aggregation methods supported by pandas include `min()`, `max()`,
 and `mean()`. These methods all ignore NaNs, so missing data does not
-affect these calculations.
+affect the calculations.
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -234,9 +239,9 @@ surveys.describe()
   </tbody>
 </table>
 
-You can see that `describe()` isn't picky: It includes both ID and date
-columns in its results. Notice also that counts differ in between
-columns. This is because `count()` only counts non-NaN rows.
+You can see that `describe()` isn't picky: It includes the ID, year,
+month, and day columns in its results. Notice also that counts differ in
+between columns. This is because `count()` only counts non-NaN rows.
 
 If desired, we can also describe a single column at a time:
 
@@ -259,11 +264,45 @@ Name: weight, dtype: float64
 If we need more control over the output (for example, if we want to
 calculate the total weight of all animals, as in the challenge above),
 pandas provides the `agg()` method, which allows us to specify
-aggregation methods by column. The argument passed to this method is a
-`dict`. Each key must be a column name and each value a list of the
-names of aggregation methods. To calculate the total weight, mean
-weight, and mean hindfoot length of all records in the survey, we can
-use:
+aggregation methods by column. This method requires a `dict`, which is a
+built-in data type that we have not discussed yet.
+
+Like a `list`, a `dict` is a container that can include more than one
+object. Where as a `list` is a sequence, a `dict` is a mapping
+consisting of *keys* that map to *values*. Because it is built in, it
+can be used in any Python application without having to import anything.
+
+Let's see what that looks like in practice by defining a `dict` that
+maps lowercase to uppercase letters. We use curly braces to define a
+`dict`. The parts of each item are separated by a colon, with the key on
+the left and the value on the right.
+
+```python
+letters = {"a": "A", "b": "B", "c": "C"}
+```
+
+To retrieve the value for a given key, we use square brackets:
+
+```python
+letters["a"]
+```
+
+```{.output}
+'A'
+```
+
+There are many other ways to interact with a `dict`. We can add or
+delete items, remap a key to a new value, or iterate over all the keys,
+values, or items inside. Use `help()` or check out [the Python
+docs](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
+to learn more about `dict`.
+
+Now let's return to the calculating summary statistics using `agg()`.
+For this method, Each key must be a column name and each value a list of
+the names of aggregation methods.
+
+To calculate the total weight, mean weight, and mean hindfoot length of
+all records in the survey, we can use:
 
 ```python
 surveys.agg({"weight": ["sum", "mean"], "hindfoot_length": ["mean"]})
@@ -305,26 +344,41 @@ surveys.agg({"weight": ["sum", "mean"], "hindfoot_length": ["mean"]})
 
 Up to now, we have been calculating statistics based on all records in
 the dataframe, but the dataset includes a variety of species, each with
-a characteristic size and number of observations. We can look at
-individual species (or plots, years, etc.) using the `groupby()` method,
-which creates groups records based on the data in one or more columns.
-To group by species_id, use:
+a characteristic size and number of observations. We may find it useful
+to look at subsets for individual species (or plots, years, etc.). We
+can do so using the `groupby()` method, which creates groups records
+based on the data in one or more columns. To group by species_id, use:
 
 ```python
-grouped = surveys.groupby("species_id")
+surveys.groupby("species_id")
 ```
 
-We can use this object to aggregate data. When we aggregate grouped
-data, pandas makes separate calculations for each member of the group.
-In the example below, we'll calculate the number of times each species
-appears in the dataset. Rather than outputting the full dataframe, we'll
-limit the count to a single column. Because count ignores NaN cells,
-it's often a good practice to choose a column that does not contain
-nulls. Record ID fields are a good choice, but any field that is
-populated for every row will work.
+```{.output}
+```
+
+<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f07645396a0>
+
+The `groupby()` methods returns a special object that includes the rows
+assoicated with each species_id, but we wouldn't know that based on the
+output of the previous cell! Instead of a table or another view of the
+grouped records, the method outputs a string with the type of object
+(`pandas.core.groupby.generic.DataFrameGroupBy`) and some information
+about where that object is stored (`0x0...`). Not the most useful thing
+in the world! We might encounter strings like this when developers
+determine that there is no concise, human-readable way to represent an
+object.
+
+Nevertheless, we can use the `DataFrameGroupBy` object to calculate
+summary statistics for each group. In the example below, we'll calculate
+the number of times each species appears in the dataset. To simplify the
+output, we'll limit the count to a single column, species_id, using
+square brackets. (Because `count()` excludes NaNs, it's usually a good
+practice to choose a column that does not contain missing data. Record
+ID fields are a good choice, but any field that is populated for every
+row will work.)
 
 ```python
-grouped["species_id"].count()
+surveys.groupby("species_id")["species_id"].count()
 ```
 
 ```{.output}
@@ -1706,8 +1760,9 @@ surveys.groupby(["year", "species_id"]).agg(
 As we've discussed, some columns in the surveys dataframe have the value
 NaN instead of text or numbers. NaN, short for "not a number," is a
 special type of float used by pandas to represent missing data. When
-reading from a CSV, pandas interprets certains values as NaN. NaNs are
-excluded from groups and most aggregation calculations in pandas.
+reading from a CSV, pandas interpret certains values as NaN. NaNs are
+excluded from groups and most aggregation calculations in pandas. Below,
+we'll see how they can also cause issues when plotting.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -1752,7 +1807,7 @@ call. To replace all NaN values in sex with "U", use:
 surveys["sex"] = surveys["sex"].fillna("U")
 ```
 
-The calculation now includes all records in the dataframe:
+The aggregation calculation now includes all records in the dataframe:
 
 ```python
 surveys.groupby("sex")["record_id"].count()
@@ -1778,13 +1833,13 @@ that have non-NaN data in every field.
 
 ## Visualizing subsets and groups
 
-Plots are often a useful way to identify patterns, commonalities, and
-differences within a dataset. They can use color, shape, and size to
-highlight features of interest. Plotly allows us to style the markers on
-a scatter plot in much the same way as we selected x and y variables to
-plot at the end of the last lesson. For example, to color the markers on
-a scatterplot based on the species_id column, we can use the color
-keyword argument:
+Plots can be a useful way to identify patterns, commonalities, and
+differences within a dataset. For example, they can use color, shape,
+and size to highlight features of interest. Plotly allows us to style
+the markers on a scatter plot in much the same way as we selected x and
+y variables to plot at the end of the last lesson. To color the markers
+on a scatterplot based on species_id, we can use the color keyword
+argument:
 
 ```python
 import plotly.express as px
@@ -1797,15 +1852,18 @@ px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
 
 <embed src="files/fig-6c9b8a7490eacbd3c686340a3a0e8134.html" width=760 height=570>
 
-Now we have a much more colorful plot that shows how the size of
-individual species. When hovering over a point, we can quickly see the
-exact weight, hindfoot length, and species.
+Now we have a much more colorful plot that shows more clearly how the
+sizes of individual species produce some of the patterns we noted
+earlier on the single-color plot. When hovering over a point, we can now
+quickly see the exact weight, hindfoot length, and species_id (although
+it remains unclear exactly what each ID means).
 
-Scatterplots help us understand how parameters within a dataset covary.
-Other plots, like box-and-whisker and violin plots, can be used to show
-the distribution of a single parameter. Plotly can create a
-box-and-whisker plot using almost the same syntax that we used above to
-create the scatterplot. Let's make one for hindfoot length:
+Scatter plots help us understand how parameters within a dataset covary.
+Other plots, like box and violin plots, can be used to show the
+distribution of a single parameter. Plotly can create a box plot using
+almost the same syntax that we used above to create the scatter plot.
+Let's make one for hindfoot length by changing the method to `px.box()`
+and changing the x variable to `species_id`:
 
 ```python
 px.box(surveys, x="species_id", y="hindfoot_length", color="species_id")
@@ -1816,11 +1874,16 @@ px.box(surveys, x="species_id", y="hindfoot_length", color="species_id")
 
 <embed src="files/fig-81b50ac778849616cb1b3c826a32b9de.html" width=760 height=570>
 
-When we hover over any of the boxes on the plot above, the tooltip now
-shows aggregate statistics for the species, including the minimum,
-median, maximum, upper, Q1, Q3, upper fence, and lower fence values. In
-lesson 6, we will return to box plots to see how we can modify them to
-better visualize the distribution of a parameter.
+By default, this plot includes boxes (which show the distribution of
+each species) and points (for outliers). When we hover over any of the
+boxes on the plot above, the tooltip now shows aggregate statistics for
+the species, including the minimum, median, maximum, upper, Q1, Q3,
+upper fence, and lower fence values for hindfoot length.
+
+Aesthetically, these plots could still use some work. They list species
+in an arbitrary order, repeat colors, and include species with no
+associated data. We'll return to this plot in [lesson
+6](06-visualizing-data.html) to look at how we can address those issues.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 

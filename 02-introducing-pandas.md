@@ -33,7 +33,8 @@ in southern Arizona. This is part of a project studying the effects of
 rodents and ants on the plant community that has been running for almost
 40 years. The rodents are sampled on a series of 24 plots, with
 different experimental manipulations controlling which rodents are
-allowed to access which plots.
+allowed to access which plots. Each row represents a single observation
+of an animal, including its species, weight, and hindfoot length.
 
 This is a real dataset that has been used in over 100 publications.
 We've simplified it for the workshop, but you can download the full
@@ -52,6 +53,8 @@ be working with the following three files:
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+### Discussion
+
 Open each of these csv files and explore them. What information is
 contained in each file? Specifically, if we had the following research
 questions:
@@ -66,10 +69,7 @@ What would we need to answer these questions? Which files have the data
 we need? What operations would we need to perform if we were doing these
 analyses by hand?
 
-**Hint:** We can view CSV files using JupyterLab using the left sidebar.
-Click on the Folder icon in the top left of the sidebar to see the
-files, then go to the data directory to see the CSV we've downloaded for
-this lesson.
+**Hint:** We can view CSV files by clicking on them in the left sidebar.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -80,6 +80,7 @@ following basic data operations:
 -   group subsets of data
 -   do math and other calculations
 -   combine data across spreadsheets
+-   plot data to identify patterns
 
 In addition, we don't want to do this manually! Instead of searching for
 the right pieces of data ourselves, or clicking between spreadsheets, or
@@ -91,14 +92,14 @@ without actually modifying our source data.
 
 ## Why use pandas?
 
-The Python Data Analysis Library, or pandas, is a Python library used to
+The Python Data Analysis Library, or pandas, is a Python package used to
 work with dataframes. A dataframe is a representation of tabular data
-very similar to a spreadsheet, consisting of rows (representing records)
-and columns (representing fields or variables). Tables are a very common
-format for representing scientific data and should be very familiar to
-anyone taking this course.
+similar to a well-organized spreadsheet, consisting of rows
+(representing records) and columns (representing fields or variables).
+Tables are a very common format for representing scientific data and
+should be very familiar to anyone taking this course.
 
-pandas offers the same advantages as any well-written library: It
+Pandas offers the same advantages as any well-written package: It
 creates a common codebase for working on a single task, in this case,
 analyzing data. Some benefits of this approach include:
 
@@ -115,12 +116,12 @@ analyzing data. Some benefits of this approach include:
 
 ## Importing data using pandas
 
-Unlike the libraries in the Python Standard Library discussed in the
+Unlike the modules in the Python Standard Library discussed in the
 previous lesson, pandas is not part of the typical Python installation.
 Once it has been installed, however, it can be accessed using the same
-`import` command used to import the built-in libraries. By convention,
-pandas is imported using the alias "pd". We can assign the alias using
-the `as` keyword:
+`import` command used to import built-in modules. By convention, pandas
+is imported using the alias "pd". We can assign the alias using the `as`
+keyword:
 
 ```python
 import pandas as pd
@@ -133,7 +134,7 @@ import pandas as pd
 Why use an alias? We will refer to pandas many, many times when writing
 a script, so it's useful to abbreviate the name and save some
 keystrokes. But it's also a matter of consistency with the larger
-community. Many of the core scientific Python libraries, including
+community. Many of the core scientific Python packages, including
 pandas, recommend a specific alias, so most code shared online will use
 those aliases as well.
 
@@ -144,9 +145,9 @@ load data from a CSV, `pd.read_csv()`. The function call has three
 parts:
 
 -   The name (or in this case, alias) of the object that defines the
-    function. This can be a library or any other object. It can also be
-    omitted in some cases (for example, when using a function built into
-    Python).
+    function. This can be a module, package, or any other object. It can
+    also be omitted in some cases (for example, when using a function
+    built into Python).
 -   The name of the method we'd like to use
 -   A set of parentheses that tells the function to run.
 
@@ -329,8 +330,8 @@ pd.read_csv("data/surveys.csv")
 
 Here are a few things to observe about how the dataframe is structured:
 
--   By default, JupyterLab displays the first and last five rows of the
-    dataframe
+-   By default, the notebook displays the first and last five rows of
+    the dataframe
 -   Each row represents a record
 -   Each column represents a field
 -   The unlabeled column on the far left is called the *row label*
@@ -568,11 +569,12 @@ Excel.
 
 ## Assigning to variables
 
-We can assign the dataframe to a variable to make it easier to access.
-As we saw in the previous lesson, we use a single equals sign to assign
-an object to a variable. The variable name should be short and
-descriptive. By convention, variable names in Python use snake_case
-(that is, lower case with individual words separated by underscores).
+We can assign the dataframe to a variable so we don't need to load it
+every time we want to access it. As we saw in the previous lesson, we
+use a single equals sign to assign an object to a variable. The variable
+name should be short and descriptive. By convention, variable names in
+Python use snake_case (that is, lower case with individual words
+separated by underscores).
 
 ```python
 surveys = pd.read_csv("data/surveys.csv")
@@ -790,32 +792,33 @@ equivalents.
 ## Saving a dataframe
 
 When analyzing a dataset, we'll often want to save our work to a file.
-The `to_csv()` method can be used to write a dataframe to a CSV. As when
-we read a CSV from a file above, we need to provide a path to which to
-save the file. The example below also includes the *index* keyword
-argument. Setting that parameter to False tells pandas not to include
-the row label when writing the CSV.
+The `to_csv()` method can be used to write a dataframe to a CSV, which
+is a text file which places each row on a separate line and separates
+individual cells with commas. We will include a positional argument with
+the path to which we want to save the file. We will also include the
+*index* keyword argument. Setting that parameter to False tells pandas
+not to include the row label when writing the CSV.
 
 ```python
 surveys.to_csv("data/surveys_mod.csv", index=False)
 ```
 
-This is far from the only option for writing data--pandas supports a
+This is far from the only option for writing data---pandas supports a
 variety of file types for both reading and writing. Try searching for
 "read\_" in the [pandas API
 reference](https://pandas.pydata.org/docs/reference/index.html) to see
-the supported formats.
+other supported formats.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 -   This lesson uses real data from a decades-long survey of rodents in
     Arizona
--   pandas is a data analysis library that allows users to read,
+-   pandas is a data analysis package that allows users to read,
     manipulate, and view tabular data using Python
 -   pandas represents data as a dataframe consisting of rows (records)
     and columns (fields or variables)
--   Read a dataframe from CSV using the `pd.read_csv()` function
--   Write a dataframe to CSV using the `to_csv()` method
+-   We can read a dataframe from CSV using the `pd.read_csv()` function
+    and write a dataframe to CSV using the `to_csv()` method
 -   The behavior of a function can be modified by including arguments
     and keyword arguments when the function is called
 -   pandas uses its own classes to represent text, numbers, booleans,
