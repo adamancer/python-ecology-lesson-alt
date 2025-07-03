@@ -188,6 +188,7 @@ class Cell:
                     # Approximate the style of a pandas table
                     style = (
                         "<style>\n"
+                        "  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }\n"
                         "  table.dataframe tbody tr:hover { background-color: #ccffff !important; }\n"
                         "  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }\n"
                         "  table.dataframe th { text-align: right; font-weight: bold; }\n"
