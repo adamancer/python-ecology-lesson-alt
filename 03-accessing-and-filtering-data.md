@@ -36,6 +36,7 @@ surveys
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -283,6 +284,7 @@ surveys[cols]
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -384,6 +386,7 @@ surveys[["plot_id", "species_id"]].drop_duplicates()
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -471,6 +474,7 @@ surveys.head()
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -568,6 +572,7 @@ surveys.head(10)
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -724,6 +729,7 @@ surveys.tail()
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -820,6 +826,7 @@ surveys.sample()
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -843,24 +850,24 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>28471</th>
-      <td>28472</td>
-      <td>8</td>
-      <td>23</td>
-      <td>1998</td>
-      <td>15</td>
-      <td>PM</td>
+      <th>11493</th>
+      <td>11494</td>
+      <td>5</td>
+      <td>11</td>
+      <td>1986</td>
+      <td>13</td>
+      <td>NL</td>
       <td>M</td>
-      <td>20.0</td>
-      <td>20.0</td>
+      <td>32.0</td>
+      <td>123.0</td>
     </tr>
   </tbody>
 </table>
 
 If you're following along, you may notice that the output of this method
 on your screen differs from what's shown here. That's exactly what we'd
-expect to see. Remember, `sample()` is returnning a random row--it would
-be far less likely for the outputs to be the same!
+expect to see. Remember, `sample()` is returnning a random row---it
+would be more surprising if the outputs were the same!
 
 ## Slicing the dataframe
 
@@ -880,6 +887,7 @@ surveys[2:5]
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1006,6 +1014,7 @@ surveys[surveys["species_id"] == "DM"]
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1175,6 +1184,7 @@ surveys[surveys["year"] >= 2000]
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1360,6 +1370,7 @@ surveys[(surveys["species_id"] == "DM") & (surveys["year"] >= 2000)]
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1533,6 +1544,7 @@ surveys[
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1704,6 +1716,7 @@ surveys.sort_values("weight")
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1874,6 +1887,7 @@ surveys.sort_values("weight", ascending=False)
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2046,6 +2060,7 @@ surveys.sort_values(["species_id", "weight"], ascending=[False, True])
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2226,6 +2241,7 @@ subset.sort_values("weight", ascending=False)
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }

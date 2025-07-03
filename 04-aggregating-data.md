@@ -136,6 +136,7 @@ surveys.describe()
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -312,6 +313,7 @@ surveys.agg({"weight": ["sum", "mean"], "hindfoot_length": ["mean"]})
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -346,8 +348,8 @@ Up to now, we have been calculating statistics based on all records in
 the dataframe, but the dataset includes a variety of species, each with
 a characteristic size and number of observations. We may find it useful
 to look at subsets for individual species (or plots, years, etc.). We
-can do so using the `groupby()` method, which creates groups records
-based on the data in one or more columns. To group by species_id, use:
+can do so using the `groupby()` method, which groups records based on
+the data in one or more columns. To group by species_id, use:
 
 ```python
 surveys.groupby("species_id")
@@ -356,11 +358,11 @@ surveys.groupby("species_id")
 ```{.output}
 ```
 
-<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f07645396a0>
+<pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f287e31d6a0>
 
 The `groupby()` methods returns a special object that includes the rows
-assoicated with each species_id, but we wouldn't know that based on the
-output of the previous cell! Instead of a table or another view of the
+associated with each species_id, but we wouldn't know that based on the
+output of the previous cell. Instead of a table or another view of the
 grouped records, the method outputs a string with the type of object
 (`pandas.core.groupby.generic.DataFrameGroupBy`) and some information
 about where that object is stored (`0x0...`). Not the most useful thing
@@ -1648,6 +1650,7 @@ surveys.groupby(["year", "species_id"]).agg(
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1831,14 +1834,14 @@ surveys = surveys.dropna()
 This method returns a copy of the dataframe containing only those rows
 that have non-NaN data in every field.
 
-## Visualizing subsets and groups
+## Visualizing groups and statistics
 
 Plots can be a useful way to identify patterns, commonalities, and
 differences within a dataset. For example, they can use color, shape,
 and size to highlight features of interest. Plotly allows us to style
 the markers on a scatter plot in much the same way as we selected x and
 y variables to plot at the end of the last lesson. To color the markers
-on a scatterplot based on species_id, we can use the color keyword
+on a scatter plot based on species_id, we can use the color keyword
 argument:
 
 ```python
@@ -1894,7 +1897,7 @@ associated data. We'll return to this plot in [lesson
 -   Group data by one or more columns using the `groupby()` method
 -   Failing to consider how missing data is interpreted in a dataset can
     introduce significant errors
--   Box-and-whisker plots can be used to visualize the distribution of a
-    single parameter
+-   Box plots can be used to visualize the distribution of a single
+    parameter
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -6,9 +6,9 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   How can we look at individual rows and columns in a dataframe?
+-   How can we create different types of plots using Python?
 -   How can we style plots?
--   How can we modify the table and data?
+-   How can we add descriptive titles to plots and axes?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -23,7 +23,7 @@ We'll begin by loading and preparing the data we'd like to plot. This
 will include operations introduced in previous lessons, including
 reading CSVs into dataframes, merging dataframes, sorting a dataframe,
 and removing records that include null values. We'll begin by importing
-pands:
+pandas:
 
 ```python
 import pandas as pd
@@ -38,8 +38,8 @@ surveys = pd.read_csv("data/surveys.csv")
 Now we want to take a quick look at the surveys dataset. Since we're
 going to be plotting data, we need to consider how we want to handle any
 null values in the dataset. The `info()` method provides an overview,
-including counts of non-null values, that we can use to assess the null
-values in the dataset.
+including counts of non-null values, that we can use to assess the
+dataset.
 
 ```python
 surveys.info()
@@ -67,7 +67,10 @@ memory usage: 2.4+ MB
 
 There are 35,459 records in the table. Four columns---species_id, sex,
 hindfoot_length, and weight---include null values, that is, they contain
-fewer non-null values than there are rows in the dataframe.
+fewer non-null values than there are rows in the dataframe. We can us
+`fillna()` to replace null values where it makes sense to do so. For
+example, some specimens do not specify as sex. We can fill those values
+in with the letter U (for unknown):
 
 ```python
 surveys["sex"] = surveys["sex"].fillna("U")
@@ -97,11 +100,15 @@ plots = pd.read_csv("data/plots.csv")
 surveys = surveys.merge(species, how="left").merge(plots, how="left")
 ```
 
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### Chaining
 
 The previous cell performs two merges in the same line of code.
 Performing multiple operations on the same object in a single line of
 code is called chaining.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 We now have a dataframe that includes all observations from the Portal
 dataset that specify a species, weight, and hindfoot length, as well as
@@ -129,6 +136,7 @@ rodents.sample(5)
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -156,129 +164,124 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>19946</th>
-      <td>23893</td>
+      <th>21708</th>
+      <td>25724</td>
       <td>5</td>
-      <td>23</td>
-      <td>1996</td>
-      <td>21</td>
-      <td>PP</td>
+      <td>10</td>
+      <td>1997</td>
+      <td>12</td>
+      <td>NL</td>
       <td>M</td>
-      <td>23.0</td>
-      <td>11.0</td>
+      <td>31.0</td>
+      <td>62.0</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>5378</th>
+      <td>7359</td>
+      <td>2</td>
+      <td>26</td>
+      <td>1983</td>
+      <td>24</td>
+      <td>RM</td>
+      <td>F</td>
+      <td>16.0</td>
+      <td>7.0</td>
+      <td>Reithrodontomys</td>
+      <td>megalotis</td>
+      <td>Rodent</td>
+      <td>Rodent Exclosure</td>
+    </tr>
+    <tr>
+      <th>21832</th>
+      <td>25854</td>
+      <td>5</td>
+      <td>11</td>
+      <td>1997</td>
+      <td>3</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>26.0</td>
+      <td>20.0</td>
       <td>Chaetodipus</td>
-      <td>penicillatus</td>
+      <td>baileyi</td>
       <td>Rodent</td>
       <td>Long-term Krat Exclosure</td>
     </tr>
     <tr>
-      <th>15582</th>
-      <td>18912</td>
-      <td>8</td>
+      <th>1293</th>
+      <td>1870</td>
       <td>7</td>
-      <td>1991</td>
-      <td>18</td>
-      <td>PF</td>
+      <td>3</td>
+      <td>1979</td>
+      <td>9</td>
+      <td>DS</td>
       <td>M</td>
-      <td>16.0</td>
-      <td>7.0</td>
-      <td>Perognathus</td>
-      <td>flavus</td>
+      <td>46.0</td>
+      <td>86.0</td>
+      <td>Dipodomys</td>
+      <td>spectabilis</td>
       <td>Rodent</td>
-      <td>Short-term Krat Exclosure</td>
+      <td>Spectab exclosure</td>
     </tr>
     <tr>
-      <th>13805</th>
-      <td>16887</td>
-      <td>1</td>
-      <td>6</td>
-      <td>1990</td>
+      <th>24665</th>
+      <td>28975</td>
       <td>12</td>
-      <td>SF</td>
+      <td>23</td>
+      <td>1998</td>
+      <td>3</td>
+      <td>PB</td>
       <td>M</td>
-      <td>28.0</td>
-      <td>44.0</td>
-      <td>Sigmodon</td>
-      <td>fulviventer</td>
+      <td>26.0</td>
+      <td>40.0</td>
+      <td>Chaetodipus</td>
+      <td>baileyi</td>
       <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>20717</th>
-      <td>24714</td>
-      <td>11</td>
-      <td>16</td>
-      <td>1996</td>
-      <td>2</td>
-      <td>PE</td>
-      <td>F</td>
-      <td>20.0</td>
-      <td>25.0</td>
-      <td>Peromyscus</td>
-      <td>eremicus</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>24799</th>
-      <td>29112</td>
-      <td>1</td>
-      <td>17</td>
-      <td>1999</td>
-      <td>6</td>
-      <td>PM</td>
-      <td>M</td>
-      <td>21.0</td>
-      <td>21.0</td>
-      <td>Peromyscus</td>
-      <td>maniculatus</td>
-      <td>Rodent</td>
-      <td>Short-term Krat Exclosure</td>
+      <td>Long-term Krat Exclosure</td>
     </tr>
   </tbody>
 </table>
 
-Finally, we will save the rodents dataframe to a file that we can load
+Finally, we'll save the rodents dataframe to a file that we can load
 directly in the future if needed:
 
 ```python
 rodents.to_csv("data/rodents.csv", index=False)
 ```
 
+Now we're ready to plot.
+
 ## Re-introducing plotly
 
 We've already worked with plotly a little in previous lessons, but we
 haven't provided a comprehensive introduction. Plotly is a data
 visualization package for Python that allows us to create customizable,
-interactive plots of a variety of different types.
+interactive plots of a variety of different types. Plotly makes plots
+that are:
 
 -   **Customizable.** Allows the appearance of plots to be extensively
     modified.
 -   **Interactive.** Pan and zoom across plots, or hover over elements
     to get additional information about them.
--   **Flexible.** Allows creation of many different plot types, often
-    with only a few lines of code. Because plotly uses similar syntax
-    for each plot type, it is also easy to quickly change plot types to
-    get a different perspective on a set of data.
+-   **Flexible.** Many different plot types can be created, often with
+    only a few lines of code. Because plotly uses similar syntax for
+    each plot type, it is also easy to quickly change plot types to get
+    a different perspective on a dataset.
 -   **Embeddable.** Interactive plots can be embedded on websites using
     ploty's JavaScript library.
-
-Plotly has two main ways of making plots:
-
--   `plotly.express` provides a simplified interface for quickly
-    building and customizing plots
--   `plotly.graph_objects` uses a more complex interface to provide more
-    granular control over the contents of a plot
-
-We will use `plotly.express` in this lesson.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Other plotting libraries
 
 The R community has largely coalesced around gg2plot for plotting. In
-contrast, the Python community uses a number of data visualization
-libraries. Some commonly used alternatives to plotly include:
+contrast, the Python community has no clear consensus pick and makes use
+of a number of data visualization packages. Some other commonly used
+packages include:
 
 -   [Bokeh](https://bokeh.org/)
 -   [Matplotlib](https://matplotlib.org/)
@@ -290,10 +293,20 @@ one to use depends in large part on personal preference.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-We'll begin by reproducing the scatterplot from the [end of lesson
+Plotly has two main ways of making plots:
+
+-   `plotly.express` provides a simplified interface for quickly
+    building and customizing plots
+-   `plotly.graph_objects` uses a more complex interface to provide more
+    granular control over the contents of a plot
+
+We will use `plotly.express` in this lesson.
+
+We'll begin by reproducing the scatter plot from the [end of lesson
 3](03-accessing-and-filtering-data.html#showing-data-on-a-plot), which
-used weight on the x axis and hindfoot length on the y axis. Likely
-pandas, the developers of `plotly.express` have a preferred alias, px.
+included weight on the x axis and hindfoot length on the y axis. Likely
+pandas, the developers of `plotly.express` have a preferred alias, px,
+that we will use when we import `plotly.express`:
 
 ```python
 import plotly.express as px
@@ -315,7 +328,7 @@ default, the toolbar includes the following widgets:
 -   The camera allows us to save the current view as a PNG file
 -   The next four widgets are toggles that control how click-and-drag
     affects the plot. Only one can be active at a time.
-    -   The magnifying glass enable a zoom box
+    -   The magnifying glass enables drawing a box to zoom
     -   The crossing arrows enable panning
     -   The dotted box enables drawing a box to select data
     -   The dotted lasso enables drawing an arbitrary shape to to select
@@ -324,6 +337,9 @@ default, the toolbar includes the following widgets:
 -   The minus box allows us to zoom out
 -   The crossing arrows autoscale the plot to show all adata
 -   The house resets the plot to the original view
+
+When we hover over a data point, we get a tooltip that shows information
+about that point.
 
 Now let's think about the plot itself.
 
@@ -370,7 +386,7 @@ With the points now partially transparent, the places where they overlap
 are more obvious, and we can see several clusters. To get a better sense
 of what those clusters might be, let's add some color to the plot.
 
-At the end of lesson 4, we colored this scatterplot based on the
+At the end of lesson 4, we colored this scatter plot based on the
 species_id column. This revealed that several of the clusters reflected
 the species of rodent observed. But the use of species_id was
 problematic in other ways. For one, there are so many different species
@@ -400,9 +416,9 @@ Plotly makes a number of color palettes available via its color module.
 Because we are working with categorical data, we will use a
 *qualitative* palette, which consists of a list of discrete colors.
 Other palette types are also available. For example, plots showing a
-range of values might benefit from using a *diverging* color scheme,
-which provide a continuous range of colors (for example, blue to red for
-a heat map.)
+range of values might benefit from using a *sequential* or *diverging*
+color scheme, which use a continuous range of colors (for example, blue
+to red for a heat map).
 
 Qualitative palettes are available under `px.colors.qualitative`. We can
 view the available plaettes using the swatches function:
@@ -416,8 +432,8 @@ px.colors.qualitative.swatches()
 
 <embed src="files/fig-20548c05560600010e3e88783aacdd86.html" width=760 height=570>
 
-In the spirit of effectively communicating with a wide audience, we will
-use `px.colors.qualitative.Safe`, a colorblind-safe paletter. Because we
+In the spirit of effective communication with a wide audience, we will
+use `px.colors.qualitative.Safe`, a colorblind-safe palette. Because we
 will be using the same palette for the rest of the lesson, we will store
 the palette as a variable:
 
@@ -425,10 +441,11 @@ the palette as a variable:
 colors = px.colors.qualitative.Safe
 ```
 
-In addition to simplifying future plots a bit, this also allows us to
-quickly change the color scheme for all our plots at once if needed.
+In addition to simplifying the code for future plots a bit, storing the
+palette as a variable also allows us to quickly change the color scheme
+for all our plots at once if needed.
 
-Let's apply the safe colors to our scatterplot:
+Let's apply the safe colors to our scatter plot:
 
 ```python
 px.scatter(
@@ -449,22 +466,24 @@ px.scatter(
 ## Sorting data
 
 Take a look at the legend of the plot. The genera from the dataset are
-all listed, but they are in no apparent order. This will make it more
-difficult for anyone looking at the plot to quickly pick out a given
-genus. Alphabetizing the legend will make it more readable. To do so, we
-can use the category_order keyword argument.
+all listed, but they are in no apparent order. This makes it difficult
+for anyone looking at the plot to quickly pick out a given genus. We can
+alphabetize the legend to make it more readable. To do so, we can use
+the category_order keyword argument.
 
 This argument requires a `dict`. Recall that a `dict` is a mapping of
 keys to values defined using curly braces. The `dict` passed to
 category_orders maps a column name from the dataframe to a list of
-categories in the preferred order. One approach to creating an
-alphabetical list would be to simply crate the list manually. That would
-work well enough here, but could quickly become unwiedly for larger
-datasets. Instead, we will used the built-in `sorted()` function to sort
-the values from the genus column of the dataframe. Because we will be
-using the same order in all following plots, we will store the dict with
-the sorted values in a variable that we can refer to whenever we need to
-and can change if needed.
+values in the preferred order.
+
+One approach to creating an alphabetical list would be to simply build
+the list manually. That would work well enough here, where we have only
+a handful of values, but quickly becomes unwiedly for larger datasets.
+Instead, we will used the built-in `sorted()` function to create a
+sorted list of values in the genus column. Because we will be using the
+same order in all following plots, we will store the dict with the
+sorted values in a variable that we can refer to whenever we need to and
+can change if needed.
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -485,17 +504,15 @@ cat_order = {"genus": ordered}
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Alternatively, we can create the `dict` we need with a single line of
-code:
+In addition to the approach used in the challenge, we can create the
+`dict` we need with a single line of code:
 
 ```python
 cat_order = {"genus": sorted(rodents["genus"].unique())}
 ```
 
 That variable can now be passed to the category_orders keyword argument,
-producing a new version of the plot with an alphabetical legend. Note
-that the colors in the plot have also changed. Colors are assigned in
-the same order as the legend.
+producing a new version of the plot with an alphabetical legend.
 
 ```python
 px.scatter(
@@ -506,26 +523,36 @@ px.scatter(
     opacity=0.2,
     color_discrete_sequence=colors,
     category_orders=cat_order,
-    title="Rodent hindfoot length by genus",
 )
 ```
 
 ```{.output}
 ```
 
-<embed src="files/fig-0db75d47b3dc27b26c8a5a02a9e54860.html" width=760 height=570>
+<embed src="files/fig-933d2518a110bd65ab5ebc96e3dcfc7c.html" width=760 height=570>
 
-We will turn again to a `dict`, which we will use to map column names to
-preferred display values.
+Note that the colors in the plot have also changed. Colors are assigned
+based on the same category order used by the legend.
+
+## Adding plot and axis titles
+
+By default, plotly uses the column names from the dataframe to label the
+axes of a plot. Here, the axis labels are adequate but would benefit
+from removing the underscore and including units. We can use the labels
+keyword argument to assign human-readable labels to our plto.
+
+We will turn again to a `dict` for this, which we will use to map the
+underlying column names to preferred display values:
 
 ```python
 labels = {
     "hindfoot_length": "Hindfoot length (mm)",
     "genus": "Genus",
+    "weight": "Weight (g)"
 }
 ```
 
-We can update the plot itself using the title and labels keyword
+We can then update the plot itself using the title and labels keyword
 arguments:
 
 ```python
@@ -545,9 +572,33 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-dd11a3da528adb4654e0ef24b428306f.html" width=760 height=570>
+<embed src="files/fig-25169cdf2c7196dc94ea79f6aadba526.html" width=760 height=570>
 
-Facet plot:
+## Create a faceted plot
+
+Even with the semitransparent points, there is a good deal of overlap
+among the data on this plot, particularly in the lower left part. It may
+be useful to plot each genus separately to see if anyting interesting is
+being obscured. We could do so using some of the techniques we've
+already covered. For example, we could filter the dataframe by genus and
+create a separate plots for each.
+
+Plotly provides a simpler approach called faceting. A facet is a type of
+filter, and a faceted plot includes a separate subplot for each unique
+value. In plotly, we can create a faceted plot using the facet_col
+keyword argument. This argument produces a separate subplot for each
+unique value in the specified column. The subplots are arranged in a
+single row.
+
+The plots we have created so far have not specified dimensions, but we
+will need to consider the size of the faceted plot. Because this plot
+includes a number of subplots, it may appear cramped unless it is quite
+wide. We can use the height and width keyword arguments to set the size
+of the plot. Each of these arguments requires an integer specifying a
+size in pixels.
+
+Let's update our plot to facet it by genus and make it 1400 pixels wide
+by 400 pixels tall:
 
 ```python
 px.scatter(
@@ -558,30 +609,45 @@ px.scatter(
     opacity=0.2,
     color_discrete_sequence=colors,
     category_orders=cat_order,
-    facet_col="genus",
     title="Rodent size by genus",
     labels=labels,
+    facet_col="genus",
+    width=1400,
+    height=400,
 )
 ```
 
 ```{.output}
 ```
 
-<embed src="files/fig-4993b02483f76e1933fdd907bc74923c.html" width=760 height=570>
+<embed src="files/fig-7af8a7c1bc6df4beb06c9a47f54800e5.html" width=760 height=570>
+
+::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+#### Row facets
+
+The facet_col argument produces a single row of subplots. There is
+another argument, facet_row, that places each subplot in a separate row
+instead. Column and row facets can even be combined, for example, to
+produce a grid of subplots with genus as columns and sex as rows.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Making a box plot
 
 We briefly discussed box plots (also known as box-and-whisker plots) in
-lesson 4 as part of the discussion of summary statistics. Box plots are
-an effective way to visualize the distribution of data. Plotly uses the
+[lesson 4](04-aggregating-data.html#visualizing-groups-and-statistics)
+as part of the discussion of summary statistics. Box plots are an
+effective way to visualize the distribution of data. Plotly uses the
 `px.box()` method to generate them.
 
-The issues raised about the plot created during the earlier
-lesson--including the arbitrary order in which data was plotted, the
-repeated colors, and the inclusion of species with no data--can be
-addressed using the same approaches that we used for the scatterplots
-above. Let's create a box plot of hindfoot length by genus using the
-same color and ordering rules we used above:
+Some issues raised about the plot created during the earlier
+lesson---including the arbitrary order in which data was plotted, the
+repeated colors, and the inclusion of species with no data---have
+already been addressed above. We can integrate them into the box plot
+using the same approaches that we used for the scatter plots previously.
+Let's create a box plot of hindfoot length by genus using the same color
+and ordering rules we defined earlier:
 
 ```python
 px.box(
@@ -602,26 +668,27 @@ px.box(
 <embed src="files/fig-88a734bc811c5eb1714bc2bec0cd0a92.html" width=760 height=570>
 
 We now have a box plot with colors corresponding to the scatter plots
-above, with a alphabetically ordered x axis and legend.
+above, with an alphabetically ordered x axis and legend.
 
-We'll start with a concern about how the data is being represented. By
+There are other aspects of the box plot that we may want to tweak. We'll
+start with a concern about how the data is being represented. By
 default, ploty's box plots show individual points only for outliers,
-that is, points that plot outside the upper and lower fences of the
-box-and-whisker. This works well enough for normally distributed data
-but can obscure patterns for more complex distributions. And indeed,
-some genera, like *Dipodomys*, show a large number of outliers and
-multiple clusters of data on the scatterplot. How might we update the
-box plot to better convey these distributions?
+that is, points that plot outside the upper and lower fences. This works
+well enough for normally distributed data but can obscure patterns for
+more complex distributions. And indeed, some genera, like *Dipodomys*,
+show a large number of outliers on the box pot and multiple clusters of
+data on the scatter plot. How might we update the box plot to better
+convey these distributions?
 
 The `px.box()` method includes a keyword argument, points, that allows
 us to change how the underlying data is displayed. It accepts three
 values:
 
--   *outliers* shows outlier only (default)
+-   *outliers* only shows the outliers (default)
 -   *all* shows all points
 -   *None* shows no points
 
-Let's try updating the box plot to show all points:
+Let's try updating the box plot to show all the underlying data:
 
 ```python
 px.box(
@@ -646,9 +713,9 @@ A point cloud is now visible to the left of each box-and-whisker. We can
 see that plotly has spread the points out a bit along the x axis. This
 process, called jitter, is necessary because otherwise the points for
 each category would fall in a vertical line. We can also see that we've
-run into the same problem we did above with the scatterplot: The large
-number of overlapping points for each box makes it impossible to gt much
-insight into the distribution.
+run into the same problem we did above with the scatter plot: The large
+number of overlapping points for each box makes it hard to see what is
+going on inside each point cloud.
 
 We can again address this problem by changing the opacity of the
 markers. It's a little more complicated than it was for the scatter
@@ -677,13 +744,13 @@ fig.update_traces(marker={"opacity": 0.1})
 
 <embed src="files/fig-868351fb9d246f1d5921e6d6b8303f39.html" width=760 height=570>
 
-The point clouds make it easier to see separate population among some
-genera, like *Dipodomys*.
+With the points now semitransparent, it is possible to see separate
+populations among some genera, like *Dipodomys*.
 
 Another way to examine the distribution of data is a violin plot, which
 visualizes the distribution of points as a line, similar to a Bell
-curve, on either side. We can change our box plot to a violin plot by
-swapping `px.violin()` in for `px.box()`:
+curve. We can change our box plot to a violin plot by swapping
+`px.violin()` in for `px.box()`:
 
 ```python
 fig = px.violin(
@@ -706,7 +773,7 @@ fig.update_traces(marker={"opacity": 0.1})
 <embed src="files/fig-a2b6e5819ae8ea740baeb7e00455bb9c.html" width=760 height=570>
 
 This plot makes it easier to see identify complex distributions, like
-the bimodal distribution for *Caetodipus*, that are visible but not
+the bimodal distribution for *Chaetodipus*, that are visible but not
 necessarily obvious in the point clouds.
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -718,9 +785,9 @@ tries to answer this question.
 ::: solution :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 There are several reasonable approaches to this question using the
-scatterplots and boxplots covered so far in this lesson. One possibility
-is a faceted plot showing the mean weight of each *Dipodomys* over the
-course of the study.
+scatter plots and boxplots covered so far in this lesson. One
+possibility is a faceted plot showing the mean weight of each
+*Dipodomys* over the course of the study.
 
 ```python
 # Create genus_species column
@@ -750,7 +817,8 @@ a trend difficult.)
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Build and style scatter plots using plotly
+-   Plotly offers a wide variety of ways to build and style scatter
+    plots
 -   Use scatter plots to visualize how parameters covary
 -   Use box and violin plots to visualize the distribution of a
     parameter

@@ -8,7 +8,7 @@ exercises: 0
 
 -   How do we combine data from multiple sources using pandas?
 -   How do we add data to an existing dataframe?
--   How do we split and combine data columns?
+-   How do we combine columns within a single dataframe?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -17,18 +17,16 @@ exercises: 0
 -   Use `pd.merge()` to add related columns to a dataframe
 -   Use `pd.concat()` to add rows to a dataframe
 -   Combine text columns
--   Create a datetime object based on a dataframe with year, month, and
-    day
+-   Combine year, month, and day columns into a `datetime64` object
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 Dataframes can be used to organize and group data by common
 characteristics. Often, we need to combine elements from separate
-dataframes into one for analysis and visualization. A merge (or join)
-allows use to combine two dataframes using values common to each.
-Likewise, we may need to append data collected under different
-circumstances. In this chapter, we will show how to merge, concatenate,
-and split data using pandas.
+dataframes into one for analysis and visualization. Likewise, we may
+need to append data collected under different circumstances. In this
+chapter, we will show how to merge, concatenate, and combine data using
+pandas.
 
 ## Merging dataframes
 
@@ -73,6 +71,7 @@ species
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -488,6 +487,7 @@ merged
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -733,6 +733,7 @@ surveys.merge(species, on="species_id")
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -940,6 +941,7 @@ surveys.merge(species, left_on="species_id", right_on="species_id")
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1194,6 +1196,7 @@ surveys.merge(species, how="left")
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1412,6 +1415,7 @@ surveys_2001
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1579,6 +1583,7 @@ surveys_2002
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1756,6 +1761,7 @@ surveys_2001_2002
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -1938,6 +1944,7 @@ surveys_2001_2002
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -2184,7 +2191,7 @@ Name: genus_species, dtype: object
 
 Note that the `+` operator can also be used to add numeric columns. In
 Python, the same operator can be used to perform different operations
-for different data types (but keep reading for an important caveat.)
+for different data types.
 
 ## Combining dates
 
@@ -2192,9 +2199,8 @@ Another common need is to join or split dates. In the ecology dataset,
 the date of each observation is split across year, month, and day
 columns. However, pandas has a special data type, `datetime64`, for
 representing dates that can be useful for analyzing time series data. To
-make use of that functionality, we can concatenate the columns with the
-date components and convert them to a datetime object using the
-`pd.to_datetime()` method.
+make use of that functionality, we can use `pd.to_datetime()` method to
+create a datetime object:
 
 ```python
 surveys["date"] = pd.to_datetime(surveys[["year", "month", "day"]])
@@ -2215,8 +2221,6 @@ surveys["date"]
 35548   2002-12-31
 Name: date, Length: 35549, dtype: datetime64[ns]
 ```
-
-Pandas is doing a lot of work behind the scenes here.
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -2394,6 +2398,7 @@ grouped.agg({"weight": ["min", "max", "mean"]})
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }

@@ -170,6 +170,7 @@ pd.read_csv("data/surveys.csv")
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -356,6 +357,7 @@ pd.read_csv("data/surveys.csv", index_col="record_id")
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
@@ -585,6 +587,7 @@ surveys
 ```
 
 <style>
+  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }
   table.dataframe tbody tr:hover { background-color: #ccffff !important; }
   table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }
   table.dataframe th { text-align: right; font-weight: bold; }
