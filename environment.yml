@@ -3,20 +3,23 @@ channels:
 - conda-forge
 - default
 dependencies:
-- python>=3.8
+- python>=3.9
 - pip
 
 # Lesson packages
-- altair
+- ipykernel
 - jupyterlab
 - pandas
-- pyyaml=5.3.1
-- textdistance=4.2.0
+- plotly
 
 # Dev packages
 - black
 - jupyter_contrib_nbextensions
 - jupyterlab-spellchecker
+
+# Glosario dependencies
+- pyyaml=5.3.1
+- textdistance=4.2.0
 
 # pip packages
 - pip:

@@ -1,4 +1,5 @@
 """Defines command to create chapter markdown from Jupyter notebooks"""
+
 import argparse
 import base64
 import glob
@@ -9,6 +10,8 @@ import re
 import shutil
 import subprocess
 import tempfile
+from functools import cached_property
+from pathlib import Path
 
 import yaml
 
@@ -46,7 +49,7 @@ class Cell:
     def __str__(self):
         if self.fence == self.title.lower():
             return "\n".join(self.text.splitlines()[1:]).strip()
-        return self.text.strip()
+        return self.text.rstrip()
 
     @property
     def cell_type(self):
@@ -78,7 +81,7 @@ class Cell:
         """Gets the text of a markdown header"""
         return self.header.lstrip("# ")
 
-    @property
+    @cached_property
     def header(self):
         """Gets the header of a markdown cell"""
         if (
@@ -89,12 +92,12 @@ class Cell:
             return self.source[0].rstrip()
         return ""
 
-    @property
+    @cached_property
     def header_level(self):
         """Gets the header level"""
         return len(re.match("#*", self.header).group())
 
-    @property
+    @cached_property
     def text(self):
         """Gets the text of the cell"""
 
@@ -124,7 +127,7 @@ class Cell:
 
         return re.sub(r"\n{2,}", "\n\n", text)
 
-    @property
+    @cached_property
     def fence(self):
         """Gets the name of the fence"""
         fences = list(set(self.tags) & set(FENCES))
@@ -134,17 +137,18 @@ class Cell:
             return self.tags[0]
         return fences[0] if fences else None
 
-    @property
+    @cached_property
     def output(self):
 
         if "hide_output" in self.tags or not self.cell.get("outputs"):
             return ""
 
-        keys = ["image/png", "text/plain", "text"]
+        keys = ["application/vnd.plotly.v1+json", "image/png", "text/plain", "text"]
         if self.html_output:
             keys.insert(1, "text/html")
 
         output = []
+        is_html = False
         for row in self.cell["outputs"]:
 
             # Get the content of the row
@@ -165,7 +169,7 @@ class Cell:
             # Store image as file and output an image tag
             elif key.startswith("image"):
                 img_bytes = base64.b64decode(content)
-                filename = f"fig_output_{hashlib.md5(img_bytes).hexdigest()}.png"
+                filename = f"fig-{hashlib.md5(img_bytes).hexdigest()}.png"
                 path = os.path.join(self.lesson_root, "episodes", "fig", filename)
                 try:
                     open(path)
@@ -178,44 +182,68 @@ class Cell:
 
             # Pretty print HTML if possible. This is just for pandas tables so far.
             elif key == "text/html":
-
                 # Check for pandas tables
                 pattern = r"<div.*?>\s*<style.*?</style>\s*(.*)\s*</div>"
                 if re.match(pattern, "".join(content), flags=re.DOTALL):
-
                     # Approximate the style of a pandas table
                     style = (
                         "<style>\n"
+                        "  table.dataframe { display: block; overflow-x: auto; white-space: nowrap; }\n"
                         "  table.dataframe tbody tr:hover { background-color: #ccffff !important; }\n"
                         "  table.dataframe tr:nth-child(even) { background-color: #f5f5f5; }\n"
                         "  table.dataframe th { text-align: right; font-weight: bold; }\n"
                         "  table.dataframe td { text-align: right; }\n"
                         "</style>\n\n"
                     )
-
                     output.append(
                         style
                         + re.search(pattern, "".join(content), flags=re.DOTALL).group(1)
                     )
-
                 else:
                     # Output non-table HTML
                     output.append("".join(content))
+
+            elif key == "application/vnd.plotly.v1+json":
+
+                data = str(content["data"])
+                data = re.sub(r"\bFalse\b", "false", data)
+                data = re.sub(r"\bTrue\b", "true", data)
+
+                layout = content.get("layout", {})
+                for key, val in {
+                    "autosize": False,
+                    "width": 760,
+                    "height": 570,
+                }.items():
+                    layout.setdefault(key, val)
+                layout = re.sub(r"\bFalse\b", "false", str(layout))
+                layout = re.sub(r"\bTrue\b", "true", layout)
+
+                stem = hashlib.md5(
+                    json.dumps([data, layout]).encode("utf-8")
+                ).hexdigest()
+
+                with open("scripts/template.html") as f:
+                    template = f.read()
+
+                with open(f"episodes/files/fig-{stem}.html", "w") as f:
+                    f.write(template.format(data, layout))
+
+                output.append(
+                    f'<embed src="files/fig-{stem}.html" width=760 height=570>'
+                )
 
             # Output text inside output fence
             else:
                 output.append("".join(content))
 
-        # Wrap non-HTML output in an output fence
-        if not re.search(r"</[a-z]+>", output[0]):
-            output.insert(0, "```{.output}")
-
-            for i, content in enumerate(output[1:]):
-                if re.search(r"</[a-z]+>", content):
-                    output[i + 1] = "```\n\n" + content
-                    break
-            else:
-                output.append("```")
+        output.insert(0, "```{.output}")
+        for i, content in enumerate(output[1:]):
+            if re.search(r"</[a-z]+>", content) or re.match(r"<.+>$", content.strip()):
+                output[i + 1] = "```\n\n" + content
+                break
+        else:
+            output.append("```")
 
         return "\n".join(output)
 
@@ -273,7 +301,7 @@ class Cell:
                 text = str(self)
             if self.fence and include_fence:
                 return fence(text.strip(), self.fence)
-            return text.strip() + "\n"
+            return text.rstrip() + "\n"
         return ""
 
 
@@ -326,6 +354,14 @@ class Notebook:
         self.blocks = cells_to_blocks(self.json["cells"], always_part=["solution"])
 
     def __str__(self):
+
+        for block in self.blocks:
+            try:
+                block.to_markdown()
+            except:
+                print(block)
+                print("====")
+
         content = "\n".join([b.to_markdown().rstrip("\n") + "\n" for b in self.blocks])
         content = re.sub("^# .*", "", content).strip()
         return (
@@ -437,6 +473,9 @@ def fence(text, fence, length=80):
     str
         fence
     """
+    # HACK: Solutions do not render properly if they contain an embed tag
+    if fence == "solution":
+        text = re.sub(r"```{\.output}.*?<embed.*?>", "", text, flags=re.DOTALL)
     open_fence = f"::: {fence} " + ":" * (length - len(fence) - 5)
     return f"{open_fence}\n\n{text.rstrip()}\n\n{':' * length}\n"
 
@@ -467,6 +506,10 @@ if __name__ == "__main__":
     Cell.md_format = args.to
     Cell.html_output = args.html_output
 
+    # Ensure that required directories exist
+    Path("episodes/files").mkdir(exist_ok=True, parents=True)
+    Path("learners").mkdir(exist_ok=True, parents=True)
+
     # Remove previously generated files
     if args.reset:
         # Remove markdown files
@@ -480,7 +523,12 @@ if __name__ == "__main__":
 
         # Remove images
         for path in glob.iglob(
-            os.path.join(lesson_root, "episodes", "fig", "fig_output_*.png")
+            os.path.join(lesson_root, "episodes", "fig", "fig-*.png")
+        ):
+            os.remove(path)
+
+        for path in glob.iglob(
+            os.path.join(lesson_root, "episodes", "files", "fig-*.html")
         ):
             os.remove(path)
 
@@ -499,8 +547,11 @@ if __name__ == "__main__":
 
         # Save chapters as markdown
         try:
-            if os.path.getmtime(nb_path) > os.path.getmtime(md_path):
-                raise FileNotFoundError
+            # if os.path.getmtime(nb_path) > os.path.getmtime(md_path):
+            #    raise FileNotFoundError
+            with open(md_path) as f:
+                if not f.read():
+                    raise FileNotFoundError
         except FileNotFoundError:
 
             # Write the tagged notebook back to the original path
@@ -522,3 +573,21 @@ if __name__ == "__main__":
             # Write the markdown file
             print(f"Writing {md_path}")
             Notebook(nb_path).to_markdown(md_path)
+
+            # Clear the notebook
+            with open(nb_path, encoding="utf-8") as f:
+                nb = json.load(f)
+            nb["metadata"] = {
+                "language_info": {"name": nb["metadata"]["language_info"]["name"]}
+            }
+            for cell in nb["cells"]:
+                if cell.get("outputs"):
+                    cell["outputs"] = []
+                if cell.get("execution_count"):
+                    cell["execution_count"] = None
+                cell["metadata"] = {
+                    k: v for k, v in cell["metadata"].items() if k == "tags"
+                }
+
+            with open(nb_path, "w", encoding="utf-8") as f:
+                json.dump(nb, f, indent=1, ensure_ascii=False)

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
   schedule:
     - cron: '0 0 * * 2'
   workflow_dispatch:
@@ -55,6 +54,18 @@ jobs:
         uses: carpentries/actions/setup-lesson-deps@main
         with:
           cache-version: ${{ secrets.CACHE_VERSION }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5.3.0
+        with:
+          python-version: 3.13
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: "Build episodes from notebooks"
+        run: python ./scripts/build-episodes.py . --html_output
 
       - name: "Deploy Site"
         run: |

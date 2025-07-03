@@ -56,3 +56,10 @@ _preflight.py
 # omit r files
 .Rprofile
 renv/
+
+# omit drafts and generated files
+rodents.csv
+surveys_mod.csv
+07-modifying-data*
+episodes/
+learners/
