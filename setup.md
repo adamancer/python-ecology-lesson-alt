@@ -96,11 +96,13 @@ the lesson.
 
 When we're done, the lesson folder should look like this:
 
-    ├── python-ecology-lesson
-        ├── data
-            ├── plots.csv
-            ├── species.csv
-            ├── surveys.csv
+```null
+├── python-ecology-lesson
+    ├── data
+        ├── plots.csv
+        ├── species.csv
+        ├── surveys.csv
+```
 
 ### Using VS Code
 

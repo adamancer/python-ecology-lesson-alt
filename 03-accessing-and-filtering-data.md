@@ -850,16 +850,16 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>18507</th>
-      <td>18508</td>
+      <th>10132</th>
+      <td>10133</td>
       <td>3</td>
-      <td>14</td>
-      <td>1991</td>
-      <td>9</td>
-      <td>DM</td>
+      <td>17</td>
+      <td>1985</td>
+      <td>7</td>
+      <td>RM</td>
       <td>F</td>
-      <td>33.0</td>
-      <td>49.0</td>
+      <td>16.0</td>
+      <td>9.0</td>
     </tr>
   </tbody>
 </table>
