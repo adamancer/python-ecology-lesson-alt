@@ -331,7 +331,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Visualizing Data</h1>
-        <p>Last updated on 2025-07-07 |
+        <p>Last updated on 2025-07-08 |
 
         <a href="https://github.com/adamancer/python-ecology-lesson-alt/edit/main/episodes/06-visualizing-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -541,34 +541,76 @@ taxa
 plot_type
 </th>
 </tr></thead><tbody><tr><th>
-14702
+14297
 </th>
 <td>
-17938
-</td>
-<td>
-10
-</td>
-<td>
-16
-</td>
-<td>
-1990
+17433
 </td>
 <td>
 4
 </td>
 <td>
+26
+</td>
+<td>
+1990
+</td>
+<td>
+6
+</td>
+<td>
+PP
+</td>
+<td>
+M
+</td>
+<td>
+22.0
+</td>
+<td>
+18.0
+</td>
+<td>
+Chaetodipus
+</td>
+<td>
+penicillatus
+</td>
+<td>
+Rodent
+</td>
+<td>
+Short-term Krat Exclosure
+</td>
+</tr><tr><th>
+17172
+</th>
+<td>
+20722
+</td>
+<td>
+3
+</td>
+<td>
+17
+</td>
+<td>
+1993
+</td>
+<td>
+12
+</td>
+<td>
 DM
 </td>
 <td>
-F
+M
 </td>
 <td>
-36.0
+34.0
 </td>
 <td>
-40.0
+42.0
 </td>
 <td>
 Dipodomys
@@ -583,28 +625,70 @@ Rodent
 Control
 </td>
 </tr><tr><th>
-17794
+24052
 </th>
 <td>
-21468
+28320
 </td>
 <td>
-3
+8
+</td>
+<td>
+22
+</td>
+<td>
+1998
+</td>
+<td>
+1
+</td>
+<td>
+PP
+</td>
+<td>
+F
+</td>
+<td>
+21.0
+</td>
+<td>
+15.0
+</td>
+<td>
+Chaetodipus
+</td>
+<td>
+penicillatus
+</td>
+<td>
+Rodent
+</td>
+<td>
+Spectab exclosure
+</td>
+</tr><tr><th>
+24641
+</th>
+<td>
+28948
 </td>
 <td>
 12
 </td>
 <td>
-1994
+22
 </td>
 <td>
-11
+1998
+</td>
+<td>
+17
 </td>
 <td>
 DM
 </td>
 <td>
-F
+M
 </td>
 <td>
 36.0
@@ -625,130 +709,46 @@ Rodent
 Control
 </td>
 </tr><tr><th>
-23786
+14456
 </th>
 <td>
-28032
+17606
 </td>
 <td>
 6
 </td>
 <td>
-27
+21
 </td>
 <td>
-1998
+1990
 </td>
 <td>
-24
+17
 </td>
 <td>
-NL
+DO
 </td>
 <td>
 M
 </td>
 <td>
-33.0
+36.0
 </td>
 <td>
-136.0
-</td>
-<td>
-Neotoma
-</td>
-<td>
-albigula
-</td>
-<td>
-Rodent
-</td>
-<td>
-Rodent Exclosure
-</td>
-</tr><tr><th>
-4603
-</th>
-<td>
-6526
-</td>
-<td>
-9
-</td>
-<td>
-18
-</td>
-<td>
-1982
-</td>
-<td>
-11
-</td>
-<td>
-DS
-</td>
-<td>
-F
-</td>
-<td>
-48.0
-</td>
-<td>
-106.0
+55.0
 </td>
 <td>
 Dipodomys
 </td>
 <td>
-spectabilis
+ordii
 </td>
 <td>
 Rodent
 </td>
 <td>
 Control
-</td>
-</tr><tr><th>
-22752
-</th>
-<td>
-26821
-</td>
-<td>
-9
-</td>
-<td>
-27
-</td>
-<td>
-1997
-</td>
-<td>
-18
-</td>
-<td>
-PB
-</td>
-<td>
-F
-</td>
-<td>
-26.0
-</td>
-<td>
-28.0
-</td>
-<td>
-Chaetodipus
-</td>
-<td>
-baileyi
-</td>
-<td>
-Rodent
-</td>
-<td>
-Short-term Krat Exclosure
 </td>
 </tr></tbody></table><p>Finally, we’ll save the rodents dataframe to a file that we can load
 directly in the future if needed:</p>
@@ -861,7 +861,7 @@ itself is presented as well as the general appearance of the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Some issues with the plot include the following:</p>
 <ul><li>All points are the same color</li>
@@ -1005,7 +1005,7 @@ ordered list of unique values from that column.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1301,7 +1301,7 @@ plot that tries to answer this question.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>There are several reasonable approaches to this question using the
 scatter plots and boxplots covered so far in this lesson. One
@@ -1408,8 +1408,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/06-visualizing-data.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/06-visualizing-data.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2025-07-07",
-  "datePublished": "2025-07-07"
+  "dateModified": "2025-07-08",
+  "datePublished": "2025-07-08"
 }
 
   </script><script>
