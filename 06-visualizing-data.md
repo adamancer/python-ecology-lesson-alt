@@ -164,82 +164,82 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>6616</th>
-      <td>8696</td>
-      <td>12</td>
-      <td>8</td>
-      <td>1983</td>
-      <td>22</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>37.0</td>
-      <td>37.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>26454</th>
-      <td>30879</td>
-      <td>6</td>
-      <td>4</td>
-      <td>2000</td>
-      <td>13</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>26.0</td>
-      <td>32.0</td>
-      <td>Chaetodipus</td>
-      <td>baileyi</td>
-      <td>Rodent</td>
-      <td>Short-term Krat Exclosure</td>
-    </tr>
-    <tr>
-      <th>21326</th>
-      <td>25335</td>
-      <td>3</td>
-      <td>16</td>
+      <th>21763</th>
+      <td>25783</td>
+      <td>5</td>
+      <td>10</td>
       <td>1997</td>
-      <td>3</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>28.0</td>
-      <td>48.0</td>
-      <td>Chaetodipus</td>
-      <td>baileyi</td>
+      <td>21</td>
+      <td>PF</td>
+      <td>M</td>
+      <td>16.0</td>
+      <td>10.0</td>
+      <td>Perognathus</td>
+      <td>flavus</td>
       <td>Rodent</td>
       <td>Long-term Krat Exclosure</td>
     </tr>
     <tr>
-      <th>11867</th>
-      <td>14687</td>
-      <td>7</td>
-      <td>14</td>
-      <td>1988</td>
-      <td>23</td>
-      <td>PE</td>
+      <th>21352</th>
+      <td>25362</td>
+      <td>3</td>
+      <td>16</td>
+      <td>1997</td>
+      <td>11</td>
+      <td>OT</td>
       <td>F</td>
-      <td>18.0</td>
-      <td>21.0</td>
-      <td>Peromyscus</td>
-      <td>eremicus</td>
+      <td>20.0</td>
+      <td>24.0</td>
+      <td>Onychomys</td>
+      <td>torridus</td>
       <td>Rodent</td>
-      <td>Rodent Exclosure</td>
+      <td>Control</td>
     </tr>
     <tr>
-      <th>13919</th>
-      <td>17023</td>
+      <th>13906</th>
+      <td>17002</td>
       <td>1</td>
       <td>29</td>
       <td>1990</td>
-      <td>19</td>
+      <td>6</td>
       <td>PF</td>
       <td>F</td>
-      <td>17.0</td>
-      <td>7.0</td>
+      <td>16.0</td>
+      <td>9.0</td>
       <td>Perognathus</td>
       <td>flavus</td>
+      <td>Rodent</td>
+      <td>Short-term Krat Exclosure</td>
+    </tr>
+    <tr>
+      <th>1045</th>
+      <td>1532</td>
+      <td>12</td>
+      <td>3</td>
+      <td>1978</td>
+      <td>13</td>
+      <td>OL</td>
+      <td>F</td>
+      <td>21.0</td>
+      <td>29.0</td>
+      <td>Onychomys</td>
+      <td>leucogaster</td>
+      <td>Rodent</td>
+      <td>Short-term Krat Exclosure</td>
+    </tr>
+    <tr>
+      <th>28710</th>
+      <td>33375</td>
+      <td>1</td>
+      <td>12</td>
+      <td>2002</td>
+      <td>21</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>28.0</td>
+      <td>32.0</td>
+      <td>Chaetodipus</td>
+      <td>baileyi</td>
       <td>Rodent</td>
       <td>Long-term Krat Exclosure</td>
     </tr>
