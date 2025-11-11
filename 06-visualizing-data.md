@@ -164,84 +164,84 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>19237</th>
-      <td>23132</td>
-      <td>12</td>
-      <td>21</td>
-      <td>1995</td>
-      <td>1</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>27.0</td>
-      <td>30.0</td>
-      <td>Chaetodipus</td>
-      <td>baileyi</td>
-      <td>Rodent</td>
-      <td>Spectab exclosure</td>
-    </tr>
-    <tr>
-      <th>27712</th>
-      <td>32294</td>
-      <td>7</td>
-      <td>22</td>
-      <td>2001</td>
-      <td>11</td>
-      <td>PP</td>
-      <td>F</td>
-      <td>23.0</td>
-      <td>18.0</td>
-      <td>Chaetodipus</td>
-      <td>penicillatus</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>24794</th>
-      <td>29107</td>
-      <td>1</td>
+      <th>16963</th>
+      <td>20469</td>
+      <td>10</td>
+      <td>18</td>
+      <td>1992</td>
       <td>17</td>
-      <td>1999</td>
-      <td>4</td>
       <td>DM</td>
       <td>M</td>
-      <td>36.0</td>
-      <td>48.0</td>
+      <td>33.0</td>
+      <td>38.0</td>
       <td>Dipodomys</td>
       <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
     <tr>
-      <th>30084</th>
-      <td>34850</td>
-      <td>10</td>
-      <td>5</td>
-      <td>2002</td>
-      <td>21</td>
-      <td>PB</td>
-      <td>M</td>
-      <td>26.0</td>
-      <td>32.0</td>
-      <td>Chaetodipus</td>
-      <td>baileyi</td>
-      <td>Rodent</td>
-      <td>Long-term Krat Exclosure</td>
-    </tr>
-    <tr>
-      <th>27056</th>
-      <td>31535</td>
-      <td>11</td>
-      <td>25</td>
-      <td>2000</td>
+      <th>24747</th>
+      <td>29060</td>
+      <td>1</td>
+      <td>16</td>
+      <td>1999</td>
       <td>18</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>26.0</td>
-      <td>30.0</td>
-      <td>Chaetodipus</td>
-      <td>baileyi</td>
+      <td>OT</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>24.0</td>
+      <td>Onychomys</td>
+      <td>torridus</td>
       <td>Rodent</td>
       <td>Short-term Krat Exclosure</td>
+    </tr>
+    <tr>
+      <th>8738</th>
+      <td>11027</td>
+      <td>11</td>
+      <td>17</td>
+      <td>1985</td>
+      <td>8</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>35.0</td>
+      <td>46.0</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>10459</th>
+      <td>12953</td>
+      <td>6</td>
+      <td>30</td>
+      <td>1987</td>
+      <td>17</td>
+      <td>DO</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>45.0</td>
+      <td>Dipodomys</td>
+      <td>ordii</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>2993</th>
+      <td>4437</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1981</td>
+      <td>8</td>
+      <td>DS</td>
+      <td>M</td>
+      <td>49.0</td>
+      <td>101.0</td>
+      <td>Dipodomys</td>
+      <td>spectabilis</td>
+      <td>Rodent</td>
+      <td>Control</td>
     </tr>
   </tbody>
 </table>
