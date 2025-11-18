@@ -164,82 +164,82 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>16963</th>
-      <td>20469</td>
+      <th>20183</th>
+      <td>24151</td>
+      <td>6</td>
+      <td>14</td>
+      <td>1996</td>
+      <td>4</td>
+      <td>PF</td>
+      <td>F</td>
+      <td>17.0</td>
+      <td>8.0</td>
+      <td>Perognathus</td>
+      <td>flavus</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>30176</th>
+      <td>34946</td>
       <td>10</td>
-      <td>18</td>
-      <td>1992</td>
-      <td>17</td>
+      <td>6</td>
+      <td>2002</td>
+      <td>14</td>
+      <td>OT</td>
+      <td>M</td>
+      <td>18.0</td>
+      <td>19.0</td>
+      <td>Onychomys</td>
+      <td>torridus</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>26423</th>
+      <td>30845</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2000</td>
+      <td>11</td>
       <td>DM</td>
       <td>M</td>
-      <td>33.0</td>
-      <td>38.0</td>
+      <td>35.0</td>
+      <td>35.0</td>
       <td>Dipodomys</td>
       <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
     <tr>
-      <th>24747</th>
-      <td>29060</td>
+      <th>15017</th>
+      <td>18264</td>
       <td>1</td>
-      <td>16</td>
-      <td>1999</td>
-      <td>18</td>
-      <td>OT</td>
+      <td>12</td>
+      <td>1991</td>
+      <td>14</td>
+      <td>DM</td>
       <td>M</td>
-      <td>20.0</td>
-      <td>24.0</td>
-      <td>Onychomys</td>
-      <td>torridus</td>
-      <td>Rodent</td>
-      <td>Short-term Krat Exclosure</td>
-    </tr>
-    <tr>
-      <th>8738</th>
-      <td>11027</td>
-      <td>11</td>
-      <td>17</td>
-      <td>1985</td>
-      <td>8</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>46.0</td>
+      <td>36.0</td>
+      <td>43.0</td>
       <td>Dipodomys</td>
-      <td>ordii</td>
+      <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
     <tr>
-      <th>10459</th>
-      <td>12953</td>
-      <td>6</td>
-      <td>30</td>
+      <th>10637</th>
+      <td>13303</td>
+      <td>8</td>
+      <td>26</td>
       <td>1987</td>
-      <td>17</td>
-      <td>DO</td>
-      <td>M</td>
-      <td>38.0</td>
+      <td>11</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>36.0</td>
       <td>45.0</td>
       <td>Dipodomys</td>
-      <td>ordii</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>2993</th>
-      <td>4437</td>
-      <td>5</td>
-      <td>4</td>
-      <td>1981</td>
-      <td>8</td>
-      <td>DS</td>
-      <td>M</td>
-      <td>49.0</td>
-      <td>101.0</td>
-      <td>Dipodomys</td>
-      <td>spectabilis</td>
+      <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
