@@ -850,14 +850,14 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>12004</th>
-      <td>12005</td>
-      <td>11</td>
-      <td>15</td>
-      <td>1986</td>
-      <td>22</td>
+      <th>6712</th>
+      <td>6713</td>
+      <td>10</td>
+      <td>23</td>
+      <td>1982</td>
+      <td>17</td>
       <td>DM</td>
-      <td>F</td>
+      <td>M</td>
       <td>35.0</td>
       <td>46.0</td>
     </tr>
@@ -1740,18 +1740,6 @@ surveys.sort_values("weight")
   </thead>
   <tbody>
     <tr>
-      <th>217</th>
-      <td>218</td>
-      <td>9</td>
-      <td>13</td>
-      <td>1977</td>
-      <td>1</td>
-      <td>PF</td>
-      <td>M</td>
-      <td>13.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
       <th>28125</th>
       <td>28126</td>
       <td>6</td>
@@ -1761,6 +1749,18 @@ surveys.sort_values("weight")
       <td>PF</td>
       <td>M</td>
       <td>NaN</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>218</td>
+      <td>9</td>
+      <td>13</td>
+      <td>1977</td>
+      <td>1</td>
+      <td>PF</td>
+      <td>M</td>
+      <td>13.0</td>
       <td>4.0</td>
     </tr>
     <tr>
@@ -1776,26 +1776,26 @@ surveys.sort_values("weight")
       <td>4.0</td>
     </tr>
     <tr>
-      <th>8735</th>
-      <td>8736</td>
-      <td>12</td>
-      <td>8</td>
-      <td>1983</td>
-      <td>19</td>
-      <td>RM</td>
-      <td>M</td>
-      <td>17.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>9789</th>
-      <td>9790</td>
+      <th>9852</th>
+      <td>9853</td>
       <td>1</td>
       <td>19</td>
       <td>1985</td>
-      <td>16</td>
+      <td>17</td>
       <td>RM</td>
-      <td>F</td>
+      <td>M</td>
+      <td>16.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>9936</th>
+      <td>9937</td>
+      <td>2</td>
+      <td>16</td>
+      <td>1985</td>
+      <td>21</td>
+      <td>RM</td>
+      <td>M</td>
       <td>16.0</td>
       <td>4.0</td>
     </tr>
