@@ -243,11 +243,12 @@ surveys["species_id"].unique()
 ```
 
 ```{.output}
-array(['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS',
-       'OL', 'RM', nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ',
-       'RF', 'PC', 'PG', 'PH', 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS',
-       'SC', 'BA', 'SF', 'RO', 'AS', 'SO', 'PI', 'ST', 'CU', 'SU', 'RX',
-       'PB', 'PL', 'PX', 'CT', 'US'], dtype=object)
+<StringArray>
+['NL', 'DM', 'PF', 'PE', 'DS', 'PP', 'SH', 'OT', 'DO', 'OX', 'SS', 'OL', 'RM',
+  nan, 'SA', 'PM', 'AH', 'DX', 'AB', 'CB', 'CM', 'CQ', 'RF', 'PC', 'PG', 'PH',
+ 'PU', 'CV', 'UR', 'UP', 'ZL', 'UL', 'CS', 'SC', 'BA', 'SF', 'RO', 'AS', 'SO',
+ 'PI', 'ST', 'CU', 'SU', 'RX', 'PB', 'PL', 'PX', 'CT', 'US']
+Length: 49, dtype: str
 ```
 
 ## Getting multiple columns
@@ -850,16 +851,16 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>16178</th>
-      <td>16179</td>
-      <td>6</td>
-      <td>4</td>
-      <td>1989</td>
-      <td>13</td>
-      <td>RM</td>
+      <th>2951</th>
+      <td>2952</td>
+      <td>5</td>
+      <td>17</td>
+      <td>1980</td>
+      <td>20</td>
+      <td>NL</td>
       <td>M</td>
-      <td>17.0</td>
-      <td>10.0</td>
+      <td>32.0</td>
+      <td>207.0</td>
     </tr>
   </tbody>
 </table>

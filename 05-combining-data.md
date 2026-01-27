@@ -709,7 +709,9 @@ merged[merged["taxa"] != "Rodent"]["taxa"].unique()
 ```
 
 ```{.output}
-array(['Rabbit', 'Bird', 'Reptile'], dtype=object)
+<StringArray>
+['Rabbit', 'Bird', 'Reptile']
+Length: 3, dtype: str
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1151,11 +1153,12 @@ pd.unique(surveys["species_id"].sort_values())
 ```
 
 ```{.output}
-array(['AB', 'AH', 'AS', 'BA', 'CB', 'CM', 'CQ', 'CS', 'CT', 'CU', 'CV',
-       'DM', 'DO', 'DS', 'DX', 'NL', 'OL', 'OT', 'OX', 'PB', 'PC', 'PE',
-       'PF', 'PG', 'PH', 'PI', 'PL', 'PM', 'PP', 'PU', 'PX', 'RF', 'RM',
-       'RO', 'RX', 'SA', 'SC', 'SF', 'SH', 'SO', 'SS', 'ST', 'SU', 'UL',
-       'UP', 'UR', 'US', 'ZL', nan], dtype=object)
+<StringArray>
+['AB', 'AH', 'AS', 'BA', 'CB', 'CM', 'CQ', 'CS', 'CT', 'CU', 'CV', 'DM', 'DO',
+ 'DS', 'DX', 'NL', 'OL', 'OT', 'OX', 'PB', 'PC', 'PE', 'PF', 'PG', 'PH', 'PI',
+ 'PL', 'PM', 'PP', 'PU', 'PX', 'RF', 'RM', 'RO', 'RX', 'SA', 'SC', 'SF', 'SH',
+ 'SO', 'SS', 'ST', 'SU', 'UL', 'UP', 'UR', 'US', 'ZL',  nan]
+Length: 49, dtype: str
 ```
 
 The merged dataframe omits rows with no value in the species_id column.
@@ -2186,7 +2189,7 @@ species["genus_species"]
 51                        Sparrow sp.
 52             Zonotrichia leucophrys
 53                   Zenaida macroura
-Name: genus_species, dtype: object
+Name: genus_species, dtype: str
 ```
 
 Note that the `+` operator can also be used to add numeric columns. In
@@ -2219,7 +2222,7 @@ surveys["date"]
 35546   2002-12-31
 35547   2002-12-31
 35548   2002-12-31
-Name: date, Length: 35549, dtype: datetime64[ns]
+Name: date, Length: 35549, dtype: datetime64[us]
 ```
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

@@ -759,7 +759,7 @@ surveys.info()
 ```
 
 ```{.output}
-<class 'pandas.core.frame.DataFrame'>
+<class 'pandas.DataFrame'>
 RangeIndex: 35549 entries, 0 to 35548
 Data columns (total 9 columns):
  #   Column           Non-Null Count  Dtype  
@@ -769,12 +769,12 @@ Data columns (total 9 columns):
  2   day              35549 non-null  int64  
  3   year             35549 non-null  int64  
  4   plot_id          35549 non-null  int64  
- 5   species_id       34786 non-null  object 
- 6   sex              33038 non-null  object 
+ 5   species_id       34786 non-null  str    
+ 6   sex              33038 non-null  str    
  7   hindfoot_length  31438 non-null  float64
  8   weight           32283 non-null  float64
-dtypes: float64(2), int64(5), object(2)
-memory usage: 2.4+ MB
+dtypes: float64(2), int64(5), str(2)
+memory usage: 2.4 MB
 
 ```
 

@@ -46,7 +46,7 @@ surveys.info()
 ```
 
 ```{.output}
-<class 'pandas.core.frame.DataFrame'>
+<class 'pandas.DataFrame'>
 RangeIndex: 35549 entries, 0 to 35548
 Data columns (total 9 columns):
  #   Column           Non-Null Count  Dtype  
@@ -56,12 +56,12 @@ Data columns (total 9 columns):
  2   day              35549 non-null  int64  
  3   year             35549 non-null  int64  
  4   plot_id          35549 non-null  int64  
- 5   species_id       34786 non-null  object 
- 6   sex              33038 non-null  object 
+ 5   species_id       34786 non-null  str    
+ 6   sex              33038 non-null  str    
  7   hindfoot_length  31438 non-null  float64
  8   weight           32283 non-null  float64
-dtypes: float64(2), int64(5), object(2)
-memory usage: 2.4+ MB
+dtypes: float64(2), int64(5), str(2)
+memory usage: 2.4 MB
 
 ```
 
@@ -121,7 +121,9 @@ surveys["taxa"].unique()
 ```
 
 ```{.output}
-array(['Rodent'], dtype=object)
+<StringArray>
+['Rodent']
+Length: 1, dtype: str
 ```
 
 --we can see that all remaining observations are of rodents. In honor of
@@ -164,84 +166,84 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>24100</th>
-      <td>28370</td>
-      <td>8</td>
-      <td>22</td>
-      <td>1998</td>
+      <th>25707</th>
+      <td>30079</td>
+      <td>12</td>
+      <td>5</td>
+      <td>1999</td>
       <td>19</td>
-      <td>PM</td>
+      <td>PB</td>
       <td>F</td>
-      <td>19.0</td>
-      <td>21.0</td>
-      <td>Peromyscus</td>
-      <td>maniculatus</td>
+      <td>26.0</td>
+      <td>36.0</td>
+      <td>Chaetodipus</td>
+      <td>baileyi</td>
       <td>Rodent</td>
       <td>Long-term Krat Exclosure</td>
     </tr>
     <tr>
-      <th>3803</th>
-      <td>5342</td>
-      <td>2</td>
-      <td>22</td>
-      <td>1982</td>
-      <td>12</td>
-      <td>RM</td>
-      <td>F</td>
-      <td>16.0</td>
-      <td>13.0</td>
-      <td>Reithrodontomys</td>
-      <td>megalotis</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>19078</th>
-      <td>22963</td>
+      <th>888</th>
+      <td>1348</td>
       <td>10</td>
-      <td>29</td>
-      <td>1995</td>
-      <td>15</td>
-      <td>PF</td>
-      <td>M</td>
-      <td>15.0</td>
-      <td>8.0</td>
-      <td>Perognathus</td>
-      <td>flavus</td>
-      <td>Rodent</td>
-      <td>Long-term Krat Exclosure</td>
-    </tr>
-    <tr>
-      <th>18246</th>
-      <td>22015</td>
-      <td>1</td>
-      <td>12</td>
-      <td>1995</td>
-      <td>14</td>
+      <td>7</td>
+      <td>1978</td>
+      <td>8</td>
       <td>DM</td>
-      <td>M</td>
-      <td>38.0</td>
-      <td>47.0</td>
+      <td>F</td>
+      <td>36.0</td>
+      <td>35.0</td>
       <td>Dipodomys</td>
       <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
     <tr>
-      <th>18520</th>
-      <td>22359</td>
-      <td>6</td>
-      <td>8</td>
-      <td>1995</td>
-      <td>6</td>
-      <td>PF</td>
+      <th>17179</th>
+      <td>20730</td>
+      <td>3</td>
+      <td>17</td>
+      <td>1993</td>
+      <td>17</td>
+      <td>DM</td>
       <td>F</td>
-      <td>16.0</td>
-      <td>9.0</td>
-      <td>Perognathus</td>
-      <td>flavus</td>
+      <td>33.0</td>
+      <td>58.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
-      <td>Short-term Krat Exclosure</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>1353</td>
+      <td>10</td>
+      <td>8</td>
+      <td>1978</td>
+      <td>4</td>
+      <td>DM</td>
+      <td>F</td>
+      <td>35.0</td>
+      <td>36.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>26421</th>
+      <td>30843</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2000</td>
+      <td>11</td>
+      <td>PP</td>
+      <td>M</td>
+      <td>21.0</td>
+      <td>19.0</td>
+      <td>Chaetodipus</td>
+      <td>penicillatus</td>
+      <td>Rodent</td>
+      <td>Control</td>
     </tr>
   </tbody>
 </table>
