@@ -68,12 +68,12 @@ install and run JupyterLab.
 Each operating system has one or more command-line interfaces available.
 We recommend using the following applications for this lesson:
 
--   **Windows:** Use the Miniforge Prompt, which was installed as part
-    of Miniforge. You can find it by searching for Miniforge Prompt in
-    the search box on the Windows toolbar.
--   **macOS:** Use the Terminal. You can find it in the
-    Applications/Utilities folder or by searching for Terminal using
-    Spotlight.
+- **Windows:** Use the Miniforge Prompt, which was installed as part of
+  Miniforge. You can find it by searching for Miniforge Prompt in the
+  search box on the Windows toolbar.
+- **macOS:** Use the Terminal. You can find it in the
+  Applications/Utilities folder or by searching for Terminal using
+  Spotlight.
 
 Type or copy the following command into the CLI to set up the
 environment:
@@ -90,9 +90,9 @@ the lesson.
 1.  Create a folder called **python-ecology-lesson** on your desktop
 2.  Create a folder called **data** inside the folder from step 1
 3.  Download the following files into the data folder:
-    -   surveys.csv: https://figshare.com/ndownloader/files/10717177
-    -   species.csv: https://figshare.com/ndownloader/files/3299483
-    -   plots.csv: https://figshare.com/ndownloader/files/3299474
+    - surveys.csv: https://figshare.com/ndownloader/files/10717177
+    - species.csv: https://figshare.com/ndownloader/files/3299483
+    - plots.csv: https://figshare.com/ndownloader/files/3299474
 
 When we're done, the lesson folder should look like this:
 

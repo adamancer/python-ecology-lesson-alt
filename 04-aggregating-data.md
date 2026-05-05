@@ -6,18 +6,18 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   How do we calculate summary statistics?
--   How do we group data?
--   How do null values affect calculations?
+- How do we calculate summary statistics?
+- How do we group data?
+- How do null values affect calculations?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Introduce aggregation calculations in pandas
--   Introduce grouping in pandas
--   Learn about how pandas handles null values
--   Make a boxplot showing summary stats
+- Introduce aggregation calculations in pandas
+- Introduce grouping in pandas
+- Learn about how pandas handles null values
+- Make a boxplot showing summary stats
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -358,7 +358,7 @@ surveys.groupby("species_id")
 ```{.output}
 ```
 
-<pandas.api.typing.DataFrameGroupBy object at 0x7f0940113620>
+<pandas.api.typing.DataFrameGroupBy object at 0x7efd87917b60>
 
 The `groupby()` methods returns a special object that includes the rows
 associated with each species_id, but we wouldn't know that based on the
@@ -1890,14 +1890,14 @@ associated data. We'll return to this plot in [lesson
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Calculate individual summary statistics using dataframe methods like
-    `mean()`, `max()`, and `min()`
--   Calculate multiple summary statistics at once using the dataframe
-    methods `describe()` and `agg()`
--   Group data by one or more columns using the `groupby()` method
--   Failing to consider how missing data is interpreted in a dataset can
-    introduce significant errors
--   Box plots can be used to visualize the distribution of a single
-    parameter
+- Calculate individual summary statistics using dataframe methods like
+  `mean()`, `max()`, and `min()`
+- Calculate multiple summary statistics at once using the dataframe
+  methods `describe()` and `agg()`
+- Group data by one or more columns using the `groupby()` method
+- Failing to consider how missing data is interpreted in a dataset can
+  introduce significant errors
+- Box plots can be used to visualize the distribution of a single
+  parameter
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

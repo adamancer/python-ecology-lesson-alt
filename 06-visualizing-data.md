@@ -6,16 +6,16 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   How can we create different types of plots using Python?
--   How can we style plots?
--   How can we add descriptive titles to plots and axes?
+- How can we create different types of plots using Python?
+- How can we style plots?
+- How can we add descriptive titles to plots and axes?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Review processes for reading, modifying, and combining dataframes
--   Make and customize scatter, box, and bar plots
+- Review processes for reading, modifying, and combining dataframes
+- Make and customize scatter, box, and bar plots
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -87,9 +87,9 @@ surveys = surveys.dropna()
 Now we we'll merge the main surveys dataframe with two other datasets
 containing additional information:
 
--   **species.csv** provides the genus and species corresponding to
-    species_id
--   **plots.csv** provides the plot type corresponding to plot_id
+- **species.csv** provides the genus and species corresponding to
+  species_id
+- **plots.csv** provides the plot type corresponding to plot_id
 
 We will read each CSV and merge it into the main dataframe:
 
@@ -166,82 +166,82 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>22845</th>
-      <td>26916</td>
-      <td>9</td>
-      <td>28</td>
-      <td>1997</td>
-      <td>14</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>48.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>16537</th>
-      <td>19967</td>
+      <th>21792</th>
+      <td>25812</td>
       <td>5</td>
-      <td>2</td>
-      <td>1992</td>
-      <td>22</td>
-      <td>DM</td>
-      <td>F</td>
-      <td>35.0</td>
-      <td>42.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
+      <td>10</td>
+      <td>1997</td>
+      <td>20</td>
+      <td>PP</td>
+      <td>M</td>
+      <td>23.0</td>
+      <td>13.0</td>
+      <td>Chaetodipus</td>
+      <td>penicillatus</td>
       <td>Rodent</td>
-      <td>Control</td>
+      <td>Short-term Krat Exclosure</td>
     </tr>
     <tr>
-      <th>13659</th>
-      <td>16731</td>
-      <td>12</td>
-      <td>4</td>
+      <th>1840</th>
+      <td>2468</td>
+      <td>2</td>
+      <td>25</td>
+      <td>1980</td>
+      <td>5</td>
+      <td>OT</td>
+      <td>F</td>
+      <td>19.0</td>
+      <td>29.0</td>
+      <td>Onychomys</td>
+      <td>torridus</td>
+      <td>Rodent</td>
+      <td>Rodent Exclosure</td>
+    </tr>
+    <tr>
+      <th>13302</th>
+      <td>16342</td>
+      <td>7</td>
+      <td>29</td>
       <td>1989</td>
       <td>21</td>
       <td>RM</td>
-      <td>M</td>
+      <td>F</td>
       <td>17.0</td>
-      <td>10.0</td>
+      <td>11.0</td>
       <td>Reithrodontomys</td>
       <td>megalotis</td>
       <td>Rodent</td>
       <td>Long-term Krat Exclosure</td>
     </tr>
     <tr>
-      <th>27456</th>
-      <td>31986</td>
-      <td>4</td>
-      <td>21</td>
-      <td>2001</td>
-      <td>22</td>
-      <td>PB</td>
-      <td>F</td>
-      <td>27.0</td>
-      <td>35.0</td>
-      <td>Chaetodipus</td>
-      <td>baileyi</td>
+      <th>16517</th>
+      <td>19945</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1992</td>
+      <td>17</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>38.0</td>
+      <td>50.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
     <tr>
-      <th>8249</th>
-      <td>10475</td>
-      <td>6</td>
-      <td>15</td>
-      <td>1985</td>
+      <th>22317</th>
+      <td>26361</td>
+      <td>7</td>
+      <td>9</td>
+      <td>1997</td>
       <td>14</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>42.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
+      <td>PM</td>
+      <td>F</td>
+      <td>21.0</td>
+      <td>22.0</td>
+      <td>Peromyscus</td>
+      <td>maniculatus</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
@@ -265,16 +265,16 @@ visualization package for Python that allows us to create customizable,
 interactive plots of a variety of different types. Plotly makes plots
 that are:
 
--   **Customizable.** Allows the appearance of plots to be extensively
-    modified.
--   **Interactive.** Pan and zoom across plots, or hover over elements
-    to get additional information about them.
--   **Flexible.** Many different plot types can be created, often with
-    only a few lines of code. Because plotly uses similar syntax for
-    each plot type, it is also easy to quickly change plot types to get
-    a different perspective on a dataset.
--   **Embeddable.** Interactive plots can be embedded on websites using
-    ploty's JavaScript library.
+- **Customizable.** Allows the appearance of plots to be extensively
+  modified.
+- **Interactive.** Pan and zoom across plots, or hover over elements to
+  get additional information about them.
+- **Flexible.** Many different plot types can be created, often with
+  only a few lines of code. Because plotly uses similar syntax for each
+  plot type, it is also easy to quickly change plot types to get a
+  different perspective on a dataset.
+- **Embeddable.** Interactive plots can be embedded on websites using
+  ploty's JavaScript library.
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -285,10 +285,10 @@ contrast, the Python community has no clear consensus pick and makes use
 of a number of data visualization packages. Some other commonly used
 packages include:
 
--   [Bokeh](https://bokeh.org/)
--   [Matplotlib](https://matplotlib.org/)
--   [seaborn](https://seaborn.pydata.org/)
--   [Vega-Altair](https://altair-viz.github.io/)
+- [Bokeh](https://bokeh.org/)
+- [Matplotlib](https://matplotlib.org/)
+- [seaborn](https://seaborn.pydata.org/)
+- [Vega-Altair](https://altair-viz.github.io/)
 
 The functionality of this packages overlaps to a large degree, and which
 one to use depends in large part on personal preference.
@@ -297,10 +297,10 @@ one to use depends in large part on personal preference.
 
 Plotly has two main ways of making plots:
 
--   `plotly.express` provides a simplified interface for quickly
-    building and customizing plots
--   `plotly.graph_objects` uses a more complex interface to provide more
-    granular control over the contents of a plot
+- `plotly.express` provides a simplified interface for quickly building
+  and customizing plots
+- `plotly.graph_objects` uses a more complex interface to provide more
+  granular control over the contents of a plot
 
 We will use `plotly.express` in this lesson.
 
@@ -327,18 +327,18 @@ plotly plot, a toolbar appears in the upper right corner. Each icon on
 the toolbar is a widget that allows us to interact with the plot. By
 default, the toolbar includes the following widgets:
 
--   The camera allows us to save the current view as a PNG file
--   The next four widgets are toggles that control how click-and-drag
-    affects the plot. Only one can be active at a time.
-    -   The magnifying glass enables drawing a box to zoom
-    -   The crossing arrows enable panning
-    -   The dotted box enables drawing a box to select data
-    -   The dotted lasso enables drawing an arbitrary shape to to select
-        data
--   The plus box allows us to zoom in
--   The minus box allows us to zoom out
--   The crossing arrows autoscale the plot to show all adata
--   The house resets the plot to the original view
+- The camera allows us to save the current view as a PNG file
+- The next four widgets are toggles that control how click-and-drag
+  affects the plot. Only one can be active at a time.
+  - The magnifying glass enables drawing a box to zoom
+  - The crossing arrows enable panning
+  - The dotted box enables drawing a box to select data
+  - The dotted lasso enables drawing an arbitrary shape to to select
+    data
+- The plus box allows us to zoom in
+- The minus box allows us to zoom out
+- The crossing arrows autoscale the plot to show all adata
+- The house resets the plot to the original view
 
 When we hover over a data point, we get a tooltip that shows information
 about that point.
@@ -354,11 +354,11 @@ itself is presented as well as the general appearance of the plot.
 
 Some issues with the plot include the following:
 
--   All points are the same color
--   Large number of overlapping points, making it difficult to
-    understand how data is distributed
--   Axis labels include underscores and lack units
--   No plot title
+- All points are the same color
+- Large number of overlapping points, making it difficult to understand
+  how data is distributed
+- Axis labels include underscores and lack units
+- No plot title
 
 Any others?
 
@@ -686,9 +686,9 @@ The `px.box()` method includes a keyword argument, points, that allows
 us to change how the underlying data is displayed. It accepts three
 values:
 
--   *outliers* only shows the outliers (default)
--   *all* shows all points
--   *None* shows no points
+- *outliers* only shows the outliers (default)
+- *all* shows all points
+- *None* shows no points
 
 Let's try updating the box plot to show all the underlying data:
 
@@ -819,10 +819,8 @@ a trend difficult.)
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Plotly offers a wide variety of ways to build and style scatter
-    plots
--   Use scatter plots to visualize how parameters covary
--   Use box and violin plots to visualize the distribution of a
-    parameter
+- Plotly offers a wide variety of ways to build and style scatter plots
+- Use scatter plots to visualize how parameters covary
+- Use box and violin plots to visualize the distribution of a parameter
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

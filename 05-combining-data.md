@@ -6,18 +6,18 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   How do we combine data from multiple sources using pandas?
--   How do we add data to an existing dataframe?
--   How do we combine columns within a single dataframe?
+- How do we combine data from multiple sources using pandas?
+- How do we add data to an existing dataframe?
+- How do we combine columns within a single dataframe?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Use `pd.merge()` to add related columns to a dataframe
--   Use `pd.concat()` to add rows to a dataframe
--   Combine text columns
--   Combine year, month, and day columns into a `datetime64` object
+- Use `pd.merge()` to add related columns to a dataframe
+- Use `pd.concat()` to add rows to a dataframe
+- Combine text columns
+- Combine year, month, and day columns into a `datetime64` object
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -1177,15 +1177,15 @@ species_id that was not definedin the species dataframe were dropped.
 This is not always desirable behavior. Fortunately, pandas supports
 other kinds of merges:
 
--   **Inner:** Include all rows with common values in the join columns.
-    This is the default behavior.
--   **Left:** Include all rows from the left dataframe. Columns from the
-    right dataframe are populated if a common value exists and set to
-    NaN if not.
--   **Right:** Include all rows from the right dataframe. Columns from
-    the left dataframe are populated if a common value exists and set to
-    NaN if not.
--   **Outer:** Include all rows from both dataframes
+- **Inner:** Include all rows with common values in the join columns.
+  This is the default behavior.
+- **Left:** Include all rows from the left dataframe. Columns from the
+  right dataframe are populated if a common value exists and set to NaN
+  if not.
+- **Right:** Include all rows from the right dataframe. Columns from the
+  left dataframe are populated if a common value exists and set to NaN
+  if not.
+- **Outer:** Include all rows from both dataframes
 
 We want to keep all of the observations, so let's do a left join
 instead. To specify the type of merge, we use the *how* keyword
@@ -3163,10 +3163,9 @@ Name: weight, dtype: float64
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Combine two dataframes on one or more common values using
-    `pd.merge()`
--   Append rows from one dataframe to another using `pd.concat()`
--   Combine multiple text columns into one using the `+` operator
--   Convert date info to datetime objects using `pd.to_datetime()`
+- Combine two dataframes on one or more common values using `pd.merge()`
+- Append rows from one dataframe to another using `pd.concat()`
+- Combine multiple text columns into one using the `+` operator
+- Convert date info to datetime objects using `pd.to_datetime()`
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

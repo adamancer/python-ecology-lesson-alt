@@ -6,20 +6,20 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   What is Python?
--   How do we assign variables in Python?
--   How do we perform actions in Python?
--   How does Python handle different types of data?
+- What is Python?
+- How do we assign variables in Python?
+- How do we perform actions in Python?
+- How does Python handle different types of data?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Introduce some Python terminology
--   Learn how to assign values to variables
--   Learn how to use functions and methods
--   Introduce the built-in Python data types and functions
--   Introduce the Python Standard Library
+- Introduce some Python terminology
+- Learn how to assign values to variables
+- Learn how to use functions and methods
+- Introduce the built-in Python data types and functions
+- Introduce the Python Standard Library
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -58,8 +58,8 @@ includes built-in variables and functions that can be used from the
 object itself. Whe use different terms to refer to variables and
 functions associated with an object:
 
--   an *attribute* stores a piece of data
--   a *method* performs an action
+- an *attribute* stores a piece of data
+- a *method* performs an action
 
 Let's look at one of the main built-in types, `str`, to see how this
 works in practice. In Python, `str`, short for string, is used to store
@@ -714,15 +714,15 @@ The rest of this lesson will focus on an external package called pandas.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Python is a widely used language that can be used for a variety of
-    tasks, including analyzing data
--   Python uses different data types to handle text, numbers,
-    collections, and other kinds of data
--   Assign values to variables using the `=` operator
--   Use functions and methods to perform specific actions
--   Python's functionality can be extended using packages developed by
-    the community
--   Use the `help()` function and developer documentation to learn more
-    about Python modules and packages
+- Python is a widely used language that can be used for a variety of
+  tasks, including analyzing data
+- Python uses different data types to handle text, numbers, collections,
+  and other kinds of data
+- Assign values to variables using the `=` operator
+- Use functions and methods to perform specific actions
+- Python's functionality can be extended using packages developed by the
+  community
+- Use the `help()` function and developer documentation to learn more
+  about Python modules and packages
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

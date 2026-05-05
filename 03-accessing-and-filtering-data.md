@@ -6,17 +6,17 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   How can we look at individual rows and columns in a dataframe?
--   How can we look at subsets of the dataset?
+- How can we look at individual rows and columns in a dataframe?
+- How can we look at subsets of the dataset?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Access individual rows and columns
--   Access multiple columns at once using a list
--   Filter the dataframe based on the data it contains
--   Sort the dataframe
+- Access individual rows and columns
+- Access multiple columns at once using a list
+- Filter the dataframe based on the data it contains
+- Sort the dataframe
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -851,16 +851,16 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>12158</th>
-      <td>12159</td>
-      <td>12</td>
-      <td>15</td>
-      <td>1986</td>
-      <td>15</td>
-      <td>PM</td>
-      <td>M</td>
-      <td>19.0</td>
+      <th>31911</th>
+      <td>31912</td>
+      <td>3</td>
+      <td>25</td>
+      <td>2001</td>
+      <td>8</td>
+      <td>PP</td>
+      <td>F</td>
       <td>22.0</td>
+      <td>16.0</td>
     </tr>
   </tbody>
 </table>
@@ -952,12 +952,11 @@ surveys[2:5]
 
 There are three things to be aware of when slicing a dataframe:
 
--   Row indexes are *zero-based*. The first row has an index of 0, not
-    1.
--   When slicing, the slice includes start but not the end index. In
-    this case, that means the slice includes rows 2, 3, and 4 but not 5.
--   The row label can be different from the row index. They happen to be
-    the same here, but don't count on that being true.
+- Row indexes are *zero-based*. The first row has an index of 0, not 1.
+- When slicing, the slice includes start but not the end index. In this
+  case, that means the slice includes rows 2, 3, and 4 but not 5.
+- The row label can be different from the row index. They happen to be
+  the same here, but don't count on that being true.
 
 Core Python types like `list` and `tuple` use the same conventions, as
 do most Python pacakges that work with sequences.
@@ -975,22 +974,22 @@ however, instead of using a value or list of values, we will use a
 A conditional expression is a statement that evaluates as either True or
 False. They often make use of inequality operators, for example:
 
--   `==` for equals
--   `!=` for does not equal
--   `>` for greater than
--   `>=` for greater than or equal to
--   `<` for less than
--   `<=` for less than or equal to
+- `==` for equals
+- `!=` for does not equal
+- `>` for greater than
+- `>=` for greater than or equal to
+- `<` for less than
+- `<=` for less than or equal to
 
 Examples of conditional statements include:
 
--   `"a" == "b"` evaluates False
--   `"a" != b"` evaluates True
--   `3 > 4` evaluates False
+- `"a" == "b"` evaluates False
+- `"a" != b"` evaluates True
+- `3 > 4` evaluates False
 
 Note that, when comparing strings, evaluations are case sensitive:
 
--   `"a" == "A"` evaluates False
+- `"a" == "A"` evaluates False
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -1354,8 +1353,8 @@ one time. In pandas, we can combine conditionals using *bitwise
 operators*. These work like the terms AND and OR in many search
 interfaces:
 
--   `&`: True if conditions on both sides of the operator are True (and)
--   `|`: True if a condition on either side is True (or)
+- `&`: True if conditions on both sides of the operator are True (and)
+- `|`: True if a condition on either side is True (or)
 
 To return all observations of DM in or after 2000, we can combine the
 two conditionals we used previously into a single operation. Note that,
@@ -2368,12 +2367,12 @@ survey data.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Use square brackets to access rows, columns, and specific cells
--   Sort data and get unique values in a dataframe using methods
-    provided by pandas
--   By default, most dataframe operations return a copy of the original
-    data
--   Scatter plots can be used to visualize how two parameters in a
-    dataset covary
+- Use square brackets to access rows, columns, and specific cells
+- Sort data and get unique values in a dataframe using methods provided
+  by pandas
+- By default, most dataframe operations return a copy of the original
+  data
+- Scatter plots can be used to visualize how two parameters in a dataset
+  covary
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

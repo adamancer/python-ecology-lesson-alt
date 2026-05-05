@@ -6,20 +6,20 @@ exercises: 0
 
 ::: questions ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   What data will we be working with in this lesson?
--   What is pandas?
--   Why use pandas for data analysis?
--   How do we read and write data using pandas?
+- What data will we be working with in this lesson?
+- What is pandas?
+- Why use pandas for data analysis?
+- How do we read and write data using pandas?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: objectives :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   Learn about the dataset we'll be working with
--   Look at the benefits of using pandas to analyze data
--   Import data from a CSV into a pandas dataframe
--   Learn how pandas handles different types of data
--   Write a dataframe to a CSV
+- Learn about the dataset we'll be working with
+- Look at the benefits of using pandas to analyze data
+- Import data from a CSV into a pandas dataframe
+- Learn how pandas handles different types of data
+- Write a dataframe to a CSV
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -47,9 +47,9 @@ Let's look at some of the cleaned spreadsheets we downloaded during
 Setup to complete this challenge. Over the course of this lesson, we'll
 be working with the following three files:
 
--   surveys.csv
--   species.csv
--   plots.csv
+- surveys.csv
+- species.csv
+- plots.csv
 
 ::: challenge ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -59,11 +59,11 @@ Open each of these csv files and explore them. What information is
 contained in each file? Specifically, if we had the following research
 questions:
 
--   How has the hindfoot length and weight of Dipodomys species changed
-    over time?
--   What is the average weight of each species, per year?
--   What information can I learn about Dipodomys species in the 2000s,
-    over time?
+- How has the hindfoot length and weight of Dipodomys species changed
+  over time?
+- What is the average weight of each species, per year?
+- What information can I learn about Dipodomys species in the 2000s,
+  over time?
 
 What would we need to answer these questions? Which files have the data
 we need? What operations would we need to perform if we were doing these
@@ -76,11 +76,11 @@ analyses by hand?
 In order to answer the questions described above, we'll need to do the
 following basic data operations:
 
--   select subsets of the data (rows and columns)
--   group subsets of data
--   do math and other calculations
--   combine data across spreadsheets
--   plot data to identify patterns
+- select subsets of the data (rows and columns)
+- group subsets of data
+- do math and other calculations
+- combine data across spreadsheets
+- plot data to identify patterns
 
 In addition, we don't want to do this manually! Instead of searching for
 the right pieces of data ourselves, or clicking between spreadsheets, or
@@ -103,16 +103,16 @@ Pandas offers the same advantages as any well-written package: It
 creates a common codebase for working on a single task, in this case,
 analyzing data. Some benefits of this approach include:
 
--   **Reliability:** Provides flexible, well-tested methods for reading,
-    querying, aggregating, grouping, and plotting data
--   **Repeatability:** Repeat the same analyses when data is added or
-    changed
--   **Speed:** Faster in many cases than coding our own functions in
-    Python
--   **Reproducibility:** Document and share code in narrative form using
-    tools like Jupyter notebooks
--   **Community:** Access a large, active community for help when we run
-    into problems
+- **Reliability:** Provides flexible, well-tested methods for reading,
+  querying, aggregating, grouping, and plotting data
+- **Repeatability:** Repeat the same analyses when data is added or
+  changed
+- **Speed:** Faster in many cases than coding our own functions in
+  Python
+- **Reproducibility:** Document and share code in narrative form using
+  tools like Jupyter notebooks
+- **Community:** Access a large, active community for help when we run
+  into problems
 
 ## Importing data using pandas
 
@@ -144,12 +144,12 @@ Now that pandas has been imported, we can access the function we need to
 load data from a CSV, `pd.read_csv()`. The function call has three
 parts:
 
--   The name (or in this case, alias) of the object that defines the
-    function. This can be a module, package, or any other object. It can
-    also be omitted in some cases (for example, when using a function
-    built into Python).
--   The name of the method we'd like to use
--   A set of parentheses that tells the function to run.
+- The name (or in this case, alias) of the object that defines the
+  function. This can be a module, package, or any other object. It can
+  also be omitted in some cases (for example, when using a function
+  built into Python).
+- The name of the method we'd like to use
+- A set of parentheses that tells the function to run.
 
 Many functions include *parameters* that allow the user to modify the
 behavior of the function. Parameters may be positional or named. In
@@ -331,18 +331,18 @@ pd.read_csv("data/surveys.csv")
 
 Here are a few things to observe about how the dataframe is structured:
 
--   By default, the notebook displays the first and last five rows of
-    the dataframe
--   Each row represents a record
--   Each column represents a field
--   The unlabeled column on the far left is called the *row label*
--   pandas has done a lot of work behind the scenes when reading the
-    data, including:
-    -   Assigning the *row index* as the row label
-    -   Assigning each column a data type based on its contents
-    -   Assigning certain cells the value NaN, which stands for "not a
-        number" and is used to designate null values in the dataset.
-        Here, those cells represent blank cells in the spreadsheet.
+- By default, the notebook displays the first and last five rows of the
+  dataframe
+- Each row represents a record
+- Each column represents a field
+- The unlabeled column on the far left is called the *row label*
+- pandas has done a lot of work behind the scenes when reading the data,
+  including:
+  - Assigning the *row index* as the row label
+  - Assigning each column a data type based on its contents
+  - Assigning certain cells the value NaN, which stands for "not a
+    number" and is used to designate null values in the dataset. Here,
+    those cells represent blank cells in the spreadsheet.
 
 Much of this behavior can be controlled when the spreadsheet is first
 read by using keyword arguments. For example, to force `pd.read_csv()`
@@ -547,23 +547,23 @@ In addition to empty cells, the following values are interpreted as NaN,
 or null, by pandas. These strings may look familiar from programs like
 Excel.
 
--   #N/A
--   #N/A N/A
--   #NA
--   -1.#IND
--   -1.#QNAN
--   -NaN
--   -nan
--   1.#IND
--   1.#QNAN
--   \<NA\>
--   N/A
--   NA
--   NULL
--   NaN
--   n/a
--   nan
--   null
+- #N/A
+- #N/A N/A
+- #NA
+- -1.#IND
+- -1.#QNAN
+- -NaN
+- -nan
+- 1.#IND
+- 1.#QNAN
+- \<NA\>
+- N/A
+- NA
+- NULL
+- NaN
+- n/a
+- nan
+- null
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -814,17 +814,17 @@ other supported formats.
 
 ::: keypoints ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
--   This lesson uses real data from a decades-long survey of rodents in
-    Arizona
--   pandas is a data analysis package that allows users to read,
-    manipulate, and view tabular data using Python
--   pandas represents data as a dataframe consisting of rows (records)
-    and columns (fields or variables)
--   We can read a dataframe from CSV using the `pd.read_csv()` function
-    and write a dataframe to CSV using the `to_csv()` method
--   The behavior of a function can be modified by including arguments
-    and keyword arguments when the function is called
--   pandas uses its own classes to represent text, numbers, booleans,
-    and datetimes
+- This lesson uses real data from a decades-long survey of rodents in
+  Arizona
+- pandas is a data analysis package that allows users to read,
+  manipulate, and view tabular data using Python
+- pandas represents data as a dataframe consisting of rows (records) and
+  columns (fields or variables)
+- We can read a dataframe from CSV using the `pd.read_csv()` function
+  and write a dataframe to CSV using the `to_csv()` method
+- The behavior of a function can be modified by including arguments and
+  keyword arguments when the function is called
+- pandas uses its own classes to represent text, numbers, booleans, and
+  datetimes
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
