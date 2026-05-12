@@ -851,16 +851,16 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>31911</th>
-      <td>31912</td>
-      <td>3</td>
-      <td>25</td>
-      <td>2001</td>
-      <td>8</td>
-      <td>PP</td>
-      <td>F</td>
-      <td>22.0</td>
-      <td>16.0</td>
+      <th>34956</th>
+      <td>34957</td>
+      <td>10</td>
+      <td>6</td>
+      <td>2002</td>
+      <td>13</td>
+      <td>PB</td>
+      <td>M</td>
+      <td>26.0</td>
+      <td>34.0</td>
     </tr>
   </tbody>
 </table>
