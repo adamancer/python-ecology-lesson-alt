@@ -68,7 +68,7 @@
         </ul></div>
     </div>
   </div>
-  <hr></header><nav class="navbar navbar-expand-xl bottom-nav data" aria-label="Main Navigation"><div class="container-fluid nav-container">
+</header><nav class="navbar navbar-expand-xl bottom-nav data" aria-label="Main Navigation"><div class="container-fluid nav-container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
       <span class="navbar-toggler-icon"></span>
       <span class="menu-title">Menu</span>
@@ -117,12 +117,8 @@
     -->
     <a id="search-button" class="btn btn-primary" href="aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div><!--/div.container-fluid -->
-</nav><aside class="col-md-12 lesson-progress"><div style="width: 83%" class="percentage">
-    83%
-  </div>
-  <div class="progress data">
-    <div class="progress-bar data" role="progressbar" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="83" style="width: 83%">
-    </div>
+</nav><aside class="col-md-12 lesson-progress"><div class="progress data">
+    <div class="progress-bar data" role="progressbar" style="width: 83%" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson Progress">83%</div>
   </div>
 </aside><div class="container">
       <div class="row">
@@ -178,7 +174,7 @@
               </div><!--div.sidenav-view-selector -->
             </div><!--/div.col -->
 
-            <hr></div><!--/div.mobile-row -->
+          </div><!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordion-chapters-toggle">
             <div class="accordion-item">
@@ -312,8 +308,8 @@
         <!-- START: inst/pkgdown/templates/content-instructor.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter Top"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link" href="05-combining-data.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="05-combining-data.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
+        <a class="chapter-link float-end" href="index.html" rel="next">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -326,9 +322,9 @@
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
-      <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
+    </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Visualizing Data</h1>
-        <p>Last updated on 2026-05-19 |
+        <p>Last updated on 2026-05-26 |
 
         <a href="https://github.com/adamancer/python-ecology-lesson-alt/edit/main/episodes/06-visualizing-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -541,34 +537,76 @@ taxa
 plot_type
 </th>
 </tr></thead><tbody><tr><th>
-26340
+11168
 </th>
 <td>
-30755
+13892
 </td>
 <td>
-6
+1
 </td>
 <td>
-3
+23
 </td>
 <td>
-2000
+1988
 </td>
 <td>
-19
+23
 </td>
 <td>
-PB
+PM
 </td>
 <td>
 M
 </td>
 <td>
-26.0
+22.0
 </td>
 <td>
-41.0
+24.0
+</td>
+<td>
+Peromyscus
+</td>
+<td>
+maniculatus
+</td>
+<td>
+Rodent
+</td>
+<td>
+Rodent Exclosure
+</td>
+</tr><tr><th>
+28943
+</th>
+<td>
+33631
+</td>
+<td>
+3
+</td>
+<td>
+13
+</td>
+<td>
+2002
+</td>
+<td>
+21
+</td>
+<td>
+PB
+</td>
+<td>
+F
+</td>
+<td>
+25.0
+</td>
+<td>
+27.0
 </td>
 <td>
 Chaetodipus
@@ -583,19 +621,19 @@ Rodent
 Long-term Krat Exclosure
 </td>
 </tr><tr><th>
-21986
+25977
 </th>
 <td>
-26016
+30366
+</td>
+<td>
+2
 </td>
 <td>
 6
 </td>
 <td>
-9
-</td>
-<td>
-1997
+2000
 </td>
 <td>
 4
@@ -604,13 +642,13 @@ Long-term Krat Exclosure
 DM
 </td>
 <td>
-M
+F
 </td>
 <td>
 38.0
 </td>
 <td>
-48.0
+42.0
 </td>
 <td>
 Dipodomys
@@ -625,64 +663,64 @@ Rodent
 Control
 </td>
 </tr><tr><th>
-11715
+12740
 </th>
 <td>
-14521
-</td>
-<td>
-5
-</td>
-<td>
-15
-</td>
-<td>
-1988
+15640
 </td>
 <td>
 2
 </td>
 <td>
-OT
+5
 </td>
 <td>
-F
+1989
 </td>
 <td>
-20.0
+15
 </td>
 <td>
-30.0
+DM
 </td>
 <td>
-Onychomys
+M
 </td>
 <td>
-torridus
+35.0
+</td>
+<td>
+44.0
+</td>
+<td>
+Dipodomys
+</td>
+<td>
+merriami
 </td>
 <td>
 Rodent
 </td>
 <td>
-Control
+Long-term Krat Exclosure
 </td>
 </tr><tr><th>
-4577
+5256
 </th>
 <td>
-6495
+7226
 </td>
 <td>
-8
+1
 </td>
 <td>
-16
+12
 </td>
 <td>
-1982
+1983
 </td>
 <td>
-5
+13
 </td>
 <td>
 DM
@@ -694,7 +732,7 @@ M
 36.0
 </td>
 <td>
-41.0
+47.0
 </td>
 <td>
 Dipodomys
@@ -706,49 +744,7 @@ merriami
 Rodent
 </td>
 <td>
-Rodent Exclosure
-</td>
-</tr><tr><th>
-6446
-</th>
-<td>
-8520
-</td>
-<td>
-10
-</td>
-<td>
-16
-</td>
-<td>
-1983
-</td>
-<td>
-11
-</td>
-<td>
-RM
-</td>
-<td>
-M
-</td>
-<td>
-15.0
-</td>
-<td>
-9.0
-</td>
-<td>
-Reithrodontomys
-</td>
-<td>
-megalotis
-</td>
-<td>
-Rodent
-</td>
-<td>
-Control
+Short-term Krat Exclosure
 </td>
 </tr></tbody></table><p>Finally, we’ll save the rodents dataframe to a file that we can load
 directly in the future if needed:</p>
@@ -1393,7 +1389,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.1" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.1.0" class="external-link">varnish (1.1.0)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.20.2" class="external-link">sandpaper (0.20.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.1.1" class="external-link">varnish (1.1.1)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1415,8 +1411,8 @@ any links that you are not going to use.
   "url": "https://adamancer.github.io/python-ecology-lesson-alt/06-visualizing-data.html",
   "identifier": "https://adamancer.github.io/python-ecology-lesson-alt/06-visualizing-data.html",
   "dateCreated": "2022-05-10",
-  "dateModified": "2026-05-19",
-  "datePublished": "2026-05-19"
+  "dateModified": "2026-05-26",
+  "datePublished": "2026-05-26"
 }
 
   </script><script>
