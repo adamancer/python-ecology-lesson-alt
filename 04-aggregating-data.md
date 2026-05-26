@@ -358,7 +358,7 @@ surveys.groupby("species_id")
 ```{.output}
 ```
 
-<pandas.api.typing.DataFrameGroupBy object at 0x7fa5702e42f0>
+<pandas.api.typing.DataFrameGroupBy object at 0x7fcd4df5c2f0>
 
 The `groupby()` methods returns a special object that includes the rows
 associated with each species_id, but we wouldn't know that based on the
