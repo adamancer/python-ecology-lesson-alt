@@ -235,8 +235,8 @@ class str(object)
  |  capitalize(self, /)
  |      Return a capitalized version of the string.
  |
- |      More specifically, make the first character have upper case and the rest lower
- |      case.
+ |      More specifically, make the first character have upper case and the
+ |      rest lower case.
  |
  |  casefold(self, /)
  |      Return a version of the string suitable for caseless comparisons.
@@ -244,12 +244,14 @@ class str(object)
  |  center(self, width, fillchar=' ', /)
  |      Return a centered string of length width.
  |
- |      Padding is done using the specified fill character (default is a space).
+ |      Padding is done using the specified fill character (default is
+ |      a space).
  |
  |  count(self, sub[, start[, end]], /)
  |      Return the number of non-overlapping occurrences of substring sub in string S[start:end].
  |
- |      Optional arguments start and end are interpreted as in slice notation.
+ |      Optional arguments start and end are interpreted as in slice
+ |      notation.
  |
  |  encode(self, /, encoding='utf-8', errors='strict')
  |      Encode the string using the codec registered for encoding.
@@ -259,8 +261,8 @@ class str(object)
  |      errors
  |        The error handling scheme to use for encoding errors.
  |        The default is 'strict' meaning that encoding errors raise a
- |        UnicodeEncodeError.  Other possible values are 'ignore', 'replace' and
- |        'xmlcharrefreplace' as well as any other name registered with
+ |        UnicodeEncodeError.  Other possible values are 'ignore', 'replace'
+ |        and 'xmlcharrefreplace' as well as any other name registered with
  |        codecs.register_error that can handle UnicodeEncodeErrors.
  |
  |  endswith(self, suffix[, start[, end]], /)
@@ -281,8 +283,8 @@ class str(object)
  |  find(self, sub[, start[, end]], /)
  |      Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Optional arguments start and end are interpreted as in slice notation.
- |      Return -1 on failure.
+ |      Optional arguments start and end are interpreted as in slice
+ |      notation.  Return -1 on failure.
  |
  |  format(self, /, *args, **kwargs)
  |      Return a formatted version of the string, using substitutions from args and kwargs.
@@ -295,20 +297,20 @@ class str(object)
  |  index(self, sub[, start[, end]], /)
  |      Return the lowest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Optional arguments start and end are interpreted as in slice notation.
- |      Raises ValueError when the substring is not found.
+ |      Optional arguments start and end are interpreted as in slice
+ |      notation.  Raises ValueError when the substring is not found.
  |
  |  isalnum(self, /)
  |      Return True if the string is an alpha-numeric string, False otherwise.
  |
- |      A string is alpha-numeric if all characters in the string are alpha-numeric and
- |      there is at least one character in the string.
+ |      A string is alpha-numeric if all characters in the string are
+ |      alpha-numeric and there is at least one character in the string.
  |
  |  isalpha(self, /)
  |      Return True if the string is an alphabetic string, False otherwise.
  |
- |      A string is alphabetic if all characters in the string are alphabetic and there
- |      is at least one character in the string.
+ |      A string is alphabetic if all characters in the string are
+ |      alphabetic and there is at least one character in the string.
  |
  |  isascii(self, /)
  |      Return True if all characters in the string are ASCII, False otherwise.
@@ -319,32 +321,32 @@ class str(object)
  |  isdecimal(self, /)
  |      Return True if the string is a decimal string, False otherwise.
  |
- |      A string is a decimal string if all characters in the string are decimal and
- |      there is at least one character in the string.
+ |      A string is a decimal string if all characters in the string are
+ |      decimal and there is at least one character in the string.
  |
  |  isdigit(self, /)
  |      Return True if the string is a digit string, False otherwise.
  |
- |      A string is a digit string if all characters in the string are digits and there
- |      is at least one character in the string.
+ |      A string is a digit string if all characters in the string are
+ |      digits and there is at least one character in the string.
  |
  |  isidentifier(self, /)
  |      Return True if the string is a valid Python identifier, False otherwise.
  |
- |      Call keyword.iskeyword(s) to test whether string s is a reserved identifier,
- |      such as "def" or "class".
+ |      Call keyword.iskeyword(s) to test whether string s is a reserved
+ |      identifier, such as "def" or "class".
  |
  |  islower(self, /)
  |      Return True if the string is a lowercase string, False otherwise.
  |
- |      A string is lowercase if all cased characters in the string are lowercase and
- |      there is at least one cased character in the string.
+ |      A string is lowercase if all cased characters in the string are
+ |      lowercase and there is at least one cased character in the string.
  |
  |  isnumeric(self, /)
  |      Return True if the string is a numeric string, False otherwise.
  |
- |      A string is numeric if all characters in the string are numeric and there is at
- |      least one character in the string.
+ |      A string is numeric if all characters in the string are numeric and
+ |      there is at least one character in the string.
  |
  |  isprintable(self, /)
  |      Return True if all characters in the string are printable, False otherwise.
@@ -354,8 +356,8 @@ class str(object)
  |  isspace(self, /)
  |      Return True if the string is a whitespace string, False otherwise.
  |
- |      A string is whitespace if all characters in the string are whitespace and there
- |      is at least one character in the string.
+ |      A string is whitespace if all characters in the string are
+ |      whitespace and there is at least one character in the string.
  |
  |  istitle(self, /)
  |      Return True if the string is a title-cased string, False otherwise.
@@ -366,21 +368,22 @@ class str(object)
  |  isupper(self, /)
  |      Return True if the string is an uppercase string, False otherwise.
  |
- |      A string is uppercase if all cased characters in the string are uppercase and
- |      there is at least one cased character in the string.
+ |      A string is uppercase if all cased characters in the string are
+ |      uppercase and there is at least one cased character in the string.
  |
  |  join(self, iterable, /)
  |      Concatenate any number of strings.
  |
- |      The string whose method is called is inserted in between each given string.
- |      The result is returned as a new string.
+ |      The string whose method is called is inserted in between each given
+ |      string.  The result is returned as a new string.
  |
  |      Example: '.'.join(['ab', 'pq', 'rs']) -> 'ab.pq.rs'
  |
  |  ljust(self, width, fillchar=' ', /)
  |      Return a left-justified string of length width.
  |
- |      Padding is done using the specified fill character (default is a space).
+ |      Padding is done using the specified fill character (default is
+ |      a space).
  |
  |  lower(self, /)
  |      Return a copy of the string converted to lowercase.
@@ -393,25 +396,26 @@ class str(object)
  |  partition(self, sep, /)
  |      Partition the string into three parts using the given separator.
  |
- |      This will search for the separator in the string.  If the separator is found,
- |      returns a 3-tuple containing the part before the separator, the separator
- |      itself, and the part after it.
+ |      This will search for the separator in the string.  If the separator
+ |      is found, returns a 3-tuple containing the part before the
+ |      separator, the separator itself, and the part after it.
  |
- |      If the separator is not found, returns a 3-tuple containing the original string
- |      and two empty strings.
+ |      If the separator is not found, returns a 3-tuple containing
+ |      the original string and two empty strings.
  |
  |  removeprefix(self, prefix, /)
  |      Return a str with the given prefix string removed if present.
  |
- |      If the string starts with the prefix string, return string[len(prefix):].
- |      Otherwise, return a copy of the original string.
+ |      If the string starts with the prefix string, return
+ |      string[len(prefix):].  Otherwise, return a copy of the original
+ |      string.
  |
  |  removesuffix(self, suffix, /)
  |      Return a str with the given suffix string removed if present.
  |
- |      If the string ends with the suffix string and that suffix is not empty,
- |      return string[:-len(suffix)]. Otherwise, return a copy of the original
- |      string.
+ |      If the string ends with the suffix string and that suffix is not
+ |      empty, return string[:-len(suffix)].  Otherwise, return a copy of
+ |      the original string.
  |
  |  replace(self, old, new, /, count=-1)
  |      Return a copy with all occurrences of substring old replaced by new.
@@ -426,29 +430,31 @@ class str(object)
  |  rfind(self, sub[, start[, end]], /)
  |      Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Optional arguments start and end are interpreted as in slice notation.
- |      Return -1 on failure.
+ |      Optional arguments start and end are interpreted as in slice
+ |      notation.  Return -1 on failure.
  |
  |  rindex(self, sub[, start[, end]], /)
  |      Return the highest index in S where substring sub is found, such that sub is contained within S[start:end].
  |
- |      Optional arguments start and end are interpreted as in slice notation.
- |      Raises ValueError when the substring is not found.
+ |      Optional arguments start and end are interpreted as in slice
+ |      notation.  Raises ValueError when the substring is not found.
  |
  |  rjust(self, width, fillchar=' ', /)
  |      Return a right-justified string of length width.
  |
- |      Padding is done using the specified fill character (default is a space).
+ |      Padding is done using the specified fill character (default is
+ |      a space).
  |
  |  rpartition(self, sep, /)
  |      Partition the string into three parts using the given separator.
  |
- |      This will search for the separator in the string, starting at the end. If
- |      the separator is found, returns a 3-tuple containing the part before the
- |      separator, the separator itself, and the part after it.
+ |      This will search for the separator in the string, starting at the
+ |      end.  If the separator is found, returns a 3-tuple containing the
+ |      part before the separator, the separator itself, and the part after
+ |      it.
  |
- |      If the separator is not found, returns a 3-tuple containing two empty strings
- |      and the original string.
+ |      If the separator is not found, returns a 3-tuple containing two
+ |      empty strings and the original string.
  |
  |  rsplit(self, /, sep=None, maxsplit=-1)
  |      Return a list of the substrings in the string, using sep as the separator string.
@@ -456,9 +462,9 @@ class str(object)
  |        sep
  |          The separator used to split the string.
  |
- |          When set to None (the default value), will split on any whitespace
- |          character (including \n \r \t \f and spaces) and will discard
- |          empty strings from the result.
+ |          When set to None (the default value), will split on any
+ |          whitespace character (including \n \r \t \f and spaces) and
+ |          will discard empty strings from the result.
  |        maxsplit
  |          Maximum number of splits.
  |          -1 (the default value) means no limit.
@@ -476,24 +482,24 @@ class str(object)
  |        sep
  |          The separator used to split the string.
  |
- |          When set to None (the default value), will split on any whitespace
- |          character (including \n \r \t \f and spaces) and will discard
- |          empty strings from the result.
+ |          When set to None (the default value), will split on any
+ |          whitespace character (including \n \r \t \f and spaces) and
+ |          will discard empty strings from the result.
  |        maxsplit
  |          Maximum number of splits.
  |          -1 (the default value) means no limit.
  |
  |      Splitting starts at the front of the string and works to the end.
  |
- |      Note, str.split() is mainly useful for data that has been intentionally
- |      delimited.  With natural text that includes punctuation, consider using
- |      the regular expression module.
+ |      Note, str.split() is mainly useful for data that has been
+ |      intentionally delimited.  With natural text that includes
+ |      punctuation, consider using the regular expression module.
  |
  |  splitlines(self, /, keepends=False)
  |      Return a list of the lines in the string, breaking at line boundaries.
  |
- |      Line breaks are not included in the resulting list unless keepends is given and
- |      true.
+ |      Line breaks are not included in the resulting list unless keepends
+ |      is given and true.
  |
  |  startswith(self, prefix[, start[, end]], /)
  |      Return True if the string starts with the specified prefix, False otherwise.
@@ -516,19 +522,20 @@ class str(object)
  |  title(self, /)
  |      Return a version of the string where each word is titlecased.
  |
- |      More specifically, words start with uppercased characters and all remaining
- |      cased characters have lower case.
+ |      More specifically, words start with uppercased characters and all
+ |      remaining cased characters have lower case.
  |
  |  translate(self, table, /)
  |      Replace each character in the string using the given translation table.
  |
  |        table
- |          Translation table, which must be a mapping of Unicode ordinals to
- |          Unicode ordinals, strings, or None.
+ |          Translation table, which must be a mapping of Unicode ordinals
+ |          to Unicode ordinals, strings, or None.
  |
- |      The table must implement lookup/indexing via __getitem__, for instance a
- |      dictionary or list.  If this operation raises LookupError, the character is
- |      left untouched.  Characters mapped to None are deleted.
+ |      The table must implement lookup/indexing via __getitem__, for
+ |      instance a dictionary or list.  If this operation raises
+ |      LookupError, the character is left untouched.  Characters mapped to
+ |      None are deleted.
  |
  |  upper(self, /)
  |      Return a copy of the string converted to uppercase.
@@ -547,13 +554,14 @@ class str(object)
  |  maketrans(x, y=<unrepresentable>, z=<unrepresentable>, /)
  |      Return a translation table usable for str.translate().
  |
- |      If there is only one argument, it must be a dictionary mapping Unicode
- |      ordinals (integers) or characters to Unicode ordinals, strings or None.
- |      Character keys will be then converted to ordinals.
- |      If there are two arguments, they must be strings of equal length, and
- |      in the resulting dictionary, each character in x will be mapped to the
- |      character at the same position in y. If there is a third argument, it
- |      must be a string, whose characters will be mapped to None in the result.
+ |      If there is only one argument, it must be a dictionary mapping
+ |      Unicode ordinals (integers) or characters to Unicode ordinals,
+ |      strings or None.  Character keys will be then converted to ordinals.
+ |      If there are two arguments, they must be strings of equal length,
+ |      and in the resulting dictionary, each character in x will be mapped
+ |      to the character at the same position in y.  If there is a third
+ |      argument, it must be a string, whose characters will be mapped to
+ |      None in the result.
 
 
 ```
