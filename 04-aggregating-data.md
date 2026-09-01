@@ -358,7 +358,7 @@ surveys.groupby("species_id")
 ```{.output}
 ```
 
-<pandas.api.typing.DataFrameGroupBy object at 0x7f166c60b230>
+<pandas.api.typing.DataFrameGroupBy object at 0x7f8819fd2660>
 
 The `groupby()` methods returns a special object that includes the rows
 associated with each species_id, but we wouldn't know that based on the
@@ -1853,7 +1853,7 @@ px.scatter(surveys, x="weight", y="hindfoot_length", color="species_id")
 ```{.output}
 ```
 
-<embed src="files/fig-6c9b8a7490eacbd3c686340a3a0e8134.html" width=760 height=570>
+<embed src="files/fig-e8a7f1d1b909859ffa1371a04f3c2f8c.html" width=760 height=570>
 
 Now we have a much more colorful plot that shows more clearly how the
 sizes of individual species produce some of the patterns we noted
@@ -1875,7 +1875,7 @@ px.box(surveys, x="species_id", y="hindfoot_length", color="species_id")
 ```{.output}
 ```
 
-<embed src="files/fig-81b50ac778849616cb1b3c826a32b9de.html" width=760 height=570>
+<embed src="files/fig-e2f57ab732edc5d04c63b5816f5ab9a2.html" width=760 height=570>
 
 By default, this plot includes boxes (which show the distribution of
 each species) and points (for outliers). When we hover over any of the

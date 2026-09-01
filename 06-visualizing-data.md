@@ -166,84 +166,84 @@ rodents.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>3449</th>
-      <td>4953</td>
-      <td>10</td>
-      <td>26</td>
-      <td>1981</td>
-      <td>4</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>38.0</td>
-      <td>51.0</td>
-      <td>Dipodomys</td>
-      <td>merriami</td>
-      <td>Rodent</td>
-      <td>Control</td>
-    </tr>
-    <tr>
-      <th>17295</th>
-      <td>20864</td>
-      <td>5</td>
-      <td>23</td>
-      <td>1993</td>
+      <th>1588</th>
+      <td>2202</td>
+      <td>11</td>
+      <td>18</td>
+      <td>1979</td>
       <td>9</td>
-      <td>DM</td>
+      <td>DS</td>
       <td>M</td>
-      <td>36.0</td>
-      <td>47.0</td>
+      <td>48.0</td>
+      <td>110.0</td>
       <td>Dipodomys</td>
-      <td>merriami</td>
+      <td>spectabilis</td>
       <td>Rodent</td>
       <td>Spectab exclosure</td>
     </tr>
     <tr>
-      <th>1996</th>
-      <td>2993</td>
-      <td>5</td>
-      <td>18</td>
-      <td>1980</td>
+      <th>3198</th>
+      <td>4667</td>
+      <td>7</td>
       <td>8</td>
-      <td>DO</td>
+      <td>1981</td>
+      <td>2</td>
+      <td>NL</td>
       <td>F</td>
-      <td>35.0</td>
-      <td>43.0</td>
-      <td>Dipodomys</td>
-      <td>ordii</td>
+      <td>30.0</td>
+      <td>130.0</td>
+      <td>Neotoma</td>
+      <td>albigula</td>
       <td>Rodent</td>
       <td>Control</td>
     </tr>
     <tr>
-      <th>17234</th>
-      <td>20792</td>
-      <td>4</td>
-      <td>23</td>
-      <td>1993</td>
-      <td>18</td>
-      <td>PP</td>
-      <td>F</td>
-      <td>22.0</td>
-      <td>17.0</td>
-      <td>Chaetodipus</td>
-      <td>penicillatus</td>
+      <th>6361</th>
+      <td>8423</td>
+      <td>10</td>
+      <td>15</td>
+      <td>1983</td>
+      <td>22</td>
+      <td>PF</td>
+      <td>M</td>
+      <td>16.0</td>
+      <td>6.0</td>
+      <td>Perognathus</td>
+      <td>flavus</td>
+      <td>Rodent</td>
+      <td>Control</td>
+    </tr>
+    <tr>
+      <th>24801</th>
+      <td>29114</td>
+      <td>1</td>
+      <td>17</td>
+      <td>1999</td>
+      <td>6</td>
+      <td>PM</td>
+      <td>M</td>
+      <td>20.0</td>
+      <td>26.0</td>
+      <td>Peromyscus</td>
+      <td>maniculatus</td>
       <td>Rodent</td>
       <td>Short-term Krat Exclosure</td>
     </tr>
     <tr>
-      <th>29274</th>
-      <td>33988</td>
-      <td>5</td>
-      <td>15</td>
-      <td>2002</td>
-      <td>19</td>
-      <td>PP</td>
-      <td>F</td>
-      <td>20.0</td>
-      <td>13.0</td>
-      <td>Chaetodipus</td>
-      <td>penicillatus</td>
+      <th>17616</th>
+      <td>21249</td>
+      <td>11</td>
+      <td>14</td>
+      <td>1993</td>
+      <td>4</td>
+      <td>DM</td>
+      <td>M</td>
+      <td>37.0</td>
+      <td>50.0</td>
+      <td>Dipodomys</td>
+      <td>merriami</td>
       <td>Rodent</td>
-      <td>Long-term Krat Exclosure</td>
+      <td>Control</td>
     </tr>
   </tbody>
 </table>
@@ -319,7 +319,7 @@ px.scatter(rodents, x="weight", y="hindfoot_length")
 ```{.output}
 ```
 
-<embed src="files/fig-a5bc67ed89866863a9a8945a8141239c.html" width=760 height=570>
+<embed src="files/fig-aee5b12b4d546ad2fb36ae5b1b7ae734.html" width=760 height=570>
 
 Before diving into the content of this plot, let's take a quick look at
 the interactive elements plotly makes available. When we hover over a
@@ -382,7 +382,7 @@ px.scatter(rodents, x="weight", y="hindfoot_length", opacity=0.2)
 ```{.output}
 ```
 
-<embed src="files/fig-e6e8b7846f1f5308785022397604b063.html" width=760 height=570>
+<embed src="files/fig-2ea380467ef41e407d6595d267356215.html" width=760 height=570>
 
 With the points now partially transparent, the places where they overlap
 are more obvious, and we can see several clusters. To get a better sense
@@ -406,7 +406,7 @@ px.scatter(rodents, x="weight", y="hindfoot_length", color="genus", opacity=0.2)
 ```{.output}
 ```
 
-<embed src="files/fig-9c621cbf03e5d76575c93439a4277a21.html" width=760 height=570>
+<embed src="files/fig-67c38e2404d64c310764f34789e9c18a.html" width=760 height=570>
 
 ## Choosing colors
 
@@ -432,7 +432,7 @@ px.colors.qualitative.swatches()
 ```{.output}
 ```
 
-<embed src="files/fig-20548c05560600010e3e88783aacdd86.html" width=760 height=570>
+<embed src="files/fig-b514899319f11d09cb6c0e40b6de0f72.html" width=760 height=570>
 
 In the spirit of effective communication with a wide audience, we will
 use `px.colors.qualitative.Safe`, a colorblind-safe palette. Because we
@@ -463,7 +463,7 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-349b125e7900fc69cfa30682b78779c0.html" width=760 height=570>
+<embed src="files/fig-e2fb8374259fa10a6522be83573edbdf.html" width=760 height=570>
 
 ## Sorting data
 
@@ -531,7 +531,7 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-933d2518a110bd65ab5ebc96e3dcfc7c.html" width=760 height=570>
+<embed src="files/fig-efaf460db80ed2ca7f918a182358e493.html" width=760 height=570>
 
 Note that the colors in the plot have also changed. Colors are assigned
 based on the same category order used by the legend.
@@ -574,7 +574,7 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-25169cdf2c7196dc94ea79f6aadba526.html" width=760 height=570>
+<embed src="files/fig-cc6db530dd9a67481de5824e38f30e0f.html" width=760 height=570>
 
 ## Create a faceted plot
 
@@ -622,7 +622,7 @@ px.scatter(
 ```{.output}
 ```
 
-<embed src="files/fig-7af8a7c1bc6df4beb06c9a47f54800e5.html" width=760 height=570>
+<embed src="files/fig-e66cf136932dc19445e25f40b24b0976.html" width=760 height=570>
 
 ::: callout ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -667,7 +667,7 @@ px.box(
 ```{.output}
 ```
 
-<embed src="files/fig-88a734bc811c5eb1714bc2bec0cd0a92.html" width=760 height=570>
+<embed src="files/fig-5e13e6679992d1c62b1d1e95cc1df3a7.html" width=760 height=570>
 
 We now have a box plot with colors corresponding to the scatter plots
 above, with an alphabetically ordered x axis and legend.
@@ -709,7 +709,7 @@ px.box(
 ```{.output}
 ```
 
-<embed src="files/fig-5eea0eb0c66c21fc0305194a52809e43.html" width=760 height=570>
+<embed src="files/fig-21d18d26e79d1d498aff6a15261b193b.html" width=760 height=570>
 
 A point cloud is now visible to the left of each box-and-whisker. We can
 see that plotly has spread the points out a bit along the x axis. This
@@ -744,7 +744,7 @@ fig.update_traces(marker={"opacity": 0.1})
 ```{.output}
 ```
 
-<embed src="files/fig-868351fb9d246f1d5921e6d6b8303f39.html" width=760 height=570>
+<embed src="files/fig-4cc90a420d913afaac4302941d3a1b5a.html" width=760 height=570>
 
 With the points now semitransparent, it is possible to see separate
 populations among some genera, like *Dipodomys*.
@@ -772,7 +772,7 @@ fig.update_traces(marker={"opacity": 0.1})
 ```{.output}
 ```
 
-<embed src="files/fig-a2b6e5819ae8ea740baeb7e00455bb9c.html" width=760 height=570>
+<embed src="files/fig-1c07f4de6dd15a54abeaf263e4e5f26e.html" width=760 height=570>
 
 This plot makes it easier to see identify complex distributions, like
 the bimodal distribution for *Chaetodipus*, that are visible but not

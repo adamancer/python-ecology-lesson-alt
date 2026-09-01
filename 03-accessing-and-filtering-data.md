@@ -851,16 +851,16 @@ surveys.sample()
   </thead>
   <tbody>
     <tr>
-      <th>26886</th>
-      <td>26887</td>
-      <td>9</td>
-      <td>28</td>
-      <td>1997</td>
+      <th>5783</th>
+      <td>5784</td>
       <td>4</td>
-      <td>DM</td>
-      <td>M</td>
-      <td>35.0</td>
-      <td>50.0</td>
+      <td>29</td>
+      <td>1982</td>
+      <td>16</td>
+      <td>AB</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -2358,7 +2358,7 @@ px.scatter(surveys, x="weight", y="hindfoot_length")
 ```{.output}
 ```
 
-<embed src="files/fig-b6a08e591b0d820b0d32fd9335576843.html" width=760 height=570>
+<embed src="files/fig-77095113aa81191307a808ab2abfb874.html" width=760 height=570>
 
 This simple plot is limited in what it can tell us about the
 observations in the dataset. We will return to this scatter plot in
